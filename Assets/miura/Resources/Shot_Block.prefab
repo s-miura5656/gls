@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 34074999071559127}
   - component: {fileID: 6772141153259291853}
   - component: {fileID: 3937017294675685147}
+  - component: {fileID: 5688110645204520883}
   m_Layer: 0
   m_Name: Shot_Block
   m_TagString: Untagged
@@ -92,3 +93,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shot_time: 0
+  move_distance: 0
+  move_bullet_z: 0
+  move_bullet_x: 0
+--- !u!65 &5688110645204520883
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873077209911831906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
