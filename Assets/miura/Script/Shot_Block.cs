@@ -47,6 +47,7 @@ public class Shot_Block : MonoBehaviour
         {
             bullet_copy = Instantiate(bullet, transform.position, transform.rotation);
             bulletmove_script = bullet_copy.GetComponent<Bullet_Move>();
+            //bulletmove_script.MovingDistance(move_distance, move_bullet_z, move_bullet_x);
             bulletmove_script.MovingDistance(move_distance, move_bullet_z, move_bullet_x);
             time = 0;
         }

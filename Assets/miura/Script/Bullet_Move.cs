@@ -25,7 +25,8 @@ public class Bullet_Move : MonoBehaviour
         dis = Vector3.Distance(base_pos, transform.position);
 
         // 弾の移動処理
-        transform.position += new Vector3(move_bullet_x, 0f, move_bullet_z);
+        //transform.position += new Vector3(move_bullet_x, 0f, move_bullet_z);
+        transform.position += new Vector3(move_bullet_x, move_bullet_z, 0f);
         DestroyBullet();
     }
 
@@ -46,7 +47,8 @@ public class Bullet_Move : MonoBehaviour
     public void MovingDistance(float number, float move_z, float move_x)
     {
         moving_distance = number;
-        move_bullet_z = move_z;
         move_bullet_x = move_x;
+        //move_bullet_z = move_z;
+        move_bullet_z = move_z;
     }
 }

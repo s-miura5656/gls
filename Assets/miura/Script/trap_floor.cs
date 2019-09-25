@@ -35,7 +35,7 @@ public class trap_floor : MonoBehaviour
         {
             if (time >= up_time)
             {
-                transform.position += new Vector3(0f, -1f, 0f);
+                transform.position += new Vector3(0f, 0f, 1f);
 
                 up_down_switch = false;
 
@@ -46,7 +46,7 @@ public class trap_floor : MonoBehaviour
         {
             if (time >= up_time)
             {
-                transform.position += new Vector3(0f, 1f, 0f);
+                transform.position += new Vector3(0f, 0f, -1f);
 
                 up_down_switch = true;
 
