@@ -74,4 +74,6 @@ public class Map_Generator : MonoBehaviour
             Instantiate(block, transform.position, transform.rotation);
         }
     }
+
+    
 }
