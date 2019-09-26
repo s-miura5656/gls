@@ -16,14 +16,18 @@ public class Shot_Block : MonoBehaviour
     // コピーした弾のスクリプトを取得
     private Bullet_Move bulletmove_script;
     // 弾の進む距離
-    [SerializeField]
-    private float move_distance;
+    private float move_distance = 20f;
     // １フレーム当たりの移動量
+    //[SerializeField]
+    //private float move_bullet_z;
+    //[SerializeField]
+    //private float move_bullet_x;
+    // 右か左か
     [SerializeField]
-    private float move_bullet_z;
+    private bool rightorleft;
+    // 弾の発射するかしないか
     [SerializeField]
-    private float move_bullet_x;
-
+    private bool on_off;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +37,10 @@ public class Shot_Block : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShotInterval();  
+        if (on_off == true)
+        {
+            ShotInterval();
+        }
     }
 
     /// <summary>
@@ -48,7 +55,8 @@ public class Shot_Block : MonoBehaviour
             bullet_copy = Instantiate(bullet, transform.position, transform.rotation);
             bulletmove_script = bullet_copy.GetComponent<Bullet_Move>();
             //bulletmove_script.MovingDistance(move_distance, move_bullet_z, move_bullet_x);
-            bulletmove_script.MovingDistance(move_distance, move_bullet_z, move_bullet_x);
+            //bulletmove_script.MovingDistance(move_distance, move_bullet_z, move_bullet_x);
+            bulletmove_script.RightOrLeft(rightorleft);
             time = 0;
         }
     }
