@@ -30,4 +30,6 @@ public class playercamera : MonoBehaviour
     {
         throw new NotImplementedException();
     }
+
+ 
 }

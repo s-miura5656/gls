@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class Bullet_Move : MonoBehaviour
 {
@@ -16,9 +17,13 @@ public class Bullet_Move : MonoBehaviour
     // 右に行くか左に行くか
     private bool right_or_left;
 
+    private int slow_time;
+
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<MeshRenderer>().enabled = true;
+
         if (right_or_left == true)
         {
             move_bullet_x = 0.1f;
@@ -38,7 +43,16 @@ public class Bullet_Move : MonoBehaviour
 
         // 弾の移動処理
         //transform.position += new Vector3(move_bullet_x, 0f, move_bullet_z);
-        transform.position += new Vector3(move_bullet_x, move_bullet_y, 0f);
+
+        if (Input.GetMouseButton(0))
+        {
+            transform.position += new Vector3(move_bullet_x / 3.0f, move_bullet_y / 3.0f, 0f);
+        }
+
+        else
+        {
+            transform.position += new Vector3(move_bullet_x, move_bullet_y, 0f);
+        }
         DestroyBullet();
     }
 
@@ -95,4 +109,5 @@ public class Bullet_Move : MonoBehaviour
     {
         right_or_left = or;
     }
+
 }

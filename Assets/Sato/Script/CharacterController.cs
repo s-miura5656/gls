@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour
 {
@@ -9,28 +10,26 @@ public class CharacterController : MonoBehaviour
     public Vector3 startPos;
     public float speed;
     public Vector2 startDirection;
-    GameObject gameobject;
-    ArrowsController arrowsscript;
+    [SerializeField]
+    private ArrowsController arrowsscript;
     public Vector3 velo;
     public Vector3 vec;
-
-
-
+    public bool start_posion;
+    private bool gameOut = false;
+    private
 
     void Start()
     {
-        gameobject = GameObject.Find("arrows");
-        arrowsscript = gameobject.GetComponent<ArrowsController>();
         this.rigid2d = GetComponent<Rigidbody>();
-       
-
-
     }
 
     void Update()
     {
-    
-        vec = gameobject.transform.right;
+        if (gameOut)
+        {
+//            SceneManager.LoadScene("SatoScene");
+        }
+        vec = arrowsscript.transform.right;
 
         // マウスの動きと反対方向に発射される
         if (Input.GetMouseButtonDown(0))
@@ -46,18 +45,20 @@ public class CharacterController : MonoBehaviour
             this.rigid2d.velocity = Vector3.zero;
             Vector3 endPos = Input.mousePosition;
             startDirection = -1 * (endPos - startPos).normalized;
-            this.rigid2d.AddForce(gameobject.transform.right * arrowsscript.distance * speed * 0.01f, ForceMode.VelocityChange);
+            this.rigid2d.AddForce(arrowsscript.transform.right * arrowsscript.distance * speed * 0.01f, ForceMode.VelocityChange);
             
 
         }
 
-            // テスト用：スペースキー押下で停止
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    this.rigid2d.velocity *= 0;
-            //}
-
         
+
+        // テスト用：スペースキー押下で停止
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    this.rigid2d.velocity *= 0;
+        //}
+
+
 
 
         // Spaceキーを離すと動き出す
@@ -67,6 +68,15 @@ public class CharacterController : MonoBehaviour
         //	this.rigid2d.AddForce(transform.up * speed);
         //}
 
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            gameOut = true;
+        }
+            
     }
 
 }
