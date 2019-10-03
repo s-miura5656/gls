@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     private float move_x;
-    private float move_z;
+    private float move_y;
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -18,9 +18,9 @@ public class Player_Controller : MonoBehaviour
     void Update()
     {
         move_x = Input.GetAxis("Horizontal");
-        move_z = Input.GetAxis("Vertical");
+        move_y = Input.GetAxis("Vertical");
 
-        Vector3 force = new Vector3(move_x, 0f, move_z) * 10;
+        Vector3 force = new Vector3(move_x, move_y, 0f) * 10;
 
         rb.AddForce(force, ForceMode.Force);
     }

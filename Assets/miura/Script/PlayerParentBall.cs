@@ -19,7 +19,7 @@ public class PlayerParentBall : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("hoge");
         foreach (var ball in balls)

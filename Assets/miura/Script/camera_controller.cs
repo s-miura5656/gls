@@ -5,8 +5,8 @@ using UnityEngine;
 public class camera_controller : MonoBehaviour
 {
     [SerializeField]
-    private GameObject player;       //プレイヤーゲームオブジェクトへの参照を格納する Public 変数
-    private Vector3 offset;         //プレイヤーとカメラ間のオフセット距離を格納する Public 変数
+    private GameObject player;       //プレイヤーゲームオブジェクトへの参照を格納する 変数
+    private Vector3 offset;         //プレイヤーとカメラ間のオフセット距離を格納する 変数
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class camera_controller : MonoBehaviour
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
     void LateUpdate()
     {
-        //カメラの transform 位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
-        transform.position = player.transform.position + offset;
+        //カメラの transform.yの位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
+        transform.position = new Vector3(transform.position.x, player.transform.position.y, transform.position.z) + new Vector3(0, offset.y, 0);
     }
 }
