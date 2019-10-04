@@ -17,12 +17,12 @@ public class zoom_camera : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             view = cam.fieldOfView - scroll;
-            cam.fieldOfView = Mathf.Clamp(value: view, min: 10f, max: 60f);
+            cam.fieldOfView = Mathf.Clamp(value: view, min: 40f, max: 60f);
         }
         else
         {
             view = cam.fieldOfView + scroll;
-            cam.fieldOfView = Mathf.Clamp(value: view, min: 10f, max: 60f);
+            cam.fieldOfView = Mathf.Clamp(value: view, min: 40f, max: 60f);
         }
         
         

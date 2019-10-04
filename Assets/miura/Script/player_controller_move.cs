@@ -5,16 +5,13 @@ using UnityEngine;
 public class player_controller_move : MonoBehaviour
 {
     Rigidbody rb;
-    public Vector3 startPos;
-    public float speed;
-    public Vector3 startDirection;
-    [SerializeField]
-    //private ArrowsController arrowsscript;
-    public Vector3 velo;
-    public Vector3 vec;
-    public bool start_posion;
-    private bool gameOut = false;
-    private float powor = 200;
+    // 引っ張りの始点
+    private Vector3 startPos;
+    // 離したときにプレイヤーにかける力
+    private Vector3 startDirection;
+    // 離したときにプレイヤーにかける力に追加する値
+    private float powor = 1000;
+   
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
@@ -35,17 +32,6 @@ public class player_controller_move : MonoBehaviour
             Vector3 endPos = Input.mousePosition;
             startDirection = -1 * (endPos - startPos).normalized;
             rb.AddForce(new Vector3(startDirection.x * powor, 0f, startDirection.y * powor), ForceMode.Impulse);
-
-            //rb.AddForce(arrowsscript.transform.right * arrowsscript.distance * speed * 0.01f, ForceMode.VelocityChange);
         }
-    }
-
-    void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag == "bullet")
-        {
-            gameOut = true;
-        }
-
     }
 }

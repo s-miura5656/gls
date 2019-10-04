@@ -18,7 +18,7 @@ public class camera_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //this.transform.LookAt(player.transform);
+        
     }
 
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
