@@ -10,7 +10,7 @@ public class player_controller_move : MonoBehaviour
     // 離したときにプレイヤーにかける力
     private Vector3 startDirection;
     // 離したときにプレイヤーにかける力に追加する値
-    private float powor = 1000;
+    private float powor = 300;
    
     void Start()
     {
@@ -32,6 +32,14 @@ public class player_controller_move : MonoBehaviour
             Vector3 endPos = Input.mousePosition;
             startDirection = -1 * (endPos - startPos).normalized;
             rb.AddForce(new Vector3(startDirection.x * powor, 0f, startDirection.y * powor), ForceMode.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "block")
+        {
+            //powor += 50;
         }
     }
 }

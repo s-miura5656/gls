@@ -43,7 +43,5 @@ public class enemymove : MonoBehaviour
 
         // 始点から終点までの移動処理
         transform.position = Vector3.Lerp(base_pos, end_pos, ratio);
-
-
     }
 }
