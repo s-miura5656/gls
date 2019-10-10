@@ -5,19 +5,19 @@ using UnityEngine;
 public class Following_player : MonoBehaviour
 {
     // 追従するオブジェクトのスピード
-    [SerializeField] private float m_speed = 5;
+    [SerializeField] private float m_speed = 1;
     // 
     [SerializeField] private float m_attenuation = 0.5f;
     // 距離の値
     [SerializeField] private float dist_number = 10;
     // プレイヤーとの距離
     private float dist;
-    private Vector3 m_velocity;
+    private Vector3 old_player_pos;
     // プレイヤー
     private GameObject player;
 
-    private float dist_x;
-    private float dist_z;
+    private float time_count;
+    private float time_max;
 
     private void Start()
     {
@@ -26,22 +26,13 @@ public class Following_player : MonoBehaviour
 
     private void Update()
     {
+        time_count += Time.deltaTime;
+
         dist = (transform.position - player.transform.position).sqrMagnitude;
 
-        //Debug.Log(dist);
+        old_player_pos = player.transform.position;
 
-        if (dist >= (dist_number * dist_number))
-        {
-            m_velocity += (player.transform.position - transform.position) * m_speed;
-            m_velocity *= m_attenuation;
-            m_velocity *= Time.deltaTime;
-            transform.position += m_velocity;
-        }
-
-        //dist_x = transform.position.x - player.transform.position.x;
-        //dist_z = transform.position.z - player.transform.position.z;
-
-        //transform.position += new Vector3(player.transform.position.x + dist_x, 0f, player.transform.position.z + dist_z);
-
+        transform.position += Vector3.Normalize(old_player_pos - transform.position) * m_speed;
+        
     }
 }
