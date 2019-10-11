@@ -12,7 +12,7 @@ public class Following_player : MonoBehaviour
     {
         for (int i = 0; i < old_player_pos.Length; i++)
         {
-            old_player_pos[i] = transform.position;
+            old_player_pos[i] = this.transform.position;
         }
     }
 
@@ -23,7 +23,7 @@ public class Following_player : MonoBehaviour
             old_player_pos[i + 1] = old_player_pos[i];
         }
 
-        old_player_pos[0] = transform.position;
+        old_player_pos[0] = this.transform.position;
 
         for (int i = 0; i < 5; i++)
         {

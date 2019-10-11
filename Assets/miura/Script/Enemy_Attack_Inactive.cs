@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy_inactive : MonoBehaviour
+public class Enemy_Attack_Inactive : MonoBehaviour
 {
-   
-
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
@@ -17,7 +16,7 @@ public class enemy_inactive : MonoBehaviour
         
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {

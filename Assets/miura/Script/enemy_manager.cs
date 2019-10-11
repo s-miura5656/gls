@@ -13,6 +13,7 @@ public class enemy_manager : MonoBehaviour
     private bool midlle_down;
     private bool top_down;
     private int number;
+    [SerializeField] private float down_dist;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +31,10 @@ public class enemy_manager : MonoBehaviour
             {
                 // 中段を下段へ下げる
                 enemy_midlle.transform.position = 
-                    new Vector3(enemy_midlle.transform.position.x, enemy_midlle.transform.position.y - 5f, enemy_midlle.transform.position.z);
+                    new Vector3(enemy_midlle.transform.position.x, enemy_midlle.transform.position.y - down_dist, enemy_midlle.transform.position.z);
                 // 上段を中段へ下げる
                 enemy_top.transform.position = 
-                    new Vector3(enemy_top.transform.position.x, enemy_top.transform.position.y - 5f, enemy_top.transform.position.z);
+                    new Vector3(enemy_top.transform.position.x, enemy_top.transform.position.y - down_dist, enemy_top.transform.position.z);
 
                 under_down = true;
                 midlle_down = false;
@@ -46,7 +47,7 @@ public class enemy_manager : MonoBehaviour
             {
                 // 中段を下段へ下げる
                 enemy_top.transform.position = 
-                    new Vector3(enemy_top.transform.position.x, enemy_top.transform.position.y - 5f, enemy_top.transform.position.z);
+                    new Vector3(enemy_top.transform.position.x, enemy_top.transform.position.y - down_dist, enemy_top.transform.position.z);
 
                 midlle_down = true;
                 top_down = false;

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player_Bullet : MonoBehaviour
 {
@@ -46,7 +48,23 @@ public class Player_Bullet : MonoBehaviour
             {
                 Debug.Log("game_over");
             }
+        }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "enemy_attack")
+        {
+            if (number > -1)
+            {
+                player_bullets[number].SetActive(false);
+                number--;
+            }
+            else
+            {
+                Debug.Log("game_over");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 }
