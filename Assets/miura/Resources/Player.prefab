@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 707422469503112955}
   - component: {fileID: 707422469503112956}
   - component: {fileID: 707422469503112957}
-  - component: {fileID: 707422469503112958}
   - component: {fileID: 707422469503112953}
   - component: {fileID: 1905252144}
   - component: {fileID: 1905252146}
+  - component: {fileID: 707422469503112958}
   - component: {fileID: 1905252137}
   - component: {fileID: 1905252143}
   - component: {fileID: 1905252147}
@@ -99,18 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &707422469503112958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707422469503112959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d69772163a58f874cb25db015fdae746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &707422469503112953
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -319,6 +307,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &707422469503112958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707422469503112959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69772163a58f874cb25db015fdae746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1905252137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charge_sound: {fileID: 8300000, guid: 38b88f2c753af1742b61b68f4fac9899, type: 3}
   shot_sound: {fileID: 8300000, guid: e9a0cf179b1c7de41a7ad77bccde8f67, type: 3}
+  reflect_sound: {fileID: 0}
 --- !u!114 &1905252147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,3 +359,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e735524a29d510c4481f968bd51afe98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_bullets: []

@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class enemy_inactive : MonoBehaviour
+public class Retry_Game : MonoBehaviour
 {
-   
-
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
@@ -17,8 +17,8 @@ public class enemy_inactive : MonoBehaviour
         
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnRetry() 
     {
-        gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

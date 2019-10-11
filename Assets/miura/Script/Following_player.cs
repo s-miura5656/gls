@@ -4,35 +4,34 @@ using UnityEngine;
 
 public class Following_player : MonoBehaviour
 {
-    // 追従するオブジェクトのスピード
-    [SerializeField] private float m_speed = 1;
-    // 
-    [SerializeField] private float m_attenuation = 0.5f;
-    // 距離の値
-    [SerializeField] private float dist_number = 10;
-    // プレイヤーとの距離
-    private float dist;
-    private Vector3 old_player_pos;
-    // プレイヤー
-    private GameObject player;
-
-    private float time_count;
-    private float time_max;
+    // プレイヤーの過去の座標
+    private Vector3[] old_player_pos = new Vector3[50];
+    [SerializeField] private GameObject[] player_bullets;
 
     private void Start()
     {
-        player = GameObject.Find("Player");
+        for (int i = 0; i < old_player_pos.Length; i++)
+        {
+            old_player_pos[i] = transform.position;
+        }
     }
 
     private void Update()
     {
-        time_count += Time.deltaTime;
+        for (int i = old_player_pos.Length - 2; i >= 0; i--)
+        {
+            old_player_pos[i + 1] = old_player_pos[i];
+        }
 
-        dist = (transform.position - player.transform.position).sqrMagnitude;
+        old_player_pos[0] = transform.position;
 
-        old_player_pos = player.transform.position;
-
-        transform.position += Vector3.Normalize(old_player_pos - transform.position) * m_speed;
+        for (int i = 0; i < 5; i++)
+        {
+            if (player_bullets[i].activeSelf == true)
+            {
+                player_bullets[i].transform.position = old_player_pos[(i + 1) * 4];
+            }
+        }
         
     }
 }

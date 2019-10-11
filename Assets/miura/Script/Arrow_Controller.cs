@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Plus : MonoBehaviour
+public class Arrow_Controller : MonoBehaviour
 {
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +17,5 @@ public class Bullet_Plus : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            gameObject.SetActive(false);
-        }
-    }
+    
 }

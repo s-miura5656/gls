@@ -6,31 +6,47 @@ public class Player_Bullet : MonoBehaviour
 {
     // プレイヤーを追従するオブジェクト
     [SerializeField] private GameObject[] player_bullets;
+    
 
+    private int number;
     // Start is called before the first frame update
     void Start()
     {
-        
+        number = 1;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PlayerBullet")
         {
-            for (int i = 0; i < 5; i++)
+            if (number < 4)
             {
-                if (player_bullets[i].activeSelf == false)
-                {
-                    player_bullets[i].SetActive(true);
-                    break;
-                }
+                number++;
+                player_bullets[number].SetActive(true);
             }
+
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.tag == "enemy")
+        {
+            if (number > -1)
+            {
+                player_bullets[number].SetActive(false);
+                number--;
+            }
+            else
+            {
+                Debug.Log("game_over");
+            }
+
         }
     }
 }

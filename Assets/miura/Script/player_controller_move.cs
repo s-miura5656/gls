@@ -34,12 +34,4 @@ public class player_controller_move : MonoBehaviour
             rb.AddForce(new Vector3(startDirection.x * powor, 0f, startDirection.y * powor), ForceMode.Impulse);
         }
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "block")
-        {
-            //powor += 50;
-        }
-    }
 }

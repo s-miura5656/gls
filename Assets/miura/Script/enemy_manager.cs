@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class enemy_manager : MonoBehaviour
 {
+    // プレイヤーを追従するオブジェクト
+    [SerializeField] private GameObject[] player_bullets;
     [SerializeField] private GameObject enemy_under;
     [SerializeField] private GameObject enemy_midlle;
     [SerializeField] private GameObject enemy_top;
     private bool under_down;
     private bool midlle_down;
+    private bool top_down;
+    private int number;
     // Start is called before the first frame update
     void Start()
     {
         under_down = false;
         midlle_down = true;
+        top_down = true;
     }
 
     // Update is called once per frame
@@ -32,7 +37,7 @@ public class enemy_manager : MonoBehaviour
 
                 under_down = true;
                 midlle_down = false;
-            }
+            } 
         }
 
         if (midlle_down == false)
@@ -44,7 +49,17 @@ public class enemy_manager : MonoBehaviour
                     new Vector3(enemy_top.transform.position.x, enemy_top.transform.position.y - 5f, enemy_top.transform.position.z);
 
                 midlle_down = true;
+                top_down = false;
+            }   
+        }
+
+        if (top_down == false)
+        {
+            if (enemy_top.activeSelf == false)
+            {
+                top_down = true;
             }
         }
+        
     }
 }
