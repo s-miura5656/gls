@@ -32,6 +32,9 @@ public class Player_SE : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        audio_ses[0].PlayOneShot(reflect_sound);
+        if (collision.gameObject.tag == "wallblock")
+        {
+            audio_ses[0].PlayOneShot(reflect_sound);
+        }
     }
 }
