@@ -20,7 +20,7 @@ public class Player_Controller : MonoBehaviour
         move_x = Input.GetAxis("Horizontal");
         move_y = Input.GetAxis("Vertical");
 
-        Vector3 force = new Vector3(move_x, move_y, 0f) * 10;
+        Vector3 force = new Vector3(move_x, 0f, move_y) * 10;
 
         rb.AddForce(force, ForceMode.Force);
     }

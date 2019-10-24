@@ -59,6 +59,7 @@ public class enemy_manager : MonoBehaviour
             if (enemy_top.activeSelf == false)
             {
                 top_down = true;
+                gameObject.SetActive(false);
             }
         }
         

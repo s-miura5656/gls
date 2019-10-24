@@ -44,16 +44,11 @@ public class ArrowsController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             spriteRenderer.enabled = true;
-
-            
-
-
         }
 
 
         if (Input.GetMouseButton(0))
         {
-            
             float angle = Mathf.Atan2(charascript.startPos.y - Input.mousePosition.y, charascript.startPos.x - Input.mousePosition.x );
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle * Mathf.Rad2Deg));
             distance = (charascript.startPos - Input.mousePosition).magnitude;
