@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class Player_Level_Manager : MonoBehaviour
 { 
     // レベルアップに必要な経験値
-    private int[] level_up_exp = new int[3];
+    private int[] level_up_exp = new int[5];
     // プレイヤーのレベル
     private int player_level = 1;
     // プレイヤーレベルの限界値
-    private int player_level_max = 3;
+    private int player_level_max = 5;
     // プレイヤーの大きさ
-    private Vector3 player_scale = new Vector3(8f, 8f, 8f);
+    private Vector3 player_scale = new Vector3(4f, 4f, 4f);
     // レベルアップのステートマシン
     private bool level_up_phase = false;
     // プレイヤーの速度
-    private float speed = 0f;
+    private float speed = 0.0f;
     // プレイヤーのリジッドボディ
     private Rigidbody rb;
     // プレイヤーのゲームオブジェクト
@@ -25,8 +25,7 @@ public class Player_Level_Manager : MonoBehaviour
     private Player_Exp_Get script_player;
     // デバック用
     [SerializeField] private GameObject text_;
-    GameObject a;
-    Player_Level_Manager b;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +35,8 @@ public class Player_Level_Manager : MonoBehaviour
             level_up_exp[i] = level_up_exp[i] + (10 * (i + 1));
         }
 
-//        script_player = GameObject.Find("GameManeger").GetComponent<Player_Level_Manager>().player.GetComponent<Player_Exp_Get>();
-        script_player = GameObject.Find("Player").GetComponent<Player_Exp_Get>();
+        script_player = player.GetComponent<Player_Exp_Get>();
+
         rb = player.gameObject.GetComponent<Rigidbody>();
     }
 
@@ -48,18 +47,19 @@ public class Player_Level_Manager : MonoBehaviour
         speed = rb.velocity.magnitude;
 
         // スピードが０になったらレベルアップ
-        if (speed > 0.0f && level_up_phase == false)
+        if (speed <= 5.0f)
         {
-            level_up_phase = true;
+            if (level_up_phase == false)
+            {
+                PlayerLevelUpPhase();
+                level_up_phase = true;
+            }
         }
 
-        if (speed == 0.0f && level_up_phase == true)
+        if (Input.GetMouseButtonUp(0))
         {
-            PlayerLevelUpPhase();
             level_up_phase = false;
         }
-
-        Debug.Log(speed);
     }
 
     /// <summary>
@@ -69,27 +69,24 @@ public class Player_Level_Manager : MonoBehaviour
     {
         if (player_level < player_level_max)
         {
-
             for (int i = player_level - 1; i < level_up_exp.Length; i++)
             {
-                //Application.ForceCrash(0);
-
                 // 現在の経験値が指定の経験値と同じか超えるかした場合レベルアップ
                 if (script_player.Exp() >= level_up_exp[i])
                 {
-
                     player_level = player_level + 1;
 
                     // サイズ変更
                     player.transform.localScale = player_scale * player_level;
+
                     // サイズ変更に合わせて高さを変更
-                    player.transform.position += new Vector3(0f, 4f, 0f);
+                    player.transform.position += new Vector3(0f, 2f, 0f);
                 }
             }
         }
 
         Text _text = text_.GetComponent<Text>();
-        _text.text = "" + script_player.exp;
+        _text.text = "" + script_player.Exp();
     }
 
     /// <summary>

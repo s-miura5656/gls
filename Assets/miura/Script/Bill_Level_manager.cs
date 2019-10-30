@@ -39,7 +39,7 @@ public class Bill_Level_manager : MonoBehaviour
     /// </summary>
     private void BillPossible() 
     {
-        if (bill_level <= script_player.GetLevel())
+        if (bill_level < script_player.GetLevel())
         {
             if (bill_level == 1)
             {
@@ -51,7 +51,8 @@ public class Bill_Level_manager : MonoBehaviour
                 foreach (GameObject bill in bills)
                 {
                     // コライダーを有効にする
-                    bill.GetComponent<Collider>().isTrigger = true;
+                    bill.GetComponent<MeshCollider>().convex = true;
+                    bill.GetComponent<MeshCollider>().isTrigger = true;
                 }
             }
 
@@ -65,7 +66,8 @@ public class Bill_Level_manager : MonoBehaviour
                 foreach (GameObject bill in bills)
                 {
                     // コライダーを有効にする
-                    bill.GetComponent<Collider>().isTrigger = true;
+                    bill.GetComponent<MeshCollider>().convex = true;
+                    bill.GetComponent<MeshCollider>().isTrigger = true;
                 }
             }
 
@@ -79,7 +81,8 @@ public class Bill_Level_manager : MonoBehaviour
                 foreach (GameObject bill in bills)
                 {
                     // コライダーを有効にする
-                    bill.GetComponent<Collider>().isTrigger = true;
+                    bill.GetComponent<MeshCollider>().convex = true;
+                    bill.GetComponent<MeshCollider>().isTrigger = true;
                 }
             }
 

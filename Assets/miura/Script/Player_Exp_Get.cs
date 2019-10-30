@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Player_Exp_Get : MonoBehaviour
 {
     // 取得経験値
-    public int exp = 0;
+    private int exp = 0;
     // デバック用
     [SerializeField] private GameObject text_;
     // Start is called before the first frame update
@@ -28,7 +28,6 @@ public class Player_Exp_Get : MonoBehaviour
         if (other.gameObject.tag == "Bill_Level_1")
         {
             exp += 1;
-            //Application.ForceCrash(0);
         }
 
         if (other.gameObject.tag == "Bill_Level_2")
@@ -37,6 +36,24 @@ public class Player_Exp_Get : MonoBehaviour
         }
 
         if (other.gameObject.tag == "Bill_Level_3")
+        {
+            exp += 3;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bill_Level_1")
+        {
+            exp += 1;
+        }
+
+        if (collision.gameObject.tag == "Bill_Level_2")
+        {
+            exp += 2;
+        }
+
+        if (collision.gameObject.tag == "Bill_Level_3")
         {
             exp += 3;
         }
