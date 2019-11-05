@@ -24,7 +24,7 @@ public class camera_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
@@ -35,6 +35,7 @@ public class camera_controller : MonoBehaviour
 
         // カメラの transform.yの位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
         camera_move_pos = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z) + new Vector3(offset.x, 0f, offset.z);
+        //transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z) + new Vector3(offset.x, 0f, offset.z);
 
         // Lerp補完で滑らか移動
         transform.position = Vector3.Lerp(camera_base_pos, camera_move_pos, camera_speed);

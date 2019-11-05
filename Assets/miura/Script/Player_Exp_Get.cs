@@ -19,8 +19,7 @@ public class Player_Exp_Get : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Text _text = text_.GetComponent<Text>();
-        //_text.text = "" + exp;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +38,9 @@ public class Player_Exp_Get : MonoBehaviour
         {
             exp += 3;
         }
+
+        //Text _text = text_.GetComponent<Text>();
+        //_text.text = "" + exp;
     }
 
     private void OnCollisionEnter(Collision collision)

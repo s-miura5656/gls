@@ -76,6 +76,11 @@ public class Player_Level_Manager : MonoBehaviour
                 {
                     player_level = player_level + 1;
 
+                    if (player_level > player_level_max)
+                    {
+                        player_level = player_level_max;
+                    }
+
                     // サイズ変更
                     player.transform.localScale = player_scale * player_level;
 
@@ -85,8 +90,8 @@ public class Player_Level_Manager : MonoBehaviour
             }
         }
 
-        Text _text = text_.GetComponent<Text>();
-        _text.text = "" + script_player.Exp();
+        //Text _text = text_.GetComponent<Text>();
+        //_text.text = "" + script_player.Exp();
     }
 
     /// <summary>

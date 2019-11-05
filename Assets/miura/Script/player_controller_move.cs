@@ -78,7 +78,7 @@ public class player_controller_move : MonoBehaviour
             //rb.AddForce(new Vector3(start_direction.x * powor, 0.0f, start_direction.y * powor), ForceMode.Impulse);
 
             // クォータービューの処理 ↓
-            float   mouse_dir   = Mathf.Atan2(end_pos.y - start_pos.y, end_pos.x - start_pos.x) * Mathf.Rad2Deg;
+            float mouse_dir = Mathf.Atan2(end_pos.y - start_pos.y, end_pos.x - start_pos.x) * Mathf.Rad2Deg;
 
             camera_foward = new Vector3(main_camera.transform.forward.x, 0f, main_camera.transform.forward.z).normalized;
 

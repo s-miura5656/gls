@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4362174610929234281}
   - component: {fileID: 4483596454195908405}
   - component: {fileID: 4486337106861665015}
+  - component: {fileID: 8006108931743586499}
   m_Layer: 0
   m_Name: box_Crumble
   m_TagString: Untagged
@@ -4776,6 +4777,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8006108931743586499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4360803818444497175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b773f521d4b5c4383e62ec45f898a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8811772202371916550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4834,6 +4847,16 @@ PrefabInstance:
     - target: {fileID: 198220206648497216, guid: 4020e3721b3944090a2f8ec166a123d0,
         type: 3}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198220206648497216, guid: 4020e3721b3944090a2f8ec166a123d0,
+        type: 3}
+      propertyPath: UVModule.flipU
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199293650199538948, guid: 4020e3721b3944090a2f8ec166a123d0,
+        type: 3}
+      propertyPath: m_Flip.x
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Bill_Destroy : MonoBehaviour
 {
     // ビルが壊れるアニメーション
-    //[SerializeField] private GameObject bill_destroy;
+    private GameObject bill_destroy;
     // ビルのアニメの取得
     private Animator bill_destroy_anime;
     // プレイヤーのレベルを取得するためのオブジェクト取得
@@ -18,11 +20,12 @@ public class Bill_Destroy : MonoBehaviour
     private float[] euler = new float[4] { 0f, 90f, 180f, 270f };
     // 壊れるパーティクル
     [SerializeField] private GameObject crash;
-
+    // デバック用
+    [SerializeField] private GameObject text_;
+    
     // Start is called before the first frame update
     void Start()
     {
-        //bill_destroy_anime = bill_destroy.GetComponent<Animator>();
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
 
         BillLevelSerch();
@@ -38,12 +41,17 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Instantiate(crash, transform.position, transform.rotation);
+            if (bill_level < player_level_script.GetLevel())
+            {
+                Instantiate(crash, transform.position, transform.rotation);
 
-            gameObject.GetComponent<MeshCollider>().enabled = false;
-
-            Destroy(gameObject);
+                gameObject.SetActive(false);   
+            }
         }
+
+        Text _text = text_.GetComponent<Text>();
+        _text.text = "" + player_level_script.GetLevel();
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -54,9 +62,7 @@ public class Bill_Destroy : MonoBehaviour
             {
                 Instantiate(crash, transform.position, transform.rotation);
 
-                gameObject.GetComponent<MeshCollider>().enabled = false;
-
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
@@ -77,5 +83,15 @@ public class Bill_Destroy : MonoBehaviour
         {
             bill_level = 3;
         }
+
+        //if (transform.tag == "Bill_Level_4")
+        //{
+        //    bill_level = 4;
+        //}
+
+        //if (transform.tag == "Bill_Level_5")
+        //{
+        //    bill_level = 5;
+        //}
     }
 }

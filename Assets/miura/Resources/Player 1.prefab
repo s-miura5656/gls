@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6374128144359284715}
   - component: {fileID: 6374128144359284716}
   - component: {fileID: 6374128144359284717}
-  - component: {fileID: 6374128144359284718}
   - component: {fileID: 6374128144359284704}
   m_Layer: 0
   m_Name: Player 1
@@ -223,21 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69772163a58f874cb25db015fdae746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6374128144359284718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6374128144359284705}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4af2dfa9820948e4789394f0022828c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charge_sound: {fileID: 8300000, guid: 38b88f2c753af1742b61b68f4fac9899, type: 3}
-  shot_sound: {fileID: 8300000, guid: e9a0cf179b1c7de41a7ad77bccde8f67, type: 3}
-  reflect_sound: {fileID: 8300000, guid: c82162fc94462194a85b0df95bf2293c, type: 3}
+  main_camera: {fileID: 0}
 --- !u!114 &6374128144359284704
 MonoBehaviour:
   m_ObjectHideFlags: 0
