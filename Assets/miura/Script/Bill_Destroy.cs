@@ -14,11 +14,11 @@ public class Bill_Destroy : MonoBehaviour
     private int bill_level;
     // 壊れるパーティクル
     [SerializeField] private GameObject crash;
+    // 生成したパーティクルを入れるための変数
+    private GameObject crash_copy;
     // デバック用
     //[SerializeField] private GameObject text_;
-    // ビル内部ボックス
-    //[SerializeField] private GameObject[] boxs;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -40,16 +40,12 @@ public class Bill_Destroy : MonoBehaviour
         {
             if (bill_level < player_level_script.GetLevel())
             {
-                //Instantiate(crash, transform.position, transform.rotation);
+                crash_copy = Instantiate(crash, transform.position, transform.rotation);
+
+                crash_copy.transform.localScale *= bill_level;
 
                 gameObject.SetActive(false);
 
-                //foreach (GameObject box in boxs)
-                //{
-                //    // コライダーを有効にする
-                //    box.GetComponent<BoxCollider>().isTrigger = false;    
-                //    box.GetComponent<Rigidbody>().useGravity = true;
-                //}
             }
         }
 
@@ -64,7 +60,9 @@ public class Bill_Destroy : MonoBehaviour
         {
             if (bill_level == player_level_script.GetLevel())
             {
-                //Instantiate(crash, transform.position, transform.rotation);
+                crash_copy = Instantiate(crash, transform.position, transform.rotation);
+
+                crash_copy.transform.localScale *= bill_level;
 
                 gameObject.SetActive(false);
             }
