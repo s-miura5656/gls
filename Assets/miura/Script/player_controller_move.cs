@@ -18,7 +18,7 @@ public class player_controller_move : MonoBehaviour
     // 最初にタップした位置から動かして離すまでの距離
     private float dist;
     // distに割ってspeedを出すための変数
-    private float powor_up = 2f;
+    private float powor_up = 10f;
     // プレイヤーの速度
     private float speed;
     // メインカメラのゲームオブジェクトを取得
@@ -33,7 +33,7 @@ public class player_controller_move : MonoBehaviour
 
     void Update()
     {
-        rb.velocity *= 0.995f;
+        //rb.velocity *= 0.999f;
 
         // マウスの動きと反対方向に発射される
         if (Input.GetMouseButtonDown(0))
@@ -73,27 +73,27 @@ public class player_controller_move : MonoBehaviour
             powor = dist / powor_up;
 
             // 引っ張った方向とは逆方向のベクトル
-            //start_direction = -1 * (end_pos - start_pos).normalized;
+            start_direction = -1 * (end_pos - start_pos).normalized;
 
-            //rb.AddForce(new Vector3(start_direction.x * powor, 0.0f, start_direction.y * powor), ForceMode.Impulse);
+            rb.AddForce(new Vector3(start_direction.x * powor, 0.0f, start_direction.y * powor), ForceMode.Impulse);
 
             // クォータービューの処理 ↓
-            float mouse_dir = Mathf.Atan2(end_pos.y - start_pos.y, end_pos.x - start_pos.x) * Mathf.Rad2Deg;
+            //float mouse_dir = Mathf.Atan2(end_pos.y - start_pos.y, end_pos.x - start_pos.x) * Mathf.Rad2Deg;
 
-            camera_foward = new Vector3(main_camera.transform.forward.x, 0f, main_camera.transform.forward.z).normalized;
+            //camera_foward = new Vector3(main_camera.transform.forward.x, 0f, main_camera.transform.forward.z).normalized;
 
-            var axis = Vector3.Cross(Vector3.forward, camera_foward);
+            //var axis = Vector3.Cross(Vector3.forward, camera_foward);
 
-            var res = Quaternion.AngleAxis((mouse_dir + 90.0f), axis) * camera_foward * powor;
+            //var res = Quaternion.AngleAxis((mouse_dir + 90.0f), axis) * camera_foward * powor;
 
-            rb.AddForce(res, ForceMode.Impulse);
+            //rb.AddForce(res, ForceMode.Impulse);
         }
 
         // プレイヤーの速度の計算
         speed = rb.velocity.magnitude;
 
         // 一定速度以下になった時にプレイヤーを停止させる
-        if (speed <= 5f)
+        if (speed <= 1f)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
