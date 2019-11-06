@@ -21,14 +21,8 @@ public class camera_controller : MonoBehaviour
         offset = transform.position - player.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
-    void LateUpdate()
+    void FixedUpdate()
     {
         // Lerp補完用の始点の記憶
         camera_base_pos = transform.position;

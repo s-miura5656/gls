@@ -25,16 +25,60 @@ public class player_controller_move : MonoBehaviour
     [SerializeField] private GameObject main_camera;
 
     private Vector3 camera_foward;
+    private Vector3 old_pos;
+    private SphereCollider sphereCollider;
+    private Vector3 destination;
 
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
+        this.sphereCollider = this.GetComponent<SphereCollider>();
     }
 
     void Update()
     {
-        rb.velocity *= 0.994f;
+        FowardRotation();
 
+        PullController();
+
+        SpeedDown();
+    }
+
+    /// <summary>
+    /// 進行方向へ回転させる
+    /// </summary>
+    private void FowardRotation() 
+    {
+        // 位置の変化量
+        var translation = this.rb.velocity * Time.deltaTime;
+
+        // 移動した距離
+        var distance = translation.magnitude;
+
+        // ワールド空間でのスケール推定値
+        var scaleXYZ = transform.lossyScale;
+
+        // 各軸のうち最大のスケール
+        var scale = Mathf.Max(scaleXYZ.x, scaleXYZ.y, scaleXYZ.z);
+
+        // 球が回転するべき量
+        var angle = distance / (this.sphereCollider.radius * scale);
+
+        // 球が回転するべき軸
+        var axis = Vector3.Cross(Vector3.up, translation).normalized;
+
+        // 現在の回転に加えるべき回転
+        var deltaRotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, axis); 
+
+        // 現在の回転からさらにdeltaRotationだけ回転させる
+        this.rb.MoveRotation(deltaRotation * this.rb.rotation);
+    }
+
+    /// <summary>
+    /// 引っ張り操作
+    /// </summary>
+    private void PullController() 
+    {
         // マウスの動きと反対方向に発射される
         if (Input.GetMouseButtonDown(0))
         {
@@ -88,6 +132,15 @@ public class player_controller_move : MonoBehaviour
 
             //rb.AddForce(res, ForceMode.Impulse);
         }
+    }
+
+    /// <summary>
+    /// 減速と停止
+    /// </summary>
+    private void SpeedDown()
+    {
+        // 徐々に減速していく
+        rb.velocity *= 0.994f;
 
         // プレイヤーの速度の計算
         speed = rb.velocity.magnitude;
