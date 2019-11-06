@@ -24,12 +24,24 @@ public class Level_Zoom_Camera : MonoBehaviour
     private float fov;
     // 前フレームのターゲットの位置
     private Vector3 prevTargetPos;
-
+    // 止まっている時に一定距離離れる為の変数
+    private float fov_dist = 50f;
+    // レベルごとのfovのベース
+    private float fov_base = 40;
+    // レベルごとのfov
+    private float[] fov_level = new float[5];
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < fov_level.Length; i++)
+        {
+            fov_level[i] = fov_base + (10 * i);
+        }
+
         script = game_manager.GetComponent<Player_Level_Manager>();
+
         main_cam = gameObject.GetComponent<Camera>();
+
         prevTargetPos = player.transform.position;
     }
 
@@ -56,40 +68,9 @@ public class Level_Zoom_Camera : MonoBehaviour
 
     private void ZoomCamera() 
     {
-        if (script.GetLevel() == 1)
-        {
-            stop_fov = 40f;
-            move_fov = stop_fov + 15f;
-            //transform.LookAt(player.transform);
-        }
-
-        if (script.GetLevel() == 2)
-        {
-            stop_fov = 50f;
-            move_fov = stop_fov + 15f;
-            //transform.LookAt(player.transform);
-        }
-
-        if (script.GetLevel() == 3)
-        {
-            stop_fov = 60f;
-            move_fov = stop_fov + 15f;
-            //transform.LookAt(player.transform);
-        }
-
-        if (script.GetLevel() == 4)
-        {
-            stop_fov = 70f;
-            move_fov = stop_fov + 15f;
-            //transform.LookAt(player.transform);
-        }
-
-        if (script.GetLevel() == 5)
-        {
-            stop_fov = 80f;
-            move_fov = stop_fov + 15f;
-            //transform.LookAt(player.transform);
-        }
+        move_fov = fov_level[script.GetLevel() - 1];
+        stop_fov = move_fov + fov_dist;
+        //transform.LookAt(player.transform);
     }
 
     /// <summary>
@@ -97,7 +78,7 @@ public class Level_Zoom_Camera : MonoBehaviour
     /// </summary>
     private void FovTransform() 
     {
-        if (player.transform.position == prevTargetPos)
+        if (player.transform.position != prevTargetPos)
         {
             fov = move_fov;
         }
