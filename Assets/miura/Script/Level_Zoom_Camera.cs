@@ -58,35 +58,35 @@ public class Level_Zoom_Camera : MonoBehaviour
     {
         if (script.GetLevel() == 1)
         {
-            stop_fov = 70f;
+            stop_fov = 40f;
             move_fov = stop_fov + 15f;
             //transform.LookAt(player.transform);
         }
 
         if (script.GetLevel() == 2)
         {
-            stop_fov = 80f;
+            stop_fov = 50f;
             move_fov = stop_fov + 15f;
             //transform.LookAt(player.transform);
         }
 
         if (script.GetLevel() == 3)
         {
-            stop_fov = 90f;
+            stop_fov = 60f;
             move_fov = stop_fov + 15f;
             //transform.LookAt(player.transform);
         }
 
         if (script.GetLevel() == 4)
         {
-            stop_fov = 100f;
+            stop_fov = 70f;
             move_fov = stop_fov + 15f;
             //transform.LookAt(player.transform);
         }
 
         if (script.GetLevel() == 5)
         {
-            stop_fov = 110f;
+            stop_fov = 80f;
             move_fov = stop_fov + 15f;
             //transform.LookAt(player.transform);
         }

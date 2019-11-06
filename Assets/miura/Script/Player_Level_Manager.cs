@@ -12,7 +12,7 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーレベルの限界値
     private int player_level_max = 5;
     // プレイヤーの大きさ
-    private Vector3 player_scale = new Vector3(20f, 20f, 20f);
+    private Vector3 player_scale = new Vector3(4f, 4f, 4f);
     // レベルアップのステートマシン
     private bool level_up_phase = false;
     // プレイヤーの速度
@@ -85,7 +85,7 @@ public class Player_Level_Manager : MonoBehaviour
                     player.transform.localScale = player_scale * player_level;
 
                     // サイズ変更に合わせて高さを変更
-                    player.transform.position += new Vector3(0f, 10f, 0f);
+                    player.transform.position += new Vector3(0f, 2f, 0f);
                 }
             }
         }

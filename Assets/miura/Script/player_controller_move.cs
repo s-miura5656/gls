@@ -33,7 +33,7 @@ public class player_controller_move : MonoBehaviour
 
     void Update()
     {
-        //rb.velocity *= 0.999f;
+        rb.velocity *= 0.994f;
 
         // マウスの動きと反対方向に発射される
         if (Input.GetMouseButtonDown(0))
@@ -93,7 +93,7 @@ public class player_controller_move : MonoBehaviour
         speed = rb.velocity.magnitude;
 
         // 一定速度以下になった時にプレイヤーを停止させる
-        if (speed <= 1f)
+        if (speed <= 5f)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;

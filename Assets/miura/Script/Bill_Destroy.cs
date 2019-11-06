@@ -6,28 +6,23 @@ using UnityEngine.UI;
 
 public class Bill_Destroy : MonoBehaviour
 {
-    // ビルが壊れるアニメーション
-    private GameObject bill_destroy;
-    // ビルのアニメの取得
-    private Animator bill_destroy_anime;
     // プレイヤーのレベルを取得するためのオブジェクト取得
-    [SerializeField] private GameObject game_manager;
+    private GameObject game_manager;
     // プレイヤーのレベルのスクリプトの取得
     private Player_Level_Manager player_level_script;
     // ビルのレベル
     private int bill_level;
-    // 回転する角度
-    private float[] euler = new float[4] { 0f, 90f, 180f, 270f };
     // 壊れるパーティクル
     [SerializeField] private GameObject crash;
     // デバック用
-    [SerializeField] private GameObject text_;
+    //[SerializeField] private GameObject text_;
     // ビル内部ボックス
     //[SerializeField] private GameObject[] boxs;
 
     // Start is called before the first frame update
     void Start()
     {
+        game_manager = GameObject.Find("GameManager");
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
 
         BillLevelSerch();
@@ -58,8 +53,8 @@ public class Bill_Destroy : MonoBehaviour
             }
         }
 
-        Text _text = text_.GetComponent<Text>();
-        _text.text = "" + player_level_script.GetLevel();
+        //Text _text = text_.GetComponent<Text>();
+        //_text.text = "" + player_level_script.GetLevel();
 
     }
 
@@ -93,14 +88,14 @@ public class Bill_Destroy : MonoBehaviour
             bill_level = 3;
         }
 
-        //if (transform.tag == "Bill_Level_4")
-        //{
-        //    bill_level = 4;
-        //}
+        if (transform.tag == "Bill_Level_4")
+        {
+            bill_level = 4;
+        }
 
-        //if (transform.tag == "Bill_Level_5")
-        //{
-        //    bill_level = 5;
-        //}
+        if (transform.tag == "Bill_Level_5")
+        {
+            bill_level = 5;
+        }
     }
 }

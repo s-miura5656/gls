@@ -39,6 +39,15 @@ public class Player_Exp_Get : MonoBehaviour
             exp += 3;
         }
 
+        if (other.gameObject.tag == "Bill_Level_4")
+        {
+            exp += 4;
+        }
+
+        if (other.gameObject.tag == "Bill_Level_5")
+        {
+            exp += 5;
+        }
         //Text _text = text_.GetComponent<Text>();
         //_text.text = "" + exp;
     }
@@ -58,6 +67,16 @@ public class Player_Exp_Get : MonoBehaviour
         if (collision.gameObject.tag == "Bill_Level_3")
         {
             exp += 3;
+        }
+
+        if (collision.gameObject.tag == "Bill_Level_4")
+        {
+            exp += 4;
+        }
+
+        if (collision.gameObject.tag == "Bill_Level_5")
+        {
+            exp += 5;
         }
     }
 
