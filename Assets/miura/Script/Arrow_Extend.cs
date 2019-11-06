@@ -9,17 +9,23 @@ public class Arrow_Extend : MonoBehaviour
     // スプライトレンダラーの取得
     private SpriteRenderer spriteRenderer;
     // プレイヤーの取得
-    [SerializeField] GameObject player;
+    [SerializeField] private GameObject player;
+    // ゲームマネージャーの取得
+    [SerializeField] private GameObject game_manager;
+    // プレイヤーレベルを管理しているスクリプト
+    private Player_Level_Manager player_level_script;
     // 左クリックを押した場所と現在動かしている場所の距離
     private float dist;
     // プレイヤーのサイズ
     private Vector3 player_size;
-
+    // プレイヤーの周りをまわる矢印のプレイヤーからの距離
+    private float arrow_dist = 2f;
     // Start is called before the first frame update
     void Start()
     {
         player_size = player.transform.localScale;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        player_level_script = game_manager.GetComponent<Player_Level_Manager>();
     }
 
     // Update is called once per frame
@@ -41,7 +47,7 @@ public class Arrow_Extend : MonoBehaviour
             float angle = Mathf.Atan2(base_mouse_pos.y - Input.mousePosition.y, base_mouse_pos.x - Input.mousePosition.x);
 
             // 矢印の回転
-            transform.rotation = Quaternion.Euler(new Vector3(90, -(angle * Mathf.Rad2Deg), 0));
+            transform.rotation = Quaternion.Euler(new Vector3(90f, -(angle * Mathf.Rad2Deg), 0));
 
             // 左クリックを押した場所と現在動かしている場所の距離の計算
             dist = (base_mouse_pos - Input.mousePosition).magnitude;
@@ -58,7 +64,9 @@ public class Arrow_Extend : MonoBehaviour
             }
 
             // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる
-            transform.position = player.transform.position + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized * (player_size.z + 0.1f));
+            transform.position = player.transform.position
+                               + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized 
+                               * (player_size.z + (arrow_dist * player_level_script.GetLevel())));
 
             // 引っ張りに対して矢印を引き延ばす
             transform.localScale = new Vector3(dist / 50, transform.localScale.y, dist / 50);
