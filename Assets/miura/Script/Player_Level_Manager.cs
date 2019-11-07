@@ -60,6 +60,8 @@ public class Player_Level_Manager : MonoBehaviour
         {
             level_up_phase = false;
         }
+
+
     }
 
     /// <summary>
@@ -72,7 +74,7 @@ public class Player_Level_Manager : MonoBehaviour
             for (int i = player_level - 1; i < level_up_exp.Length; i++)
             {
                 // 現在の経験値が指定の経験値と同じか超えるかした場合レベルアップ
-                if (script_player.Exp() >= level_up_exp[i])
+                if (script_player.GetExp() >= level_up_exp[i])
                 {
                     player_level = player_level + 1;
 

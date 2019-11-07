@@ -63,7 +63,7 @@ public class Level_Zoom_Camera : MonoBehaviour
             zoom_state = false;
         }
 
-        FovTransform();
+        //FovTransform();
     }
 
     private void ZoomCamera() 
