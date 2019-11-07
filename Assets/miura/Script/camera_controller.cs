@@ -24,6 +24,8 @@ public class camera_controller : MonoBehaviour
     // 各フレームで、Update の後に LateUpdate が呼び出されます。
     void FixedUpdate()
     {
+        transform.LookAt(player.transform);
+
         // Lerp補完用の始点の記憶
         camera_base_pos = transform.position;
 
@@ -33,5 +35,6 @@ public class camera_controller : MonoBehaviour
 
         // Lerp補完で滑らか移動
         transform.position = Vector3.Lerp(camera_base_pos, camera_move_pos, camera_speed);
+
     }
 }
