@@ -35,7 +35,7 @@ public class Level_Zoom_Camera : MonoBehaviour
     {
         for (int i = 0; i < fov_level.Length; i++)
         {
-            fov_level[i] = fov_base + (10 * i);
+            fov_level[i] = fov_base + (20 * i);
         }
 
         script = game_manager.GetComponent<Player_Level_Manager>();
