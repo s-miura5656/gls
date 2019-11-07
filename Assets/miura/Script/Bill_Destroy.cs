@@ -67,7 +67,7 @@ public class Bill_Destroy : MonoBehaviour
 
                 gameObject.SetActive(false);
 
-                Vibration.Vibrate(50);
+                Vibration.Vibrate(40);
             }
         }
     }
