@@ -27,7 +27,7 @@ public class Level_Zoom_Camera : MonoBehaviour
     // 止まっている時に一定距離離れる為の変数
     private float fov_dist = 50f;
     // レベルごとのfovのベース
-    private float fov_base = 40;
+    private float fov_base = 60;
     // レベルごとのfov
     private float[] fov_level = new float[5];
     // Start is called before the first frame update
@@ -68,8 +68,9 @@ public class Level_Zoom_Camera : MonoBehaviour
 
     private void ZoomCamera() 
     {
-        move_fov = fov_level[script.GetLevel() - 1];
-        stop_fov = move_fov + fov_dist;
+        main_cam.fieldOfView = fov_level[script.GetLevel() - 1];
+        //move_fov = fov_level[script.GetLevel() - 1];
+        //stop_fov = move_fov + fov_dist;
         //transform.LookAt(player.transform);
     }
 
