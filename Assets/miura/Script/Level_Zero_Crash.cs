@@ -21,9 +21,9 @@ public class Level_Zero_Crash : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag != "Load")
         {
-            Destroy(parent, 1.5f);
+            Destroy(gameObject, destroy_time);
         }
     }
 }
