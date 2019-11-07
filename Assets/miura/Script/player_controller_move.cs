@@ -23,25 +23,31 @@ public class player_controller_move : MonoBehaviour
     private float speed;
     // メインカメラのゲームオブジェクトを取得
     [SerializeField] private GameObject main_camera;
-
-    private Vector3 camera_foward;
-    private Vector3 old_pos;
+    // ゲームマネージャーオブジェクトの取得
+    [SerializeField] private GameObject game_manager;
+    // ゲーム開始の時間を管理しているスクリプト
+    private Time_Manager time_manager_script;
+    // プレイヤーを回転させるためのコライダー
     private SphereCollider sphereCollider;
-    private Vector3 destination;
 
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
         this.sphereCollider = this.GetComponent<SphereCollider>();
+        time_manager_script = game_manager.GetComponent<Time_Manager>();
     }
 
     void Update()
     {
-        FowardRotation();
+        // カウントダウン後動けるようになる
+        if (time_manager_script.GetGameMainState())
+        {
+            FowardRotation();
 
-        PullController();
+            PullController();
 
-        SpeedDown();
+            SpeedDown();
+        }
     }
 
     /// <summary>
