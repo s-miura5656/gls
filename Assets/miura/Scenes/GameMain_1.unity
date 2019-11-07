@@ -1805,7 +1805,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 68.05538
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2056,6 +2056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   count_down_text: {fileID: 1942305059}
   game_time_text: {fileID: 419107095}
+  player: {fileID: 6374128144138654209}
 --- !u!1001 &355993165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2786,7 +2787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11168,7 +11169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12500,6 +12501,11 @@ PrefabInstance:
       propertyPath: main_camera
       value: 
       objectReference: {fileID: 293214746}
+    - target: {fileID: 5889644109147225262, guid: 7f7d349b936e27643abad6a849743e70,
+        type: 3}
+      propertyPath: game_manager
+      value: 
+      objectReference: {fileID: 340469142}
     - target: {fileID: 5889644109147225251, guid: 7f7d349b936e27643abad6a849743e70,
         type: 3}
       propertyPath: text_
