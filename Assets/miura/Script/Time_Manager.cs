@@ -27,6 +27,8 @@ public class Time_Manager : MonoBehaviour
     private Player_Exp_Get time_exp_script;
     // 時間加算レベルアップ用経験値
     private int time_exp_level_table = 10;
+    // 時間加算時に表示するオブジェクト
+    [SerializeField] private GameObject one_plus; 
 
     // Start is called before the first frame update
     void Start()
@@ -99,6 +101,7 @@ public class Time_Manager : MonoBehaviour
     {
         if (time_exp_level_table <= time_exp_script.GetTimeExp())
         {
+            Instantiate(one_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
             time_count_down_main += 1f;
             time_exp_level_table = time_exp_level_table + 10;
             time_exp_script.TimeExpReset();
