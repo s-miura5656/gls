@@ -15,6 +15,6 @@ public class Destroy_Hit_Bill_Effect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject, 1.5f);
     }
 }

@@ -46,6 +46,7 @@ public class Bill_Destroy : MonoBehaviour
 
                 gameObject.SetActive(false);
 
+                Vibration.Vibrate(10);
             }
         }
 
@@ -65,6 +66,8 @@ public class Bill_Destroy : MonoBehaviour
                 crash_copy.transform.localScale *= bill_level;
 
                 gameObject.SetActive(false);
+
+                Vibration.Vibrate(50);
             }
         }
     }
