@@ -145,9 +145,6 @@ public class player_controller_move : MonoBehaviour
     /// </summary>
     private void SpeedDown()
     {
-        // 徐々に減速していく
-        rb.velocity *= 0.994f;
-
         // プレイヤーの速度の計算
         speed = rb.velocity.magnitude;
 
@@ -156,6 +153,17 @@ public class player_controller_move : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+        }
+
+        if (speed >= 130f)
+        {
+            // 徐々に減速していく
+            rb.velocity *= 0.98f;
+        }
+        else
+        {
+            // 徐々に減速していく
+            rb.velocity *= 0.994f;
         }
     }
 }
