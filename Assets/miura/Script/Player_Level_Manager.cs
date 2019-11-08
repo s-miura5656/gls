@@ -61,7 +61,8 @@ public class Player_Level_Manager : MonoBehaviour
             level_up_phase = false;
         }
 
-
+        Text _text = text_.GetComponent<Text>();
+        _text.text = "" + speed;
     }
 
     /// <summary>
@@ -92,8 +93,7 @@ public class Player_Level_Manager : MonoBehaviour
             }
         }
 
-        //Text _text = text_.GetComponent<Text>();
-        //_text.text = "" + script_player.Exp();
+        
     }
 
     /// <summary>
