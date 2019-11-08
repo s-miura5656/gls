@@ -68,7 +68,8 @@ public class Level_Zoom_Camera : MonoBehaviour
 
     private void ZoomCamera() 
     {
-        main_cam.fieldOfView = fov_level[script.GetLevel() - 1];
+        main_cam.transform.position += new Vector3(0f, 5f, 0f);
+        //main_cam.fieldOfView = fov_level[script.GetLevel() - 1];
         //move_fov = fov_level[script.GetLevel() - 1];
         //stop_fov = move_fov + fov_dist;
         //transform.LookAt(player.transform);

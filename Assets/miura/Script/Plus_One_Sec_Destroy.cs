@@ -17,7 +17,7 @@ public class Plus_One_Sec_Destroy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.localScale = new Vector3(0.01f, 0.01f, 0.01f) * (player.transform.localScale.y);
+        //transform.localScale = new Vector3(0.01f, 0.01f, 0.01f) * (player.transform.localScale.y);
         transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y + obj_pos_y, player.transform.position.z);
         obj_pos_y += 0.1f;
 
