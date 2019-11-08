@@ -29,7 +29,9 @@ public class Level_Zoom_Camera : MonoBehaviour
     // レベルごとのfovのベース
     private float fov_base = 60;
     // レベルごとのfov
-    private float[] fov_level = new float[5];
+    private float[] fov_level = new float[10];
+
+    private int old_player_level;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,22 +45,27 @@ public class Level_Zoom_Camera : MonoBehaviour
         main_cam = gameObject.GetComponent<Camera>();
 
         prevTargetPos = player.transform.position;
+
+        old_player_level = script.GetLevel();
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // スピードが０になったらレベルに合わせてカメラの被写界深度変更
-        if (script.GetSpeed() <= 1.0f)
+        if (script.GetLevel() > old_player_level)
         {
             if (zoom_state == false)
             {
                 ZoomCamera();
+                old_player_level = script.GetLevel();
+
                 zoom_state = true;
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (script.GetSpeed() > 0f)
         {
             zoom_state = false;
         }
@@ -68,7 +75,10 @@ public class Level_Zoom_Camera : MonoBehaviour
 
     private void ZoomCamera() 
     {
-        main_cam.transform.position += new Vector3(0f, 5f, -10f);
+        if (script.GetLevel() <= 10)
+        {
+            main_cam.transform.position += new Vector3(0f, 15f, 0f);
+        }
         //main_cam.fieldOfView = fov_level[script.GetLevel() - 1];
         //move_fov = fov_level[script.GetLevel() - 1];
         //stop_fov = move_fov + fov_dist;
