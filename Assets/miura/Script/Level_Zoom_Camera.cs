@@ -51,7 +51,7 @@ public class Level_Zoom_Camera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         // スピードが０になったらレベルに合わせてカメラの被写界深度変更
         if (script.GetLevel() > old_player_level)
@@ -77,7 +77,7 @@ public class Level_Zoom_Camera : MonoBehaviour
     {
         if (script.GetLevel() <= 10)
         {
-            main_cam.transform.position += new Vector3(0f, 15f, 0f);
+            main_cam.transform.position += new Vector3(0f, 15f, 15f);
         }
         //main_cam.fieldOfView = fov_level[script.GetLevel() - 1];
         //move_fov = fov_level[script.GetLevel() - 1];
