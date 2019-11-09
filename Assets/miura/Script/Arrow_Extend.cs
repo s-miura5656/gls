@@ -28,14 +28,13 @@ public class Arrow_Extend : MonoBehaviour
         player_size = player.transform.localScale;
         spriteRenderer = GetComponent<SpriteRenderer>();
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
-        ArrowScale();
+        //ArrowScale();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 矢印の大きさ変更
-        ArrowScale();
+        //ArrowScale();
 
         // 左クリックを押したときに矢印を表示する
         if (Input.GetMouseButtonDown(0))
@@ -75,7 +74,7 @@ public class Arrow_Extend : MonoBehaviour
                                * (player_size.z + (arrow_dist * (player_level_script.GetLevel() * 4))));
 
             // 引っ張りに対して矢印を引き延ばす
-            transform.localScale = new Vector3(dist / 50, transform.localScale.y, dist / 50);
+            transform.localScale = new Vector3((dist / 30) * player_level_script.GetLevel(), (dist / 50) * player_level_script.GetLevel(), transform.localScale.z);
         }
 
         // 左クリックを放したときに矢印を消す
