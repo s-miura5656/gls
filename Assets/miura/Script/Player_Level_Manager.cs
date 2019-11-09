@@ -20,12 +20,14 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーのリジッドボディ
     private Rigidbody rb;
     // プレイヤーのゲームオブジェクト
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject player = null;
     // プレイヤーの経験値を持っているスクリプト
     private Player_Exp_Get script_player;
     // デバック用
-    [SerializeField] private GameObject text_;
-    
+    [SerializeField] private GameObject text_ = null;
+
+    [SerializeField] private Slider exp_slider = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,8 @@ public class Player_Level_Manager : MonoBehaviour
         script_player = player.GetComponent<Player_Exp_Get>();
 
         rb = player.gameObject.GetComponent<Rigidbody>();
+
+        exp_slider.maxValue = level_up_exp[player_level - 1];
     }
 
     // Update is called once per frame
@@ -62,6 +66,13 @@ public class Player_Level_Manager : MonoBehaviour
             level_up_phase = false;
         }
 
+        if (script_player.GetExp() >= exp_slider.maxValue)
+        {
+            exp_slider.value = 0;
+        }
+
+        exp_slider.value = script_player.GetExp();
+
         //Text _text = text_.GetComponent<Text>();
         //_text.text = "" + speed;
     }
@@ -78,7 +89,11 @@ public class Player_Level_Manager : MonoBehaviour
                 // 現在の経験値が指定の経験値と同じか超えるかした場合レベルアップ
                 if (script_player.GetExp() >= level_up_exp[i])
                 {
+                    exp_slider.minValue = level_up_exp[player_level - 1];
+
                     player_level = player_level + 1;
+
+                    exp_slider.maxValue = level_up_exp[player_level - 1];
 
                     if (player_level > player_level_max)
                     {
