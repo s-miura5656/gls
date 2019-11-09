@@ -17,8 +17,6 @@ public class Hit_Stop_Manager : MonoBehaviour
     {
         time_count += 0.1f;
 
-        Debug.Log(time_count);
-
         if (time_count >= 0.8f && time_switch == false)
         {
             Time.timeScale = 1f;

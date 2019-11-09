@@ -16,6 +16,7 @@ public class Player_Exp_Get : MonoBehaviour
     private Player_Level_Manager player_level;
     // デバック用
     [SerializeField] private GameObject text_;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,8 @@ public class Player_Exp_Get : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Text _text = text_.GetComponent<Text>();
-        _text.text = "EXP" + exp;
+        //Text _text = text_.GetComponent<Text>();
+        //_text.text = "EXP" + exp;
     }
 
     private void OnTriggerEnter(Collider other)
