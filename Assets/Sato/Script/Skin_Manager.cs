@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
 
 
 public class Skin_Manager : MonoBehaviour
@@ -13,6 +13,12 @@ public class Skin_Manager : MonoBehaviour
     private GameObject skin;
     [SerializeField]
     private float _animtime = 1.0f;
+    [SerializeField]
+    private GameObject back_bottom;
+    [SerializeField]
+    private float botton_animtime = 1.0f;
+
+    private bool count;
 
 
     // Start is called before the first frame update
@@ -25,27 +31,33 @@ public class Skin_Manager : MonoBehaviour
     void Update()
     {
 
+        
     }
 
     public void PlayGame()
     {
         //RectTransform rectTransform = skin.GetComponent<RectTransform>();
 
-        
+
+
         var recttransform_1 = skin.GetComponent<RectTransform>();
         recttransform_1.DOScaleY(
               0.0f,　　//終了時点のScale
-    _animtime 　　　　　　//時間
-            );
+          _animtime 　　　　　　//時間
+               );
+
+        var recttransform_2 = back_bottom.GetComponent<RectTransform>();
+        recttransform_2.DOScaleY(
+              0.0f,　　//終了時点のScale
+          _animtime 　　　　　　//時間
+               );
+
+        back_bottom.SetActive(false);
 
 
+        count = false;
 
-        //recttransform_1.offsetMin -= new Vector2(0, -10);
-        //recttransform_1.offsetMax += new Vector2(0, -100);
-        //skin.gameObject.offsetMin = new Vector2(left, bottom);
-
-        //skin.GetComponent<RectTransform>().top = new Vector2(left, bottom);
-        //GetComponent<RectTransform>().offsetMax = new Vector2(right, top);
+        //if(count == false)
         //SceneManager.LoadScene("Title_");
     }
-    }
+}
