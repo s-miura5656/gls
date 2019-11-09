@@ -7,11 +7,11 @@ public class Arrow_Extend : MonoBehaviour
     // 左クリックしたときにマウスの位置を保存
     private Vector3 base_mouse_pos;
     // スプライトレンダラーの取得
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer = null;
     // プレイヤーの取得
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject player = null;
     // ゲームマネージャーの取得
-    [SerializeField] private GameObject game_manager;
+    [SerializeField] private GameObject game_manager = null;
     // プレイヤーレベルを管理しているスクリプト
     private Player_Level_Manager player_level_script;
     // 左クリックを押した場所と現在動かしている場所の距離
