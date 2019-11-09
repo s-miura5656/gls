@@ -32,7 +32,8 @@ public class Player_Level_Manager : MonoBehaviour
         // レベルアップに必要な経験値の初期化
         for (int i = 0; i < level_up_exp.Length; i++)
         {
-            level_up_exp[i] = level_up_exp[i] + (20 * (i + 1));
+            level_up_exp[i] = 10 * (i + 1);
+            level_up_exp[i] += (10 * (i + 1)) * i;
         }
 
         script_player = player.GetComponent<Player_Exp_Get>();
