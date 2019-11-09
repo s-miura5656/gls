@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6236997644463757545}
   - component: {fileID: 7747911047876389090}
   - component: {fileID: 8898718997292268208}
-  - component: {fileID: 1924826173828923341}
+  - component: {fileID: 3677858675535120286}
   m_Layer: 0
   m_Name: bill_lv1
-  m_TagString: Untagged
+  m_TagString: Bill_Level_1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,6 +67,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -86,22 +87,22 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3975113641387270371}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1a926dd95b57ff841a2ffca3e8fe7cbc, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 9.5, y: 25, z: 9.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &1924826173828923341
-BoxCollider:
+--- !u!114 &3677858675535120286
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3975113641387270371}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9.5, y: 25, z: 9.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crash: {fileID: 1391725765822220, guid: a55930bf8f4a0467cbde06b774f36645, type: 3}
