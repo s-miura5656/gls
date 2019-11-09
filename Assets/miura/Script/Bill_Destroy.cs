@@ -18,7 +18,8 @@ public class Bill_Destroy : MonoBehaviour
     [SerializeField] private GameObject crash;
     // 生成したパーティクルを入れるための変数
     private GameObject crash_copy;
-
+    // ヒットエフェクトを入れる変数
+    [SerializeField] private GameObject hit_effect;
 
     // デバック用
     //[SerializeField] private GameObject text_;
@@ -71,6 +72,17 @@ public class Bill_Destroy : MonoBehaviour
                 crash_copy.transform.localScale *= bill_level;
 
                 gameObject.SetActive(false);
+
+                Vector3 hitPos;
+
+                foreach (ContactPoint point in collision.contacts)
+                {
+                    hitPos = point.point;
+
+                    GameObject hit = Instantiate(hit_effect, hitPos, transform.rotation);
+
+                    hit.transform.localScale *= player_level_script.GetLevel();
+                }
 
                 Vibration.Vibrate(40);
 
