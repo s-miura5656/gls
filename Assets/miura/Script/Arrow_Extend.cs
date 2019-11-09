@@ -7,11 +7,11 @@ public class Arrow_Extend : MonoBehaviour
     // 左クリックしたときにマウスの位置を保存
     private Vector3 base_mouse_pos;
     // スプライトレンダラーの取得
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer = null;
     // プレイヤーの取得
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject player = null;
     // ゲームマネージャーの取得
-    [SerializeField] private GameObject game_manager;
+    [SerializeField] private GameObject game_manager = null;
     // プレイヤーレベルを管理しているスクリプト
     private Player_Level_Manager player_level_script;
     // 左クリックを押した場所と現在動かしている場所の距離
@@ -66,10 +66,10 @@ public class Arrow_Extend : MonoBehaviour
             // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる
             transform.position = player.transform.position
                                + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized 
-                               * (player_size.z + (arrow_dist * player_level_script.GetLevel())));
+                               * (player_size.z + (arrow_dist * (player_level_script.GetLevel() + 2))));
 
             // 引っ張りに対して矢印を引き延ばす
-            transform.localScale = new Vector3(dist / 50, transform.localScale.y, dist / 50);
+            transform.localScale = new Vector3(dist / 40, transform.localScale.y, dist / 40);
         }
 
         // 左クリックを放したときに矢印を消す

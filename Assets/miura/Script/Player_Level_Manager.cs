@@ -10,7 +10,7 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーのレベル
     private int player_level = 1;
     // プレイヤーレベルの限界値
-    private int player_level_max = 5;
+    private int player_level_max = 10;
     // プレイヤーの大きさ
     private Vector3 player_scale = new Vector3(4f, 4f, 4f);
     // レベルアップのステートマシン
@@ -32,7 +32,8 @@ public class Player_Level_Manager : MonoBehaviour
         // レベルアップに必要な経験値の初期化
         for (int i = 0; i < level_up_exp.Length; i++)
         {
-            level_up_exp[i] = level_up_exp[i] + (10 * (i + 1));
+            level_up_exp[i] = 10 * (i + 1);
+            level_up_exp[i] += (10 * (i + 1)) * i;
         }
 
         script_player = player.GetComponent<Player_Exp_Get>();
@@ -61,7 +62,8 @@ public class Player_Level_Manager : MonoBehaviour
             level_up_phase = false;
         }
 
-
+        //Text _text = text_.GetComponent<Text>();
+        //_text.text = "" + speed;
     }
 
     /// <summary>
@@ -92,8 +94,7 @@ public class Player_Level_Manager : MonoBehaviour
             }
         }
 
-        //Text _text = text_.GetComponent<Text>();
-        //_text.text = "" + script_player.Exp();
+        
     }
 
     /// <summary>
