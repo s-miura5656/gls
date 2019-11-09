@@ -29,7 +29,7 @@ public class Level_Zoom_Camera : MonoBehaviour
     // レベルごとのfovのベース
     private float fov_base = 60;
     // レベルごとのfov
-    private float[] fov_level = new float[10];
+    private float[] fov_level = new float[5];
 
     private int old_player_level;
     // Start is called before the first frame update
@@ -75,10 +75,10 @@ public class Level_Zoom_Camera : MonoBehaviour
 
     private void ZoomCamera() 
     {
-        if (script.GetLevel() <= 10)
-        {
-            main_cam.transform.position += new Vector3(0f, 15f, 15f);
-        }
+       
+        main_cam.transform.position += new Vector3(0f, 15f, 15f);
+        old_player_level = script.GetLevel();
+
         //main_cam.fieldOfView = fov_level[script.GetLevel() - 1];
         //move_fov = fov_level[script.GetLevel() - 1];
         //stop_fov = move_fov + fov_dist;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player_Level_Manager : MonoBehaviour
 { 
     // レベルアップに必要な経験値
-    private int[] level_up_exp = new int[10];
+    private int[] level_up_exp = new int[5];
     // プレイヤーのレベル
     private int player_level = 1;
     // プレイヤーレベルの限界値
@@ -32,7 +32,7 @@ public class Player_Level_Manager : MonoBehaviour
         // レベルアップに必要な経験値の初期化
         for (int i = 0; i < level_up_exp.Length; i++)
         {
-            level_up_exp[i] = level_up_exp[i] + (20 * (i + 1));
+            level_up_exp[i] = level_up_exp[i] + (30 * (i + 1));
         }
 
         script_player = player.GetComponent<Player_Exp_Get>();
