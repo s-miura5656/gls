@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Destroy_Hit_Bill_Effect : MonoBehaviour
 {
+    private GameObject level_zero_obj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,6 @@ public class Destroy_Hit_Bill_Effect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 1.5f);
     }
 }

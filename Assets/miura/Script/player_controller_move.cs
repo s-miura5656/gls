@@ -23,25 +23,31 @@ public class player_controller_move : MonoBehaviour
     private float speed;
     // メインカメラのゲームオブジェクトを取得
     [SerializeField] private GameObject main_camera;
-
-    private Vector3 camera_foward;
-    private Vector3 old_pos;
+    // ゲームマネージャーオブジェクトの取得
+    [SerializeField] private GameObject game_manager;
+    // ゲーム開始の時間を管理しているスクリプト
+    private Time_Manager time_manager_script;
+    // プレイヤーを回転させるためのコライダー
     private SphereCollider sphereCollider;
-    private Vector3 destination;
-
+    int charge = 0;
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
         this.sphereCollider = this.GetComponent<SphereCollider>();
+        time_manager_script = game_manager.GetComponent<Time_Manager>();
     }
 
     void Update()
     {
-        FowardRotation();
+        // カウントダウン後動けるようになる
+        if (time_manager_script.GetGameMainState())
+        {
+            FowardRotation();
 
-        PullController();
+            PullController();
 
-        SpeedDown();
+            SpeedDown();
+        }
     }
 
     /// <summary>
@@ -93,7 +99,13 @@ public class player_controller_move : MonoBehaviour
             this.start_pos = Input.mousePosition;
             // プレイヤーにかける力の変数を０に戻す
             start_direction *= 0;
+
+            //charge = 0;
         }
+        //else if (Input.GetMouseButton(0))
+        //{
+        //    charge++;
+        //}
         else if (Input.GetMouseButtonUp(0))
         {
             // マウスのボタンを離した場所（終点）
@@ -115,6 +127,8 @@ public class player_controller_move : MonoBehaviour
 
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
+
+            //powor += charge;
 
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
@@ -139,9 +153,6 @@ public class player_controller_move : MonoBehaviour
     /// </summary>
     private void SpeedDown()
     {
-        // 徐々に減速していく
-        rb.velocity *= 0.994f;
-
         // プレイヤーの速度の計算
         speed = rb.velocity.magnitude;
 
@@ -150,6 +161,17 @@ public class player_controller_move : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+        }
+
+        if (speed >= 130f)
+        {
+            // 徐々に減速していく
+            rb.velocity *= 0.98f;
+        }
+        else
+        {
+            // 徐々に減速していく
+            rb.velocity *= 0.994f;
         }
     }
 }

@@ -10,12 +10,16 @@ public class Bill_Destroy : MonoBehaviour
     private GameObject game_manager;
     // プレイヤーのレベルのスクリプトの取得
     private Player_Level_Manager player_level_script;
+    // ヒットストップのスクリプトを取得
+    private Hit_Stop_Manager hit_stop_script;
     // ビルのレベル
     private int bill_level;
     // 壊れるパーティクル
     [SerializeField] private GameObject crash;
     // 生成したパーティクルを入れるための変数
     private GameObject crash_copy;
+
+
     // デバック用
     //[SerializeField] private GameObject text_;
     
@@ -24,14 +28,14 @@ public class Bill_Destroy : MonoBehaviour
     {
         game_manager = GameObject.Find("GameManager");
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
-
+        hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
         BillLevelSerch();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,12 +50,14 @@ public class Bill_Destroy : MonoBehaviour
 
                 gameObject.SetActive(false);
 
+                Vibration.Vibrate(10);
+
+                //hit_stop_script.TimeStop();
             }
         }
 
         //Text _text = text_.GetComponent<Text>();
         //_text.text = "" + player_level_script.GetLevel();
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -65,6 +71,10 @@ public class Bill_Destroy : MonoBehaviour
                 crash_copy.transform.localScale *= bill_level;
 
                 gameObject.SetActive(false);
+
+                Vibration.Vibrate(40);
+
+                hit_stop_script.TimeStop();
             }
         }
     }
