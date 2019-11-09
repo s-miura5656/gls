@@ -25,7 +25,8 @@ public class Player_Exp_Get : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Text _text = text_.GetComponent<Text>();
+        _text.text = "EXP" + exp;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,9 +60,6 @@ public class Player_Exp_Get : MonoBehaviour
             exp += 5;
             time_exp += 5;
         }
-
-        //Text _text = text_.GetComponent<Text>();
-        //_text.text = "" + exp;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -115,5 +113,13 @@ public class Player_Exp_Get : MonoBehaviour
     public void TimeExpReset() 
     {
         time_exp = 0;
+    }
+
+    /// <summary>
+    /// プレイヤーの経験値をリセット
+    /// </summary>
+    public void PlayerExpReset() 
+    {
+        exp = 0;
     }
 }
