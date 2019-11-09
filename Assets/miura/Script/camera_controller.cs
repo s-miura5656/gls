@@ -23,7 +23,8 @@ public class camera_controller : MonoBehaviour
     private bool zoom_state = false;
     // ズーム変更時に必要なレベルアップ前のレベルを記憶する変数
     private int old_player_level;
-
+    [SerializeField] Vector3 first_pos;
+    [SerializeField] float main_cam_pos_z;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,8 @@ public class camera_controller : MonoBehaviour
         main_cam = gameObject.GetComponent<Camera>();
 
         old_player_level = script.GetLevel();
+
+        main_cam.transform.position = player.transform.position + first_pos;
     }
 
     private void Update()
@@ -76,7 +79,7 @@ public class camera_controller : MonoBehaviour
 
     private void ZoomCamera()
     {
-        main_cam.transform.position += new Vector3(0f, 50f, 0f);
+        main_cam.transform.position += new Vector3(0f, 50f, main_cam_pos_z);
         offset = transform.position - player.transform.position;
         old_player_level = script.GetLevel();
     }
