@@ -21,7 +21,7 @@ public class Konami_Camera : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(player.transform.position);
 
 
-        if (Physics.Raycast(ray, out hit, 100f))
+        if (Physics.Raycast(ray, out hit, 100))
         {
             MeshRenderer mesh = hit.collider.GetComponent<MeshRenderer>();
 
