@@ -52,7 +52,7 @@ public class Bill_Destroy : MonoBehaviour
 
                 Vibration.Vibrate(10);
 
-                hit_stop_script.TimeStop();
+                //hit_stop_script.TimeStop();
             }
         }
 
