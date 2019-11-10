@@ -49,6 +49,12 @@ public class Bill_Destroy : MonoBehaviour
 
                 crash_copy.transform.localScale *= bill_level;
 
+                Vector3 hitPos = other.ClosestPointOnBounds(this.transform.position);
+
+                GameObject hit = Instantiate(hit_effect, hitPos, transform.rotation);
+
+                hit.transform.localScale *= player_level_script.GetLevel();
+
                 gameObject.SetActive(false);
 
                 Vibration.Vibrate(10);
