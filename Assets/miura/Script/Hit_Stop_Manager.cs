@@ -15,9 +15,9 @@ public class Hit_Stop_Manager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        time_count += 0.1f;
+        time_count += Time.unscaledDeltaTime;
 
-        if (time_count >= 0.8f && time_switch == false)
+        if (time_count >= 0.1f && time_switch == false)
         {
             Time.timeScale = 1f;
             time_switch = true;
