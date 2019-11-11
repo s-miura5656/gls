@@ -1,15 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Destruction_Rate_Manager : MonoBehaviour
 {
     private GameObject[] tag_objects;
     // 破壊できるオブジェクトの総数
-    private int base_number = 0;
-    private int now_number = 0;
-    private float destruction_rate = 0f; 
-    
+    private float base_number = 0;
+    // 現在の破壊できるオブジェクト数
+    private float now_number = 0;
+    // 全体の割合（破壊率）
+    private float base_destruction_rate = 0f;
+    // 最終的に表示させる破壊率
+    private float last_destruction_rate = 0f;
+    // 破壊率を表示させるテキストオブジェクト
+    [SerializeField] private GameObject destruction_rate_text = null;
+    // テキストオブジェクトのテキストコンポーネント
+    Text _text;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +28,8 @@ public class Destruction_Rate_Manager : MonoBehaviour
             now_number += tag_objects.Length;
         }
 
+        _text = destruction_rate_text.GetComponent<Text>();
+
         base_number = now_number;
 
         DestructionRateCalculation();
@@ -27,7 +38,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(destruction_rate);
+        _text.text = "" + last_destruction_rate.ToString("f2");
     }
 
     private void Check(string tagname)
@@ -45,7 +56,9 @@ public class Destruction_Rate_Manager : MonoBehaviour
     /// </summary>
     private void DestructionRateCalculation() 
     {
-        destruction_rate = (now_number / base_number) * 100f;
+        base_destruction_rate = (now_number / base_number) * 100f;
+
+        last_destruction_rate = 100f - base_destruction_rate;
     }
 
 
