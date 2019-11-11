@@ -12,6 +12,8 @@ public class Bill_Destroy : MonoBehaviour
     private Player_Level_Manager player_level_script;
     // ヒットストップのスクリプトを取得
     private Hit_Stop_Manager hit_stop_script;
+    // 破壊率を管理しているスクリプトを取得
+    private Destruction_Rate_Manager destruction_rate_script;
     // ビルのレベル
     private int bill_level;
     // 壊れるパーティクル
@@ -20,6 +22,7 @@ public class Bill_Destroy : MonoBehaviour
     private GameObject crash_copy;
     // ヒットエフェクトを入れる変数
     [SerializeField] private GameObject hit_effect;
+
 
     // デバック用
     //[SerializeField] private GameObject text_;
@@ -30,36 +33,39 @@ public class Bill_Destroy : MonoBehaviour
         game_manager = GameObject.Find("GameManager");
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
+        destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
         BillLevelSerch();
     }
 
     // Update is called once per frame
     void Update()
     {
-      
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
+            // ビルレベルがプレイ屋のレベルより小さいときに
             if (bill_level < player_level_script.GetLevel())
             {
+                // ビル破壊時の破片のパーティクルを出す
                 crash_copy = Instantiate(crash, transform.position, transform.rotation);
-
+                // 破片のパーティクルをビルのレベルに合わせて拡大
                 crash_copy.transform.localScale *= bill_level;
-
+                // プレイヤーと当たった場所の座標
                 Vector3 hitPos = other.ClosestPointOnBounds(this.transform.position);
-
+                // プレイヤーと当たった場所にヒットエフェクト生成
                 GameObject hit = Instantiate(hit_effect, hitPos, transform.rotation);
-
+                // ヒットエフェクトのパーティクルをビルのレベルに合わせて拡大
                 hit.transform.localScale *= player_level_script.GetLevel();
-
+                // 破壊率計算用の関数
+                destruction_rate_script.DownNowRate();
+                // ゲームオブジェクトを非表示にする
                 gameObject.SetActive(false);
-
+                // 当たった時のバイブレーション
                 Vibration.Vibrate(10);
-
-                //hit_stop_script.TimeStop();
             }
         }
 
@@ -71,27 +77,32 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            // ビルのレベルがプレイヤーと同じか以下の時
             if (bill_level == player_level_script.GetLevel())
             {
+                // ビル破壊時の破片のパーティクルを出す
                 crash_copy = Instantiate(crash, transform.position, transform.rotation);
-
+                // 破片のパーティクルをビルのレベルに合わせて拡大
                 crash_copy.transform.localScale *= bill_level;
-
-                gameObject.SetActive(false);
-
                 Vector3 hitPos;
 
                 foreach (ContactPoint point in collision.contacts)
                 {
+                    // プレイヤーと当たった場所の座標
                     hitPos = point.point;
-
+                    // プレイヤーと当たった場所にヒットエフェクト生成
                     GameObject hit = Instantiate(hit_effect, hitPos, transform.rotation);
-
+                    // ヒットエフェクトのパーティクルをビルのレベルに合わせて拡大
                     hit.transform.localScale *= player_level_script.GetLevel();
                 }
 
+                // 破壊率計算用の関数
+                destruction_rate_script.DownNowRate();
+                // ゲームオブジェクトを非表示にする
+                gameObject.SetActive(false);
+                // 当たった時のバイブレーション
                 Vibration.Vibrate(40);
-
+                // ヒットストップさせる関数の呼び出し
                 hit_stop_script.TimeStop();
             }
         }
@@ -99,6 +110,14 @@ public class Bill_Destroy : MonoBehaviour
 
     private void BillLevelSerch() 
     {
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    if (transform.tag == "Bill_Level_" + i)
+        //    {
+        //        bill_level = i + 1;
+        //    }
+        //}
+
         if (transform.tag == "Bill_Level_1")
         {
             bill_level = 1;

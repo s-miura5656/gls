@@ -29,12 +29,15 @@ public class player_controller_move : MonoBehaviour
     private Time_Manager time_manager_script;
     // プレイヤーを回転させるためのコライダー
     private SphereCollider sphereCollider;
+    // プレイヤーのレベルを管理するスクリプト
+    private Player_Level_Manager player_manager_script;
     int charge = 0;
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
         this.sphereCollider = this.GetComponent<SphereCollider>();
         time_manager_script = game_manager.GetComponent<Time_Manager>();
+        player_manager_script = game_manager.GetComponent<Player_Level_Manager>();
     }
 
     void Update()
