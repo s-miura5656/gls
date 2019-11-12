@@ -38,7 +38,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _text.text = "" + last_destruction_rate.ToString("f2");
+        _text.text = last_destruction_rate.ToString("f2") + "%";
     }
 
     private void Check(string tagname)

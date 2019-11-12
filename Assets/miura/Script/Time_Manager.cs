@@ -11,15 +11,23 @@ public class Time_Manager : MonoBehaviour
     private float count_zero = 0f;
     private bool game_start_state = true;
     private int count_down_second = 0;
-    [SerializeField] private GameObject count_down_text;
+    [SerializeField] private GameObject start_count_text = null;
+    // カウントダウンテキスト
+    private Text start_count_down = null;
 
     // ゲーム終了時までの時間（ゲーム時間）
     private float time_count_down_main = 31f;
-    private float end_time = 0f;
+    private float end_time = -2f;
     private bool game_main_state = false;
     private int game_main_second = 0;
     private int zero_not_display = 0;
-    [SerializeField] private GameObject game_time_text;
+    [SerializeField] private GameObject game_time_text = null;
+    // ゲームタイムのテキスト
+    private Text game_time_number;
+    // ゲーム終了間際のカウントダウン用
+    [SerializeField] private GameObject end_count_text = null;
+    // カウントダウンのテキスト
+    private Text end_count_down;
 
     // 時間加算用
     [SerializeField] GameObject player;
@@ -30,12 +38,16 @@ public class Time_Manager : MonoBehaviour
     // 時間加算時に表示するオブジェクト
     [SerializeField] private GameObject one_plus;
     // メインカメラの取得
-    [SerializeField] private Camera main_camara = null; 
+    [SerializeField] private Camera main_camara = null;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         time_exp_script = player.GetComponent<Player_Exp_Get>();
+        start_count_down = start_count_text.GetComponent<Text>();
+        game_time_number = game_time_text.GetComponent<Text>();
+        end_count_down = end_count_text.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -54,19 +66,24 @@ public class Time_Manager : MonoBehaviour
         if (game_start_state)
         {
             time_count_down_start -= Time.deltaTime;
+            count_down_second = (int)time_count_down_start;
 
-            if (time_count_down_start > count_zero)
+            if (time_count_down_start > 1f)
             {
-                count_down_second = (int)time_count_down_start;
-                Text _text = count_down_text.GetComponent<Text>();
-                _text.text = count_down_second.ToString();
+                start_count_down.text = count_down_second.ToString();
             }
-            else
+            else if (time_count_down_start <= 1f)
             {
-                count_down_text.SetActive(false);
+                start_count_text.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                start_count_down.text = "GAME START";
                 game_time_text.SetActive(true);
-                game_start_state = false;
                 game_main_state = true;
+
+                if (time_count_down_start < -1)
+                {
+                    game_start_state = false;
+                    start_count_text.SetActive(false);
+                }
             }
         }
     }
@@ -79,19 +96,24 @@ public class Time_Manager : MonoBehaviour
         if (game_main_state)
         {
             time_count_down_main -= Time.deltaTime;
+            game_main_second = (int)time_count_down_main;
 
-            if (time_count_down_main >= end_time)
+            if (time_count_down_main > 6f)
             {
-                game_main_second = (int)time_count_down_main;
-
-                Text _text = game_time_text.GetComponent<Text>();
-
-                if (game_main_second >= zero_not_display)
-                {
-                    _text.text = game_main_second.ToString();
-                }
+                game_time_number.text = game_main_second.ToString();                
             }
-            else
+            else if (time_count_down_main > 1f && time_count_down_main <= 6f)
+            {
+                end_count_down.text = game_main_second.ToString();
+                game_time_text.SetActive(false);
+                end_count_text.SetActive(true);
+
+            }
+            else if (time_count_down_main <= 1f && time_count_down_main > end_time)
+            {
+                end_count_down.text = "TIME UP";
+            }
+            else if (time_count_down_main < end_time)
             {
                 game_main_state = false;
                 SceneManager.LoadScene("Resalt_");
