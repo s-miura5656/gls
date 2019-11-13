@@ -76,10 +76,9 @@ public class Time_Manager : MonoBehaviour
     /// </summary>
     private void CountDown() 
     {
-        start_count_text.SetActive(true);
-
         if (game_start_state)
         {
+            start_count_text.SetActive(true);
             time_count_down_start -= Time.deltaTime;
             count_down_second = (int)time_count_down_start;
 
