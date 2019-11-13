@@ -18,10 +18,14 @@ public class Destruction_Rate_Manager : MonoBehaviour
     [SerializeField] private GameObject destruction_rate_text = null;
     // テキストオブジェクトのテキストコンポーネント
     Text _text;
+    // 時間を管理しているスクリプトの取得
+    private Time_Manager time_manager;
 
     // Start is called before the first frame update
     void Start()
     {
+        time_manager = gameObject.GetComponent<Time_Manager>();
+
         for (int i = 0; i < 6; i++)
         {
             Check("Bill_Level_" + i);
@@ -39,6 +43,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     void Update()
     {
         _text.text = last_destruction_rate.ToString("f2") + "%";
+
     }
 
     private void Check(string tagname)
@@ -67,7 +72,10 @@ public class Destruction_Rate_Manager : MonoBehaviour
     /// </summary>
     public void DownNowRate() 
     {
-        now_number--;
+        if (time_manager.GetGamePlayState())
+        {
+            now_number--;
+        }
 
         DestructionRateCalculation();
     }

@@ -10,7 +10,7 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーのレベル
     private int player_level = 1;
     // プレイヤーレベルの限界値
-    private int player_level_max = 10;
+    private int player_level_max = 5;
     // プレイヤーの大きさ
     private Vector3 player_scale = new Vector3(4f, 4f, 4f);
     // レベルアップのステートマシン

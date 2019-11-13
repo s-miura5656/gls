@@ -16,16 +16,19 @@ public class Time_Manager : MonoBehaviour
     private Text start_count_down = null;
 
     // ゲーム終了時までの時間（ゲーム時間）
-    private float time_count_down_main = 31f;
+    [SerializeField] private float time_count_down_main = 41f;
     private float end_time = -2f;
     private bool game_main_state = false;
     private int game_main_second = 0;
     private int zero_not_display = 0;
     [SerializeField] private GameObject game_time_text = null;
+
     // ゲームタイムのテキスト
     private Text game_time_number;
+
     // ゲーム終了間際のカウントダウン用
     [SerializeField] private GameObject end_count_text = null;
+
     // カウントダウンのテキスト
     private Text end_count_down;
 
@@ -39,7 +42,10 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private GameObject one_plus;
     // メインカメラの取得
     [SerializeField] private Camera main_camara = null;
-    
+    // 増やす時間
+    private float increase_time = 3f;
+    // 操作等可能にするための変数
+    private bool game_play_state = false;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +84,7 @@ public class Time_Manager : MonoBehaviour
                 start_count_down.text = "GAME START";
                 game_time_text.SetActive(true);
                 game_main_state = true;
+                game_play_state = true;
 
                 if (time_count_down_start < -1)
                 {
@@ -112,6 +119,7 @@ public class Time_Manager : MonoBehaviour
             else if (time_count_down_main <= 1f && time_count_down_main > end_time)
             {
                 end_count_down.text = "TIME UP";
+                game_play_state = false;
             }
             else if (time_count_down_main < end_time)
             {
@@ -127,15 +135,15 @@ public class Time_Manager : MonoBehaviour
         {
             GameObject one_copy = Instantiate(one_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
             one_copy.GetComponent<CameraLookSprite>().SetCamera(main_camara);
-            time_count_down_main += 1f;
+            time_count_down_main += increase_time;
             time_exp_level_table = time_exp_level_table + 10;
             time_exp_script.TimeExpReset();
         }
     }
 
     /// <summary>
-    /// ゲームメインのステート
+    /// 操作可能かどうか
     /// </summary>
     /// <returns></returns>
-    public bool GetGameMainState() { return game_main_state; }
+    public bool GetGamePlayState() { return game_play_state; }
 }
