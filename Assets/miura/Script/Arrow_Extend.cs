@@ -20,22 +20,31 @@ public class Arrow_Extend : MonoBehaviour
     private Vector3 player_size;
     // プレイヤーの周りをまわる矢印のプレイヤーからの距離
     private float arrow_dist = 2f;
-    // レベルアップ前のレベル
-    private int old_level = 1;
+    // 時間を管理するスクリプト
+    private Time_Manager time_script;
+
+
     // Start is called before the first frame update
     void Start()
     {
         player_size = player.transform.localScale;
         spriteRenderer = GetComponent<SpriteRenderer>();
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
-        //ArrowScale();
+        time_script = game_manager.GetComponent<Time_Manager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ArrowScale();
+        if (time_script.GetGamePlayState())
+        {
+            ArrowController();
+        }
+    }
 
+    private void ArrowController() 
+    {
         // 左クリックを押したときに矢印を表示する
         if (Input.GetMouseButtonDown(0))
         {
@@ -70,7 +79,7 @@ public class Arrow_Extend : MonoBehaviour
 
             // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる
             transform.position = player.transform.position
-                               + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized 
+                               + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized
                                * (player_size.z + (arrow_dist * (player_level_script.GetLevel() * 4))));
 
             // 引っ張りに対して矢印を引き延ばす
@@ -81,15 +90,6 @@ public class Arrow_Extend : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             spriteRenderer.enabled = false;
-        }
-    }
-
-    private void ArrowScale() 
-    {
-        if (old_level < player_level_script.GetLevel())
-        {
-            transform.localScale *= player_level_script.GetLevel();
-            old_level = player_level_script.GetLevel();
         }
     }
 }

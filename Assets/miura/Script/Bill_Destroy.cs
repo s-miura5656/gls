@@ -17,11 +17,11 @@ public class Bill_Destroy : MonoBehaviour
     // ビルのレベル
     private int bill_level;
     // 壊れるパーティクル
-    [SerializeField] private GameObject crash;
+    private GameObject crash;
     // 生成したパーティクルを入れるための変数
     private GameObject crash_copy;
     // ヒットエフェクトを入れる変数
-    [SerializeField] private GameObject hit_effect;
+    private GameObject hit_effect;
 
 
     // デバック用
@@ -34,6 +34,8 @@ public class Bill_Destroy : MonoBehaviour
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
+        crash = (GameObject)Resources.Load("Collapse_Effect");
+        hit_effect = (GameObject)Resources.Load("Hit_Effect_1");
         BillLevelSerch();
     }
 

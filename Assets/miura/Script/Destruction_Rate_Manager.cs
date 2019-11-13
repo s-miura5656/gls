@@ -19,12 +19,12 @@ public class Destruction_Rate_Manager : MonoBehaviour
     // テキストオブジェクトのテキストコンポーネント
     Text _text;
     // 時間を管理しているスクリプトの取得
-    private Time_Manager time_manager;
+    private Time_Manager time_script;
 
     // Start is called before the first frame update
     void Start()
     {
-        time_manager = gameObject.GetComponent<Time_Manager>();
+        time_script = gameObject.GetComponent<Time_Manager>();
 
         for (int i = 0; i < 6; i++)
         {
@@ -72,7 +72,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     /// </summary>
     public void DownNowRate() 
     {
-        if (time_manager.GetGamePlayState())
+        if (time_script.GetGamePlayState())
         {
             now_number--;
         }
