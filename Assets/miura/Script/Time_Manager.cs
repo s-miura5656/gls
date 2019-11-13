@@ -17,7 +17,7 @@ public class Time_Manager : MonoBehaviour
 
     // ゲーム終了時までの時間（ゲーム時間）
     [SerializeField] private float time_count_down_main = 41f;
-    private float end_time = -2f;
+    private float end_time = -1f;
     private bool game_main_state = false;
     private int game_main_second = 0;
     private int zero_not_display = 0;
@@ -61,7 +61,6 @@ public class Time_Manager : MonoBehaviour
     {
         CountDown();
         GameTime();
-        TimeCountDownMainPlus();
     }
 
     /// <summary>
@@ -81,7 +80,7 @@ public class Time_Manager : MonoBehaviour
             else if (time_count_down_start <= 1f)
             {
                 start_count_text.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                start_count_down.text = "GAME START";
+                start_count_down.text = "START";
                 game_time_text.SetActive(true);
                 game_main_state = true;
                 game_play_state = true;
@@ -129,16 +128,11 @@ public class Time_Manager : MonoBehaviour
         }
     }
 
-    private void TimeCountDownMainPlus() 
+    public void TimeCountDownMainPlus() 
     {
-        if (time_exp_level_table <= time_exp_script.GetTimeExp())
-        {
-            GameObject one_copy = Instantiate(one_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
-            one_copy.GetComponent<CameraLookSprite>().SetCamera(main_camara);
-            time_count_down_main += increase_time;
-            time_exp_level_table = time_exp_level_table + 10;
-            time_exp_script.TimeExpReset();
-        }
+        GameObject one_copy = Instantiate(one_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
+        one_copy.GetComponent<CameraLookSprite>().SetCamera(main_camara);
+        time_count_down_main += increase_time;
     }
 
     /// <summary>

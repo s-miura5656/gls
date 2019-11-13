@@ -25,8 +25,12 @@ public class Player_Level_Manager : MonoBehaviour
     private Player_Exp_Get script_player;
     // デバック用
     [SerializeField] private GameObject text_ = null;
-
+    // 経験値ゲージ
     [SerializeField] private Slider exp_slider = null;
+    // レベルアップのテキスト
+    [SerializeField] private GameObject level_up_text = null;
+    // タイムを管理しているスクリプト
+    private Time_Manager time_script;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +43,8 @@ public class Player_Level_Manager : MonoBehaviour
         }
 
         script_player = player.GetComponent<Player_Exp_Get>();
+
+        time_script = gameObject.GetComponent<Time_Manager>();
 
         rb = player.gameObject.GetComponent<Rigidbody>();
 
@@ -75,6 +81,7 @@ public class Player_Level_Manager : MonoBehaviour
 
         //Text _text = text_.GetComponent<Text>();
         //_text.text = "" + speed;
+
     }
 
     /// <summary>
@@ -93,6 +100,10 @@ public class Player_Level_Manager : MonoBehaviour
 
                     player_level = player_level + 1;
 
+                    time_script.TimeCountDownMainPlus();
+
+                    level_up_text.SetActive(true);
+
                     exp_slider.maxValue = level_up_exp[player_level - 1];
 
                     if (player_level > player_level_max)
@@ -108,8 +119,6 @@ public class Player_Level_Manager : MonoBehaviour
                 }
             }
         }
-
-        
     }
 
     /// <summary>

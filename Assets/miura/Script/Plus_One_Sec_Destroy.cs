@@ -6,13 +6,11 @@ public class Plus_One_Sec_Destroy : MonoBehaviour
 {
     private GameObject player;
     private float obj_pos_y = 0f;
-    private float base_scale_y;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player1");
-        base_scale_y = player.transform.localScale.y;
     }
 
     // Update is called once per frame

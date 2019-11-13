@@ -48,9 +48,9 @@ public class player_controller_move : MonoBehaviour
             PullController();
         }
 
-        FowardRotation();
-
         SpeedDown();
+
+        FowardRotation();
     }
 
     /// <summary>
