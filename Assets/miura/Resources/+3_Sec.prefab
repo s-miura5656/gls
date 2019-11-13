@@ -49,7 +49,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06d913b700146214f8e85663672e7b8e, type: 3}
+  - {fileID: 2100000, guid: 86e77133df010a141814f0d43aaf4522, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,7 +78,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290122940530411449}
-  m_Text: +1 Sec
+  m_Text: +3 Sec
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -88,10 +88,10 @@ TextMesh:
   m_FontSize: 300
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 06d913b700146214f8e85663672e7b8e, type: 3}
+  m_Font: {fileID: 12800000, guid: 86e77133df010a141814f0d43aaf4522, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4294901850
+    rgba: 4278241279
 --- !u!1 &400147275283297743
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 3517966042014694512}
   - component: {fileID: -1356146465273094266}
   m_Layer: 0
-  m_Name: +1_Sec
+  m_Name: +3_Sec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,4 +149,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8905663ad383431439194c5557516b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}

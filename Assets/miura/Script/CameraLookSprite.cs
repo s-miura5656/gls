@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraLookSprite : MonoBehaviour
 {
 
-    [SerializeField]
     private Camera _camera = null;
 
     // Start is called before the first frame update
