@@ -26,24 +26,24 @@ public class player_controller_move : MonoBehaviour
     // ゲームマネージャーオブジェクトの取得
     [SerializeField] private GameObject game_manager;
     // ゲーム開始の時間を管理しているスクリプト
-    private Time_Manager time_manager_script;
+    private Time_Manager time_script;
     // プレイヤーを回転させるためのコライダー
     private SphereCollider sphereCollider;
     // プレイヤーのレベルを管理するスクリプト
-    private Player_Level_Manager player_manager_script;
+    private Player_Level_Manager exp_manager_script;
     int charge = 0;
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
         this.sphereCollider = this.GetComponent<SphereCollider>();
-        time_manager_script = game_manager.GetComponent<Time_Manager>();
-        player_manager_script = game_manager.GetComponent<Player_Level_Manager>();
+        time_script = game_manager.GetComponent<Time_Manager>();
+        exp_manager_script = game_manager.GetComponent<Player_Level_Manager>();
     }
 
     void Update()
     {
         // カウントダウン後動けるようになる
-        if (time_manager_script.GetGamePlayState())
+        if (time_script.GetGamePlayState())
         {
             PullController();
         }
@@ -130,6 +130,8 @@ public class player_controller_move : MonoBehaviour
 
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
+
+            powor = powor * (1 + (exp_manager_script.GetLevel() / 10f));
 
             //powor += charge;
 

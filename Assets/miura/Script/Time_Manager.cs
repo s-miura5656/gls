@@ -33,19 +33,23 @@ public class Time_Manager : MonoBehaviour
     private Text end_count_down;
 
     // 時間加算用
-    [SerializeField] GameObject player;
+    [SerializeField] private GameObject player = null;
     // 経験値の入手のスクリプト
     private Player_Exp_Get time_exp_script;
     // 時間加算レベルアップ用経験値
     private int time_exp_level_table = 10;
     // 時間加算時に表示するオブジェクト
-    [SerializeField] private GameObject one_plus;
+    [SerializeField] private GameObject one_plus = null;
     // メインカメラの取得
     [SerializeField] private Camera main_camara = null;
     // 増やす時間
     private float increase_time = 3f;
     // 操作等可能にするための変数
     private bool game_play_state = false;
+    // ローディング画面のオブジェクト取得
+    [SerializeField] private GameObject loading_screen = null;
+    // スタートのローディングを管理するスクリプト
+    private Start_Loading loading_script;
 
     // Start is called before the first frame update
     void Start()
@@ -54,13 +58,17 @@ public class Time_Manager : MonoBehaviour
         start_count_down = start_count_text.GetComponent<Text>();
         game_time_number = game_time_text.GetComponent<Text>();
         end_count_down = end_count_text.GetComponent<Text>();
+        loading_script = loading_screen.GetComponent<Start_Loading>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CountDown();
-        GameTime();
+        if (loading_script.GetCountDownStart())
+        {
+            CountDown();
+            GameTime();
+        }
     }
 
     /// <summary>
@@ -70,6 +78,7 @@ public class Time_Manager : MonoBehaviour
     {
         if (game_start_state)
         {
+            start_count_text.SetActive(true);
             time_count_down_start -= Time.deltaTime;
             count_down_second = (int)time_count_down_start;
 
