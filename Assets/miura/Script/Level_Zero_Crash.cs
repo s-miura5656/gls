@@ -6,11 +6,15 @@ public class Level_Zero_Crash : MonoBehaviour
 {
     private float time_count = 0f;
     private float destroy_time = 1.5f;
-    
+    [SerializeField] private GameObject game_manager;
+    private Destruction_Rate_Manager destruction_rate_script;
+    private Collider col;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
+        col = gameObject.GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -23,6 +27,9 @@ public class Level_Zero_Crash : MonoBehaviour
     {
         if (collision.gameObject.tag != "Load")
         {
+            // 破壊率計算用の関数
+            destruction_rate_script.DownNowRate();
+            col.enabled = false;
             Destroy(gameObject, destroy_time);
         }
     }

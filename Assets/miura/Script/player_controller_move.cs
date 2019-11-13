@@ -43,14 +43,14 @@ public class player_controller_move : MonoBehaviour
     void Update()
     {
         // カウントダウン後動けるようになる
-        if (time_manager_script.GetGameMainState())
+        if (time_manager_script.GetGamePlayState())
         {
-            FowardRotation();
-
             PullController();
-
-            SpeedDown();
         }
+
+        FowardRotation();
+
+        SpeedDown();
     }
 
     /// <summary>
