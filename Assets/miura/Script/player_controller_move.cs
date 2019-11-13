@@ -103,12 +103,15 @@ public class player_controller_move : MonoBehaviour
             // プレイヤーにかける力の変数を０に戻す
             start_direction *= 0;
 
-            //charge = 0;
+            charge = 0;
         }
-        //else if (Input.GetMouseButton(0))
-        //{
-        //    charge++;
-        //}
+        else if (Input.GetMouseButton(0))
+        {
+            if (charge < 100f)
+            {
+                charge++;
+            }
+        }
         else if (Input.GetMouseButtonUp(0))
         {
             // マウスのボタンを離した場所（終点）
@@ -133,7 +136,7 @@ public class player_controller_move : MonoBehaviour
 
             powor = powor * (1 + (exp_manager_script.GetLevel() / 10f));
 
-            //powor += charge;
+            powor += (charge / 10);
 
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
