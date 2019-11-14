@@ -30,14 +30,14 @@ public class UnityAdsController : MonoBehaviour
     void Start()
     {
 
-        if (Advertisement.isSupported && !Advertisement.isInitialized)
-        {
-#if UNITY_ANDROID
-            Advertisement.Initialize(gameID_Android);
-#elif UNITY_IOS
-			Advertisement.Initialize(gameID_iOS);
-#endif
-        }
+//        if (Advertisement.isSupported && !Advertisement.isInitialized)
+//        {
+//#if UNITY_ANDROID
+//            Advertisement.Initialize(gameID_Android);
+//#elif UNITY_IOS
+//			Advertisement.Initialize(gameID_iOS);
+//#endif
+//        }
     }
 
     public void ShowUnityAds()
