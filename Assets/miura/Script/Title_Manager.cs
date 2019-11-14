@@ -22,4 +22,9 @@ public class Title_Manager : MonoBehaviour
     {
         SceneManager.LoadScene("GameMain_1");
     }
+
+    public void SetSkin() 
+    {
+        SceneManager.LoadScene("");
+    }
 }

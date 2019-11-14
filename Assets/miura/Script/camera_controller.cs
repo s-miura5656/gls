@@ -24,9 +24,9 @@ public class camera_controller : MonoBehaviour
     // ズーム変更時に必要なレベルアップ前のレベルを記憶する変数
     private int old_player_level;
     // カメラの初期位置
-    private Vector3 first_pos = new Vector3(0f, 100f, -40f);
+    private Vector3 first_pos = new Vector3(0f, 60f, -60f);
     // レベルが上がるにつれて上がるカメラのZ軸の値
-    private Vector3 level_up_camera_pos = new Vector3(0f, 50f, -40f);
+    private Vector3 level_up_camera_pos = new Vector3(0f, 20f, -20f);
     // Start is called before the first frame update
     void Start()
     {
