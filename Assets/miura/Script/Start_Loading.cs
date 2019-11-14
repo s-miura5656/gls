@@ -26,7 +26,7 @@ public class Start_Loading : MonoBehaviour
     {
         time_count += Time.deltaTime;
 
-        if (time_count >= 1f)
+        if (time_count >= 2f)
         {
             AlphaDown();
         }
@@ -37,13 +37,16 @@ public class Start_Loading : MonoBehaviour
     {
         gameObject.GetComponent<Image>().color = new Color(obj_color.r, obj_color.g, obj_color.b, alpha);
 
-        alpha -= Time.deltaTime / 2f;
+        //alpha -= Time.deltaTime / 2f;
 
-        if (alpha <= 0)
-        {
-            gameObject.SetActive(false);
-            count_down_start = true;
-        }
+        //if (alpha <= 0)
+        //{
+        //    gameObject.SetActive(false);
+        //    count_down_start = true;
+        //}
+
+        gameObject.SetActive(false);
+        count_down_start = true;
     }
 
     public bool GetCountDownStart() { return count_down_start; }
