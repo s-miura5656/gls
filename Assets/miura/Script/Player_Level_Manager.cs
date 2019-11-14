@@ -10,7 +10,7 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーのレベル
     private int player_level = 1;
     // プレイヤーレベルの限界値
-    private int player_level_max = 10;
+    private int player_level_max = 5;
     // プレイヤーの大きさ
     private Vector3 player_scale = new Vector3(4f, 4f, 4f);
     // レベルアップのステートマシン
@@ -20,12 +20,18 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーのリジッドボディ
     private Rigidbody rb;
     // プレイヤーのゲームオブジェクト
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject player = null;
     // プレイヤーの経験値を持っているスクリプト
     private Player_Exp_Get script_player;
     // デバック用
-    [SerializeField] private GameObject text_;
-    
+    [SerializeField] private GameObject text_ = null;
+    // 経験値ゲージ
+    [SerializeField] private Slider exp_slider = null;
+    // レベルアップのテキスト
+    [SerializeField] private GameObject level_up_text = null;
+    // タイムを管理しているスクリプト
+    private Time_Manager time_script;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +44,11 @@ public class Player_Level_Manager : MonoBehaviour
 
         script_player = player.GetComponent<Player_Exp_Get>();
 
+        time_script = gameObject.GetComponent<Time_Manager>();
+
         rb = player.gameObject.GetComponent<Rigidbody>();
+
+        exp_slider.maxValue = level_up_exp[player_level - 1];
     }
 
     // Update is called once per frame
@@ -62,8 +72,16 @@ public class Player_Level_Manager : MonoBehaviour
             level_up_phase = false;
         }
 
+        if (script_player.GetExp() >= exp_slider.maxValue)
+        {
+            exp_slider.value = 0;
+        }
+
+        exp_slider.value = script_player.GetExp();
+
         //Text _text = text_.GetComponent<Text>();
         //_text.text = "" + speed;
+
     }
 
     /// <summary>
@@ -78,7 +96,15 @@ public class Player_Level_Manager : MonoBehaviour
                 // 現在の経験値が指定の経験値と同じか超えるかした場合レベルアップ
                 if (script_player.GetExp() >= level_up_exp[i])
                 {
+                    exp_slider.minValue = level_up_exp[player_level - 1];
+
                     player_level = player_level + 1;
+
+                    time_script.TimeCountDownMainPlus();
+
+                    level_up_text.SetActive(true);
+
+                    exp_slider.maxValue = level_up_exp[player_level - 1];
 
                     if (player_level > player_level_max)
                     {
@@ -93,8 +119,6 @@ public class Player_Level_Manager : MonoBehaviour
                 }
             }
         }
-
-        
     }
 
     /// <summary>

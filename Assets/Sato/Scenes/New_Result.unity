@@ -154,6 +154,7 @@ MonoBehaviour:
   googlePlayStoreGameId: 3356877
   placementId: banner_test
   bannerPosition: 4
+  _gameId: 
 --- !u!4 &34495709
 Transform:
   m_ObjectHideFlags: 0
@@ -764,16 +765,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
   OnSkippedAds:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
   OnFailedAds:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
 --- !u!4 &272848093
 Transform:
   m_ObjectHideFlags: 0
@@ -826,16 +830,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
   OnSkippedAds:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
   OnFailedAds:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
 --- !u!4 &332949074
 Transform:
   m_ObjectHideFlags: 0
@@ -1776,6 +1783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ToggleMute: {fileID: 122902161}
+  muteToggle: {fileID: 0}
 --- !u!82 &1286661132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2158,6 +2166,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1648125322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3770753612360440375, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1265838519}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648125324}
+  - component: {fileID: 1648125323}
+  m_Layer: 0
+  m_Name: bannar_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1648125323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3770753612360440368, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1265838519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648125322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9ba651276506e46ab788bb1f94a569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMode: 1
+  appleAppStoreGameId: 3356876
+  googlePlayStoreGameId: 3356877
+  placementId: banner_test
+  bannerPosition: 4
+  _gameId: 
+--- !u!4 &1648125324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1265838519}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648125322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 216.99991, y: 385.45013, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1789625676
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,6 +2327,7 @@ MonoBehaviour:
   _animtime: 0.2
   back_bottom: {fileID: 1295240139}
   botton_animtime: 0.2
+  count: 0
 --- !u!4 &1792559393
 Transform:
   m_ObjectHideFlags: 0

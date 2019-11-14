@@ -26,28 +26,31 @@ public class player_controller_move : MonoBehaviour
     // ゲームマネージャーオブジェクトの取得
     [SerializeField] private GameObject game_manager;
     // ゲーム開始の時間を管理しているスクリプト
-    private Time_Manager time_manager_script;
+    private Time_Manager time_script;
     // プレイヤーを回転させるためのコライダー
     private SphereCollider sphereCollider;
+    // プレイヤーのレベルを管理するスクリプト
+    private Player_Level_Manager exp_manager_script;
     int charge = 0;
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
         this.sphereCollider = this.GetComponent<SphereCollider>();
-        time_manager_script = game_manager.GetComponent<Time_Manager>();
+        time_script = game_manager.GetComponent<Time_Manager>();
+        exp_manager_script = game_manager.GetComponent<Player_Level_Manager>();
     }
 
     void Update()
     {
         // カウントダウン後動けるようになる
-        if (time_manager_script.GetGameMainState())
+        if (time_script.GetGamePlayState())
         {
-            FowardRotation();
-
             PullController();
-
-            SpeedDown();
         }
+
+        SpeedDown();
+
+        FowardRotation();
     }
 
     /// <summary>
@@ -100,12 +103,15 @@ public class player_controller_move : MonoBehaviour
             // プレイヤーにかける力の変数を０に戻す
             start_direction *= 0;
 
-            //charge = 0;
+            charge = 0;
         }
-        //else if (Input.GetMouseButton(0))
-        //{
-        //    charge++;
-        //}
+        else if (Input.GetMouseButton(0))
+        {
+            if (charge < 100f)
+            {
+                charge++;
+            }
+        }
         else if (Input.GetMouseButtonUp(0))
         {
             // マウスのボタンを離した場所（終点）
@@ -128,7 +134,9 @@ public class player_controller_move : MonoBehaviour
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
 
-            //powor += charge;
+            powor = powor * (1 + (exp_manager_script.GetLevel() / 10f));
+
+            powor += (charge / 10);
 
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;

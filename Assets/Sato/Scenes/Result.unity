@@ -120,75 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &9833788
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3770753612360440375, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_Name
-      value: bannar_Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 216.99991
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 385.45013
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770753612360440369, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a5fcc6d6d93679d48ae5f4b52c72f3a3, type: 3}
 --- !u!1 &315248630
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,16 +672,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
   OnSkippedAds:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
   OnFailedAds:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+    m_CallsDirty: 1
 --- !u!4 &823974491
 Transform:
   m_ObjectHideFlags: 0
@@ -1373,8 +1307,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1368702988}
-        m_MethodName: ShowUnityAds
+      - m_Target: {fileID: 2052670311}
+        m_MethodName: RetryGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1471,68 +1405,6 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!1 &1368702987
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1368702989}
-  - component: {fileID: 1368702988}
-  m_Layer: 0
-  m_Name: Continue_Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1368702988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368702987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b66db447013b1e48bb0e0b70ebb1aec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoneID: rewardedVideo
-  gameID_iOS: 3356876
-  gameID_Android: 3356877
-  test_1: {fileID: 0}
-  OnFinishedAds:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnSkippedAds:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnFailedAds:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!4 &1368702989
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1368702987}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 277.54544, y: 539.4004, z: 5.656777}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1409897490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,6 +1436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ToggleMute: {fileID: 1166509614}
+  muteToggle: {fileID: 0}
 --- !u!82 &1409897492
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1998,8 +1871,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.13, y: 0.4}
   m_AnchorMax: {x: 0.84, y: 0.5}
-  m_AnchoredPosition: {x: 2.6, y: 0.75}
-  m_SizeDelta: {x: 8.9, y: -1.5}
+  m_AnchoredPosition: {x: 2.5, y: -1.5}
+  m_SizeDelta: {x: 8.700012, y: -6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1945563657
 MonoBehaviour:
@@ -2255,6 +2128,7 @@ MonoBehaviour:
   _animtime: 0.2
   back_bottom: {fileID: 1199806735}
   botton_animtime: 0.2
+  count: 0
 --- !u!4 &2042050152
 Transform:
   m_ObjectHideFlags: 0
@@ -2485,6 +2359,7 @@ MonoBehaviour:
   googlePlayStoreGameId: 3356877
   placementId: banner_test
   bannerPosition: 4
+  _gameId: 
 --- !u!4 &2112647700
 Transform:
   m_ObjectHideFlags: 0
