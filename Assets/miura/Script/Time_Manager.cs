@@ -12,6 +12,7 @@ public class Time_Manager : MonoBehaviour
     private bool game_start_state = true;
     private int count_down_second = 0;
     [SerializeField] private GameObject start_count_text = null;
+    [SerializeField] private GameObject count = null;
     // カウントダウンテキスト
     private Text start_count_down = null;
 
@@ -55,7 +56,7 @@ public class Time_Manager : MonoBehaviour
     void Start()
     {
         time_exp_script = player.GetComponent<Player_Exp_Get>();
-        start_count_down = start_count_text.GetComponent<Text>();
+        start_count_down = count.GetComponent<Text>();
         game_time_number = game_time_text.GetComponent<Text>();
         end_count_down = end_count_text.GetComponent<Text>();
         loading_script = loading_screen.GetComponent<Start_Loading>();
@@ -88,9 +89,8 @@ public class Time_Manager : MonoBehaviour
             }
             else if (time_count_down_start <= 1f)
             {
-                start_count_text.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                //start_count_text.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 start_count_down.text = "START";
-                game_time_text.SetActive(true);
                 game_main_state = true;
                 game_play_state = true;
 
@@ -98,6 +98,7 @@ public class Time_Manager : MonoBehaviour
                 {
                     game_start_state = false;
                     start_count_text.SetActive(false);
+                    game_time_text.SetActive(true);
                 }
             }
         }
