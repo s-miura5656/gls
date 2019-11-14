@@ -133,7 +133,7 @@ public class Time_Manager : MonoBehaviour
             else if (time_count_down_main < end_time)
             {
                 game_main_state = false;
-                SceneManager.LoadScene("Resalt");
+                SceneManager.LoadScene("Result");
             }
         }
     }
