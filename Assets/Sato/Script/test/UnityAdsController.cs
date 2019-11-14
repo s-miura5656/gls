@@ -33,7 +33,7 @@ public class UnityAdsController : MonoBehaviour
         if (Advertisement.isSupported && !Advertisement.isInitialized)
         {
 #if UNITY_ANDROID
-            Advertisement.Initialize(gameID_Android);
+            //Advertisement.Initialize(gameID_Android);
 #elif UNITY_IOS
 			Advertisement.Initialize(gameID_iOS);
 #endif
