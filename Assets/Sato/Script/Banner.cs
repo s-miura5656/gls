@@ -2,7 +2,7 @@
 using UnityEngine.Monetization;
 using UnityEngine.Advertisements;
 
-public class MonetizationBannerExample : MonoBehaviour
+public class Banner : MonoBehaviour
 {
     public bool testMode;
     public string appleAppStoreGameId = "3356876";
