@@ -18,7 +18,7 @@ public class player_controller_move : MonoBehaviour
     // 最初にタップした位置から動かして離すまでの距離
     private float dist;
     // distに割ってspeedを出すための変数
-    private float powor_up = 10f;
+    private float powor_up = 20f;
     // プレイヤーの速度
     private float speed;
     // メインカメラのゲームオブジェクトを取得
@@ -32,6 +32,8 @@ public class player_controller_move : MonoBehaviour
     // プレイヤーのレベルを管理するスクリプト
     private Player_Level_Manager exp_manager_script;
     int charge = 0;
+
+    
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
@@ -134,9 +136,9 @@ public class player_controller_move : MonoBehaviour
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
 
-            powor = powor * (1 + (exp_manager_script.GetLevel() / 10f));
+            powor = powor * exp_manager_script.GetLevel();
 
-            powor += (charge / 10);
+            //powor += charge;
 
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
@@ -181,5 +183,14 @@ public class player_controller_move : MonoBehaviour
             // 徐々に減速していく
             rb.velocity *= 0.994f;
         }
+    }
+
+    /// <summary>
+    /// プレイヤーの速度を変える
+    /// </summary>
+    /// <param name="powor"></param>
+    public void SetMovePowor(float powor) 
+    {
+        powor_up = powor;
     }
 }

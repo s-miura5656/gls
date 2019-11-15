@@ -24,7 +24,7 @@ public class camera_controller : MonoBehaviour
     // ズーム変更時に必要なレベルアップ前のレベルを記憶する変数
     private int old_player_level;
     // カメラの初期位置
-    private Vector3 first_pos = new Vector3(0f, 60f, -60f);
+    private Vector3 first_pos = new Vector3(0f, 30f, -30f);
     // レベルが上がるにつれて上がるカメラのZ軸の値
     private Vector3 level_up_camera_pos = new Vector3(0f, 20f, -20f);
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class camera_controller : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     void FixedUpdate()
@@ -84,5 +84,23 @@ public class camera_controller : MonoBehaviour
         main_cam.transform.position += level_up_camera_pos;
         offset = transform.position - player.transform.position;
         old_player_level = script.GetLevel();
+    }
+
+    /// <summary>
+    /// 初期位置
+    /// </summary>
+    /// <param name="pos">プレイヤーの位置にプラスする</param>
+    public void SetFirstPos(Vector3 pos)
+    {
+        first_pos = pos;
+    }
+
+    /// <summary>
+    /// レベルアップした時に離れる距離
+    /// </summary>
+    /// <param name="pos"></param>
+    public void SetLevelUpCameraPos(Vector3 pos)
+    {
+        level_up_camera_pos = pos;
     }
 }

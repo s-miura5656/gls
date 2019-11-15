@@ -150,4 +150,22 @@ public class Time_Manager : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public bool GetGamePlayState() { return game_play_state; }
+
+    /// <summary>
+    /// 制限時間
+    /// </summary>
+    /// <param name="time_max"></param>
+    public void SetGameTime(float time_max) 
+    {
+        time_count_down_main = time_max;
+    }
+
+    /// <summary>
+    /// レベルアップ時の増える時間
+    /// </summary>
+    /// <param name="time"></param>
+    public void SetIncreaseTime(float time) 
+    {
+        increase_time = time;
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player_Level_Manager : MonoBehaviour
 { 
     // レベルアップに必要な経験値
-    private int[] level_up_exp = new int[5];
+    private int[] level_up_exp;
     // プレイヤーのレベル
     private int player_level = 1;
     // プレイヤーレベルの限界値
@@ -35,6 +35,8 @@ public class Player_Level_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        level_up_exp = new int[player_level_max];
+
         // レベルアップに必要な経験値の初期化
         for (int i = 0; i < level_up_exp.Length; i++)
         {
@@ -110,12 +112,16 @@ public class Player_Level_Manager : MonoBehaviour
                     {
                         player_level = player_level_max;
                     }
+                    else
+                    {
+                        // サイズ変更
+                        player.transform.localScale = player_scale * player_level;
+                        // サイズ変更に合わせて高さを変更
+                        player.transform.position += new Vector3(0f, 2f, 0f);
+                    }
+                    
 
-                    // サイズ変更
-                    player.transform.localScale = player_scale * player_level;
-
-                    // サイズ変更に合わせて高さを変更
-                    player.transform.position += new Vector3(0f, 2f, 0f);
+                    
                 }
             }
         }
@@ -132,4 +138,9 @@ public class Player_Level_Manager : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public float GetSpeed() { return speed; }
+
+    public void SetLevelMax(int level_max) 
+    {
+        player_level_max = level_max;
+    }
 }

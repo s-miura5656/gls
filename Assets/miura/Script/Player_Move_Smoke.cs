@@ -16,6 +16,7 @@ public class Player_Move_Smoke : MonoBehaviour
     private bool smoke_scale_up_state = true;
     // 土煙のベースサイズ
     private Vector3 smoke_scale_base = new Vector3(4f, 4f, 4f);
+
     // Start is called before the first frame update
     void Start()
     {
