@@ -72,9 +72,9 @@ public class Arrow_Extend : MonoBehaviour
                 dist = 200.0f;
             }
             // 移動距離の下限値
-            if (dist <= 30.0f)
+            if (dist <= 100.0f)
             {
-                dist = 30.0f;
+                dist = 100.0f;
             }
 
             // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる

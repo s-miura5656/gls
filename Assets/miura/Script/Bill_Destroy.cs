@@ -86,6 +86,7 @@ public class Bill_Destroy : MonoBehaviour
                 crash_copy = Instantiate(crash, transform.position, transform.rotation);
                 // 破片のパーティクルをビルのレベルに合わせて拡大
                 crash_copy.transform.localScale *= bill_level;
+
                 Vector3 hitPos;
 
                 foreach (ContactPoint point in collision.contacts)
@@ -105,7 +106,7 @@ public class Bill_Destroy : MonoBehaviour
                 // 当たった時のバイブレーション
                 Vibration.Vibrate(40);
                 // ヒットストップさせる関数の呼び出し
-                hit_stop_script.TimeStop();
+                //hit_stop_script.TimeStop();
             }
         }
     }
@@ -145,4 +146,6 @@ public class Bill_Destroy : MonoBehaviour
             bill_level = 5;
         }
     }
+
+    public int GetBillLevel() { return bill_level; }
 }
