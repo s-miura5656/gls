@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class ResultBotton_Manger : MonoBehaviour
 {
+    [SerializeField]
+    private Button rewardButton = null;
     [SerializeField]
     private GameObject back;
     [SerializeField]
@@ -16,17 +19,16 @@ public class ResultBotton_Manger : MonoBehaviour
     [SerializeField]
     private float leave_scale = 1.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        rewardButton.onClick.AddListener(ShowVideoReward);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowVideoReward()
     {
-
+        UnityAdsUtility.Instance.ShowVideoReward();
     }
+
 
     public void PushBotton()
     {
