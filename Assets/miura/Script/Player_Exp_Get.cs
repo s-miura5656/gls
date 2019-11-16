@@ -86,6 +86,11 @@ public class Player_Exp_Get : MonoBehaviour
         }
     }
 
+    public void SetPlayerExp()
+    {
+        Variable_Manager.Instance.PlayerExp = exp;
+    }
+
     /// <summary>
     /// プレイヤーの経験値
     /// </summary>
