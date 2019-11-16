@@ -2,50 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Variable_Manager : MonoBehaviour
+public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 {
-    static public Variable_Manager instance;
-
-    // クラスがついてるオブジェクト
-    private GameObject player;
-
-    // 持ってきたいクラス
-    private Player_Exp_Get player_exp;
-
     // Variable_Managerで保持したい変数
-    private int exp = 0;
+    private int playerExp = 0;
 
-
-
-    void Awake()
+    public int PlayerExp
     {
-        if (instance == null)
-        {
-
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        get { return playerExp; }
+        set { playerExp = value; }
     }
-        // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.Find("Player1");
-        player_exp = player.GetComponent<Player_Exp_Get>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    /// <summary>
-    /// ゲームメインでのコインの数
-    /// </summary>
-    /// <returns></returns>
-    public int GetPlayerExp() { exp = player_exp.GetExp(); return exp; }
 }
