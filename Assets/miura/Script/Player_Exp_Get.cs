@@ -8,8 +8,6 @@ public class Player_Exp_Get : MonoBehaviour
 {
     // 取得経験値
     private int exp = 0;
-    // 時間加算用経験値
-    private int time_exp = 0;
     // レベルマネージャーオブジェクトを取得
     [SerializeField] private GameObject game_manager;
     // プレイヤーのレベルを管理しているスクリプトを取得

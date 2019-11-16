@@ -18,12 +18,14 @@ public class Game_Level_Manager : MonoBehaviour
     private player_controller_move player_controller;
 
     // インスペクターで決める数字
-    [SerializeField] private int player_level_max = 0;
-    [SerializeField] private float move_powor = 0f;
-    [SerializeField] private float game_time_max = 0f;
-    [SerializeField] private float level_up_time_plus = 0f;
-    [SerializeField] private Vector3 camera_first_pos = new Vector3(0f, 0f, 0f);
-    [SerializeField] private Vector3 camera_moving_value = new Vector3(0f, 0f, 0f);
+    [SerializeField] [Header("プレイヤーのレベルの最大値")] private int player_level_max = 0;
+    [SerializeField] [Header("移動させる速度")] private float move_powor = 0f;
+    [SerializeField] [Header("ゲーム時間")] private float game_time_max = 0f;
+    [SerializeField] [Header("レベルアップ時に増える時間")] private float level_up_time_plus = 0f;
+    [SerializeField] [Header("プレイヤーの初期サイズ")] private float player_scale = 1f;
+    [SerializeField] [Header("カメラの初期位置（プレイヤー起点）")] private Vector3 camera_first_pos = new Vector3(0f, 0f, 0f);
+    [SerializeField] [Header("レベルアップ時にカメラを離す距離")] private Vector3 camera_moving_value = new Vector3(0f, 0f, 0f);
+    //[SerializeField] [Range(1, 10)] private int test = 1;
 
     private void Awake()
     {
@@ -39,6 +41,7 @@ public class Game_Level_Manager : MonoBehaviour
         
         // それぞれの数値を変化させる処理
         player_level_manager.SetLevelMax(player_level_max);
+        player_level_manager.SetPlayerScale(player_scale);
         camera_move.SetFirstPos(camera_first_pos);
         camera_move.SetLevelUpCameraPos(camera_moving_value);
         player_controller.SetMovePowor(move_powor);
