@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Title_Manager : MonoBehaviour
 {
+    private void Awake()
+    {
+        Application.targetFrameRate = 30;
+    }
     // Start is called before the first frame update
     void Start()
     {

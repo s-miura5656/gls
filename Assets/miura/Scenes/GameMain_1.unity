@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 217ec2b32e702e74da5e1352cd9c86cb,
+    type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
@@ -120,12 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &97639542 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5582448675108048973, guid: 5a671387ee7d66c4db9a8b9b9cb56af5,
-    type: 3}
-  m_PrefabInstance: {fileID: 5582448676330302026}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &122950214
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +497,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340469142}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd8685050ec3e594ea586168a26ffdfe, type: 3}
   m_Name: 
@@ -896,7 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1594,8 +1589,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 97639542}
-  m_RootOrder: 6
+  m_Father: {fileID: 5582448676330302027}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.62, y: 0.58}
   m_AnchorMax: {x: 0.85, y: 0.705}
@@ -1909,7 +1904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &2094082400
 Light:
   m_ObjectHideFlags: 0
@@ -2267,8 +2262,39 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6310725483027777252, guid: 5a671387ee7d66c4db9a8b9b9cb56af5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018112355678122717, guid: 5a671387ee7d66c4db9a8b9b9cb56af5,
+        type: 3}
+      propertyPath: game_manager
+      value: 
+      objectReference: {fileID: 340469142}
+    - target: {fileID: 9018112355678122717, guid: 5a671387ee7d66c4db9a8b9b9cb56af5,
+        type: 3}
+      propertyPath: player_level_script
+      value: 
+      objectReference: {fileID: 340469146}
+    - target: {fileID: 9018112355678122717, guid: 5a671387ee7d66c4db9a8b9b9cb56af5,
+        type: 3}
+      propertyPath: hit_stop_script
+      value: 
+      objectReference: {fileID: 340469148}
+    - target: {fileID: 9018112355678122717, guid: 5a671387ee7d66c4db9a8b9b9cb56af5,
+        type: 3}
+      propertyPath: destruction_rate_script
+      value: 
+      objectReference: {fileID: 340469149}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a671387ee7d66c4db9a8b9b9cb56af5, type: 3}
+--- !u!4 &5582448676330302027 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6310725483027777252, guid: 5a671387ee7d66c4db9a8b9b9cb56af5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5582448676330302026}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6374128144138654209 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5889644109147225250, guid: 7f7d349b936e27643abad6a849743e70,
