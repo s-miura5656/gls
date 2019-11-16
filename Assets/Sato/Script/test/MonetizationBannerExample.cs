@@ -14,6 +14,7 @@ public class MonetizationBannerExample : MonoBehaviour
     private void Start()
     {
         InitUnityAds();
+       // ShowBanner();
         Invoke("ShowBanner", 0.5f);
     }
 

@@ -10,11 +10,17 @@ public class Banner : MonoBehaviour
     public string placementId = "banner_test";
     public BannerPosition bannerPosition = BannerPosition.BOTTOM_CENTER;
     private string _gameId = "";
+    private BannerLoadOptions loadOption = new BannerLoadOptions();
 
-    private void Start()
+    private void Awake()
     {
         InitUnityAds();
-        ShowBanner();
+    }
+
+    private void OnDestroy()
+    {
+        loadOption.loadCallback -= BannerCallBackLoad;
+        loadOption.errorCallback -= BannerCallBackError;
     }
 
     private void InitUnityAds()
@@ -27,16 +33,30 @@ public class Banner : MonoBehaviour
 #endif
         Monetization.Initialize(_gameId, testMode);
         Advertisement.Banner.SetPosition(bannerPosition);
+
+        loadOption.loadCallback += BannerCallBackLoad;
+        loadOption.errorCallback += BannerCallBackError;
+        Advertisement.Banner.Load(placementId, loadOption);
     }
 
-    public void ShowBanner()
+    private void ShowBanner()
     {
-        if (Advertisement.IsReady(placementId))
-            Advertisement.Banner.Show(placementId);
+        Advertisement.Banner.Show();
     }
 
-    public void HideBanner()
+    private void HideBanner()
     {
         Advertisement.Banner.Hide();
+    }
+
+    private void BannerCallBackError(string message)
+    {
+        Debug.Log($"error message = {message}");
+        Advertisement.Banner.Load(placementId, loadOption);
+    }
+
+    private void BannerCallBackLoad()
+    {
+        ShowBanner();
     }
 }
