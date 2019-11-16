@@ -10,12 +10,14 @@ public class Bill_Color_Set : MonoBehaviour
 
     private Bill_Destroy bill_level_script;
 
+    private Renderer renderer = null;
+
     // Start is called before the first frame update
     void Start()
     {
         game_manager = GameObject.Find("GameManager");
-
-        gameObject.GetComponent<Renderer>().material.color = Color.black;
+        renderer = gameObject.GetComponent<Renderer>();
+        renderer.material.color = Color.black;
 
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
 
@@ -27,7 +29,7 @@ public class Bill_Color_Set : MonoBehaviour
     {
         if (player_level_script.GetLevel() >= bill_level_script.GetBillLevel())
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.white;
+            renderer.material.color = Color.white;
         }
     }
 }
