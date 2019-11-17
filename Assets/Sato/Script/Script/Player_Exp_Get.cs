@@ -13,7 +13,7 @@ public class Player_Exp_Get : MonoBehaviour
     // プレイヤーのレベルを管理しているスクリプトを取得
     private Player_Level_Manager player_level;
     // 現在のコイン(経験値)
-    [SerializeField] private GameObject text_;
+    [SerializeField] private GameObject coin_text;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class Player_Exp_Get : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Text _text = text_.GetComponent<Text>();
+        Text _text = coin_text.GetComponent<Text>();
         _text.text = "Coin:" + exp;
     }
 
@@ -87,6 +87,13 @@ public class Player_Exp_Get : MonoBehaviour
     public void SetPlayerExp()
     {
         Variable_Manager.Instance.PlayerExp = exp;
+    }
+
+    private void Reset()
+    {
+        game_manager = GameObject.Find("GameManager");
+
+        coin_text = GameObject.Find("Coin");
     }
 
     /// <summary>

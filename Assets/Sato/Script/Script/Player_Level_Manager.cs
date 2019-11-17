@@ -25,8 +25,6 @@ public class Player_Level_Manager : MonoBehaviour
     [SerializeField] private GameObject player = null;
     // プレイヤーの経験値を持っているスクリプト
     private Player_Exp_Get script_player;
-    // デバック用
-    [SerializeField] private GameObject text_ = null;
     // 経験値ゲージ
     [SerializeField] private Slider exp_slider = null;
     // レベルアップのテキスト
@@ -84,10 +82,15 @@ public class Player_Level_Manager : MonoBehaviour
         }
 
         exp_slider.value = script_player.GetExp();
+    }
 
-        //Text _text = text_.GetComponent<Text>();
-        //_text.text = "" + speed;
+    private void Reset()
+    {
+        level_up_text = GameObject.Find("LevelUp");
 
+        exp_slider = GameObject.Find("ExpGage").GetComponent<Slider>();
+
+        player = GameObject.Find("Player");
     }
 
     /// <summary>
@@ -123,9 +126,6 @@ public class Player_Level_Manager : MonoBehaviour
                         // サイズ変更に合わせて高さを変更
                         player.transform.position += new Vector3(0f, player.transform.localScale.y / half, 0f);
                     }
-                    
-
-                    
                 }
             }
         }

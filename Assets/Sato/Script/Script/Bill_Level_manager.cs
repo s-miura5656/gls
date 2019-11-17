@@ -12,9 +12,7 @@ public class Bill_Level_manager : MonoBehaviour
     private bool destroy_possible_state;
     // ビルのレベル
     private int bill_level = 1;
-    // デバック用
-    [SerializeField] private GameObject text_;
-    // Start is called before the first frame update
+    
     void Start()
     {
         script_player = gameObject.GetComponent<Player_Level_Manager>();
@@ -115,9 +113,6 @@ public class Bill_Level_manager : MonoBehaviour
             }
 
             bill_level++;
-
-            //Text _text = text_.GetComponent<Text>();
-            //_text.text = "" + bill_level;
         }
     }
 }

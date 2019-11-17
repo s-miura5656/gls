@@ -56,4 +56,9 @@ public class Player_Move_Smoke : MonoBehaviour
             } 
         }
     }
+
+    private void Reset()
+    {
+        game_manager = GameObject.Find("GameManager");
+    }
 }

@@ -10,7 +10,7 @@ public class Plus_One_Sec_Destroy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player1");
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame

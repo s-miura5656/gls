@@ -5,24 +5,24 @@ using UnityEngine;
 public class camera_controller : MonoBehaviour
 {
     // プレイヤーのゲームオブジェクト
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject player = null;
     // プレイヤーとカメラ間のオフセット距離
-    private Vector3 offset;
+    private Vector3 offset = new Vector3(0f, 0f, 0f);
     // カメラの位置
-    private Vector3 camera_base_pos;
-    private Vector3 camera_move_pos;
+    private Vector3 camera_base_pos = new Vector3(0f, 0f, 0f);
+    private Vector3 camera_move_pos = new Vector3(0f, 0f, 0f);
     // ラープ補完用カメラの移動速度
     [SerializeField] private float camera_speed = 0.7f;
     // プレイヤーのレベルを取得用
-    [SerializeField] GameObject game_manager;
+    [SerializeField] private GameObject game_manager = null;
     // プレイヤーレベルを管理しているスクリプト
-    private Player_Level_Manager script;
+    private Player_Level_Manager script = null;
     // メインカメラを取得
-    private Camera main_cam;
+    private Camera main_cam = null;
     // ズーム用ステート
     private bool zoom_state = false;
     // ズーム変更時に必要なレベルアップ前のレベルを記憶する変数
-    private int old_player_level;
+    private int old_player_level = 0;
     // カメラの初期位置
     private Vector3 first_pos = new Vector3(0f, 30f, -30f);
     // レベルが上がるにつれて上がるカメラのZ軸の値
@@ -84,6 +84,13 @@ public class camera_controller : MonoBehaviour
         main_cam.transform.position += level_up_camera_pos;
         offset = transform.position - player.transform.position;
         old_player_level = script.GetLevel();
+    }
+
+    private void Reset()
+    {
+        game_manager = GameObject.Find("GameManager");
+
+        player = GameObject.Find("Player");
     }
 
     /// <summary>
