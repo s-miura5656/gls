@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Destruction_Rate_Manager : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     // 破壊率を表示させるテキストオブジェクト
     [SerializeField] private GameObject destruction_rate_text = null;
     // テキストオブジェクトのテキストコンポーネント
-    Text _text;
+    private TextMeshPro _text;
     // 時間を管理しているスクリプトの取得
     private Time_Manager time_script;
 
@@ -32,7 +33,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
             now_number += tag_objects.Length;
         }
 
-        _text = destruction_rate_text.GetComponent<Text>();
+        _text = destruction_rate_text.GetComponent<TextMeshPro>();
 
         base_number = now_number;
 
