@@ -8,8 +8,8 @@ using UnityEngine;
 public class Game_Level_Manager : MonoBehaviour
 {
     // 参照するオブジェクト
-    private GameObject main_camera = null;
-    private GameObject player = null;
+    [SerializeField] private GameObject main_camera = null;
+    [SerializeField] private GameObject player = null;
 
     // 参照するクラス
     private Player_Level_Manager player_level_manager;
@@ -29,10 +29,6 @@ public class Game_Level_Manager : MonoBehaviour
 
     private void Awake()
     {
-        // 各オブジェクトのセットアップ
-        main_camera = GameObject.Find("MainCamera");
-        player = GameObject.Find("Player1");
-
         // 各クラスのセットアップ
         player_level_manager = gameObject.GetComponent<Player_Level_Manager>();
         camera_move = main_camera.GetComponent<camera_controller>();

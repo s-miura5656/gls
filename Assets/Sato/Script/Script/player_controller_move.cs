@@ -193,4 +193,11 @@ public class player_controller_move : MonoBehaviour
     {
         powor_up = powor;
     }
+
+    private void Reset()
+    {
+        game_manager = GameObject.Find("GameManager");
+
+        main_camera = GameObject.Find("MainCamera");
+    }
 }

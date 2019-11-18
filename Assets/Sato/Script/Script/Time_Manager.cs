@@ -25,22 +25,22 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private GameObject game_time_text = null;
 
     // ゲームタイムのテキスト
-    private Text game_time_number;
+    private Text game_time_number = null;
 
     // ゲーム終了間際のカウントダウン用
     [SerializeField] private GameObject end_count_text = null;
 
     // カウントダウンのテキスト
-    private Text end_count_down;
+    private Text end_count_down = null;
 
     // 時間加算用
     [SerializeField] private GameObject player = null;
     // 経験値の入手のスクリプト
-    private Player_Exp_Get time_exp_script;
+    private Player_Exp_Get time_exp_script = null;
     // 時間加算レベルアップ用経験値
     private int time_exp_level_table = 10;
     // 時間加算時に表示するオブジェクト
-    [SerializeField] private GameObject one_plus = null;
+    [SerializeField] private GameObject time_plus = null;
     // メインカメラの取得
     [SerializeField] private Camera main_camara = null;
     // 増やす時間
@@ -50,7 +50,7 @@ public class Time_Manager : MonoBehaviour
     // ローディング画面のオブジェクト取得
     [SerializeField] private GameObject loading_screen = null;
     // スタートのローディングを管理するスクリプト
-    private Start_Loading loading_script;
+    private Start_Loading loading_script = null;
 
     // Start is called before the first frame update
     void Start()
@@ -140,7 +140,7 @@ public class Time_Manager : MonoBehaviour
 
     public void TimeCountDownMainPlus() 
     {
-        GameObject one_copy = Instantiate(one_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
+        GameObject one_copy = Instantiate(time_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
         one_copy.GetComponent<CameraLookSprite>().SetCamera(main_camara);
         time_count_down_main += increase_time;
     }
