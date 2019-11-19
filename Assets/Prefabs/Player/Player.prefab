@@ -114,7 +114,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 4
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!82 &5889644109147225263
 AudioSource:
   m_ObjectHideFlags: 0
@@ -239,7 +239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game_manager: {fileID: 0}
   coin_text: {fileID: 0}
-  now_coin: {fileID: 0}
 --- !u!114 &705178216488091664
 MonoBehaviour:
   m_ObjectHideFlags: 0
