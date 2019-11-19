@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
 
 public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
 {
@@ -50,10 +51,13 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
         switch (showResult)
         {
             case ShowResult.Finished:
+
                 Debug.Log("Ads Finished!");
+                SceneManager.LoadScene("GameMain_1");
                 break;
             case ShowResult.Skipped:
                 Debug.Log("Ads Skipped!");
+                SceneManager.LoadScene("GameMain_1");
                 break;
             case ShowResult.Failed:
                 Debug.Log("Ads Failed..");

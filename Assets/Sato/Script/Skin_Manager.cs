@@ -21,12 +21,15 @@ public class Skin_Manager : MonoBehaviour
 
     [SerializeField] private Button closeButton = null;
     [SerializeField] private Transform closeTransform = null;
+    [SerializeField] private Button openButton = null;
+    [SerializeField] private Transform openTransform = null;
 
     private bool count;
 
     private void Start()
     {
         closeButton.onClick.AddListener(CloseSkin);
+        openButton.onClick.AddListener(OpenSkin);
     }
 
     private void CloseSkin()
@@ -51,6 +54,37 @@ public class Skin_Manager : MonoBehaviour
             Debug.Log("Animation End");
             seq.Complete();
         // アニメーションが終了時によばれる
+        });
+
+
+        count = false;
+
+        //if(count == false)
+        //SceneManager.LoadScene("Title_");
+    }
+
+    private void OpenSkin()
+    {
+        //RectTransform rectTransform = skin.GetComponent<RectTransform>();
+
+        Sequence seq = DOTween.Sequence();
+        // アニメーション追加
+        seq.Append(openTransform.DOScaleY(1.0f, _animtime));
+
+        seq.OnStart(() => {
+            // アニメーション開始時によばれる
+            Debug.Log("Animation Start");
+        });
+
+        seq.OnUpdate(() => {
+            // 対象の値が変更される度によばれる
+            Debug.Log("Animation Update");
+        });
+
+        seq.OnComplete(() => {
+            Debug.Log("Animation End");
+            seq.Complete();
+            // アニメーションが終了時によばれる
         });
 
 
