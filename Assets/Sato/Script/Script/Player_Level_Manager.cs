@@ -66,11 +66,13 @@ public class Player_Level_Manager : MonoBehaviour
         {
             if (level_up_phase == false)
             {
-                PlayerLevelUpPhase();
+                
                 level_up_phase = true;
             }
         }
 
+        PlayerLevelUpPhase();
+        
         if (Input.GetMouseButtonUp(0))
         {
             level_up_phase = false;

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Time_Manager : MonoBehaviour
 {
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 4f;
-    private float count_zero = 0f;
     private bool game_start_state = true;
     private int count_down_second = 0;
     [SerializeField] private GameObject start_count_text = null;
@@ -21,11 +21,10 @@ public class Time_Manager : MonoBehaviour
     private float end_time = -1f;
     private bool game_main_state = false;
     private int game_main_second = 0;
-    private int zero_not_display = 0;
-    [SerializeField] private GameObject game_time_text = null;
+    [SerializeField] private GameObject game_time = null;
 
     // ゲームタイムのテキスト
-    private Text game_time_number = null;
+    private TextMeshProUGUI game_time_number = null;
 
     // ゲーム終了間際のカウントダウン用
     [SerializeField] private GameObject end_count_text = null;
@@ -35,10 +34,6 @@ public class Time_Manager : MonoBehaviour
 
     // 時間加算用
     [SerializeField] private GameObject player = null;
-    // 経験値の入手のスクリプト
-    private Player_Exp_Get time_exp_script = null;
-    // 時間加算レベルアップ用経験値
-    private int time_exp_level_table = 10;
     // 時間加算時に表示するオブジェクト
     [SerializeField] private GameObject time_plus = null;
     // メインカメラの取得
@@ -55,11 +50,14 @@ public class Time_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time_exp_script = player.GetComponent<Player_Exp_Get>();
         start_count_down = count.GetComponent<Text>();
-        game_time_number = game_time_text.GetComponent<Text>();
+        game_time_number = game_time.GetComponent<TextMeshProUGUI>();
         end_count_down = end_count_text.GetComponent<Text>();
         loading_script = loading_screen.GetComponent<Start_Loading>();
+
+        game_main_second = (int)time_count_down_main - 1;
+
+        game_time_number.text = "" + game_main_second;
     }
 
     // Update is called once per frame
@@ -89,7 +87,6 @@ public class Time_Manager : MonoBehaviour
             }
             else if (time_count_down_start <= 1f)
             {
-                //start_count_text.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                 start_count_down.text = "START";
                 game_main_state = true;
                 game_play_state = true;
@@ -98,7 +95,7 @@ public class Time_Manager : MonoBehaviour
                 {
                     game_start_state = false;
                     start_count_text.SetActive(false);
-                    game_time_text.SetActive(true);
+                    game_time.SetActive(true);
                 }
             }
         }
@@ -116,12 +113,12 @@ public class Time_Manager : MonoBehaviour
 
             if (time_count_down_main > 6f)
             {
-                game_time_number.text = game_main_second.ToString();                
+                game_time_number.text = "" + game_main_second;                
             }
             else if (time_count_down_main > 1f && time_count_down_main <= 6f)
             {
-                end_count_down.text = game_main_second.ToString();
-                game_time_text.SetActive(false);
+                end_count_down.text = "" + game_main_second;
+                game_time.SetActive(false);
                 end_count_text.SetActive(true);
 
             }

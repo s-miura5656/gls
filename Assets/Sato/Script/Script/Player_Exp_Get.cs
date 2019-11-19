@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class Player_Exp_Get : MonoBehaviour
@@ -9,23 +10,25 @@ public class Player_Exp_Get : MonoBehaviour
     // 取得経験値
     private int exp = 0;
     // レベルマネージャーオブジェクトを取得
-    [SerializeField] private GameObject game_manager;
+    [SerializeField] private GameObject game_manager = null;
     // プレイヤーのレベルを管理しているスクリプトを取得
-    private Player_Level_Manager player_level;
+    private Player_Level_Manager player_level = null;
     // 現在のコイン(経験値)
-    [SerializeField] private GameObject coin_text;
+    [SerializeField] private GameObject coin_text = null;
+    // コイン取得数表示のテキスト
+    private TextMeshProUGUI now_coin = null;
 
     // Start is called before the first frame update
     void Start()
     {
         player_level = game_manager.GetComponent<Player_Level_Manager>();
+        now_coin = coin_text.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Text _text = coin_text.GetComponent<Text>();
-        _text.text = "Coin:" + exp;
+        now_coin.text = "Coin:" + exp;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -86,7 +89,7 @@ public class Player_Exp_Get : MonoBehaviour
 
     public void SetPlayerExp()
     {
-        Variable_Manager.Instance.PlayerExp = exp;
+        Variable_Manager.Instance.GetSetCoin = exp;
     }
 
     private void Reset()
