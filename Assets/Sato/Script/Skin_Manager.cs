@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class Skin_Manager : MonoBehaviour
 {
@@ -18,41 +18,74 @@ public class Skin_Manager : MonoBehaviour
     [SerializeField]
     private float botton_animtime = 1.0f;
 
+
+    [SerializeField] private Button closeButton = null;
+    [SerializeField] private Transform closeTransform = null;
+    [SerializeField] private Button openButton = null;
+    [SerializeField] private Transform openTransform = null;
+
     private bool count;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+        closeButton.onClick.AddListener(CloseSkin);
+        openButton.onClick.AddListener(OpenSkin);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-    }
-
-    public void PlayGame()
+    private void CloseSkin()
     {
         //RectTransform rectTransform = skin.GetComponent<RectTransform>();
 
+        Sequence seq = DOTween.Sequence();
+        // アニメーション追加
+        seq.Append(closeTransform.DOScaleY(0.0f, _animtime));
+
+        seq.OnStart(() => {
+            // アニメーション開始時によばれる
+            Debug.Log("Animation Start");
+        });
+
+        seq.OnUpdate(() => {
+            // 対象の値が変更される度によばれる
+            Debug.Log("Animation Update");
+        });
+
+        seq.OnComplete(() => {
+            Debug.Log("Animation End");
+            seq.Complete();
+        // アニメーションが終了時によばれる
+        });
 
 
-        var recttransform_1 = skin.GetComponent<RectTransform>();
-        recttransform_1.DOScaleY(
-              0.0f,　　//終了時点のScale
-          _animtime 　　　　　　//時間
-               );
+        count = false;
 
-        var recttransform_2 = back_bottom.GetComponent<RectTransform>();
-        recttransform_2.DOScaleY(
-              0.0f,　　//終了時点のScale
-          _animtime 　　　　　　//時間
-               );
+        //if(count == false)
+        //SceneManager.LoadScene("Title_");
+    }
 
-        back_bottom.SetActive(false);
+    private void OpenSkin()
+    {
+        //RectTransform rectTransform = skin.GetComponent<RectTransform>();
+
+        Sequence seq = DOTween.Sequence();
+        // アニメーション追加
+        seq.Append(openTransform.DOScaleY(1.0f, _animtime));
+
+        seq.OnStart(() => {
+            // アニメーション開始時によばれる
+            Debug.Log("Animation Start");
+        });
+
+        seq.OnUpdate(() => {
+            // 対象の値が変更される度によばれる
+            Debug.Log("Animation Update");
+        });
+
+        seq.OnComplete(() => {
+            Debug.Log("Animation End");
+            seq.Complete();
+            // アニメーションが終了時によばれる
+        });
 
 
         count = false;

@@ -9,6 +9,8 @@ public class ResultBotton_Manger : MonoBehaviour
     [SerializeField]
     private Button rewardButton = null;
     [SerializeField]
+    private Button interstitialButton = null;
+    [SerializeField]
     private GameObject back;
     [SerializeField]
     private float push_scale = 2.0f;
@@ -21,12 +23,13 @@ public class ResultBotton_Manger : MonoBehaviour
 
     void Start()
     {
-        rewardButton.onClick.AddListener(ShowVideoReward);
+        rewardButton.onClick.AddListener(UnityAdsUtility.Instance.ShowVideoReward);
+        interstitialButton.onClick.AddListener(UnityAdsUtility.Instance.ShowInterstitialVideo);
     }
 
     public void ShowVideoReward()
     {
-        UnityAdsUtility.Instance.ShowVideoReward();
+        UnityAdsUtility.Instance.ShowInterstitialVideo();
     }
 
 
