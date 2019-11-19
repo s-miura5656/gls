@@ -10,9 +10,10 @@ public class Game_Level_Manager : MonoBehaviour
     // 参照するオブジェクト
     [SerializeField] private GameObject main_camera = null;
     [SerializeField] private GameObject player = null;
-
+    [SerializeField] private GameObject city = null;
     // 参照するクラス
     private Player_Level_Manager player_level_manager;
+    private Bill_Obsever bill_obsever;
     private Time_Manager time_manager;
     private camera_controller camera_move;
     private player_controller_move player_controller;
@@ -25,16 +26,21 @@ public class Game_Level_Manager : MonoBehaviour
     [SerializeField] [Header("プレイヤーの初期サイズ")] private float player_scale = 1f;
     [SerializeField] [Header("カメラの初期位置（プレイヤー起点）")] private Vector3 camera_first_pos = new Vector3(0f, 0f, 0f);
     [SerializeField] [Header("レベルアップ時にカメラを離す距離")] private Vector3 camera_moving_value = new Vector3(0f, 0f, 0f);
+    [SerializeField] [Header("１レベル時のコインの出る数")] private int coin_number = 3;
     //[SerializeField] [Range(1, 10)] private int test = 1;
 
     private void Awake()
     {
+        // フレームレートの固定
+        Application.targetFrameRate = 30;
+
         // 各クラスのセットアップ
         player_level_manager = gameObject.GetComponent<Player_Level_Manager>();
         camera_move = main_camera.GetComponent<camera_controller>();
         player_controller = player.GetComponent<player_controller_move>();
         time_manager = gameObject.GetComponent<Time_Manager>();
-        
+        bill_obsever = city.GetComponent<Bill_Obsever>();
+
         // それぞれの数値を変化させる処理
         player_level_manager.SetLevelMax(player_level_max);
         player_level_manager.SetPlayerScale(player_scale);
@@ -43,5 +49,6 @@ public class Game_Level_Manager : MonoBehaviour
         player_controller.SetMovePowor(move_powor);
         time_manager.SetGameTime(game_time_max);
         time_manager.SetIncreaseTime(level_up_time_plus);
+        bill_obsever.SetCoinNumber(coin_number);
     }
 }

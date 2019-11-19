@@ -16,13 +16,13 @@ public class Player_Exp_Get : MonoBehaviour
     // 現在のコイン(経験値)
     [SerializeField] private GameObject coin_text = null;
     // コイン取得数表示のテキスト
-    private TextMeshPro now_coin = null;
+    private TextMeshProUGUI now_coin = null;
 
     // Start is called before the first frame update
     void Start()
     {
         player_level = game_manager.GetComponent<Player_Level_Manager>();
-        now_coin = coin_text.GetComponent<TextMeshPro>();
+        now_coin = coin_text.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -89,7 +89,7 @@ public class Player_Exp_Get : MonoBehaviour
 
     public void SetPlayerExp()
     {
-        Variable_Manager.Instance.PlayerExp = exp;
+        Variable_Manager.Instance.GetSetCoin = exp;
     }
 
     private void Reset()

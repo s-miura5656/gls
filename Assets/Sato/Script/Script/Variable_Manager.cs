@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 {
-    // Variable_Managerで保持したい変数
-    private int playerExp = 0;
+    // ゲットしたコイン
+    private int get_coin = 0;
+    // 今回の破壊率
+    private float destruction = 0f;
 
-    public int PlayerExp
+    /// <summary>
+    /// ゲットしたコイン数
+    /// </summary>
+    public int GetSetCoin
     {
-        get { return playerExp; }
-        set { playerExp = value; }
+        get { return get_coin; }
+        set { get_coin = value; }
+    }
+
+    /// <summary>
+    /// １ゲームの破壊率
+    /// </summary>
+    public float GetSetDestructionRate
+    {
+        get { return destruction; }
+        set { destruction = value; }
     }
 }

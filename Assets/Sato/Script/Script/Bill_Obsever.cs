@@ -19,10 +19,13 @@ public class Bill_Obsever : MonoBehaviour
     private ParticleSystem[] crash_particle;
     // ヒットエフェクト
     private ParticleSystem hit_particle;
+    // コインのパーティクル
+    private ParticleSystem coin_particle;
 
     private float default_crash_particle_scale = 0.0f;
     private float default_hit_particle_scale = 0.0f;
-
+    private float default_coin_particle_scale = 0.0f;
+    private int coin_number = 3;
     public Player_Level_Manager Player_Level_Manager 
     {
         get { return player_level_script; }
@@ -53,6 +56,17 @@ public class Bill_Obsever : MonoBehaviour
 
             crash_particle[i].Play();
         }
+
+        coin_particle.transform.position = bill_pos;
+        var coin_scale = Vector3.one * default_coin_particle_scale * billLevel;
+        coin_particle.transform.localScale = coin_scale;
+
+
+        var burst = coin_particle.emission.GetBurst(0);
+        burst.count = coin_number * billLevel;
+        coin_particle.emission.SetBurst(0, burst);
+
+        coin_particle.Play();
     }
 
     public void PlayHitEffect(int playerLevel, Vector3 hit_pos)
@@ -69,14 +83,19 @@ public class Bill_Obsever : MonoBehaviour
     private void Start()
     {
         var crash = (GameObject)Resources.Load("Collapse_Effect");
-        var crashObj = Instantiate(crash, gameObject.transform);
-        crash_particle = crashObj.GetComponentsInChildren<ParticleSystem>();
+        var crash_obj = Instantiate(crash, gameObject.transform);
+        crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
         default_crash_particle_scale = crash_particle[0].transform.localScale.x;
 
         var hit_effect = (GameObject)Resources.Load("Hit_Effect_1");
         var hit_effect_obj = Instantiate(hit_effect, gameObject.transform);
         hit_particle = hit_effect_obj.GetComponent<ParticleSystem>();
         default_hit_particle_scale = hit_particle.transform.localScale.x;
+
+        var hit_coin = (GameObject)Resources.Load("coin_2");
+        var hit_coin_obj = Instantiate(hit_coin, gameObject.transform);
+        coin_particle = hit_coin_obj.GetComponent<ParticleSystem>();
+        default_coin_particle_scale = hit_particle.transform.localScale.x;
 
         for (int i = 0; i < bill_Destroise.Length; i++)
         {
@@ -92,5 +111,10 @@ public class Bill_Obsever : MonoBehaviour
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
 
         bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
+    }
+
+    public void SetCoinNumber(int coin) 
+    {
+        coin_number = coin;
     }
 }
