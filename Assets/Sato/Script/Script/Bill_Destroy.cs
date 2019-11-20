@@ -7,8 +7,12 @@ using UnityEngine.UI;
 public class Bill_Destroy : MonoBehaviour
 {
     // ビルのレベル
-    private int bill_level;
-    private Bill_Obsever bill_Obsever;
+    private int bill_level = 0;
+    // ビルを壊すまでの回数
+    private int bill_crash_number = 0;
+    // ビルを何回攻撃したか
+    private int bill_attack_count = 0;
+    private Bill_Obsever bill_Obsever = null;
 
     public void Initialized(Bill_Obsever obsever)
     {
@@ -32,18 +36,29 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player") return;
 
+        // 現在の攻撃回数
+        bill_attack_count++;
+
+        // ビルにヒットした時に音を出す
+        bill_Obsever.Player_SE_Manager.PlayHitSound();
+
         // ビルのレベルがプレイヤーと同じか以下の時
-        if (bill_level == bill_Obsever.Player_Level_Manager.GetLevel())
+        if (bill_level >= bill_Obsever.Player_Level_Manager.GetLevel())
         {
-            Vector3 hitPos = Vector3.zero;
+            bill_crash_number = bill_level - bill_Obsever.Player_Level_Manager.GetLevel();
 
-            foreach (ContactPoint point in collision.contacts)
+            if (bill_attack_count > bill_crash_number)
             {
-                // プレイヤーと当たった場所の座標
-                hitPos = point.point;
-            }
+                Vector3 hitPos = Vector3.zero;
 
-            BillDestroy(hitPos, 40);
+                foreach (ContactPoint point in collision.contacts)
+                {
+                    // プレイヤーと当たった場所の座標
+                    hitPos = point.point;
+                }
+
+                BillDestroy(hitPos, 40);
+            }
         }
     }
 
@@ -56,7 +71,8 @@ public class Bill_Destroy : MonoBehaviour
 
         // 破壊率計算用の関数
         bill_Obsever.Destruction_Rate_Manager.DownNowRate();
-
+        // 経験値ゲット用
+        bill_Obsever.Player_Exp_Get.SetExp((int)bill_level);
         // ゲームオブジェクトを非表示にする
         gameObject.SetActive(false);
 
@@ -64,15 +80,12 @@ public class Bill_Destroy : MonoBehaviour
         Vibration.Vibrate(vibrate);
     }
 
-    private void BillLevelSerch() 
+    private void BillLevelSerch()
     {
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    if (transform.tag == "Bill_Level_" + i)
-        //    {
-        //        bill_level = i + 1;
-        //    }
-        //}
+        if (transform.tag == "Bill_Level_1")
+        {
+            bill_level = 0;
+        }
 
         if (transform.tag == "Bill_Level_1")
         {

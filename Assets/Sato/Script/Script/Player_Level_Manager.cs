@@ -40,17 +40,20 @@ public class Player_Level_Manager : MonoBehaviour
         // レベルアップに必要な経験値の初期化
         for (int i = 0; i < level_up_exp.Length; i++)
         {
-            level_up_exp[i] = 10 * (i + 1);
-            level_up_exp[i] += (10 * (i + 1)) * i;
+            level_up_exp[i] = 100 * (i + 1);
+            level_up_exp[i] += (100 * (i + 1)) * i;
         }
 
-        script_player = player.GetComponent<Player_Exp_Get>();
+        script_player = gameObject.GetComponent<Player_Exp_Get>();
 
         time_script = gameObject.GetComponent<Time_Manager>();
 
         rb = player.gameObject.GetComponent<Rigidbody>();
 
         player.transform.localScale = player_scale;
+
+        // サイズ変更に合わせて高さを変更
+        player.transform.position = new Vector3(transform.position.x, player.transform.localScale.y / half, transform.position.z);
 
         exp_slider.maxValue = level_up_exp[player_level - 1];
     }
@@ -126,7 +129,7 @@ public class Player_Level_Manager : MonoBehaviour
                         // サイズ変更
                         player.transform.localScale = player_scale * player_level;
                         // サイズ変更に合わせて高さを変更
-                        player.transform.position += new Vector3(0f, player.transform.localScale.y / half, 0f);
+                        player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
                     }
                 }
             }

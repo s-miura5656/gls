@@ -51,7 +51,10 @@ public class player_controller_move : MonoBehaviour
         }
 
         SpeedDown();
+    }
 
+    private void FixedUpdate()
+    {
         FowardRotation();
     }
 
