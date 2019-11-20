@@ -5,16 +5,19 @@ using UnityEngine;
 public class Bill_Obsever : MonoBehaviour
 {
     // プレイヤーのレベルを取得するためのオブジェクト取得
-    [SerializeField] private GameObject game_manager;
+    [SerializeField] private GameObject game_manager = null;
     // プレイヤーのレベルのスクリプトの取得
-    [SerializeField] private Player_Level_Manager player_level_script;
+    [SerializeField] private Player_Level_Manager player_level_script = null;
     // ヒットストップのスクリプトを取得
-    [SerializeField] private Hit_Stop_Manager hit_stop_script;
+    [SerializeField] private Hit_Stop_Manager hit_stop_script = null;
     // 破壊率を管理しているスクリプトを取得
-    [SerializeField] private Destruction_Rate_Manager destruction_rate_script;
-
+    [SerializeField] private Destruction_Rate_Manager destruction_rate_script = null;
+    // 経験値を管理しているスクリプトを取得
+    [SerializeField] private Player_Exp_Get player_exp_script = null;
+    // ビルにヒットした時の音を管理しているスクリプト
+    [SerializeField] private Player_SE_Manager player_se_script = null;
+    // ビルについている破壊に関するスクリプトを取得
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
-
     // 壊れるパーティクル
     private ParticleSystem[] crash_particle;
     // ヒットエフェクト
@@ -38,10 +41,22 @@ public class Bill_Obsever : MonoBehaviour
         private set { hit_stop_script = value; }
     }
 
+    public Player_Exp_Get Player_Exp_Get
+    {
+        get { return player_exp_script; }
+        private set { player_exp_script = value; }
+    }
+
     public Destruction_Rate_Manager Destruction_Rate_Manager 
     {
         get { return destruction_rate_script; }
         private set { destruction_rate_script = value; }
+    }
+
+    public Player_SE_Manager Player_SE_Manager 
+    {
+        get { return player_se_script; }
+        private set { player_se_script = value; }
     }
 
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos)
@@ -92,7 +107,7 @@ public class Bill_Obsever : MonoBehaviour
         hit_particle = hit_effect_obj.GetComponent<ParticleSystem>();
         default_hit_particle_scale = hit_particle.transform.localScale.x;
 
-        var hit_coin = (GameObject)Resources.Load("coin_2");
+        var hit_coin = (GameObject)Resources.Load("Coin_Test");
         var hit_coin_obj = Instantiate(hit_coin, gameObject.transform);
         coin_particle = hit_coin_obj.GetComponent<ParticleSystem>();
         default_coin_particle_scale = hit_particle.transform.localScale.x;
@@ -109,8 +124,9 @@ public class Bill_Obsever : MonoBehaviour
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
-
         bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
+        player_exp_script = game_manager.GetComponent<Player_Exp_Get>();
+        player_se_script = game_manager.GetComponent<Player_SE_Manager>();
     }
 
     public void SetCoinNumber(int coin) 

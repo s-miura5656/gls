@@ -9,8 +9,9 @@ public class Player_Exp_Get : MonoBehaviour
 {
     // 取得経験値
     private int exp = 0;
-    // レベルマネージャーオブジェクトを取得
-    [SerializeField] private GameObject game_manager = null;
+    // 倒したときに手に入る経験値（レベル１）
+    private int get_exp = 10;
+    private int zero_get_exp = 5;
     // プレイヤーのレベルを管理しているスクリプトを取得
     private Player_Level_Manager player_level = null;
     // 現在のコイン(経験値)
@@ -21,7 +22,7 @@ public class Player_Exp_Get : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player_level = game_manager.GetComponent<Player_Level_Manager>();
+        player_level = gameObject.GetComponent<Player_Level_Manager>();
         now_coin = coin_text.GetComponent<TextMeshProUGUI>();
     }
 
@@ -31,71 +32,25 @@ public class Player_Exp_Get : MonoBehaviour
         now_coin.text = "Coin:" + exp;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void SetExp(int bill_level) 
     {
-        if (other.gameObject.tag == "Bill_Level_1")
+        if (bill_level > 0)
         {
-            exp += 1;
+            exp += get_exp * bill_level;
         }
-
-        if (other.gameObject.tag == "Bill_Level_2")
+        else if(bill_level == 0)
         {
-            exp += 2;
-        }
-
-        if (other.gameObject.tag == "Bill_Level_3")
-        {
-            exp += 3;
-        }
-
-        if (other.gameObject.tag == "Bill_Level_4")
-        {
-            exp += 4;
-        }
-
-        if (other.gameObject.tag == "Bill_Level_5")
-        {
-            exp += 5;
+            exp += zero_get_exp;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bill_Level_1" && player_level.GetLevel() == 1)
-        {
-            exp += 1;
-        }
-
-        if (collision.gameObject.tag == "Bill_Level_2" && player_level.GetLevel() == 2)
-        {
-            exp += 2;
-        }
-
-        if (collision.gameObject.tag == "Bill_Level_3" && player_level.GetLevel() == 3)
-        {
-            exp += 3; 
-        }
-
-        if (collision.gameObject.tag == "Bill_Level_4" && player_level.GetLevel() == 4)
-        {
-            exp += 4;
-        }
-
-        if (collision.gameObject.tag == "Bill_Level_5" && player_level.GetLevel() == 5)
-        {
-            exp += 5;
-        }
-    }
-
-    public void SetPlayerExp()
+    public void SetCoin()
     {
         Variable_Manager.Instance.GetSetCoin = exp;
     }
 
     private void Reset()
     {
-        game_manager = GameObject.Find("GameManager");
-
         coin_text = GameObject.Find("Coin");
     }
 

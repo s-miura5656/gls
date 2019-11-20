@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6469966206114064503}
   - component: {fileID: 6469966206114064496}
   - component: {fileID: 6469966206114064497}
+  - component: {fileID: 7337115660854500533}
+  - component: {fileID: 5717232161546214196}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -50,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main_camera: {fileID: 0}
   player: {fileID: 0}
+  city: {fileID: 0}
   player_level_max: 10
   move_powor: 20
   game_time_max: 31
@@ -57,6 +60,7 @@ MonoBehaviour:
   player_scale: 2
   camera_first_pos: {x: 0, y: 30, z: -30}
   camera_moving_value: {x: 0, y: 20, z: -20}
+  coin_number: 3
 --- !u!114 &6469966206114064501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,10 +103,10 @@ MonoBehaviour:
   start_count_text: {fileID: 0}
   count: {fileID: 0}
   time_count_down_main: 41
-  game_time_text: {fileID: 0}
+  game_time: {fileID: 0}
   end_count_text: {fileID: 0}
   player: {fileID: 0}
-  one_plus: {fileID: 0}
+  time_plus: {fileID: 0}
   main_camara: {fileID: 0}
   loading_screen: {fileID: 0}
 --- !u!114 &6469966206114064496
@@ -130,3 +134,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destruction_rate_text: {fileID: 0}
+--- !u!114 &7337115660854500533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469966206114064506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232b5beac200e2b46ac80252f1ffd2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin_text: {fileID: 0}
+--- !u!114 &5717232161546214196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469966206114064506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af2dfa9820948e4789394f0022828c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reflect_sound: {fileID: 8300000, guid: 492f56719c089264286d67fecd334fc3, type: 3}

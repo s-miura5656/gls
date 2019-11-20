@@ -14,7 +14,7 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private GameObject start_count_text = null;
     [SerializeField] private GameObject count = null;
     // カウントダウンテキスト
-    private Text start_count_down = null;
+    private TextMeshProUGUI start_count_down = null;
 
     // ゲーム終了時までの時間（ゲーム時間）
     [SerializeField] private float time_count_down_main = 41f;
@@ -50,7 +50,7 @@ public class Time_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        start_count_down = count.GetComponent<Text>();
+        start_count_down = count.GetComponent<TextMeshProUGUI>();
         game_time_number = game_time.GetComponent<TextMeshProUGUI>();
         end_count_down = end_count_text.GetComponent<Text>();
         loading_script = loading_screen.GetComponent<Start_Loading>();
@@ -83,7 +83,7 @@ public class Time_Manager : MonoBehaviour
 
             if (time_count_down_start > 1f)
             {
-                start_count_down.text = count_down_second.ToString();
+                start_count_down.text = "" + count_down_second;    
             }
             else if (time_count_down_start <= 1f)
             {
@@ -141,6 +141,18 @@ public class Time_Manager : MonoBehaviour
         one_copy.GetComponent<CameraLookSprite>().SetCamera(main_camara);
         time_count_down_main += increase_time;
     }
+
+    private void TextScale() 
+    {
+        count.transform.localScale *= 0.1f;
+
+        if (count.transform.localScale.x >= 1.5f)
+        {
+            count.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+    }
+
+    
 
     /// <summary>
     /// 操作可能かどうか
