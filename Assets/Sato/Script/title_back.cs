@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenesTransition_Manager : MonoBehaviour
+
+public class title_back : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    public void MainManu()
-    {
-        SceneManager.LoadScene("Title_ 1");
-    }
         
-    public void RetryGame()
+    }
+
+    public void Result_Back()
     {
-        SceneManager.LoadScene("GameMain_1");
+        SceneManager.LoadScene("Result");
     }
 }

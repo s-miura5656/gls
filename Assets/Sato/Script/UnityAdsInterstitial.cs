@@ -25,7 +25,7 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
         Advertisement.Load(placementId);
     }
 
-    public void ShowAd()
+    public void ShowAds()
     {
         if (!Advertisement.IsReady(placementId)) return;
         Advertisement.Show(placementId);
@@ -52,12 +52,10 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
         {
             case ShowResult.Finished:
 
-                Debug.Log("Ads Finished!");
-                SceneManager.LoadScene("GameMain_1");
+                Debug.Log("Ads Finished!");                
                 break;
             case ShowResult.Skipped:
                 Debug.Log("Ads Skipped!");
-                SceneManager.LoadScene("GameMain_1");
                 break;
             case ShowResult.Failed:
                 Debug.Log("Ads Failed..");

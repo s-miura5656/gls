@@ -7,22 +7,30 @@ public class Coin_Manager : MonoBehaviour
 {
     [SerializeField]
     private GameObject crash_score;
+    private GameObject coincount;
+    private int coin_score;
 
-    private Text crash_score_text;
+    private Text coin_score_text;
     private int score = 0;
+
+    private Variable_Manager coin_script;
+
 
 
     void Start()
     {
         Coinget_Manager();
+        coincount = GameObject.Find("Data_Manager");
+        coin_script = coincount.GetComponent<Variable_Manager>();
+        coin_score = coin_script.GetSetCoin;
     }
 
     // Update is called once per frame
     void Update()
     {
-        crash_score_text = crash_score.
+        coin_score_text = crash_score.
             GetComponent<Text>();
-        crash_score_text.text = "  " + score;
+        coin_score_text.text = "  " + coin_score;
     }
 
     public void Coinget_Manager()
@@ -32,7 +40,7 @@ public class Coin_Manager : MonoBehaviour
         DOTween.To(
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
-            1000,                  // 最終的な値
+            coin_score,                  // 最終的な値
             3.0f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
     }
