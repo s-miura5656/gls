@@ -59,7 +59,8 @@ public class Bill_Obsever : MonoBehaviour
         private set { player_se_script = value; }
     }
 
-    public void PlayCrashEffect(int billLevel, Vector3 bill_pos)
+    [System.Obsolete]
+    public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel)
     {
         for (int i = 0; i < crash_particle.Length; i++) 
         {
@@ -73,13 +74,14 @@ public class Bill_Obsever : MonoBehaviour
         }
 
         coin_particle.transform.position = bill_pos;
-        var coin_scale = Vector3.one * default_coin_particle_scale * billLevel;
+        var coin_scale = Vector3.one * default_coin_particle_scale * playerLevel;
         coin_particle.transform.localScale = coin_scale;
 
 
         var burst = coin_particle.emission.GetBurst(0);
         burst.count = coin_number * billLevel;
         coin_particle.emission.SetBurst(0, burst);
+        coin_particle.gravityModifier = 10 * playerLevel;
 
         coin_particle.Play();
     }

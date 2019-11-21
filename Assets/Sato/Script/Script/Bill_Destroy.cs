@@ -24,7 +24,7 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (other.gameObject.tag != "Player") return;
 
-        // ビルレベルがプレイ屋のレベルより小さいときに
+        // ビルレベルがプレイヤーのレベルより小さいときに
         if (bill_level < bill_Obsever.Player_Level_Manager.GetLevel())
         {
             Vector3 hitPos = other.ClosestPointOnBounds(this.transform.position);
@@ -66,7 +66,7 @@ public class Bill_Destroy : MonoBehaviour
     {
         // エフェクト再生
         var player_level = bill_Obsever.Player_Level_Manager.GetLevel();
-        bill_Obsever.PlayCrashEffect(bill_level, transform.position);
+        bill_Obsever.PlayCrashEffect(bill_level, transform.position, player_level);
         bill_Obsever.PlayHitEffect(player_level, hitPosition);
 
         // 破壊率計算用の関数
@@ -82,7 +82,7 @@ public class Bill_Destroy : MonoBehaviour
 
     private void BillLevelSerch()
     {
-        if (transform.tag == "Bill_Level_1")
+        if (transform.tag == "Bill_Level_0")
         {
             bill_level = 0;
         }
