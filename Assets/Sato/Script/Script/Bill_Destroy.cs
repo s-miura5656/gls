@@ -42,7 +42,7 @@ public class Bill_Destroy : MonoBehaviour
         // ビルにヒットした時に音を出す
         bill_Obsever.Player_SE_Manager.PlayHitSound();
 
-        // ビルのレベルがプレイヤーと同じか以下の時
+        // ビルのレベルがプレイヤー
         if (bill_level >= bill_Obsever.Player_Level_Manager.GetLevel())
         {
             bill_crash_number = bill_level - bill_Obsever.Player_Level_Manager.GetLevel();
@@ -72,7 +72,7 @@ public class Bill_Destroy : MonoBehaviour
         // 破壊率計算用の関数
         bill_Obsever.Destruction_Rate_Manager.DownNowRate();
         // 経験値ゲット用
-        bill_Obsever.Player_Exp_Get.SetExp((int)bill_level);
+        bill_Obsever.Player_Exp_Get.SetExp(bill_level);
         // ゲームオブジェクトを非表示にする
         gameObject.SetActive(false);
 
@@ -84,32 +84,32 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (transform.tag == "Bill_Level_0")
         {
-            bill_level = 0;
+            bill_level = 1;
         }
 
         if (transform.tag == "Bill_Level_1")
         {
-            bill_level = 1;
+            bill_level = 3;
         }
 
         if (transform.tag == "Bill_Level_2")
         {
-            bill_level = 2;
+            bill_level = 5;
         }
 
         if (transform.tag == "Bill_Level_3")
         {
-            bill_level = 3;
+            bill_level = 7;
         }
 
         if (transform.tag == "Bill_Level_4")
         {
-            bill_level = 4;
+            bill_level = 9;
         }
 
         if (transform.tag == "Bill_Level_5")
         {
-            bill_level = 5;
+            bill_level = 11;
         }
     }
 

@@ -64,22 +64,22 @@ public class Player_Level_Manager : MonoBehaviour
         // プレイヤーの速度の計算
         speed = rb.velocity.magnitude;
 
-        // スピードが０になったらレベルアップ
-        if (speed <= 1.0f)
-        {
-            if (level_up_phase == false)
-            {
+        //// スピードが０になったらレベルアップ
+        //if (speed <= 1.0f)
+        //{
+        //    if (level_up_phase == false)
+        //    {
                 
-                level_up_phase = true;
-            }
-        }
+        //        level_up_phase = true;
+        //    }
+        //}
 
         PlayerLevelUpPhase();
         
-        if (Input.GetMouseButtonUp(0))
-        {
-            level_up_phase = false;
-        }
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    level_up_phase = false;
+        //}
 
         if (script_player.GetExp() >= exp_slider.maxValue)
         {

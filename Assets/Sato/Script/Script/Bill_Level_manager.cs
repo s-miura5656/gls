@@ -23,16 +23,17 @@ public class Bill_Level_manager : MonoBehaviour
     void Update()
     {
         // プレイヤーのスピードが０になったらプレイヤーレベルと比較してビルの設定を変える
-        if (script_player.GetSpeed() > 0f && destroy_possible_state == false)
-        {
-            destroy_possible_state = true;
-        }
+        //if (script_player.GetSpeed() > 0f && destroy_possible_state == false)
+        //{
+        //    destroy_possible_state = true;
+        //}
 
-        if (script_player.GetSpeed() == 0f && destroy_possible_state == true)
-        {
-            BillPossible();
-            destroy_possible_state = false;
-        }
+        //if (script_player.GetSpeed() == 0f && destroy_possible_state == true)
+        //{
+        //    destroy_possible_state = false;
+        //}
+
+        BillPossible();
     }
 
     /// <summary>
@@ -40,79 +41,92 @@ public class Bill_Level_manager : MonoBehaviour
     /// </summary>
     private void BillPossible() 
     {
-        if (bill_level < script_player.GetLevel())
+        
+        if (script_player.GetLevel() == 2)
         {
-            if (bill_level == 1)
+            // GameObject型の配列billsに、"Bill_Level_1"タグのついたオブジェクトをすべて格納
+            GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_0");
+
+            // GameObject型の変数billに、billsの中身を順番に取り出す。
+            // foreachは配列の要素の数だけループします。
+            foreach (GameObject bill in bills)
             {
-                // GameObject型の配列billsに、"Bill_Level_1"タグのついたオブジェクトをすべて格納
-                GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_1");
-
-                // GameObject型の変数billに、billsの中身を順番に取り出す。
-                // foreachは配列の要素の数だけループします。
-                foreach (GameObject bill in bills)
-                {
-                    // コライダーを有効にする
-                    bill.GetComponent<BoxCollider>().isTrigger = true;
-                }
+                // コライダーを有効にする
+                bill.GetComponent<BoxCollider>().isTrigger = true;
             }
-
-            if (bill_level >= 2)
-            {
-                // GameObject型の配列billsに、"Bill_Level_2"タグのついたオブジェクトをすべて格納
-                GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_2");
-
-                // GameObject型の変数billに、billsの中身を順番に取り出す。
-                // foreachは配列の要素の数だけループします。
-                foreach (GameObject bill in bills)
-                {
-                    // コライダーを有効にする
-                    bill.GetComponent<BoxCollider>().isTrigger = true;
-                }
-            }
-
-            if (bill_level >= 3)
-            {
-                // GameObject型の配列billsに、"Bill_Level_3"タグのついたオブジェクトをすべて格納
-                GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_3");
-
-                // GameObject型の変数billに、billsの中身を順番に取り出す。
-                // foreachは配列の要素の数だけループします。
-                foreach (GameObject bill in bills)
-                {
-                    // コライダーを有効にする
-                    bill.GetComponent<BoxCollider>().isTrigger = true;
-                }
-            }
-
-            if (bill_level >= 4)
-            {
-                // GameObject型の配列billsに、"Bill_Level_3"タグのついたオブジェクトをすべて格納
-                GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_4");
-
-                // GameObject型の変数billに、billsの中身を順番に取り出す。
-                // foreachは配列の要素の数だけループします。
-                foreach (GameObject bill in bills)
-                {
-                    // コライダーを有効にする
-                    bill.GetComponent<BoxCollider>().isTrigger = true;
-                }
-            }
-
-            if (bill_level >= 5)
-            {
-                // GameObject型の配列billsに、"Bill_Level_3"タグのついたオブジェクトをすべて格納
-                GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_5");
-
-                // GameObject型の変数billに、billsの中身を順番に取り出す。
-                // foreachは配列の要素の数だけループします。
-                foreach (GameObject bill in bills)
-                {
-                    // コライダーを有効にする
-                    bill.GetComponent<BoxCollider>().isTrigger = true;
-                }
-            }
-
-            bill_level++;
         }
+
+        if (script_player.GetLevel() == 4)
+        {
+            // GameObject型の配列billsに、"Bill_Level_2"タグのついたオブジェクトをすべて格納
+            GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_1");
+
+            // GameObject型の変数billに、billsの中身を順番に取り出す。
+            // foreachは配列の要素の数だけループします。
+            foreach (GameObject bill in bills)
+            {
+                // コライダーを有効にする
+                bill.GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
+
+        if (script_player.GetLevel() == 6)
+        {
+            // GameObject型の配列billsに、"Bill_Level_3"タグのついたオブジェクトをすべて格納
+            GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_2");
+
+            // GameObject型の変数billに、billsの中身を順番に取り出す。
+            // foreachは配列の要素の数だけループします。
+            foreach (GameObject bill in bills)
+            {
+                // コライダーを有効にする
+                bill.GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
+
+        if (script_player.GetLevel() == 8)
+        {
+            // GameObject型の配列billsに、"Bill_Level_3"タグのついたオブジェクトをすべて格納
+            GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_3");
+
+            // GameObject型の変数billに、billsの中身を順番に取り出す。
+            // foreachは配列の要素の数だけループします。
+            foreach (GameObject bill in bills)
+            {
+                // コライダーを有効にする
+                bill.GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
+
+        if (script_player.GetLevel() == 10)
+        {
+            // GameObject型の配列billsに、"Bill_Level_3"タグのついたオブジェクトをすべて格納
+            GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_4");
+
+            // GameObject型の変数billに、billsの中身を順番に取り出す。
+            // foreachは配列の要素の数だけループします。
+            foreach (GameObject bill in bills)
+            {
+                // コライダーを有効にする
+                bill.GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
+
+        if (script_player.GetLevel() >= 12)
+        {
+            // GameObject型の配列billsに、"Bill_Level_3"タグのついたオブジェクトをすべて格納
+            GameObject[] bills = GameObject.FindGameObjectsWithTag("Bill_Level_5");
+
+            // GameObject型の変数billに、billsの中身を順番に取り出す。
+            // foreachは配列の要素の数だけループします。
+            foreach (GameObject bill in bills)
+            {
+                // コライダーを有効にする
+                bill.GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
+
+           
+        
     }
 }
