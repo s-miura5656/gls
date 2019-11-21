@@ -23,16 +23,17 @@ public class Bill_Level_manager : MonoBehaviour
     void Update()
     {
         // プレイヤーのスピードが０になったらプレイヤーレベルと比較してビルの設定を変える
-        if (script_player.GetSpeed() > 0f && destroy_possible_state == false)
-        {
-            destroy_possible_state = true;
-        }
+        //if (script_player.GetSpeed() > 0f && destroy_possible_state == false)
+        //{
+        //    destroy_possible_state = true;
+        //}
 
-        if (script_player.GetSpeed() == 0f && destroy_possible_state == true)
-        {
-            BillPossible();
-            destroy_possible_state = false;
-        }
+        //if (script_player.GetSpeed() == 0f && destroy_possible_state == true)
+        //{
+        //    destroy_possible_state = false;
+        //}
+
+        BillPossible();
     }
 
     /// <summary>

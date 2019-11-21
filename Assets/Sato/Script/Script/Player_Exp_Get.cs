@@ -40,7 +40,8 @@ public class Player_Exp_Get : MonoBehaviour
         {
             exp += get_exp * bill_level;
         }
-        else if(bill_level == 0)
+
+        if(bill_level == 0)
         {
             exp += zero_get_exp;
         }

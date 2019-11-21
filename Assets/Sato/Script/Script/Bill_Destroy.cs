@@ -72,7 +72,7 @@ public class Bill_Destroy : MonoBehaviour
         // 破壊率計算用の関数
         bill_Obsever.Destruction_Rate_Manager.DownNowRate();
         // 経験値ゲット用
-        bill_Obsever.Player_Exp_Get.SetExp((int)bill_level);
+        bill_Obsever.Player_Exp_Get.SetExp(bill_level);
         // ゲームオブジェクトを非表示にする
         gameObject.SetActive(false);
 
