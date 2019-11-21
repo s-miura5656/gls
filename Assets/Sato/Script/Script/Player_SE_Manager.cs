@@ -6,15 +6,15 @@ public class Player_SE_Manager : MonoBehaviour
 {
 
     //[SerializeField] private AudioClip charge_sound;
-    //[SerializeField] private AudioClip shot_sound;
-    [SerializeField] private AudioClip reflect_sound;
+    [SerializeField] private AudioClip destroy_sound;
+    [SerializeField] private AudioClip impact_sound;
 
-    private AudioSource audio_se = null;
+    private AudioSource[] audio_se = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        audio_se = gameObject.GetComponent<AudioSource>();
+        audio_se = gameObject.GetComponents<AudioSource>();
     }
 
     /// <summary>
@@ -22,6 +22,14 @@ public class Player_SE_Manager : MonoBehaviour
     /// </summary>
     public void PlayHitSound() 
     {
-        audio_se.PlayOneShot(reflect_sound);
+        audio_se[0].PlayOneShot(impact_sound);
+    }
+
+    /// <summary>
+    /// ビルを壊したときの音
+    /// </summary>
+    public void PlayBillDestroySound()
+    {
+        audio_se[1].PlayOneShot(destroy_sound);
     }
 }

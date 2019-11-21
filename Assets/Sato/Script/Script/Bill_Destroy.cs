@@ -24,6 +24,9 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (other.gameObject.tag != "Player") return;
 
+        // ビルにヒットした時に音を出す
+        bill_Obsever.Player_SE_Manager.PlayBillDestroySound();
+
         // ビルレベルがプレイヤーのレベルより小さいときに
         if (bill_level < bill_Obsever.Player_Level_Manager.GetLevel())
         {
@@ -42,7 +45,7 @@ public class Bill_Destroy : MonoBehaviour
         // ビルにヒットした時に音を出す
         bill_Obsever.Player_SE_Manager.PlayHitSound();
 
-        // ビルのレベルがプレイヤー
+        // ビルのレベルがプレイヤーと同じか高いときに
         if (bill_level >= bill_Obsever.Player_Level_Manager.GetLevel())
         {
             bill_crash_number = bill_level - bill_Obsever.Player_Level_Manager.GetLevel();
