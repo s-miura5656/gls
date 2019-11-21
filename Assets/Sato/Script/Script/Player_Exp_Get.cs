@@ -31,7 +31,7 @@ public class Player_Exp_Get : MonoBehaviour
     void Update()
     {
         now_coin.text = "Coin:" + exp;
-        Variable_Manager.Instance.GetSetCoin = exp;
+        SetCoin();
     }
 
     public void SetExp(int bill_level) 
@@ -46,17 +46,10 @@ public class Player_Exp_Get : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
     public void SetCoin()
     {
         Variable_Manager.Instance.GetSetCoin = exp;
     }
-=======
-    //public void SetPlayerExp()
-    //{
-    //    Variable_Manager.Instance.GetSetCoin = exp;
-    //}
->>>>>>> リザルト変更中（カウント部）
 
     private void Reset()
     {
