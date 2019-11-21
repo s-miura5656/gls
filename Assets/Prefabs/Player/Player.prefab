@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 5889644109147225250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 6586450539583397199}
   - {fileID: 402018865165483911}
@@ -246,11 +246,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5889644109147225236}
     m_Modifications:
-    - target: {fileID: 5372717753267925218, guid: 76117c19cad197849998eeb1f2a41266,
-        type: 3}
-      propertyPath: m_Name
-      value: Move_Smoke
-      objectReference: {fileID: 0}
     - target: {fileID: 5695770383256022594, guid: 76117c19cad197849998eeb1f2a41266,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -321,6 +316,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5372717753267925218, guid: 76117c19cad197849998eeb1f2a41266,
+        type: 3}
+      propertyPath: m_Name
+      value: Move_Smoke
+      objectReference: {fileID: 0}
     - target: {fileID: 5170175294779646003, guid: 76117c19cad197849998eeb1f2a41266,
         type: 3}
       propertyPath: InitialModule.startSize.minScalar
@@ -357,16 +357,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5889644109147225236}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 848bfcdf0a1b49c4586847df819a9a74,
-        type: 3}
-      propertyPath: m_Name
-      value: soccerball
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 848bfcdf0a1b49c4586847df819a9a74,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 848bfcdf0a1b49c4586847df819a9a74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -436,6 +426,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 848bfcdf0a1b49c4586847df819a9a74,
+        type: 3}
+      propertyPath: m_Name
+      value: soccerball
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 848bfcdf0a1b49c4586847df819a9a74,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 848bfcdf0a1b49c4586847df819a9a74, type: 3}
@@ -452,11 +452,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5889644109147225236}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 4da1e67ec29fa5942b15f2aba7bfadf3,
-        type: 3}
-      propertyPath: m_Name
-      value: iron_ball
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4da1e67ec29fa5942b15f2aba7bfadf3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -526,6 +521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4da1e67ec29fa5942b15f2aba7bfadf3,
+        type: 3}
+      propertyPath: m_Name
+      value: iron_ball
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 4da1e67ec29fa5942b15f2aba7bfadf3,
         type: 3}
