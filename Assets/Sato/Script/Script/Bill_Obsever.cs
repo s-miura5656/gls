@@ -67,14 +67,14 @@ public class Bill_Obsever : MonoBehaviour
             // ビル破壊時の破片のパーティクルを出す
             crash_particle[i].transform.position = bill_pos;
             // 破片のパーティクルをビルのレベルに合わせて拡大
-            var cras_scale = Vector3.one * default_crash_particle_scale * billLevel;
+            var cras_scale = Vector3.one * default_crash_particle_scale * billLevel / 2;
             crash_particle[i].transform.localScale = cras_scale;
 
             crash_particle[i].Play();
         }
 
         coin_particle.transform.position = bill_pos;
-        var coin_scale = Vector3.one * default_coin_particle_scale * playerLevel;
+        var coin_scale = Vector3.one * default_coin_particle_scale * playerLevel / 2;
         coin_particle.transform.localScale = coin_scale;
 
 
