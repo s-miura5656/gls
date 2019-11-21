@@ -44,6 +44,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     void Update()
     {
         _text.text = last_destruction_rate.ToString("f2") + "%";
+        SetDestructionRate();
     }
 
     private void Check(string tagname)

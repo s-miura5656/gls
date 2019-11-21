@@ -30,6 +30,10 @@ public class camera_controller : MonoBehaviour
     // １フレーム前のプレイヤー座標
     private Vector3 old_player_pos = new Vector3(0f, 0f, 0f);
 
+    public float FoVAttenRate = 3.0f; // FoVの減衰比率
+    public float MovedFoV = 75.0f; // プレイヤーが移動している時のFoV
+    public float FoV = 60.0f; // プレイヤーが立ち止まっている時のFoV
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,9 +47,6 @@ public class camera_controller : MonoBehaviour
         old_player_level = script.GetLevel();
 
         main_cam.transform.position = player.transform.position + first_pos;
-
-        //// プレイヤーを中心に捉える
-        //transform.LookAt(player.transform.position);
     }
 
     private void Update()
@@ -58,11 +59,8 @@ public class camera_controller : MonoBehaviour
         // Lerp補完用の始点の記憶
         camera_base_pos = transform.position;
 
-        // カメラの transform.yの位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
-        camera_move_pos = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z) + new Vector3(offset.x, 0f, offset.z);
-
-        // Lerp補完で滑らか移動
-        transform.position = Vector3.Lerp(camera_base_pos, camera_move_pos, camera_speed);
+        MoveCamera();
+        //FovTransform();
 
         // プレイヤーを中心に捉える
         transform.LookAt(player.transform.position);
@@ -84,6 +82,24 @@ public class camera_controller : MonoBehaviour
         {
             zoom_state = false;
         }
+    }
+
+    private void MoveCamera() 
+    {
+        // カメラの transform.yの位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
+        camera_move_pos = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z) + new Vector3(offset.x, 0f, offset.z);
+
+        // Lerp補完で滑らか移動
+        transform.position = Vector3.Lerp(camera_base_pos, camera_move_pos, camera_speed);
+    }
+
+    private void FovTransform() 
+    {
+        var moved = transform.position != camera_base_pos;
+        camera_base_pos = transform.position;
+
+        var fov = moved ? MovedFoV : FoV;
+        main_cam.fieldOfView = Mathf.Lerp(main_cam.fieldOfView, fov, Time.deltaTime * FoVAttenRate);
     }
 
     private void ZoomCamera()
