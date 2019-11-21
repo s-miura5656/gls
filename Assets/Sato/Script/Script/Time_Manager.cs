@@ -17,7 +17,7 @@ public class Time_Manager : MonoBehaviour
     private TextMeshProUGUI start_count_down = null;
 
     // ゲーム終了時までの時間（ゲーム時間）
-    [SerializeField] private float time_count_down_main = 41f;
+    private float time_count_down_main = 41f;
     private float end_time = -1f;
     private bool game_main_state = false;
     private int game_main_second = 0;
@@ -30,7 +30,7 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private GameObject end_count_text = null;
 
     // カウントダウンのテキスト
-    private Text end_count_down = null;
+    private TextMeshProUGUI end_count_down = null;
 
     // 時間加算用
     [SerializeField] private GameObject player = null;
@@ -47,13 +47,16 @@ public class Time_Manager : MonoBehaviour
     // スタートのローディングを管理するスクリプト
     private Start_Loading loading_script = null;
 
+    private Player_Level_Manager player_level_script = null;
+
     // Start is called before the first frame update
     void Start()
     {
         start_count_down = count.GetComponent<TextMeshProUGUI>();
         game_time_number = game_time.GetComponent<TextMeshProUGUI>();
-        end_count_down = end_count_text.GetComponent<Text>();
+        end_count_down = end_count_text.GetComponent<TextMeshProUGUI>();
         loading_script = loading_screen.GetComponent<Start_Loading>();
+        player_level_script = gameObject.GetComponent<Player_Level_Manager>();
 
         game_main_second = (int)time_count_down_main - 1;
 
@@ -138,21 +141,10 @@ public class Time_Manager : MonoBehaviour
     public void TimeCountDownMainPlus() 
     {
         GameObject one_copy = Instantiate(time_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
+        one_copy.transform.localScale = new Vector3(1f, 1f, 1f) * player_level_script.GetLevel();
         one_copy.GetComponent<CameraLookSprite>().SetCamera(main_camara);
         time_count_down_main += increase_time;
     }
-
-    private void TextScale() 
-    {
-        count.transform.localScale *= 0.1f;
-
-        if (count.transform.localScale.x >= 1.5f)
-        {
-            count.transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-    }
-
-    
 
     /// <summary>
     /// 操作可能かどうか
