@@ -54,10 +54,13 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
         {
             case ShowResult.Finished:
 
-                Debug.Log("Ad Finished!");                
+                Debug.Log("Ad Finished!");
+                SceneManager.LoadScene("GameMain_1");
                 break;
             case ShowResult.Skipped:
                 Debug.Log("Ad Skipped!");
+                SceneManager.LoadScene("GameMain_1");
+
                 break;
             case ShowResult.Failed:
                 Debug.Log("Ad Failed..");

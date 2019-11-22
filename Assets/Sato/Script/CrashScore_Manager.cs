@@ -38,7 +38,7 @@ public class CrashScore_Manager : MonoBehaviour
     void Update()
     {
         crash_score_text = crash_score.GetComponent<Text>();
-        crash_score_text.text = "  " + score.ToString("f2");
+        crash_score_text.text =score.ToString("f2") + " ％" ;
     }
 
     public void Crash_Manager()

@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
+using UnityEngine.Diagnostics;
+
 public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
 {
    
@@ -60,16 +62,18 @@ public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
                 coin_object = GameObject.Find("coin");
                 coin_script = coin_object.GetComponent<Coin_Manager>();
                 coin_script.Calculation_Manager();
-                
-               
+
                 Debug.Log("Ads Finished!");
                 break;
+
             case ShowResult.Skipped:
                 Debug.Log("Ads Skipped!");
                 break;
+
             case ShowResult.Failed:
                 Debug.Log("Ads Failed..");
                 break;
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(showResult), showResult, $"placementId:{placementId}");
         }
