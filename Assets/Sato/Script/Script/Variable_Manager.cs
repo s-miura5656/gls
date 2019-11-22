@@ -8,8 +8,10 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int get_coin = 0;
     // 今回の破壊率
     private float destruction = 0f;
-    // スキンの番号
-    private int skin_number = 0;
+    //スキン番号
+    private int avatar_number = 0;
+    //所持コイン枚数
+    private int possession_coin = 0;
 
     /// <summary>
     /// ゲットしたコイン数
@@ -30,11 +32,20 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     }
 
     /// <summary>
-    /// スキン選択
+    /// スキンの番号
     /// </summary>
-    public int GetSetSkinNumber 
+    public int GetSetAvatarNumber
     {
-        get { return skin_number; }
-        set { skin_number = value; }
+        get { return avatar_number; }
+        set { avatar_number = value; }
+    }
+
+    /// <summary>
+    /// 現在の所持コイン
+    /// </summary>
+    public int GetSetPossessionCoin
+    {
+        get { return possession_coin; }
+        set { possession_coin = value; }
     }
 }
