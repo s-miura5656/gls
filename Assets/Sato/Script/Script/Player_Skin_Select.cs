@@ -18,7 +18,7 @@ public class Player_Skin_Select : MonoBehaviour
     {
         data_manager = GameObject.Find("Data_Manager");
         variable_manager = data_manager.GetComponent<Variable_Manager>();
-        player_skin_number = variable_manager.GetSetSkinNumber;
+        player_skin_number = variable_manager.GetSetAvatarNumber;
     }
 
     // Start is called before the first frame update
