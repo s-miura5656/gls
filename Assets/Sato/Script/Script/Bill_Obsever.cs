@@ -21,7 +21,7 @@ public class Bill_Obsever : MonoBehaviour
     // 壊れるパーティクル
     private ParticleSystem[] crash_particle;
     // ヒットエフェクト
-    private ParticleSystem hit_particle;
+    private ParticleSystem[] hit_particle;
     // コインのパーティクル
     private ParticleSystem coin_particle;
 
@@ -62,21 +62,22 @@ public class Bill_Obsever : MonoBehaviour
     [System.Obsolete]
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel)
     {
+        // ビルの破片の処理
         for (int i = 0; i < crash_particle.Length; i++) 
         {
             // ビル破壊時の破片のパーティクルを出す
             crash_particle[i].transform.position = bill_pos;
             // 破片のパーティクルをビルのレベルに合わせて拡大
-            var cras_scale = Vector3.one * default_crash_particle_scale * billLevel / 2;
+            var cras_scale = Vector3.one * default_crash_particle_scale * billLevel;
             crash_particle[i].transform.localScale = cras_scale;
 
             crash_particle[i].Play();
         }
 
+        // コインエフェクトの処理
         coin_particle.transform.position = bill_pos;
-        var coin_scale = Vector3.one * default_coin_particle_scale * playerLevel / 2;
+        var coin_scale = Vector3.one * default_coin_particle_scale * playerLevel;
         coin_particle.transform.localScale = coin_scale;
-
 
         var burst = coin_particle.emission.GetBurst(0);
         burst.count = coin_number * billLevel;
@@ -88,13 +89,16 @@ public class Bill_Obsever : MonoBehaviour
 
     public void PlayHitEffect(int playerLevel, Vector3 hit_pos)
     {
-        // プレイヤーと当たった場所にヒットエフェクト生成
-        hit_particle.transform.position = hit_pos;
-        // ヒットエフェクトのパーティクルをビルのレベルに合わせて拡大
-        var hit_scale = Vector3.one * default_hit_particle_scale * playerLevel;
-        hit_particle.transform.localScale = hit_scale;
+        for (int i = 0; i < hit_particle.Length; i++)
+        {
+            // プレイヤーと当たった場所にヒットエフェクトを移動
+            hit_particle[i].transform.position = hit_pos;
+            // ヒットエフェクトのパーティクルをプレイヤーのレベルに合わせて拡大
+            var hit_scale = Vector3.one * default_hit_particle_scale * playerLevel;
+            hit_particle[i].transform.localScale = hit_scale;
 
-        hit_particle.Play();
+            hit_particle[i].Play();
+        }
     }
 
     private void Start()
@@ -104,15 +108,15 @@ public class Bill_Obsever : MonoBehaviour
         crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
         default_crash_particle_scale = crash_particle[0].transform.localScale.x;
 
-        var hit_effect = (GameObject)Resources.Load("Hit_Effect_1");
+        var hit_effect = (GameObject)Resources.Load("hit");
         var hit_effect_obj = Instantiate(hit_effect, gameObject.transform);
-        hit_particle = hit_effect_obj.GetComponent<ParticleSystem>();
-        default_hit_particle_scale = hit_particle.transform.localScale.x;
+        hit_particle = hit_effect_obj.GetComponentsInChildren<ParticleSystem>();
+        default_hit_particle_scale = hit_particle[0].transform.localScale.x;
 
         var hit_coin = (GameObject)Resources.Load("Coin_Test");
         var hit_coin_obj = Instantiate(hit_coin, gameObject.transform);
         coin_particle = hit_coin_obj.GetComponent<ParticleSystem>();
-        default_coin_particle_scale = hit_particle.transform.localScale.x;
+        default_coin_particle_scale = coin_particle.transform.localScale.x;
 
         for (int i = 0; i < bill_Destroise.Length; i++)
         {

@@ -485,7 +485,7 @@ PrefabInstance:
     - target: {fileID: 7157524642041608664, guid: 57d63b656af105d45b3e4f506e4b0096,
         type: 3}
       propertyPath: m_fontSize
-      value: 20.75
+      value: 20.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57d63b656af105d45b3e4f506e4b0096, type: 3}
@@ -627,6 +627,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 961731959684561939}
     m_Modifications:
+    - target: {fileID: 7341839807106050085, guid: 30942ec11d1ed0d4bb3a1bde386c6365,
+        type: 3}
+      propertyPath: m_Name
+      value: Back_Image_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341839807106050085, guid: 30942ec11d1ed0d4bb3a1bde386c6365,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7341839807106050086, guid: 30942ec11d1ed0d4bb3a1bde386c6365,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -731,16 +741,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341839807106050085, guid: 30942ec11d1ed0d4bb3a1bde386c6365,
-        type: 3}
-      propertyPath: m_Name
-      value: Back_Image_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341839807106050085, guid: 30942ec11d1ed0d4bb3a1bde386c6365,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30942ec11d1ed0d4bb3a1bde386c6365, type: 3}
@@ -887,6 +887,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 961731959684561939}
     m_Modifications:
+    - target: {fileID: 6892939147620700727, guid: e1b82818de59a1b4eb76665ea394ec8c,
+        type: 3}
+      propertyPath: m_Name
+      value: Game_Time
+      objectReference: {fileID: 0}
     - target: {fileID: 6892939147620700728, guid: e1b82818de59a1b4eb76665ea394ec8c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -992,11 +997,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6892939147620700727, guid: e1b82818de59a1b4eb76665ea394ec8c,
-        type: 3}
-      propertyPath: m_Name
-      value: Game_Time
-      objectReference: {fileID: 0}
     - target: {fileID: 7527426903570258695, guid: e1b82818de59a1b4eb76665ea394ec8c,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1025,7 +1025,7 @@ PrefabInstance:
     - target: {fileID: 7527426903570258695, guid: e1b82818de59a1b4eb76665ea394ec8c,
         type: 3}
       propertyPath: m_fontSize
-      value: 41.55
+      value: 41.05
       objectReference: {fileID: 0}
     - target: {fileID: 7527426903570258695, guid: e1b82818de59a1b4eb76665ea394ec8c,
         type: 3}
@@ -1131,22 +1131,22 @@ PrefabInstance:
     - target: {fileID: 4009974014393958739, guid: f6bd969c1eeb52d46b21145cdd7cd33c,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.05
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4009974014393958739, guid: f6bd969c1eeb52d46b21145cdd7cd33c,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.1
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 4009974014393958739, guid: f6bd969c1eeb52d46b21145cdd7cd33c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.95
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4009974014393958739, guid: f6bd969c1eeb52d46b21145cdd7cd33c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.15
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4009974014393958739, guid: f6bd969c1eeb52d46b21145cdd7cd33c,
         type: 3}
@@ -1178,6 +1178,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 961731959684561939}
     m_Modifications:
+    - target: {fileID: 6206271956015754722, guid: 6cad830432c7f6d48bd7aa84529d986c,
+        type: 3}
+      propertyPath: m_Name
+      value: EXP
+      objectReference: {fileID: 0}
     - target: {fileID: 6206271956015754723, guid: 6cad830432c7f6d48bd7aa84529d986c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1283,11 +1288,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6206271956015754722, guid: 6cad830432c7f6d48bd7aa84529d986c,
-        type: 3}
-      propertyPath: m_Name
-      value: EXP
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cad830432c7f6d48bd7aa84529d986c, type: 3}
 --- !u!224 &961731960426755321 stripped
@@ -1303,6 +1303,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 961731959684561939}
     m_Modifications:
+    - target: {fileID: 1683934159692065309, guid: 3f723daaa29049d4b8620275bff937f3,
+        type: 3}
+      propertyPath: m_Name
+      value: Start_Count_Down
+      objectReference: {fileID: 0}
     - target: {fileID: 1683934159692065308, guid: 3f723daaa29049d4b8620275bff937f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1408,25 +1413,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1683934159692065309, guid: 3f723daaa29049d4b8620275bff937f3,
-        type: 3}
-      propertyPath: m_Name
-      value: Start_Count_Down
-      objectReference: {fileID: 0}
     - target: {fileID: 1683934158715391706, guid: 3f723daaa29049d4b8620275bff937f3,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3918143990652171308, guid: 3f723daaa29049d4b8620275bff937f3,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 69.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4697029513582652726, guid: 3f723daaa29049d4b8620275bff937f3,
         type: 3}
       propertyPath: m_fontSize
       value: 87.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3918143990652171308, guid: 3f723daaa29049d4b8620275bff937f3,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 70.65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f723daaa29049d4b8620275bff937f3, type: 3}
@@ -1443,6 +1443,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 961731959684561939}
     m_Modifications:
+    - target: {fileID: 1475719924861699899, guid: 16d7ac5afdd51d549bd0a94bd1b4dfda,
+        type: 3}
+      propertyPath: m_Name
+      value: end_count_down
+      objectReference: {fileID: 0}
     - target: {fileID: 1475719924861699898, guid: 16d7ac5afdd51d549bd0a94bd1b4dfda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1548,11 +1553,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1475719924861699899, guid: 16d7ac5afdd51d549bd0a94bd1b4dfda,
-        type: 3}
-      propertyPath: m_Name
-      value: end_count_down
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d7ac5afdd51d549bd0a94bd1b4dfda, type: 3}
 --- !u!224 &7066158871064466260 stripped
@@ -1568,6 +1568,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 961731959684561939}
     m_Modifications:
+    - target: {fileID: 4749337410829254209, guid: b497aac5ef7cd4047a314eade5bcd377,
+        type: 3}
+      propertyPath: m_Name
+      value: Coin
+      objectReference: {fileID: 0}
     - target: {fileID: 2079623872856329788, guid: b497aac5ef7cd4047a314eade5bcd377,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1673,15 +1678,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4749337410829254209, guid: b497aac5ef7cd4047a314eade5bcd377,
-        type: 3}
-      propertyPath: m_Name
-      value: Coin
-      objectReference: {fileID: 0}
     - target: {fileID: 2805357492191441459, guid: b497aac5ef7cd4047a314eade5bcd377,
         type: 3}
       propertyPath: m_fontSize
-      value: 20.75
+      value: 20.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b497aac5ef7cd4047a314eade5bcd377, type: 3}
