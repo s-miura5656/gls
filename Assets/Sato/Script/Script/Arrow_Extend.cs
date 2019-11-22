@@ -19,7 +19,7 @@ public class Arrow_Extend : MonoBehaviour
     // プレイヤーのサイズ
     private Vector3 player_size;
     // プレイヤーの周りをまわる矢印のプレイヤーからの距離
-    private float arrow_dist = 2f;
+    private float arrow_dist = 4f;
     // 時間を管理するスクリプト
     private Time_Manager time_script;
 
