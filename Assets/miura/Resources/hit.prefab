@@ -100,6 +100,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6478631039583416760, guid: e63cec8aaace7cd47a9e9f444ac5cc5a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478631039583416760, guid: e63cec8aaace7cd47a9e9f444ac5cc5a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478631039583416760, guid: e63cec8aaace7cd47a9e9f444ac5cc5a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992276278830069607, guid: e63cec8aaace7cd47a9e9f444ac5cc5a,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992276278830069607, guid: e63cec8aaace7cd47a9e9f444ac5cc5a,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992276278830069607, guid: e63cec8aaace7cd47a9e9f444ac5cc5a,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e63cec8aaace7cd47a9e9f444ac5cc5a, type: 3}
 --- !u!4 &9107456817959799766 stripped
@@ -123,17 +153,17 @@ PrefabInstance:
     - target: {fileID: 109494931086796139, guid: 4c0c3ba96751d254fb6118637a5f58d1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4286096
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 109494931086796139, guid: 4c0c3ba96751d254fb6118637a5f58d1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.44436646
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 109494931086796139, guid: 4c0c3ba96751d254fb6118637a5f58d1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.8081512
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 109494931086796139, guid: 4c0c3ba96751d254fb6118637a5f58d1,
         type: 3}
@@ -174,6 +204,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 109494931086796139, guid: 4c0c3ba96751d254fb6118637a5f58d1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109494931086796139, guid: 4c0c3ba96751d254fb6118637a5f58d1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109494931086796139, guid: 4c0c3ba96751d254fb6118637a5f58d1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 91510652814546603, guid: 4c0c3ba96751d254fb6118637a5f58d1,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 91510652814546603, guid: 4c0c3ba96751d254fb6118637a5f58d1,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 91510652814546603, guid: 4c0c3ba96751d254fb6118637a5f58d1,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 91510652814546603, guid: 4c0c3ba96751d254fb6118637a5f58d1,
+        type: 3}
+      propertyPath: ClampVelocityModule.separateAxis
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 91510652814546603, guid: 4c0c3ba96751d254fb6118637a5f58d1,
+        type: 3}
+      propertyPath: ClampVelocityModule.inWorldSpace
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c0c3ba96751d254fb6118637a5f58d1, type: 3}
@@ -250,10 +320,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7182836408043525390, guid: 77b7cfbc042609a47a6250016bb806d5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182836408043525390, guid: 77b7cfbc042609a47a6250016bb806d5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182836408043525390, guid: 77b7cfbc042609a47a6250016bb806d5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 6435026760714159529, guid: 77b7cfbc042609a47a6250016bb806d5,
         type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435026760714159529, guid: 77b7cfbc042609a47a6250016bb806d5,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435026760714159529, guid: 77b7cfbc042609a47a6250016bb806d5,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435026760714159529, guid: 77b7cfbc042609a47a6250016bb806d5,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77b7cfbc042609a47a6250016bb806d5, type: 3}
