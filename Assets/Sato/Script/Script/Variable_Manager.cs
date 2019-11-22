@@ -6,6 +6,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 {
     // ゲットしたコイン
     private int get_coin = 0;
+    // プレイヤーが持っているコイン
+    private int total_coin;
     // 今回の破壊率
     private float destruction = 0f;
     //スキン番号
@@ -20,6 +22,15 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return get_coin; }
         set { get_coin = value; }
+    }
+
+    /// <summary>
+    /// 今まで獲得したコイン
+    /// </summary>
+    public int GetSetTotalCoin 
+    {
+        get { return total_coin; }
+        set { total_coin = value; }
     }
 
     /// <summary>
@@ -47,5 +58,10 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return possession_coin; }
         set { possession_coin = value; }
+    }
+
+    private void Start()
+    {
+        total_coin += get_coin;
     }
 }
