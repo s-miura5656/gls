@@ -5,44 +5,56 @@ using UnityEngine;
 public class Botton_clik : MonoBehaviour
 {
 
-    private int skin_number;
-    
-    private void Number0_Clik()
-    {
+    private int avatar_number;
 
-        skin_number = 0;
+    void Start()
+    {
+        Variable_Manager.Instance.GetSetAvatarNumber = 0;
     }
 
-    private void Number1_Clik()
+
+    public void Number0_Clik()
     {
 
-        skin_number = 1;
+        Variable_Manager.Instance.GetSetAvatarNumber = 0;
     }
 
-    private void Number2_Clik()
+    public void Number1_Clik()
     {
 
-        skin_number = 2;
+        Variable_Manager.Instance.GetSetAvatarNumber = 1;
     }
 
-    private void Number3_Clik()
+    public void Number2_Clik()
     {
 
-        skin_number = 3;
+      
+        Variable_Manager.Instance.GetSetAvatarNumber = 2;
     }
 
-    private void Number4_Clik()
+    public void Number3_Clik()
     {
 
-        skin_number = 4;
+      
+        Variable_Manager.Instance.GetSetAvatarNumber = 3;
     }
 
-    private void Number5_Clik()
+    public void Number4_Clik()
     {
 
-        skin_number = 5;
+     
+        Variable_Manager.Instance.GetSetAvatarNumber = 4;
+    }
+
+    public void Number5_Clik()
+    {
+
+  
+        Variable_Manager.Instance.GetSetAvatarNumber = 5;
 
     }
+
+
 
 
 
