@@ -46,6 +46,7 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBe
             DontDestroyOnLoad(gameObject);
             return true;
         }
+        Destroy(this);
         Destroy(gameObject);
         return false;
     }

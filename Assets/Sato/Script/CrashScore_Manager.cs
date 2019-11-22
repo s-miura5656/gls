@@ -10,6 +10,7 @@ public class CrashScore_Manager : MonoBehaviour
 {
     [SerializeField]
     private GameObject crash_score;
+
     private GameObject date;
 
 
@@ -22,22 +23,22 @@ public class CrashScore_Manager : MonoBehaviour
 
 
     private float crash_count;
+    private int test_count;
 
-    
+
 
     void Start()
     {
+        crash_count = Variable_Manager.Instance.GetSetDestructionRate;
         Crash_Manager();
-        date = GameObject.Find("Data_Manager");
-        script = date.GetComponent<Variable_Manager>();
-        crash_count = script.GetSetDestructionRate;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         crash_score_text = crash_score.GetComponent<Text>();
-        crash_score_text.text = "  " + crash_count;
+        crash_score_text.text = "  " + score.ToString("f2");
     }
 
     public void Crash_Manager()
@@ -48,7 +49,7 @@ public class CrashScore_Manager : MonoBehaviour
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
             crash_count,                  // 最終的な値
-            3.0f                  // アニメーション時間
+            5.0f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
     }
 }

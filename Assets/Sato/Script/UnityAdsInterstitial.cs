@@ -46,19 +46,21 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
         Debug.Log("Ad Start!!!!");
     }
 
-    public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
+    public void OnUnityAdsDidFinish(string interstitialPlacementID, ShowResult showResult)
     {
+        if (placementId != interstitialPlacementID) return;
+
         switch (showResult)
         {
             case ShowResult.Finished:
 
-                Debug.Log("Ads Finished!");                
+                Debug.Log("Ad Finished!");                
                 break;
             case ShowResult.Skipped:
-                Debug.Log("Ads Skipped!");
+                Debug.Log("Ad Skipped!");
                 break;
             case ShowResult.Failed:
-                Debug.Log("Ads Failed..");
+                Debug.Log("Ad Failed..");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(showResult), showResult, $"placementId:{placementId}");
