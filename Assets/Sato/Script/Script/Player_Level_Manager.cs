@@ -35,14 +35,18 @@ public class Player_Level_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        level_up_exp = new int[player_level_max];
+        level_up_exp = new int[player_level_max - 1];
 
         // レベルアップに必要な経験値の初期化
-        for (int i = 0; i < level_up_exp.Length; i++)
-        {
-            level_up_exp[i] = 100 * (i + 1);
-            level_up_exp[i] += (100 * (i + 1)) * i;
-        }
+        level_up_exp[0] = 50;
+        level_up_exp[1] = 1500;
+        level_up_exp[2] = 3500;
+        level_up_exp[3] = 6000;
+        level_up_exp[4] = 10000;
+        level_up_exp[5] = 20000;
+        level_up_exp[6] = 30000;
+        level_up_exp[7] = 40000;
+        level_up_exp[8] = 50000;
 
         script_player = gameObject.GetComponent<Player_Exp_Get>();
 
@@ -131,6 +135,8 @@ public class Player_Level_Manager : MonoBehaviour
                         // サイズ変更に合わせて高さを変更
                         player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
                     }
+
+                    Debug.Log(player_level);
                 }
             }
         }
