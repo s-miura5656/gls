@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
-using UnityEngine.Diagnostics;
-
 public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
 {
    
@@ -31,10 +29,13 @@ public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
         Advertisement.Load(placementId);
     }
 
-    public void ShowAd()
+    public void ShowAd(UnityEngine.Monetization.ShowAdCallbacks showAdCallbacks)
     {
         if (!Advertisement.IsReady(placementId)) return;
-        Advertisement.Show(placementId);
+        UnityEngine.Monetization.ShowAdPlacementContent content = 
+            (UnityEngine.Monetization.ShowAdPlacementContent)UnityEngine.Monetization.Monetization.GetPlacementContent(placementId);
+
+        content.Show(showAdCallbacks);
     }
 
     public void OnUnityAdsReady(string placementId)
@@ -50,6 +51,7 @@ public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
     public void OnUnityAdsDidStart(string placementId)
     {
         Debug.Log("Ads Start!!!!");
+
     }
 
     public void OnUnityAdsDidFinish(string rewardVideoPplacementId, ShowResult showResult)
@@ -59,10 +61,6 @@ public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
         switch (showResult)
         {
             case ShowResult.Finished:
-                coin_object = GameObject.Find("coin");
-                coin_script = coin_object.GetComponent<Coin_Manager>();
-                coin_script.Calculation_Manager();
-
                 Debug.Log("Ads Finished!");
                 break;
 
@@ -78,8 +76,4 @@ public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
                 throw new ArgumentOutOfRangeException(nameof(showResult), showResult, $"placementId:{placementId}");
         }
     }
-
- 
-
-   
 }

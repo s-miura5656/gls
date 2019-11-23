@@ -58,15 +58,15 @@ public class UnityAdsUtility : SingletonMonoBehaviour<UnityAdsUtility>
         unityAdsInterstitial.InitializeVideoReward(interstitialPplacementId);
     }
 
-    public void ShowVideoReward()
+    public void ShowVideoReward(ShowAdCallbacks showAdCallbacks)
     {
         // 動画リワードの再生
-        unityAdsVideoReward.ShowAd();
+        unityAdsVideoReward.ShowAd(showAdCallbacks);
     }
 
-    public void ShowInterstitialVideo()
+    public void ShowInterstitialVideo(ShowAdCallbacks showAdCallbacks)
     {
         // インタースティシャル広告再生
-        unityAdsInterstitial.ShowAds();
+        unityAdsInterstitial.ShowAds(showAdCallbacks);
     }
 }
