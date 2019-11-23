@@ -7,8 +7,9 @@
 		SubShader{
 			Pass {
 				Tags { "RenderType" = "Opaque" }
+				LOD 100
 				Cull Front
-
+				Lighting Off
 				CGPROGRAM
 
 				#pragma vertex vert
