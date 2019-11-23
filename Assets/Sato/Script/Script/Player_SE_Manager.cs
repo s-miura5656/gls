@@ -9,12 +9,12 @@ public class Player_SE_Manager : MonoBehaviour
     [SerializeField] private AudioClip destroy_sound;
     [SerializeField] private AudioClip impact_sound;
 
-    private AudioSource[] audio_se = null;
+    private AudioSource audio_se = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        audio_se = gameObject.GetComponents<AudioSource>();
+        audio_se = gameObject.GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public class Player_SE_Manager : MonoBehaviour
     /// </summary>
     public void PlayHitSound() 
     {
-        audio_se[0].PlayOneShot(impact_sound);
+        audio_se.PlayOneShot(impact_sound);
     }
 
     /// <summary>
@@ -30,6 +30,6 @@ public class Player_SE_Manager : MonoBehaviour
     /// </summary>
     public void PlayBillDestroySound()
     {
-        audio_se[1].PlayOneShot(destroy_sound);
+        audio_se.PlayOneShot(destroy_sound);
     }
 }

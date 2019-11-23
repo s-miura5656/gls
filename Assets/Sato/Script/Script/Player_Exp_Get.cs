@@ -14,16 +14,14 @@ public class Player_Exp_Get : MonoBehaviour
     // プレイヤーのレベルを管理しているスクリプトを取得
     private Player_Level_Manager player_level = null;
     // 現在のコイン(経験値)
-    [SerializeField] private GameObject coin_text = null;
     // コイン取得数表示のテキスト
-    private TextMeshProUGUI now_coin = null;
+    [SerializeField] private TMP_Text now_coin = null;
 
 
     // Start is called before the first frame update
     void Start()
     {
         player_level = gameObject.GetComponent<Player_Level_Manager>();
-        now_coin = coin_text.GetComponent<TextMeshProUGUI>();
 
         // ビルレベルごとの経験値
         get_exp[0] = 5;
@@ -57,7 +55,7 @@ public class Player_Exp_Get : MonoBehaviour
 
     private void Reset()
     {
-        coin_text = GameObject.Find("Coin");
+        now_coin = GameObject.Find("Coin").GetComponent<TMP_Text>();
     }
 
     /// <summary>

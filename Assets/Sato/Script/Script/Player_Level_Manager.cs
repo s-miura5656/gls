@@ -95,7 +95,7 @@ public class Player_Level_Manager : MonoBehaviour
 
     private void Reset()
     {
-        level_up_text = GameObject.Find("LevelUp");
+        level_up_text = GameObject.Find("Level_Up");
 
         exp_slider = GameObject.Find("ExpGage").GetComponent<Slider>();
 

@@ -12,25 +12,21 @@ public class Time_Manager : MonoBehaviour
     private bool game_start_state = true;
     private int count_down_second = 0;
     [SerializeField] private GameObject start_count_text = null;
-    [SerializeField] private GameObject count = null;
     // カウントダウンテキスト
-    private TextMeshProUGUI start_count_down = null;
+    [SerializeField] private TextMeshProUGUI start_count_down = null;
 
     // ゲーム終了時までの時間（ゲーム時間）
     private float time_count_down_main = 41f;
     private float end_time = -1f;
     private bool game_main_state = false;
     private int game_main_second = 0;
-    [SerializeField] private GameObject game_time = null;
 
     // ゲームタイムのテキスト
-    private TextMeshProUGUI game_time_number = null;
+    [SerializeField] private TextMeshProUGUI game_time_number_text = null;
 
     // ゲーム終了間際のカウントダウン用
-    [SerializeField] private GameObject end_count_text = null;
-
     // カウントダウンのテキスト
-    private TextMeshProUGUI end_count_down = null;
+    [SerializeField]private TextMeshProUGUI end_count_down_text = null;
 
     // 時間加算用
     [SerializeField] private GameObject player = null;
@@ -43,24 +39,19 @@ public class Time_Manager : MonoBehaviour
     // 操作等可能にするための変数
     private bool game_play_state = false;
     // ローディング画面のオブジェクト取得
-    [SerializeField] private GameObject loading_screen = null;
     // スタートのローディングを管理するスクリプト
-    private Start_Loading loading_script = null;
+    [SerializeField] private Start_Loading loading_script = null;
 
     private Player_Level_Manager player_level_script = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        start_count_down = count.GetComponent<TextMeshProUGUI>();
-        game_time_number = game_time.GetComponent<TextMeshProUGUI>();
-        end_count_down = end_count_text.GetComponent<TextMeshProUGUI>();
-        loading_script = loading_screen.GetComponent<Start_Loading>();
         player_level_script = gameObject.GetComponent<Player_Level_Manager>();
 
         game_main_second = (int)time_count_down_main - 1;
 
-        game_time_number.text = "" + game_main_second;
+        game_time_number_text.text = "" + game_main_second;
     }
 
     // Update is called once per frame
@@ -98,7 +89,7 @@ public class Time_Manager : MonoBehaviour
                 {
                     game_start_state = false;
                     start_count_text.SetActive(false);
-                    game_time.SetActive(true);
+                    game_time_number_text.gameObject.SetActive(true);
                 }
             }
         }
@@ -116,18 +107,18 @@ public class Time_Manager : MonoBehaviour
 
             if (time_count_down_main > 6f)
             {
-                game_time_number.text = "" + game_main_second;                
+                game_time_number_text.text = "" + game_main_second;                
             }
             else if (time_count_down_main > 1f && time_count_down_main <= 6f)
             {
-                end_count_down.text = "" + game_main_second;
-                game_time.SetActive(false);
-                end_count_text.SetActive(true);
+                end_count_down_text.text = "" + game_main_second;
+                game_time_number_text.gameObject.SetActive(false);
+                end_count_down_text.gameObject.SetActive(true);
 
             }
             else if (time_count_down_main <= 1f && time_count_down_main > end_time)
             {
-                end_count_down.text = "TIME UP";
+                end_count_down_text.text = "TIME UP";
                 game_play_state = false;
             }
             else if (time_count_down_main < end_time)
