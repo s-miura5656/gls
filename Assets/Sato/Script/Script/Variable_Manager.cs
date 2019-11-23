@@ -6,14 +6,12 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 {
     // ゲットしたコイン
     private int get_coin = 0;
-    // プレイヤーが持っているコイン
-    private int total_coin;
     // 今回の破壊率
     private float destruction = 0f;
     //スキン番号
-    private int avatar_number = 0;
+    private int avatar_number = 0; //save
     //所持コイン枚数
-    private int possession_coin = 0;
+    private int possession_coin = 0; //save
 
     /// <summary>
     /// ゲットしたコイン数
@@ -22,15 +20,6 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return get_coin; }
         set { get_coin = value; }
-    }
-
-    /// <summary>
-    /// 今まで獲得したコイン
-    /// </summary>
-    public int GetSetTotalCoin 
-    {
-        get { return total_coin; }
-        set { total_coin = value; }
     }
 
     /// <summary>
@@ -60,8 +49,23 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { possession_coin = value; }
     }
 
-    private void Start()
+    public void Save()
     {
-        total_coin += get_coin;
+        PlayerPrefs.SetInt("avatar_number", GetSetAvatarNumber);
+        PlayerPrefs.SetInt("possession_coin", GetSetPossessionCoin);
+        PlayerPrefs.Save();
+    }
+
+    public void Load()
+    {
+        GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
+        GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Load();
     }
 }

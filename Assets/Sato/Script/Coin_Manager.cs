@@ -8,9 +8,9 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private GameObject crash_score;
     private GameObject coincount;
-    private int coin_score;
+    public int coin_score;
     private Text coin_score_text;
-    private int score = 0;
+    public int score = 0;
     private Variable_Manager coin_script;
 
 
@@ -18,7 +18,7 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private Text Date_text;
     private int before_score;
-    private int after_score;
+    public int after_score;
     [SerializeField]
     private GameObject text_date;
 
@@ -35,11 +35,9 @@ public class Coin_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        coin_score_text = crash_score.
-            GetComponent<Text>();
-        coin_score_text.text = " " + score;
-        Variable_Manager.Instance.GetSetPossessionCoin += score;
-
+        coin_score_text = crash_score.GetComponent<Text>();
+        coin_score_text.text = score.ToString();
+        
     }
 
     public void Coinget_Manager()
@@ -64,7 +62,7 @@ public class Coin_Manager : MonoBehaviour
     public void Calculation_Manager()
     {
  
-        after_score = score * 2;
+        after_score = coin_score * 2;
         AftterGet_Manager();
         NewCoin_Manager();
 
@@ -85,8 +83,8 @@ public class Coin_Manager : MonoBehaviour
 
     public void NewCoin_Manager()
     {
-        Date_text = text_date.GetComponent<Text>();
-        Date_text.text = "  " + before_score;
+        //Date_text = text_date.GetComponent<Text>();
+        //Date_text.text = "  " + before_score;
     }
 }
 
