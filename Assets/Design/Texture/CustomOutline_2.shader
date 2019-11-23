@@ -1,6 +1,6 @@
-﻿Shader "Custom/Outline" {
+﻿Shader "Custom/Outline_2" {
 	Properties{
-		_BaseColor("Base Color", Color) = (1,1,1,1)
+		_MainTex("MainTex", 2D) = "white" {}
 		_Outline("_Outline", Range(0,0.1)) = 0
 		_OutlineColor("Color", Color) = (1, 1, 1, 1)
 	}
@@ -40,17 +40,16 @@
 			}
 
 			CGPROGRAM
-			#pragma surface surf Standard fullforwardshadows
-			#pragma target 3.0
+			#pragma surface surf Lambert
+
+			sampler2D _MainTex;
 
 			struct Input {
-			float2 uv_MainTex;
+				float2 uv_MainTex;
 			};
 
-			fixed4 _BaseColor;
-
-			void surf(Input IN, inout SurfaceOutputStandard o) {
-			o.Albedo = _BaseColor.rgb;
+			void surf(Input IN, inout SurfaceOutput o) {
+				o.Albedo = tex2D(_MainTex, IN.uv_MainTex);
 			}
 
 			ENDCG

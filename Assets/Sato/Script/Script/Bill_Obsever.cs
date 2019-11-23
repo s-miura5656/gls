@@ -120,13 +120,13 @@ public class Bill_Obsever : MonoBehaviour
 
         for (int i = 0; i < bill_Destroise.Length; i++)
         {
-            bill_Destroise[i].Initializ
+            bill_Destroise[i].Initialized(this);
         }
     }
 
     private void Reset()
     {
-        game_manager =meind("GameManager");
+        game_manager =GameObject.Find("GameManager");
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();

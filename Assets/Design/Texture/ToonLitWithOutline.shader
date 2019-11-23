@@ -1,6 +1,4 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Toon/LitWithOutline" {
+﻿Shader "Toon/LitWithOutline" {
 	Properties{
 		_Color("Main Color", Color) = (0.5, 0.5, 0.5, 1)
 		_MainTex("Base (RGB)", 2D) = "white" {}
