@@ -18,16 +18,5 @@ public class PossessionCoin_Manager : MonoBehaviour
     {
         possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
         get_coin_text.text = " " + possession_coin;
-        PossessionCoin();
-    }
-
-    private void Update()
-    {
-    }
-
-    private void PossessionCoin()
-    {
-
-
     }
 }
