@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.Monetization;
 
 public class ResultBotton_Manger : MonoBehaviour
 {
@@ -21,17 +22,49 @@ public class ResultBotton_Manger : MonoBehaviour
     [SerializeField]
     private float leave_scale = 1.0f;
 
+    private ShowAdCallbacks showAdRewardCallbacks = new ShowAdCallbacks();
+    private ShowAdCallbacks showAdInterstitialCallbacks = new ShowAdCallbacks();
+
     void Start()
     {
-        rewardButton.onClick.AddListener(UnityAdsUtility.Instance.ShowVideoReward);
-        interstitialButton.onClick.AddListener(UnityAdsUtility.Instance.ShowInterstitialVideo);
+        // ShowAdCallbacksにコールバックを設定
+        showAdRewardCallbacks.finishCallback += VideoRerwardResult;
+        showAdInterstitialCallbacks.finishCallback += InterstitialResult;
+
+        rewardButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdRewardCallbacks));
+        interstitialButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowInterstitialVideo(showAdInterstitialCallbacks));
     }
 
-    public void ShowVideoReward()
+    private void OnDestroy()
     {
-        UnityAdsUtility.Instance.ShowInterstitialVideo();
+        // ShowAdCallbacksにコールバックを解除
+        showAdRewardCallbacks.finishCallback -= VideoRerwardResult;
+        showAdInterstitialCallbacks.finishCallback -= InterstitialResult;
     }
 
+    private void VideoRerwardResult(ShowResult showResult)
+    {
+        if (showResult == ShowResult.Finished)
+        {
+            //　広告を最後まで視聴した時
+            var coin_object = GameObject.Find("coin");
+            var coin_script = coin_object.GetComponent<Coin_Manager>();
+            coin_script.Calculation_Manager();
+        }
+        else if (showResult == ShowResult.Failed)
+        {
+            // 広告読み込みエラー
+        }
+        else if (showResult == ShowResult.Skipped)
+        {
+            // 広告をスキップした時
+        }
+    }
+
+    private void InterstitialResult(ShowResult showResult)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameMain_1");
+    }
 
     public void PushBotton()
     {

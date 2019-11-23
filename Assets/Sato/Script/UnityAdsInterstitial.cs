@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
-using UnityEngine.SceneManagement;
 
 public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
 {
@@ -25,10 +24,14 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
         Advertisement.Load(placementId);
     }
 
-    public void ShowAds()
+    public void ShowAds(UnityEngine.Monetization.ShowAdCallbacks showAdCallbacks)
     {
         if (!Advertisement.IsReady(placementId)) return;
-        Advertisement.Show(placementId);
+
+        UnityEngine.Monetization.ShowAdPlacementContent content =
+            (UnityEngine.Monetization.ShowAdPlacementContent)UnityEngine.Monetization.Monetization.GetPlacementContent(placementId);
+
+        content.Show(showAdCallbacks);
     }
 
     public void OnUnityAdsReady(string placementId)
@@ -53,14 +56,10 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
         switch (showResult)
         {
             case ShowResult.Finished:
-
                 Debug.Log("Ad Finished!");
-                SceneManager.LoadScene("GameMain_1");
                 break;
             case ShowResult.Skipped:
                 Debug.Log("Ad Skipped!");
-                SceneManager.LoadScene("GameMain_1");
-
                 break;
             case ShowResult.Failed:
                 Debug.Log("Ad Failed..");
