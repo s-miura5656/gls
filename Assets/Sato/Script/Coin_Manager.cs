@@ -38,6 +38,8 @@ public class Coin_Manager : MonoBehaviour
         coin_score_text = crash_score.
             GetComponent<Text>();
         coin_score_text.text = " " + score;
+        Variable_Manager.Instance.GetSetPossessionCoin += score;
+
     }
 
     public void Coinget_Manager()

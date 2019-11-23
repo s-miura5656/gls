@@ -50,6 +50,7 @@ public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
     public void OnUnityAdsDidStart(string placementId)
     {
         Debug.Log("Ads Start!!!!");
+
     }
 
     public void OnUnityAdsDidFinish(string rewardVideoPplacementId, ShowResult showResult)
@@ -79,6 +80,7 @@ public class UnityAdsVideoReward : MonoBehaviour, IUnityAdsListener
         }
     }
 
+    
  
 
    
