@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1719684536245574465}
   - component: {fileID: 1719684536245574470}
   - component: {fileID: 1719684536245574467}
-  - component: {fileID: 5046030546448670061}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -106,36 +105,6 @@ MonoBehaviour:
   FoVAttenRate: 3
   MovedFoV: 75
   FoV: 60
---- !u!114 &5046030546448670061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719684536245574471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78da3f00f3328541b4526c0b0b5ec5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineThickness: 1.25
-  lineIntensity: 0.5
-  fillAmount: 0.2
-  lineColor0: {r: 0, g: 0, b: 0, a: 1}
-  lineColor1: {r: 0, g: 0, b: 0, a: 1}
-  lineColor2: {r: 0, g: 0, b: 0, a: 1}
-  additiveRendering: 0
-  backfaceCulling: 0
-  cornerOutlines: 0
-  addLinesBetweenColors: 0
-  scaleWithScreenSize: 1
-  alphaCutoff: 0.5
-  flipY: 0
-  sourceCamera: {fileID: 1719684536245574465}
-  outlineCamera: {fileID: 8720331221828190763}
-  outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 0}
-  extraRenderTexture: {fileID: 0}
 --- !u!1 &3326704975880373878
 GameObject:
   m_ObjectHideFlags: 0
