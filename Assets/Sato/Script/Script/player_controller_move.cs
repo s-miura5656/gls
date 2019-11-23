@@ -194,7 +194,7 @@ public class player_controller_move : MonoBehaviour
     /// <param name="powor"></param>
     public void SetMovePowor(float powor) 
     {
-        powor_up = powor;
+       powor_up = powor;
     }
 
     private void Reset()

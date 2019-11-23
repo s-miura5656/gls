@@ -126,7 +126,7 @@ public class Bill_Obsever : MonoBehaviour
 
     private void Reset()
     {
-        game_manager = GameObject.Find("GameManager");
+        game_manager =GameObject.Find("GameManager");
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
