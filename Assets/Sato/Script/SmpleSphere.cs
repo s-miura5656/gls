@@ -24,6 +24,7 @@ public class SmpleSphere : MonoBehaviour
         if(avatar_number == 0)
         {
             GetComponent<Renderer>().material.color = skinColors[0];
+            
         }
 
         else if(avatar_number == 1)
