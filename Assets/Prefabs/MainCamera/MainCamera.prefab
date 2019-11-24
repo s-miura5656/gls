@@ -60,7 +60,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 60
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -111,11 +111,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1719684536245574464}
     m_Modifications:
-    - target: {fileID: 788666518807224044, guid: 436d44bd968a0ad4f837ff42b2e94682,
-        type: 3}
-      propertyPath: m_Name
-      value: Depth_-2
-      objectReference: {fileID: 0}
     - target: {fileID: 788666518807224033, guid: 436d44bd968a0ad4f837ff42b2e94682,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -170,6 +165,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 788666518807224044, guid: 436d44bd968a0ad4f837ff42b2e94682,
+        type: 3}
+      propertyPath: m_Name
+      value: Depth_-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 788666518807224032, guid: 436d44bd968a0ad4f837ff42b2e94682,
+        type: 3}
+      propertyPath: field of view
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 436d44bd968a0ad4f837ff42b2e94682, type: 3}
@@ -186,11 +191,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1719684536245574464}
     m_Modifications:
-    - target: {fileID: 615088309419158673, guid: 8a60ff4da68eb954c95af3beba18fc9f,
-        type: 3}
-      propertyPath: m_Name
-      value: Depth_0
-      objectReference: {fileID: 0}
     - target: {fileID: 615088309419158676, guid: 8a60ff4da68eb954c95af3beba18fc9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -246,10 +246,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 615088309419158673, guid: 8a60ff4da68eb954c95af3beba18fc9f,
+        type: 3}
+      propertyPath: m_Name
+      value: Depth_0
+      objectReference: {fileID: 0}
     - target: {fileID: 615088309419158677, guid: 8a60ff4da68eb954c95af3beba18fc9f,
         type: 3}
       propertyPath: m_Depth
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615088309419158677, guid: 8a60ff4da68eb954c95af3beba18fc9f,
+        type: 3}
+      propertyPath: field of view
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a60ff4da68eb954c95af3beba18fc9f, type: 3}
