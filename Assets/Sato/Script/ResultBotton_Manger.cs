@@ -21,6 +21,9 @@ public class ResultBotton_Manger : MonoBehaviour
     private float leave_animtime = 1.0f;
     [SerializeField]
     private float leave_scale = 1.0f;
+    [SerializeField]
+    private GameObject Advertisement_Bottoun;
+    private bool botton_push = true;
 
     private ShowAdCallbacks showAdRewardCallbacks = new ShowAdCallbacks();
     private ShowAdCallbacks showAdInterstitialCallbacks = new ShowAdCallbacks();
@@ -49,6 +52,9 @@ public class ResultBotton_Manger : MonoBehaviour
             //　広告を最後まで視聴した時
             var coin_object = GameObject.Find("coin");
             var coin_script = coin_object.GetComponent<Coin_Manager>();
+
+            Advertisement_Bottoun.SetActive(false);
+
             coin_script.Calculation_Manager();
         }
         else if (showResult == ShowResult.Failed)

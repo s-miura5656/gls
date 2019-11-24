@@ -7,13 +7,13 @@ public class SmpleSphere : MonoBehaviour
     [SerializeField] private Color[] skinColors;
 
     private Color smple_color;
-    private float avatar_number;
+    private int avatar_number;
 
 
 
     void Start()
     {
-        
+        //avatar_number = Variable_Manager.Instance.GetSetAvatarNumber;
 
     }
 
@@ -50,6 +50,8 @@ public class SmpleSphere : MonoBehaviour
         {
             GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[5]);
         }
+
+        Variable_Manager.Instance.GetSetAvatarNumber = avatar_number;
 
     }
 }
