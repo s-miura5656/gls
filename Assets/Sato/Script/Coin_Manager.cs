@@ -61,7 +61,7 @@ public class Coin_Manager : MonoBehaviour
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
             coin_score,                  // 最終的な値
-            5.0f                  // アニメーション時間
+            2.0f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
 
 
