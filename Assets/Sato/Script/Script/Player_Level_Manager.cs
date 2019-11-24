@@ -31,7 +31,6 @@ public class Player_Level_Manager : MonoBehaviour
     [SerializeField] private GameObject level_up_text = null;
     // タイムを管理しているスクリプト
     private Time_Manager time_script;
-
     // Start is called before the first frame update
     void Start()
     {
