@@ -141,7 +141,7 @@ public class player_controller_move : MonoBehaviour
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
 
-            powor = powor * a;
+            powor = powor * exp_manager_script.GetLevel();
 
             //powor += charge;
 
