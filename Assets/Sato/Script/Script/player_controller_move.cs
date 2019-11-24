@@ -32,8 +32,9 @@ public class player_controller_move : MonoBehaviour
     // プレイヤーのレベルを管理するスクリプト
     private Player_Level_Manager exp_manager_script;
     int charge = 0;
+    [SerializeField] float a = 0;
 
-    
+
     void Start()
     {
         this.rb = GetComponent<Rigidbody>();
@@ -86,6 +87,7 @@ public class player_controller_move : MonoBehaviour
 
         // 現在の回転からさらにdeltaRotationだけ回転させる
         this.rb.MoveRotation(deltaRotation * this.rb.rotation);
+
     }
 
     /// <summary>
@@ -139,7 +141,7 @@ public class player_controller_move : MonoBehaviour
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
 
-            powor = powor * exp_manager_script.GetLevel();
+            powor = powor * a;
 
             //powor += charge;
 
