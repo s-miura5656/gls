@@ -38,11 +38,11 @@ public class Player_Level_Manager : MonoBehaviour
         level_up_exp = new int[player_level_max - 1];
 
         // レベルアップに必要な経験値の初期化
-        level_up_exp[0] = 50;
-        level_up_exp[1] = 1500;
-        level_up_exp[2] = 3500;
-        level_up_exp[3] = 6000;
-        level_up_exp[4] = 10000;
+        level_up_exp[0] = 20;
+        level_up_exp[1] = 60;
+        level_up_exp[2] = 560;
+        level_up_exp[3] = 1560;
+        level_up_exp[4] = 4560;
         level_up_exp[5] = 20000;
         level_up_exp[6] = 30000;
         level_up_exp[7] = 40000;
