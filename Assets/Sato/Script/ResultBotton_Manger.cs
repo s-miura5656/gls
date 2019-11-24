@@ -68,19 +68,19 @@ public class ResultBotton_Manger : MonoBehaviour
 
     public void PushBotton()
     {
-        var recttransform_2 = back.GetComponent<RectTransform>();
-        recttransform_2.DOScale(
-              push_scale,　　//終了時点のScale
-          push_animtime 　　　　　　//時間
-               ).SetEase(Ease.Linear);
+        //var recttransform_2 = back.GetComponent<RectTransform>();
+        //recttransform_2.DOScale(
+        //      push_scale,　　//終了時点のScale
+        //  push_animtime 　　　　　　//時間
+        //       ).SetEase(Ease.Linear);
     }
 
     public void LeaveBotton()
     {
-        var recttransform_2 = back.GetComponent<RectTransform>();
-        recttransform_2.DOScale(
-             leave_scale,　　//終了時点のScale
-        leave_animtime  //時間
-               ).SetEase(Ease.InCirc);
+        //var recttransform_2 = back.GetComponent<RectTransform>();
+        //recttransform_2.DOScale(
+        //     leave_scale,　　//終了時点のScale
+        //leave_animtime  //時間
+        //       ).SetEase(Ease.InCirc);
     }
 }

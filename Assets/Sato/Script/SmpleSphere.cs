@@ -23,33 +23,33 @@ public class SmpleSphere : MonoBehaviour
 
         if(avatar_number == 0)
         {
-            GetComponent<Renderer>().material.color = skinColors[0];
-            
+            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[0]);
+
         }
 
         else if(avatar_number == 1)
         {
-            GetComponent<Renderer>().material.color = skinColors[1];
+            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[1]);
         }
 
         else if (avatar_number == 2)
         {
-            GetComponent<Renderer>().material.color = skinColors[2];
+            GetComponent<Renderer>().material.SetColor ("_BaseColor",skinColors[2]);
         }
 
         else if (avatar_number == 3)
         {
-            GetComponent<Renderer>().material.color = skinColors[3];
+            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[3]);
         }
 
         else if (avatar_number == 4)
         {
-            GetComponent<Renderer>().material.color = skinColors[4];
+            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[4]);
         }
 
         else if (avatar_number == 5)
         {
-            GetComponent<Renderer>().material.color = skinColors[5];
+            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[5]);
         }
 
     }

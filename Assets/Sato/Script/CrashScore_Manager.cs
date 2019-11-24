@@ -52,7 +52,7 @@ public class CrashScore_Manager : MonoBehaviour
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
             crash_count,           // 最終的な値
-            5.0f                  // アニメーション時間
+            2.0f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
     }
 
