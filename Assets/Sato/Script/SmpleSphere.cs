@@ -23,8 +23,12 @@ public class SmpleSphere : MonoBehaviour
 
         if(avatar_number == 0)
         {
+<<<<<<< HEAD
             GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[0]);
 
+=======
+            GetComponent<Renderer>().material.color = skinColors[0];
+>>>>>>> parent of c107149... リザルト　破壊率導入中
         }
 
         else if(avatar_number == 1)
