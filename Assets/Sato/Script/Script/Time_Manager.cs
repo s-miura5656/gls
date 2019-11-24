@@ -132,7 +132,7 @@ public class Time_Manager : MonoBehaviour
     public void TimeCountDownMainPlus() 
     {
         GameObject one_copy = Instantiate(time_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
-        one_copy.transform.localScale = new Vector3(1f, 1f, 1f) * player_level_script.GetLevel();
+        one_copy.transform.localScale = new Vector3(1f, 1f, 1f) * (player_level_script.GetLevel() / 2);
         one_copy.GetComponent<CameraLookSprite>().SetCamera(main_camara);
         time_count_down_main += increase_time;
     }

@@ -8,10 +8,12 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int get_coin = 0;
     // 今回の破壊率
     private float destruction = 0f;
-    //スキン番号
+    // スキン番号
     private int avatar_number = 0; //save
-    //所持コイン枚数
+    // 所持コイン枚数
     private int possession_coin = 0; //save
+    // 振動のON,OFF
+    private bool vibrate_state = true;
 
     /// <summary>
     /// ゲットしたコイン数
@@ -47,6 +49,15 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return possession_coin; }
         set { possession_coin = value; }
+    }
+
+    /// <summary>
+    /// 振動の切り替え ON = true, OFF = false
+    /// </summary>
+    public bool GetSetVibrate 
+    {
+        get { return vibrate_state; }
+        set { vibrate_state = value; }
     }
 
     public void Save()

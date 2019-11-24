@@ -6,6 +6,8 @@ public class Bill_Obsever : MonoBehaviour
 {
     // プレイヤーのレベルを取得するためのオブジェクト取得
     [SerializeField] private GameObject game_manager = null;
+    // データマネージャーの取得
+    [SerializeField] private GameObject data_manager = null;
     // プレイヤーのレベルのスクリプトの取得
     [SerializeField] private Player_Level_Manager player_level_script = null;
     // ヒットストップのスクリプトを取得
@@ -16,6 +18,10 @@ public class Bill_Obsever : MonoBehaviour
     [SerializeField] private Player_Exp_Get player_exp_script = null;
     // ビルにヒットした時の音を管理しているスクリプト
     [SerializeField] private Player_SE_Manager player_se_script = null;
+    // ゲームの時間を管理しているスクリプト
+    [SerializeField] private Time_Manager time_script = null;
+    // ゲーム全体のデータを管理しているスクリプト
+    [SerializeField] private Variable_Manager variable_script;
     // ビルについている破壊に関するスクリプトを取得
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
     // 壊れるパーティクル
@@ -28,14 +34,15 @@ public class Bill_Obsever : MonoBehaviour
     private float default_crash_particle_scale = 0.0f;
     private float default_hit_particle_scale = 0.0f;
     private float default_coin_particle_scale = 0.0f;
-    private int coin_number = 3;
-    public Player_Level_Manager Player_Level_Manager 
+    private int coin_number = 1;
+
+    public Player_Level_Manager Player_Level_Manager
     {
         get { return player_level_script; }
         private set { player_level_script = value; }
     }
 
-    public Hit_Stop_Manager Hit_Stop_Manager 
+    public Hit_Stop_Manager Hit_Stop_Manager
     {
         get { return hit_stop_script; }
         private set { hit_stop_script = value; }
@@ -47,20 +54,32 @@ public class Bill_Obsever : MonoBehaviour
         private set { player_exp_script = value; }
     }
 
-    public Destruction_Rate_Manager Destruction_Rate_Manager 
+    public Destruction_Rate_Manager Destruction_Rate_Manager
     {
         get { return destruction_rate_script; }
         private set { destruction_rate_script = value; }
     }
 
-    public Player_SE_Manager Player_SE_Manager 
+    public Player_SE_Manager Player_SE_Manager
     {
         get { return player_se_script; }
         private set { player_se_script = value; }
     }
 
+    public Time_Manager Time_Manager
+    {
+        get { return time_script; }
+        private set { time_script = value; }
+    }
+
+    public Variable_Manager Variable_Manager
+    {
+        get { return variable_script; }
+        private set { variable_script = value; }
+    }
+
     [System.Obsolete]
-    public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel)
+    public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
     {
         // ビルの破片の処理
         for (int i = 0; i < crash_particle.Length; i++) 
@@ -126,13 +145,16 @@ public class Bill_Obsever : MonoBehaviour
 
     private void Reset()
     {
-        game_manager =GameObject.Find("GameManager");
+        game_manager = GameObject.Find("GameManager");
+        data_manager = GameObject.Find("Data_Manager");
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
         bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
         player_exp_script = game_manager.GetComponent<Player_Exp_Get>();
         player_se_script = game_manager.GetComponent<Player_SE_Manager>();
+        time_script = game_manager.GetComponent<Time_Manager>();
+        variable_script = data_manager.GetComponent<Variable_Manager>();
     }
 
     public void SetCoinNumber(int coin) 
