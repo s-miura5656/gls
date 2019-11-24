@@ -9,7 +9,7 @@ public class Botton_clik : MonoBehaviour
 
     void Start()
     {
-        Variable_Manager.Instance.GetSetAvatarNumber = 0;
+      //  Variable_Manager.Instance.GetSetAvatarNumber = 0;
     }
 
 
