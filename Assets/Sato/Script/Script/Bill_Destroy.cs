@@ -14,7 +14,9 @@ public class Bill_Destroy : MonoBehaviour
     private int bill_crash_number = 0;
     // ビルを何回攻撃したか
     private int bill_attack_count = 0;
+    // ビルオブザーバーの取得
     private Bill_Obsever bill_Obsever = null;
+    
 
     public void Initialized(Bill_Obsever obsever)
     {
@@ -67,22 +69,31 @@ public class Bill_Destroy : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     private void BillDestroy(Vector3 hitPosition, int vibrate)
     {
         // エフェクト再生
         var player_level = bill_Obsever.Player_Level_Manager.GetLevel();
-        bill_Obsever.PlayCrashEffect(bill_level, transform.position, player_level);
+        bill_Obsever.PlayCrashEffect(bill_level, transform.position, player_level, bill_Obsever.Player_Exp_Get.GetCoin(exp_bill_level));
         bill_Obsever.PlayHitEffect(player_level, hitPosition);
 
-        // 破壊率計算用の関数
-        bill_Obsever.Destruction_Rate_Manager.DownNowRate();
-        // 経験値ゲット用
-        bill_Obsever.Player_Exp_Get.SetExp(exp_bill_level);
+        // ゲーム時間内だけ破壊率と経験値を追加していく処理
+        if (bill_Obsever.Time_Manager.GetGamePlayState())
+        {
+            // 破壊率計算用の関数
+            bill_Obsever.Destruction_Rate_Manager.DownNowRate();
+            // 経験値ゲット用
+            bill_Obsever.Player_Exp_Get.SetExp(exp_bill_level);
+        }
+
         // ゲームオブジェクトを非表示にする
         gameObject.SetActive(false);
 
-        // 当たった時のバイブレーション
-        Vibration.Vibrate(vibrate);
+        if (bill_Obsever.Variable_Manager.GetSetVibrate)
+        {
+            // 当たった時のバイブレーション
+            Vibration.Vibrate(vibrate);
+        }
     }
 
     private void BillLevelSerch()

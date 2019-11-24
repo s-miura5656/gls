@@ -73,13 +73,15 @@ public class Player_Level_Manager : MonoBehaviour
         //{
         //    if (level_up_phase == false)
         //    {
-                
+
         //        level_up_phase = true;
         //    }
         //}
+        if (time_script.GetGamePlayState())
+        {
+            PlayerLevelUpPhase();
+        }
 
-        PlayerLevelUpPhase();
-        
         //if (Input.GetMouseButtonUp(0))
         //{
         //    level_up_phase = false;
