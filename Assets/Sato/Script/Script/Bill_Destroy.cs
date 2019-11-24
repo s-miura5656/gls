@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.LWRP;
 
 
 public class Bill_Destroy : MonoBehaviour
@@ -16,14 +17,19 @@ public class Bill_Destroy : MonoBehaviour
     private int bill_attack_count = 0;
     // ビルオブザーバーの取得
     private Bill_Obsever bill_Obsever = null;
-    
+    // ビルにレンダラー取得
+    private Renderer renderer;
+    // ダメージ表現用
+    private float damege = 0.5f;
 
     public void Initialized(Bill_Obsever obsever)
     {
         bill_Obsever = obsever;
         BillLevelSerch();
+        renderer = gameObject.GetComponent<Renderer>();
     }
 
+    [System.Obsolete]
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Player") return;
@@ -39,12 +45,20 @@ public class Bill_Destroy : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player") return;
 
+        renderer.material.SetColor("_BaseColor", new Color(1, damege, damege, 1));
+
         // 現在の攻撃回数
         bill_attack_count++;
+
+        if (damege >= 0f)
+        {
+            damege -= 0.05f;
+        }
 
         // ビルにヒットした時に音を出す
         bill_Obsever.Player_SE_Manager.PlayHitSound();
@@ -52,6 +66,7 @@ public class Bill_Destroy : MonoBehaviour
         // ビルのレベルがプレイヤーと同じか高いときに
         if (bill_level >= bill_Obsever.Player_Level_Manager.GetLevel())
         {
+            // ビルのレベルからプレイヤーのレベルを引いてビルを何回で壊せるか決める
             bill_crash_number = bill_level - bill_Obsever.Player_Level_Manager.GetLevel();
 
             if (bill_attack_count > bill_crash_number)

@@ -30,9 +30,9 @@ public class player_controller_move : MonoBehaviour
     // プレイヤーを回転させるためのコライダー
     private SphereCollider sphereCollider;
     // プレイヤーのレベルを管理するスクリプト
-    private Player_Level_Manager exp_manager_script;
-    int charge = 0;
-    [SerializeField] float a = 0;
+    private Player_Level_Manager player_level_manager_script;
+    // プレイヤーのレベルが上がっていくにつれて加える力
+    [SerializeField] float[] player_powor = new float[10];
 
 
     void Start()
@@ -40,7 +40,18 @@ public class player_controller_move : MonoBehaviour
         this.rb = GetComponent<Rigidbody>();
         this.sphereCollider = this.GetComponent<SphereCollider>();
         time_script = game_manager.GetComponent<Time_Manager>();
-        exp_manager_script = game_manager.GetComponent<Player_Level_Manager>();
+        player_level_manager_script = game_manager.GetComponent<Player_Level_Manager>();
+
+        player_powor[0] = 0.8f;
+        player_powor[1] = 1.2f;
+        player_powor[2] = 1.5f;
+        player_powor[3] = 1.7f;
+        player_powor[4] = 1.7f;
+        player_powor[5] = 1.7f;
+        player_powor[6] = 1.7f;
+        player_powor[7] = 1.7f;
+        player_powor[8] = 1.7f;
+        player_powor[9] = 1.7f;
     }
 
     void Update()
@@ -110,14 +121,6 @@ public class player_controller_move : MonoBehaviour
             // プレイヤーにかける力の変数を０に戻す
             start_direction *= 0;
 
-            charge = 0;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            if (charge < 100f)
-            {
-                charge++;
-            }
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -141,9 +144,8 @@ public class player_controller_move : MonoBehaviour
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
 
-            powor = powor * exp_manager_script.GetLevel();
-
-            //powor += charge;
+            // 引っ張りに応じた力にプレイヤーのレベルを追加
+            powor = powor * player_powor[player_level_manager_script.GetLevel() - 1];
 
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
@@ -177,17 +179,6 @@ public class player_controller_move : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
-
-        //if (speed >= 130f)
-        //{
-        //    // 徐々に減速していく
-        //    rb.velocity *= 0.98f;
-        //}
-        //else
-        //{
-        //    // 徐々に減速していく
-        //    rb.velocity *= 0.994f;
-        //}
     }
 
     /// <summary>
