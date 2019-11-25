@@ -19,4 +19,9 @@ public class PossessionCoin_Manager : MonoBehaviour
         possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
         get_coin_text.text = " " + possession_coin;
     }
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 30;
+    }
 }
