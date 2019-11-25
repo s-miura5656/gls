@@ -21,9 +21,6 @@ public class Game_Level_Manager : MonoBehaviour
 
     private void Awake()
     {
-        // フレームレートの固定
-        Application.targetFrameRate = 30;
-
         // 各クラスのセットアップ
         player_level_manager = gameObject.GetComponent<Player_Level_Manager>();
         camera_move = main_camera.GetComponent<camera_controller>();
