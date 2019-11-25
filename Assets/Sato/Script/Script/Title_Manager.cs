@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Title_Manager : MonoBehaviour
 {
+    [SerializeField]
+    private Vibrations_Manager script;
+
     private void Awake()
     {
         Application.targetFrameRate = 30;
@@ -25,6 +28,7 @@ public class Title_Manager : MonoBehaviour
     public void PlayGame() 
     {
         SceneManager.LoadScene("GameMain_1");
+        Variable_Manager.Instance.GetSetVibrate = script.status;
     }
 
     public void SetSkin() 
