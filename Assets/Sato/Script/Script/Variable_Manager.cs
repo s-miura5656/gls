@@ -79,4 +79,9 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         Load();
     }
+
+    private void Update()
+    {
+        Debug.Log(vibrate_state);
+    }
 }

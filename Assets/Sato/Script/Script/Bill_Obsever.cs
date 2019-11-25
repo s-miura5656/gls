@@ -7,7 +7,7 @@ public class Bill_Obsever : MonoBehaviour
     // プレイヤーのレベルを取得するためのオブジェクト取得
     [SerializeField] private GameObject game_manager = null;
     // データマネージャーの取得
-    [SerializeField] private GameObject data_manager = null;
+    private GameObject data_manager = null;
     // プレイヤーのレベルのスクリプトの取得
     [SerializeField] private Player_Level_Manager player_level_script = null;
     // ヒットストップのスクリプトを取得
@@ -21,7 +21,7 @@ public class Bill_Obsever : MonoBehaviour
     // ゲームの時間を管理しているスクリプト
     [SerializeField] private Time_Manager time_script = null;
     // ゲーム全体のデータを管理しているスクリプト
-    [SerializeField] private Variable_Manager variable_script;
+    private Variable_Manager variable_script;
     // ビルについている破壊に関するスクリプトを取得
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
     // 壊れるパーティクル
@@ -137,6 +137,9 @@ public class Bill_Obsever : MonoBehaviour
         coin_particle = hit_coin_obj.GetComponent<ParticleSystem>();
         default_coin_particle_scale = coin_particle.transform.localScale.x;
 
+        data_manager = GameObject.Find("Data_Manager");
+        variable_script = data_manager.GetComponent<Variable_Manager>();
+
         for (int i = 0; i < bill_Destroise.Length; i++)
         {
             bill_Destroise[i].Initialized(this);
@@ -146,7 +149,6 @@ public class Bill_Obsever : MonoBehaviour
     private void Reset()
     {
         game_manager = GameObject.Find("GameManager");
-        data_manager = GameObject.Find("Data_Manager");
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
@@ -154,7 +156,6 @@ public class Bill_Obsever : MonoBehaviour
         player_exp_script = game_manager.GetComponent<Player_Exp_Get>();
         player_se_script = game_manager.GetComponent<Player_SE_Manager>();
         time_script = game_manager.GetComponent<Time_Manager>();
-        variable_script = data_manager.GetComponent<Variable_Manager>();
     }
 
     public void SetCoinNumber(int coin) 

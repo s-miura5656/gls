@@ -14,7 +14,7 @@ public class Vibrations_Manager : MonoBehaviour
     private bool on_state = true;
     private bool off_state = false;
 
-    public bool status;
+    private bool status;
 
 
     void Awake()
@@ -65,6 +65,6 @@ public class Vibrations_Manager : MonoBehaviour
 
     }
 
-
+    public bool GetStatus() { return status; }
 
 }

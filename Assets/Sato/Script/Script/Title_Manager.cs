@@ -22,13 +22,14 @@ public class Title_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(script.GetStatus());
     }
 
     public void PlayGame() 
     {
+        Variable_Manager.Instance.GetSetVibrate = script.GetStatus();
+
         SceneManager.LoadScene("GameMain_1");
-        Variable_Manager.Instance.GetSetVibrate = script.status;
     }
 
     public void SetSkin() 
