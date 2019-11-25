@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 315248634}
   - component: {fileID: 315248633}
   - component: {fileID: 315248632}
+  - component: {fileID: 315248635}
   m_Layer: 5
   m_Name: Title_Back
   m_TagString: Untagged
@@ -366,7 +367,7 @@ RectTransform:
   m_GameObject: {fileID: 315248630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5999999, y: 1.5999999, z: 1.5999999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1616809948}
   m_RootOrder: 7
@@ -374,7 +375,7 @@ RectTransform:
   m_AnchorMin: {x: 0.20962499, y: 0.1834822}
   m_AnchorMax: {x: 0.794, y: 0.24851781}
   m_AnchoredPosition: {x: -5.674988, y: -0.5}
-  m_SizeDelta: {x: -283.25, y: -63.700012}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315248632
 MonoBehaviour:
@@ -471,6 +472,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315248630}
   m_CullTransparentMesh: 0
+--- !u!114 &315248635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315248630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &379557486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +1933,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 961731959684561943, guid: 559d2128fb89a8547a2c1043180854eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 961731959684561939, guid: 559d2128fb89a8547a2c1043180854eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2022,11 +2042,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 961731959684561943, guid: 559d2128fb89a8547a2c1043180854eb,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 559d2128fb89a8547a2c1043180854eb, type: 3}
