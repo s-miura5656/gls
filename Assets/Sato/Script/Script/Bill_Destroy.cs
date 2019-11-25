@@ -106,6 +106,7 @@ public class Bill_Destroy : MonoBehaviour
 
         if (bill_Obsever.Variable_Manager.GetSetVibrate)
         {
+            Debug.Log("振動してるよ(´ﾟдﾟ｀)");
             // 当たった時のバイブレーション
             Vibration.Vibrate(vibrate);
         }
