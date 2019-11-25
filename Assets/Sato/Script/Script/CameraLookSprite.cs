@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CameraLookSprite : MonoBehaviour
 {
 
     private Camera _camera = null;
     private GameObject player = null;
+    private GameObject debug_text = null;
+    private TextMeshProUGUI text = null;
+    private float obj_pos_y = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        debug_text = GameObject.Find("Debug");
+        text = debug_text.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -22,7 +27,19 @@ public class CameraLookSprite : MonoBehaviour
             return;
         }
 
-        transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        text.text = "" + gameObject.transform.position;
+
+        transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y + obj_pos_y, player.transform.position.z);
+        transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y + obj_pos_y, player.transform.position.z);
+        transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y + obj_pos_y, player.transform.position.z);
+
+
+        obj_pos_y += 0.1f;
+
+        if (transform.position.y >= player.transform.localScale.y + 10f)
+        {
+            Destroy(gameObject);
+        }
 
         transform.LookAt(_camera.transform);
     }

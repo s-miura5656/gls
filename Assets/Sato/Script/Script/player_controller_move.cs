@@ -32,7 +32,7 @@ public class player_controller_move : MonoBehaviour
     // プレイヤーのレベルを管理するスクリプト
     private Player_Level_Manager player_level_manager_script;
     // プレイヤーのレベルが上がっていくにつれて加える力
-    [SerializeField] float[] player_powor = new float[10];
+    private float[] player_powor = new float[10];
 
 
     void Start()
@@ -56,11 +56,8 @@ public class player_controller_move : MonoBehaviour
 
     void Update()
     {
-        // カウントダウン後動けるようになる
-        if (time_script.GetGamePlayState())
-        {
-            PullController();
-        }
+        
+        PullController();
 
         SpeedDown();
     }
@@ -150,7 +147,11 @@ public class player_controller_move : MonoBehaviour
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
 
-            rb.AddForce(new Vector3(start_direction.x * powor, 0.0f, start_direction.y * powor), ForceMode.Impulse);
+            // カウントダウン後動けるようになる
+            if (time_script.GetGamePlayState())
+            {
+                rb.AddForce(new Vector3(start_direction.x * powor, 0.0f, start_direction.y * powor), ForceMode.Impulse);
+            }
 
             // クォータービューの処理 ↓
             //float mouse_dir = Mathf.Atan2(end_pos.y - start_pos.y, end_pos.x - start_pos.x) * Mathf.Rad2Deg;

@@ -24,7 +24,7 @@ public class Time_Manager : MonoBehaviour
     // ゲームタイムのテキスト
     [SerializeField] private TextMeshProUGUI game_time_number_text = null;
     // カウントダウンのテキスト
-    [SerializeField]private TextMeshProUGUI end_count_down_text = null;
+    [SerializeField] private TextMeshProUGUI end_count_down_text = null;
     // 時間加算用
     [SerializeField] private GameObject player = null;
     // 時間加算時に表示するオブジェクト

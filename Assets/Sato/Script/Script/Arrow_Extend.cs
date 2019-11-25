@@ -39,8 +39,9 @@ public class Arrow_Extend : MonoBehaviour
     {
         if (time_script.GetGamePlayState())
         {
-            ArrowController();
         }
+
+        ArrowController();
     }
 
     private void ArrowController() 
