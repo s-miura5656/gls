@@ -21,14 +21,12 @@ public class player_controller_move : MonoBehaviour
     private float powor_up = 20f;
     // プレイヤーの速度
     private float speed;
-    // メインカメラのゲームオブジェクトを取得
-    [SerializeField] private GameObject main_camera;
     // ゲームマネージャーオブジェクトの取得
     [SerializeField] private GameObject game_manager;
     // ゲーム開始の時間を管理しているスクリプト
     private Time_Manager time_script;
     // プレイヤーを回転させるためのコライダー
-    private SphereCollider sphereCollider;
+    private SphereCollider sphere_collider;
     // プレイヤーのレベルを管理するスクリプト
     private Player_Level_Manager player_level_manager_script;
     // プレイヤーのレベルが上がっていくにつれて加える力
@@ -37,8 +35,8 @@ public class player_controller_move : MonoBehaviour
 
     void Start()
     {
-        this.rb = GetComponent<Rigidbody>();
-        this.sphereCollider = this.GetComponent<SphereCollider>();
+        rb = GetComponent<Rigidbody>();
+        sphere_collider = gameObject.GetComponent<SphereCollider>();
         time_script = game_manager.GetComponent<Time_Manager>();
         player_level_manager_script = game_manager.GetComponent<Player_Level_Manager>();
 
@@ -56,7 +54,6 @@ public class player_controller_move : MonoBehaviour
 
     void Update()
     {
-        
         PullController();
 
         SpeedDown();
@@ -73,7 +70,7 @@ public class player_controller_move : MonoBehaviour
     private void FowardRotation() 
     {
         // 位置の変化量
-        var translation = this.rb.velocity * Time.deltaTime;
+        var translation = rb.velocity * Time.deltaTime;
 
         // 移動した距離
         var distance = translation.magnitude;
@@ -85,7 +82,7 @@ public class player_controller_move : MonoBehaviour
         var scale = Mathf.Max(scaleXYZ.x, scaleXYZ.y, scaleXYZ.z);
 
         // 球が回転するべき量
-        var angle = distance / (this.sphereCollider.radius * scale);
+        var angle = distance / (sphere_collider.radius * scale);
 
         // 球が回転するべき軸
         var axis = Vector3.Cross(Vector3.up, translation).normalized;
@@ -94,8 +91,7 @@ public class player_controller_move : MonoBehaviour
         var deltaRotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, axis); 
 
         // 現在の回転からさらにdeltaRotationだけ回転させる
-        this.rb.MoveRotation(deltaRotation * this.rb.rotation);
-
+        rb.MoveRotation(deltaRotation * rb.rotation);
     }
 
     /// <summary>
@@ -152,17 +148,6 @@ public class player_controller_move : MonoBehaviour
             {
                 rb.AddForce(new Vector3(start_direction.x * powor, 0.0f, start_direction.y * powor), ForceMode.Impulse);
             }
-
-            // クォータービューの処理 ↓
-            //float mouse_dir = Mathf.Atan2(end_pos.y - start_pos.y, end_pos.x - start_pos.x) * Mathf.Rad2Deg;
-
-            //camera_foward = new Vector3(main_camera.transform.forward.x, 0f, main_camera.transform.forward.z).normalized;
-
-            //var axis = Vector3.Cross(Vector3.forward, camera_foward);
-
-            //var res = Quaternion.AngleAxis((mouse_dir + 90.0f), axis) * camera_foward * powor;
-
-            //rb.AddForce(res, ForceMode.Impulse);
         }
     }
 
@@ -194,7 +179,5 @@ public class player_controller_move : MonoBehaviour
     private void Reset()
     {
         game_manager = GameObject.Find("GameManager");
-
-        main_camera = GameObject.Find("MainCamera");
     }
 }

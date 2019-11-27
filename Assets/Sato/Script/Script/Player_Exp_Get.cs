@@ -66,18 +66,22 @@ public class Player_Exp_Get : MonoBehaviour
         Variable_Manager.Instance.GetSetCoin = get_coin;
     }
 
-
-    private void Reset()
-    {
-        now_coin = GameObject.Find("Coin").GetComponent<TMP_Text>();
-        time_script = gameObject.GetComponent<Time_Manager>();
-    }
-
     /// <summary>
     /// プレイヤーの経験値
     /// </summary>
     /// <returns></returns>
     public int GetExp() { return exp; }
 
+    /// <summary>
+    /// コインの取得
+    /// </summary>
+    /// <param name="bill_level"></param>
+    /// <returns></returns>
     public int GetCoin(int bill_level) { return coin[bill_level]; }
+
+    private void Reset()
+    {
+        now_coin = GameObject.Find("Coin").GetComponent<TMP_Text>();
+        time_script = gameObject.GetComponent<Time_Manager>();
+    }
 }
