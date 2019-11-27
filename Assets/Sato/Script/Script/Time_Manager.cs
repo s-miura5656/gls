@@ -28,16 +28,19 @@ public class Time_Manager : MonoBehaviour
     // 時間加算用
     [SerializeField] private GameObject player = null;
     // 時間加算時に表示するオブジェクト
-    [SerializeField] private GameObject time_plus = null;
+    [SerializeField] private GameObject time_plus_obj = null;
     // メインカメラの取得
     [SerializeField] private Camera main_camara = null;
+    // キャンバスの取得
+    [SerializeField] private GameObject canvas = null;
     // 増やす時間
     private float increase_time = 3f;
     // 操作等可能にするための変数
     private bool game_play_state = false;
     // スタートのローディングを管理するスクリプト
     [SerializeField] private Start_Loading loading_script = null;
-
+    // プラスするタイムを表示する時間
+    private float plus_time_count = 0;
     private Player_Level_Manager player_level_script = null;
 
 
@@ -60,6 +63,13 @@ public class Time_Manager : MonoBehaviour
         {
             CountDown();
             GameTime();
+        }
+
+        plus_time_count += Time.deltaTime;
+
+        if (plus_time_count >= 2f)
+        {
+            time_plus_obj.SetActive(false);
         }
     }
 
@@ -130,11 +140,8 @@ public class Time_Manager : MonoBehaviour
 
     public void TimeCountDownMainPlus() 
     {
-        GameObject one_copy = Instantiate(time_plus, new Vector3(player.transform.position.x, player.transform.position.y * 2, player.transform.position.z), transform.rotation);
-        one_copy.transform.localScale = new Vector3(1f, 1f, 1f) * (player_level_script.GetLevel());
-        CameraLookSprite camera_look = one_copy.GetComponent<CameraLookSprite>();
-        camera_look.SetCamera(main_camara);
-        camera_look.SetPlayerObj(player);
+        plus_time_count = 0f;
+        time_plus_obj.SetActive(true);
         time_count_down_main += increase_time;
     }
 
