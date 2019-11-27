@@ -6,27 +6,27 @@ public class CameraScreenSet : MonoBehaviour
 {
 
     //最初に作った画面のwidth
-    public float defaultWidth = 9.0f;
+    private float default_width = 9.0f;
 
     //最初に作った画面のheight
-    public float defaultHeight = 16.0f;
+    private float default_height = 16.0f;
 
     void Start()
     {
         //camera.mainを変数に格納
-        Camera mainCamera = Camera.main;
+        Camera main_camera = Camera.main;
 
         //最初に作った画面のアスペクト比 
-        float defaultAspect = defaultWidth / defaultHeight;
+        float default_aspect = default_width / default_height;
 
         //実際の画面のアスペクト比
-        float actualAspect = (float)Screen.width / (float)Screen.height;
+        float actual_aspect = (float)Screen.width / (float)Screen.height;
 
         //実機とunity画面の比率
-        float ratio = actualAspect / defaultAspect;
+        float ratio = actual_aspect / default_aspect;
 
         //サイズ調整
-        mainCamera.orthographicSize /= ratio;
+        main_camera.orthographicSize /= ratio;
 
     }
 }
