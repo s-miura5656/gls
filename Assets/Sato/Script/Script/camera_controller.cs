@@ -26,7 +26,9 @@ public class camera_controller : MonoBehaviour
     private Vector3 first_pos = new Vector3(0f, 30f, -30f);
     // レベルが上がるにつれて上がるカメラのZ軸の値
     private Vector3 level_up_camera_pos = new Vector3(0f, 20f, -20f);
-    
+
+    private Vector3 new_camera_pos = new Vector3(0f, 0f, 0f);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,7 @@ public class camera_controller : MonoBehaviour
 
         old_player_level = script.GetLevel();
 
-        main_cam.transform.position = game_level_script.GetPlayer().transform.position + first_pos;
+        gameObject.transform.position = game_level_script.GetPlayer().transform.position + first_pos;
     }
     
     void FixedUpdate()
@@ -68,13 +70,13 @@ public class camera_controller : MonoBehaviour
         camera_move_pos = new Vector3(game_level_script.GetPlayer().transform.position.x, transform.position.y, game_level_script.GetPlayer().transform.position.z) + new Vector3(offset.x, 0f, offset.z);
 
         // Lerp補完で滑らか移動
-        transform.position = Vector3.Lerp(camera_base_pos, camera_move_pos, camera_speed);
+        gameObject.transform.position = Vector3.Lerp(camera_base_pos, camera_move_pos, camera_speed);
     }
 
     private void ZoomCamera()
     {
-        main_cam.transform.position += level_up_camera_pos;
-        offset = transform.position - game_level_script.GetPlayer().transform.position;
+        gameObject.transform.position += level_up_camera_pos;
+        offset = gameObject.transform.position - game_level_script.GetPlayer().transform.position;
         old_player_level = script.GetLevel();
     }
 
