@@ -4,16 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player_Level_Manager : MonoBehaviour
-{
-    // 経験値ゲージ
-    [SerializeField] private Slider exp_slider = null;
-    // レベルアップのテキスト
-    [SerializeField] private GameObject level_up_text = null;
-    // データマネージャーの取得
-    private Game_Level_Manager game_level_script = null;
-    // プレイヤーの経験値を持っているスクリプト
-    private Player_Exp_Get player_get_exp_script;
-
+{ 
     // レベルアップに必要な経験値
     private int[] level_up_exp;
     // プレイヤーのレベル
@@ -24,12 +15,18 @@ public class Player_Level_Manager : MonoBehaviour
     private Vector3 player_scale = new Vector3(1f, 1f, 1f);
     // プレイヤーのスケールを割る数
     private float half = 2f;
-    
-    
-    
+    // プレイヤーのゲームオブジェクト
+    [SerializeField] private GameObject player = null;
+    // プレイヤーの経験値を持っているスクリプト
+    private Player_Exp_Get player_get_exp_script;
+    // 経験値ゲージ
+    [SerializeField] private Slider exp_slider = null;
+    // レベルアップのテキスト
+    [SerializeField] private GameObject level_up_text = null;
     // タイムを管理しているスクリプト
     private Time_Manager time_script;
-    
+    // ゲームマネージャーの取得
+    private Game_Level_Manager game_level_script = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,14 +45,16 @@ public class Player_Level_Manager : MonoBehaviour
 
         game_level_script = gameObject.GetComponent<Game_Level_Manager>();
 
+        player = game_level_script.GetPlayer();
+
         player_get_exp_script = gameObject.GetComponent<Player_Exp_Get>();
 
         time_script = gameObject.GetComponent<Time_Manager>();
 
-        game_level_script.GetPlayer().transform.localScale = player_scale;
+        player.transform.localScale = player_scale;
 
         // サイズ変更に合わせて高さを変更
-        game_level_script.GetPlayer().transform.position = new Vector3(transform.position.x, game_level_script.GetPlayer().transform.localScale.y / half, transform.position.z);
+        player.transform.position = new Vector3(transform.position.x, player.transform.localScale.y / half, transform.position.z);
 
         exp_slider.maxValue = level_up_exp[player_level - 1];
     }
@@ -91,7 +90,7 @@ public class Player_Level_Manager : MonoBehaviour
                     exp_slider.minValue = level_up_exp[player_level - 1];
 
                     player_level = player_level + 1;
-                    
+
                     time_script.TimeCountDownMainPlus();
 
                     level_up_text.SetActive(true);
@@ -105,11 +104,9 @@ public class Player_Level_Manager : MonoBehaviour
                     else
                     {
                         // サイズ変更
-                        game_level_script.GetPlayer().transform.localScale = player_scale * player_level;
+                        player.transform.localScale = player_scale * player_level;
                         // サイズ変更に合わせて高さを変更
-                        game_level_script.GetPlayer().transform.position = new Vector3(game_level_script.GetPlayer().transform.position.x, 
-                                                                                       game_level_script.GetPlayer().transform.localScale.y / half, 
-                                                                                       game_level_script.GetPlayer().transform.position.z);
+                        player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
                     }
                 }
             }

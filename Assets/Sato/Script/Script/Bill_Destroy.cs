@@ -17,8 +17,8 @@ public class Bill_Destroy : MonoBehaviour
     private int bill_attack_count = 0;
     // ビルオブザーバーの取得
     private Bill_Obsever bill_Obsever = null;
-    // ビルのレンダラー取得
-    private new Renderer renderer;
+    // ビルにレンダラー取得
+    private Renderer renderer;
     // ダメージ表現用
     private float damege = 0.5f;
 
@@ -50,7 +50,6 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player") return;
 
-        // ビルのダメージ表現（色変え）
         renderer.material.SetColor("_BaseColor", new Color(1, damege, damege, 1));
 
         // 現在の攻撃回数
@@ -112,9 +111,6 @@ public class Bill_Destroy : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// タグでビルのレベルを決める
-    /// </summary>
     private void BillLevelSerch()
     {
         if (transform.tag == "Bill_Level_0")
@@ -153,4 +149,6 @@ public class Bill_Destroy : MonoBehaviour
             exp_bill_level = 5;
         }
     }
+
+    public int GetBillLevel() { return bill_level; }
 }

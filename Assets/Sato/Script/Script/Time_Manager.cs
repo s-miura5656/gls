@@ -132,9 +132,6 @@ public class Time_Manager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// タイムの加算
-    /// </summary>
     public void TimeCountDownMainPlus() 
     {
         plus_time_count = 0f;
