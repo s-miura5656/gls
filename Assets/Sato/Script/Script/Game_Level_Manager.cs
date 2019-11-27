@@ -42,6 +42,4 @@ public class Game_Level_Manager : MonoBehaviour
     public GameObject GetPlayer() { return player; }
 
     public GameObject GetMainCamera() { return main_camera; }
-
-
 }
