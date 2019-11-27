@@ -5,47 +5,74 @@ using UnityEngine.UI;
 
 public class Start_Loading : MonoBehaviour
 {
-    // 透明化の速さ
-    private float speed = 0.01f;
-    // A値を操作するための変数
-    private float alpha = 1f;
-    // ゲームオブジェクトのカラーコンポーネント
-    private Color obj_color;
+    // アニメーションを映すRawimage
+    [SerializeField] private GameObject finger_raw_image = null;
+    // アニメーションに関係するオブジェクトを持っているオブジェクト
+    [SerializeField] private GameObject finger_anime_set;
+    // アニメーション用のボール
+    [SerializeField] private GameObject ball_fake = null;
+    // アニメーション用の指のSpriteオブジェクト
+    [SerializeField] private GameObject finger = null;
     // ゲームのカウントダウン開始
     private bool count_down_start = false;
-    // 時間のカウント
-    private float time_count = 0f;
+    // アニメーション用のボールの初期位置
+    private Vector3 default_ball_fake_pos = new Vector3(0f, 0f, 0f);
+    // アニメーション用の指の初期位置
+    private Vector3 default_finger_pos = new Vector3(0f, 0f, 0f);
+    // アニメーション中のステート
+    private int explanation_anime_state = 0;
+    // 指定回数アニメーションさせる
+    private int anime_count = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        obj_color = gameObject.GetComponent<Image>().color;    
+        default_ball_fake_pos = ball_fake.transform.position;
+        default_finger_pos = finger.transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        time_count += Time.deltaTime;
-
-        if (time_count >= 2f)
+        if (explanation_anime_state == 0)
         {
-            AlphaDown();
+            if (finger.transform.position.y >= 195f)
+            {
+                finger.transform.position -= new Vector3(0f, 0.1f, 0f);
+            }
+            else
+            {
+                explanation_anime_state = 1;
+            }
         }
-        
+
+        if (explanation_anime_state == 1)
+        {
+            if (ball_fake.transform.position.y <= 208f)
+            {
+                ball_fake.transform.position += new Vector3(0f, 0.1f, 0f);
+            }
+            else
+            {
+                ball_fake.transform.position = default_ball_fake_pos;
+                finger.transform.position = default_finger_pos;
+                explanation_anime_state = 0;
+                anime_count++;
+            }
+        }
+
+        if (anime_count > 2)
+        {
+            LodingEnd();
+        }
+
     }
 
-    private void AlphaDown() 
+    private void LodingEnd() 
     {
-        gameObject.GetComponent<Image>().color = new Color(obj_color.r, obj_color.g, obj_color.b, alpha);
-
-        //alpha -= Time.deltaTime / 2f;
-
-        //if (alpha <= 0)
-        //{
-        //    gameObject.SetActive(false);
-        //    count_down_start = true;
-        //}
-
         gameObject.SetActive(false);
+        finger_anime_set.SetActive(false);
+        finger_raw_image.SetActive(false);
         count_down_start = true;
     }
 

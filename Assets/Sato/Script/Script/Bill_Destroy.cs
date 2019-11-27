@@ -60,12 +60,12 @@ public class Bill_Destroy : MonoBehaviour
             damege -= 0.05f;
         }
 
-        // ビルにヒットした時に音を出す
-        bill_Obsever.Player_SE_Manager.PlayHitSound();
-
         // ビルのレベルがプレイヤーと同じか高いときに
         if (bill_level >= bill_Obsever.Player_Level_Manager.GetLevel())
         {
+            // ビルにヒットした時に音を出す
+            bill_Obsever.Player_SE_Manager.PlayHitSound();
+
             // ビルのレベルからプレイヤーのレベルを引いてビルを何回で壊せるか決める
             bill_crash_number = bill_level - bill_Obsever.Player_Level_Manager.GetLevel();
 
