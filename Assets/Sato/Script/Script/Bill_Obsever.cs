@@ -30,10 +30,13 @@ public class Bill_Obsever : MonoBehaviour
     private ParticleSystem[] hit_particle;
     // コインのパーティクル
     private ParticleSystem coin_particle;
-
+    // ビルが壊れるエフェクトの大きさの基準
     private float default_crash_particle_scale = 0.0f;
+    // ヒットエフェクトの大きさの基準
     private float default_hit_particle_scale = 0.0f;
+    // コインエフェクトの大きさの基準
     private float default_coin_particle_scale = 0.0f;
+    // コインの出る基準値
     private int coin_number = 1;
 
     public Player_Level_Manager Player_Level_Manager
@@ -78,6 +81,13 @@ public class Bill_Obsever : MonoBehaviour
         private set { variable_script = value; }
     }
 
+    /// <summary>
+    /// ビルの壊れるエフェクト
+    /// </summary>
+    /// <param name="billLevel"></param>
+    /// <param name="bill_pos"></param>
+    /// <param name="playerLevel"></param>
+    /// <param name="coin"></param>
     [System.Obsolete]
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
     {
