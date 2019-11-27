@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// プランナー用ゲームレベル調整クラス
+/// ゲームレベル調整クラス
 /// </summary>
 public class Game_Level_Manager : MonoBehaviour
 {
@@ -38,4 +38,10 @@ public class Game_Level_Manager : MonoBehaviour
         time_manager.SetIncreaseTime(gameLevelData.level_up_time_plus);
         bill_obsever.SetCoinNumber(gameLevelData.coin_number);
     }
+
+    public GameObject GetPlayer() { return player; }
+
+    public GameObject GetMainCamera() { return main_camera; }
+
+
 }

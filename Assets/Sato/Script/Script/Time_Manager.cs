@@ -7,53 +7,47 @@ using TMPro;
 
 public class Time_Manager : MonoBehaviour
 {
+    // スタートカウントダウンオブジェクト
+    [SerializeField] private GameObject start_count_down = null;
+    // カウントダウンテキスト
+    [SerializeField] private TextMeshProUGUI start_count = null;
+    // ゲームタイムのテキスト
+    [SerializeField] private TextMeshProUGUI game_time = null;
+    // カウントダウンのテキスト
+    [SerializeField] private TextMeshProUGUI end_count_down_text = null;
+    // 時間加算時に表示するオブジェクト
+    [SerializeField] private GameObject time_plus_obj = null;
+    // スタートのローディングを管理するスクリプト
+    [SerializeField] private Start_Loading loading_script = null;
+
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 4f;
+    // スタート
     private bool game_start_state = true;
     private int count_down_second = 0;
-    [SerializeField] private GameObject start_count_text = null;
-    // カウントダウンテキスト
-    [SerializeField] private TextMeshProUGUI start_count_down = null;
 
     // ゲーム終了時までの時間（ゲーム時間）
     private float time_count_down_main = 41f;
+    // ゲームが終わる時間
     private float end_time = -1f;
+    // ゲーム中かどうか
     private bool game_main_state = false;
     private int game_main_second = 0;
 
-    // ゲームタイムのテキスト
-    [SerializeField] private TextMeshProUGUI game_time_number_text = null;
-    // カウントダウンのテキスト
-    [SerializeField] private TextMeshProUGUI end_count_down_text = null;
-    // 時間加算用
-    [SerializeField] private GameObject player = null;
-    // 時間加算時に表示するオブジェクト
-    [SerializeField] private GameObject time_plus_obj = null;
-    // メインカメラの取得
-    [SerializeField] private Camera main_camara = null;
-    // キャンバスの取得
-    [SerializeField] private GameObject canvas = null;
     // 増やす時間
     private float increase_time = 3f;
     // 操作等可能にするための変数
     private bool game_play_state = false;
-    // スタートのローディングを管理するスクリプト
-    [SerializeField] private Start_Loading loading_script = null;
     // プラスするタイムを表示する時間
     private float plus_time_count = 0;
-    private Player_Level_Manager player_level_script = null;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player_level_script = gameObject.GetComponent<Player_Level_Manager>();
-
         game_main_second = (int)time_count_down_main - 1;
 
-        game_time_number_text.text = "" + game_main_second;
-
-
+        game_time.text = "" + game_main_second;
     }
 
     // Update is called once per frame
@@ -80,25 +74,25 @@ public class Time_Manager : MonoBehaviour
     {
         if (game_start_state)
         {
-            start_count_text.SetActive(true);
+            start_count_down.SetActive(true);
             time_count_down_start -= Time.deltaTime;
             count_down_second = (int)time_count_down_start;
 
             if (time_count_down_start > 1f)
             {
-                start_count_down.text = "" + count_down_second;    
+                start_count.text = "" + count_down_second;    
             }
             else if (time_count_down_start <= 1f)
             {
-                start_count_down.text = "START";
+                start_count.text = "START";
                 game_main_state = true;
                 game_play_state = true;
 
                 if (time_count_down_start < -1)
                 {
                     game_start_state = false;
-                    start_count_text.SetActive(false);
-                    game_time_number_text.gameObject.SetActive(true);
+                    start_count_down.SetActive(false);
+                    game_time.gameObject.SetActive(true);
                 }
             }
         }
@@ -116,12 +110,12 @@ public class Time_Manager : MonoBehaviour
 
             if (time_count_down_main > 6f)
             {
-                game_time_number_text.text = "" + game_main_second;                
+                game_time.text = "" + game_main_second;                
             }
             else if (time_count_down_main > 1f && time_count_down_main <= 6f)
             {
                 end_count_down_text.text = "" + game_main_second;
-                game_time_number_text.gameObject.SetActive(false);
+                game_time.gameObject.SetActive(false);
                 end_count_down_text.gameObject.SetActive(true);
 
             }
