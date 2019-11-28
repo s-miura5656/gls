@@ -149,6 +149,4 @@ public class Bill_Destroy : MonoBehaviour
             exp_bill_level = 5;
         }
     }
-
-    public int GetBillLevel() { return bill_level; }
 }
