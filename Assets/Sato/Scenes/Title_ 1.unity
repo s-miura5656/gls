@@ -1904,8 +1904,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1123822455}
-        m_MethodName: 
+      - m_Target: {fileID: 1123822456}
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2755,9 +2755,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1123822455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7059ae409cd40574d8d5a979fb4f1f01, type: 3}
+  m_Script: {fileID: 11500000, guid: 55853deb1ac381441862c38946eac6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  script: {fileID: 1272513256}
 --- !u!4 &1123822457
 Transform:
   m_ObjectHideFlags: 0

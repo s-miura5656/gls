@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Title_Manager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject data;
+    private Vibrations_Manager script;
 
     private int scene_number = 1;
     private int scene_number_min = 1;
