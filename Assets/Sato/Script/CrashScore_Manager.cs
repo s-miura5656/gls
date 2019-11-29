@@ -32,7 +32,7 @@ public class CrashScore_Manager : MonoBehaviour
     void Start()
     {
         crash_count = Variable_Manager.Instance.GetSetDestructionRate;
-        Crash_Manager();
+        //Crash_Manager();
         Crash_Bonusew();
 
     }
@@ -41,20 +41,20 @@ public class CrashScore_Manager : MonoBehaviour
     void Update()
     {
         crash_score_text = crash_score.GetComponent<Text>();
-        crash_score_text.text =score.ToString("f2") + " ％" ;
+        crash_score_text.text = crash_count.ToString("f2") + " ％" ;
     }
 
-    public void Crash_Manager()
-    {
-        score = 0;
-        // 数値の変更
-        DOTween.To(
-            () => score,          // 何を対象にするのか
-            num => score = num,   // 値の更新
-            crash_count,           // 最終的な値
-            2.0f                  // アニメーション時間
-        ).SetEase(Ease.OutCubic);
-    }
+    //public void Crash_Manager()
+    //{
+    //    score = 0;
+    //    // 数値の変更
+    //    DOTween.To(
+    //        () => score,          // 何を対象にするのか
+    //        num => score = num,   // 値の更新
+    //        crash_count,           // 最終的な値
+    //        2.0f                  // アニメーション時間
+    //    ).SetEase(Ease.OutCubic);
+    //}
 
 
     public void Crash_Bonusew()

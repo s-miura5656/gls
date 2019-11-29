@@ -8,12 +8,16 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private GameObject crash_score;
     private GameObject coincount;
-    public int coin_score;
+    public float coin_score;
     private Text coin_score_text;
     public int score = 0;
     private Variable_Manager coin_script;
 
+    private int time = 0;
 
+    
+
+        
     private GameObject Date_Object;
     [SerializeField]
     private Text Date_text;
@@ -26,46 +30,75 @@ public class Coin_Manager : MonoBehaviour
     private CrashScore_Manager CrashScore_Manager;
     private float crash_score_rate;
     private int crash_rate;
+    private float bonus_score;
 
     private bool score_count = false;
+
+    [SerializeField]
+    private Text bouns_text;
+
+    private float bouns;
+
+    [SerializeField]
+    private Text total_text;
+
 
 
     void Start()
     {
+        //獲得したコイン枚数
+        coin_score = Variable_Manager.Instance.GetSetCoin;
+        //破壊率
+        crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
+        
+        coin_score_text = crash_score.GetComponent<Text>();
+        coin_score_text.text = coin_score.ToString();
+        CrashRate_Get();
 
-        coincount = GameObject.Find("Data_Manager");
-        coin_script = coincount.GetComponent<Variable_Manager>();
-        coin_score = coin_script.GetSetCoin;
-        crash_score_rate = CrashScore_Manager.crash_count;
+        bouns_text.text = bouns.ToString();
 
-        Coinget_Manager();
+        //coincount = GameObject.Find("Data_Manager");
+        // coin_score = coin_script.GetSetCoin;
+        //crash_score_rate = CrashScore_Manager.crash_count;  //0.53
+
+        // CrashRate_Get();
     }
 
     // Update is called once per frame
     void Update()
     {
-        coin_score_text = crash_score.GetComponent<Text>();
-        coin_score_text.text = score.ToString();
+        
+        
 
-        if(score_count == true)
+        time++;
+        if (time > 120)
         {
-            CrashRate_Get();
+            
+            total_text.text = score.ToString("f0");
+            //Coin_move();
         }
+        
+
+        //if (score_count == true)
+        //{
+
+        //    CrashRate_Get();
+        //}
     }
 
     public void Coinget_Manager()
     {
-        score = 0;
-        // 数値の変更
-        DOTween.To(
-            () => score,          // 何を対象にするのか
-            num => score = num,   // 値の更新
-            coin_score,                  // 最終的な値
-            2.0f                  // アニメーション時間
-        ).SetEase(Ease.OutCubic);
+        //score = 0;
+        //// 数値の変更
+        //DOTween.To(
+        //    () => score,          // 何を対象にするのか
+        //    num => score = num,   // 値の更新
+        //    coin_score,                  // 最終的な値
+        //    2.0f                  // アニメーション時間
+        //).SetEase(Ease.OutCubic);
 
 
-        score_count = true;
+        //score_count = true;
     }
 
     //public int GetSetScore
@@ -79,77 +112,91 @@ public class Coin_Manager : MonoBehaviour
 
     public void CrashRate_Get()
     {
-        //if (crash_score_rate >= 0 && crash_score_rate > 10)
-        //{
-        //    coin_score += 0;
-        //}
+        if (crash_score_rate >= 100)
+        {
+            bonus_score = coin_score * 2.0f;
+            bouns = 2.0f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 90)
+        {
+            bonus_score = coin_score * 1.9f;
+            bouns = 1.9f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 80)
+        {
+            bonus_score = coin_score * 1.8f;
+            bouns = 1.8f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 70)
+        {
+            bonus_score = coin_score * 1.7f;
+            bouns = 1.7f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 60)
+        {
+            bonus_score = coin_score * 1.6f;
+            bouns = 1.6f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 50)
+        {
+            bonus_score = coin_score * 1.5f;
+            bouns = 1.5f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 40)
+        {
+            bonus_score = coin_score * 1.4f;
+            bouns = 1.4f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 30)
+        {
+            bonus_score = coin_score * 1.3f;
+            bouns = 1.3f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 20)
+        {
+            bonus_score = coin_score * 1.2f;
+            bouns = 1.2f;
+            Coin_move();
+        }
+        else if (crash_score_rate >= 10)
+        {
+            bonus_score = coin_score * 1.1f;
+            bouns = 1.1f;
+            Coin_move();
+        }
+        else
+        {
+            bonus_score = coin_score * 1.0f;
+            bouns = 1.0f;
+            Coin_move();
+        }
+    }
 
-        //else if (crash_score_rate >= 10 && crash_score_rate > 20)
-        //{
-        //    coin_score += 10;
-        //}
+    private void Coin_move()
+    {
+        int cs = (int)bonus_score;
 
-        //else if (crash_score_rate >= 20 && crash_score_rate > 30)
-        //{
-        //    coin_score += 20;
-        //}
-
-        //else if (crash_score_rate >= 30 && crash_score_rate > 40)
-        //{
-        //    coin_score += 50;
-        //}
-
-        //else if (crash_score_rate >= 40 && crash_score_rate > 50)
-        //{
-        //    coin_score += 75;
-        //}
-
-        //else if (crash_score_rate >= 50 && crash_score_rate > 60)
-        //{
-        //    coin_score += 100;
-        //}
-
-        //else if (crash_score_rate >= 60 && crash_score_rate > 70)
-        //{
-        //    coin_score += 150;
-        //}
-
-        //else if (crash_score_rate >= 70 && crash_score_rate > 80)
-        //{
-        //    coin_score += 250;
-        //}
-
-        //else if (crash_score_rate >= 80 && crash_score_rate > 90)
-        //{
-        //    coin_score += 500;
-        //}
-
-        //else if (crash_score_rate >= 90 && crash_score_rate < 100)
-        //{
-        //    coin_score += 800;
-        //}
-
-        //else if (crash_score_rate == 100)
-        //{
-        //    coin_score += 1000;
-        //}
-
-
-        //DOTween.To(
-        //    () => score,          // 何を対象にするのか
-        //    num => score = num,   // 値の更新
-        //    coin_score,                  // 最終的な値
-        //    5.0f                  // アニメーション時間
-        //).SetEase(Ease.OutCubic);
-
-
+        DOTween.To(
+            () => score,          // 何を対象にするのか
+            num => score = num,   // 値の更新
+           cs,                  // 最終的な値
+            5.0f                  // アニメーション時間
+        ).SetEase(Ease.OutCubic);
     }
 
 
     public void Calculation_Manager()
     {
 
-        after_score = coin_score * 2;
+        after_score = (int)coin_score * 2;
         AftterGet_Manager();
         CrashRate_Get();
 
