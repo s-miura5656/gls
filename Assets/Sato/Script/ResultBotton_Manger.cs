@@ -28,6 +28,9 @@ public class ResultBotton_Manger : MonoBehaviour
     private ShowAdCallbacks showAdRewardCallbacks = new ShowAdCallbacks();
     private ShowAdCallbacks showAdInterstitialCallbacks = new ShowAdCallbacks();
 
+    [SerializeField]
+    private Coin_Manager script;
+
     void Start()
     {
         // ShowAdCallbacksにコールバックを設定
@@ -69,6 +72,18 @@ public class ResultBotton_Manger : MonoBehaviour
 
     private void InterstitialResult(ShowResult showResult)
     {
+
+        if (script.after_score > script.bouns)
+        {
+            Variable_Manager.Instance.GetSetPossessionCoin += script.after_score;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+        }
+
+        else if(script.score <= script.bouns)
+        {
+            Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bouns;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+        }
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
 
