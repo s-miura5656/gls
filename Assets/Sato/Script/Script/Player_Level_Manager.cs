@@ -30,22 +30,25 @@ public class Player_Level_Manager : MonoBehaviour
     private Vector3 player_scale = new Vector3(1f, 1f, 1f);
     // プレイヤーのスケールを割る数
     private float half = 2f;
-    
+
+    [SerializeField] Text text = null;
+
+
     // Start is called before the first frame update
     void Start()
     {
         level_up_exp = new int[player_level_max - 1];
 
         // レベルアップに必要な経験値の初期化
-        level_up_exp[0] = 20;
-        level_up_exp[1] = 60;
-        level_up_exp[2] = 560;
-        level_up_exp[3] = 1560;
-        level_up_exp[4] = 4560;
-        level_up_exp[5] = 20000;
-        level_up_exp[6] = 30000;
-        level_up_exp[7] = 40000;
-        level_up_exp[8] = 50000;
+        level_up_exp[0] = 25;
+        level_up_exp[1] = level_up_exp[0] + 100;
+        level_up_exp[2] = level_up_exp[1] + 500;
+        level_up_exp[3] = level_up_exp[2] + 1500;
+        level_up_exp[4] = level_up_exp[3] + 2000;
+        level_up_exp[5] = level_up_exp[4] + 2500;
+        level_up_exp[6] = level_up_exp[5] + 3000;
+        level_up_exp[7] = level_up_exp[6] + 3500;
+        level_up_exp[8] = level_up_exp[7] + 4000;
 
         player = game_level_script.GetPlayer();
         
@@ -60,6 +63,8 @@ public class Player_Level_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        text.text = "" + player_level;
+
         if (time_script.GetGamePlayState())
         {
             PlayerLevelUpPhase();
