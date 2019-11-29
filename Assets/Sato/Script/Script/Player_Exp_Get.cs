@@ -19,9 +19,7 @@ public class Player_Exp_Get : MonoBehaviour
     private Player_Level_Manager player_level = null;
     // コイン取得数表示のテキスト
     [SerializeField] private TMP_Text now_coin = null;
-    // 時間を管理しているスクリプト取得
-    private Time_Manager time_script = null;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +80,5 @@ public class Player_Exp_Get : MonoBehaviour
     private void Reset()
     {
         now_coin = GameObject.Find("Coin").GetComponent<TMP_Text>();
-        time_script = gameObject.GetComponent<Time_Manager>();
     }
 }
