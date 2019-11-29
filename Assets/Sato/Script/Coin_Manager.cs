@@ -22,7 +22,7 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private Text Date_text;
     private int before_score;
-    public int after_score;
+    public int after_score = 0;
     [SerializeField]
     private GameObject text_date;
 
@@ -30,7 +30,7 @@ public class Coin_Manager : MonoBehaviour
     private CrashScore_Manager CrashScore_Manager;
     private float crash_score_rate;
     private int crash_rate;
-    private float bonus_score;
+    public float bonus_score;
 
     private bool score_count = false;
 

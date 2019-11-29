@@ -107,6 +107,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.Save();
     }
 
+
+
     public void Load()
     {
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
