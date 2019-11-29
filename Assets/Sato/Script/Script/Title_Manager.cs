@@ -8,7 +8,9 @@ public class Title_Manager : MonoBehaviour
 {
     [SerializeField]
     private Vibrations_Manager script;
-
+    private int scene_number = 1;
+    private int scene_number_min = 1;
+    private int scene_number_max = 3; 
     private void Awake()
     {
         Application.targetFrameRate = 30;
@@ -22,14 +24,17 @@ public class Title_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(script.GetStatus());
+        //scene_number = Random.Range(scene_number_min, scene_number_max);
+        //Debug.Log(scene_number);
     }
 
     public void PlayGame() 
     {
         Variable_Manager.Instance.GetSetVibrate = script.GetStatus();
 
-        SceneManager.LoadScene("GameMain_1");
+        scene_number = Random.Range(scene_number_min, scene_number_max);
+
+        SceneManager.LoadScene("GameMain_" + scene_number);
     }
 
     public void SetSkin() 
