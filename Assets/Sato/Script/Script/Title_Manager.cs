@@ -32,9 +32,11 @@ public class Title_Manager : MonoBehaviour
     {
         Variable_Manager.Instance.GetSetVibrate = script.GetStatus();
 
-        scene_number = Random.Range(scene_number_min, scene_number_max);
+        //scene_number = Random.Range(scene_number_min, scene_number_max);
 
-        SceneManager.LoadScene("GameMain_" + scene_number);
+        //SceneManager.LoadScene("GameMain_" + scene_number);
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameMain_1");
     }
 
     public void SetSkin() 

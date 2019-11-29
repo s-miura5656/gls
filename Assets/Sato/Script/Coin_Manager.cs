@@ -15,9 +15,9 @@ public class Coin_Manager : MonoBehaviour
 
     private int time = 0;
 
-    
 
-        
+
+
     private GameObject Date_Object;
     [SerializeField]
     private Text Date_text;
@@ -50,7 +50,7 @@ public class Coin_Manager : MonoBehaviour
         coin_score = Variable_Manager.Instance.GetSetCoin;
         //破壊率
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
-        
+
         coin_score_text = crash_score.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
         CrashRate_Get();
@@ -67,17 +67,18 @@ public class Coin_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+
+
 
         time++;
-        if (time > 120)
+        if (time > 60)
         {
-            
-            total_text.text = score.ToString("f0");
-            //Coin_move();
+
+            Coin_move();
+            total_text.text = " " + bonus_score;
+
         }
-        
+
 
         //if (score_count == true)
         //{
@@ -116,79 +117,79 @@ public class Coin_Manager : MonoBehaviour
         {
             bonus_score = coin_score * 2.0f;
             bouns = 2.0f;
-            Coin_move();
+            //Coin_move();
         }
         else if (crash_score_rate >= 90)
         {
             bonus_score = coin_score * 1.9f;
             bouns = 1.9f;
-            Coin_move();
+            // Coin_move();
         }
         else if (crash_score_rate >= 80)
         {
             bonus_score = coin_score * 1.8f;
             bouns = 1.8f;
-            Coin_move();
+            // Coin_move();
         }
         else if (crash_score_rate >= 70)
         {
             bonus_score = coin_score * 1.7f;
             bouns = 1.7f;
-            Coin_move();
+            //  Coin_move();
         }
         else if (crash_score_rate >= 60)
         {
             bonus_score = coin_score * 1.6f;
             bouns = 1.6f;
-            Coin_move();
+            // Coin_move();
         }
         else if (crash_score_rate >= 50)
         {
             bonus_score = coin_score * 1.5f;
             bouns = 1.5f;
-            Coin_move();
+            // Coin_move();
         }
         else if (crash_score_rate >= 40)
         {
             bonus_score = coin_score * 1.4f;
             bouns = 1.4f;
-            Coin_move();
+            // Coin_move();
         }
         else if (crash_score_rate >= 30)
         {
             bonus_score = coin_score * 1.3f;
             bouns = 1.3f;
-            Coin_move();
+            // Coin_move();
         }
         else if (crash_score_rate >= 20)
         {
             bonus_score = coin_score * 1.2f;
             bouns = 1.2f;
-            Coin_move();
+            //  Coin_move();
         }
         else if (crash_score_rate >= 10)
         {
             bonus_score = coin_score * 1.1f;
             bouns = 1.1f;
-            Coin_move();
+            // Coin_move();
         }
         else
         {
             bonus_score = coin_score * 1.0f;
             bouns = 1.0f;
-            Coin_move();
+            // Coin_move();
         }
     }
 
     private void Coin_move()
     {
-        int cs = (int)bonus_score;
+        int cs = (int)Mathf.Floor(bonus_score);
 
         DOTween.To(
-            () => score,          // 何を対象にするのか
-            num => score = num,   // 値の更新
+            () => bonus_score,          // 何を対象にするのか
+            num => bonus_score = num,   // 値の更新
            cs,                  // 最終的な値
-            5.0f                  // アニメーション時間
+            0.0f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
     }
 
@@ -196,9 +197,9 @@ public class Coin_Manager : MonoBehaviour
     public void Calculation_Manager()
     {
 
-        after_score = (int)coin_score * 2;
+        after_score = (int)bonus_score * 2;
         AftterGet_Manager();
-        CrashRate_Get();
+        // CrashRate_Get();
 
 
     }
@@ -208,12 +209,30 @@ public class Coin_Manager : MonoBehaviour
         //   before_score = before_score;
         // 数値の変更
         DOTween.To(
-            () => score,          // 何を対象にするのか
-            num => score = num,   // 値の更新
-            after_score,                  // 最終的な値
-            5.0f                  // アニメーション時間
+            () => bonus_score,          // 何を対象にするのか
+            num => bonus_score = num,   // 値の更新
+            after_score,          // 最終的な値
+            0.0f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
+
+        total_text.text = "" + score;
     }
+
+    private void FixedUpdate()
+    {
+        time++;
+        if (time > 60)
+        {
+            Coin_move();
+            total_text.text = "" + score;
+        }
+    }
+
+    public void test_botton()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+    }
+
 }
 
 
