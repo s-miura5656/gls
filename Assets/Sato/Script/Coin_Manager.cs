@@ -37,7 +37,7 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private Text bouns_text;
 
-    private float bouns;
+    public float bouns;
 
     [SerializeField]
     private Text total_text;

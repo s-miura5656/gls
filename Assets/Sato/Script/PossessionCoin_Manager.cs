@@ -66,7 +66,7 @@ public class PossessionCoin_Manager : MonoBehaviour
     void Start()
     {
         possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
-        possession_coin = 10000;
+        //possession_coin = 10000;
         get_coin_text.text = " " + possession_coin;
         skin2_ID = Variable_Manager.Instance.Skin2_Open;
         skin3_ID = Variable_Manager.Instance.Skin3_Open;

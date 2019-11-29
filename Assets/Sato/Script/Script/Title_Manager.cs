@@ -8,6 +8,7 @@ public class Title_Manager : MonoBehaviour
 {
     [SerializeField]
     private Vibrations_Manager script;
+
     private int scene_number = 1;
     private int scene_number_min = 1;
     private int scene_number_max = 3; 
