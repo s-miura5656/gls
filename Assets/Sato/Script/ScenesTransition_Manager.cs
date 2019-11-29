@@ -13,17 +13,17 @@ public class ScenesTransition_Manager : MonoBehaviour
 
     public void MainManu()
     {
-        if (after_score.after_score == 0)
-        {
-            coin_score = after_score.coin_score;
-        }
+        //if (after_score.after_score == 0)
+        //{
+        //    coin_score = after_score.coin_score;
+        //}
 
-        else
-        {
-            coin_score = after_score.after_score;
-        }
+        //else
+        //{
+        //    coin_score = after_score.after_score;
+        //}
 
-        Variable_Manager.Instance.GetSetPossessionCoin += coin_score;
-        SceneManager.LoadScene("Title_ 1");
+        //Variable_Manager.Instance.GetSetPossessionCoin += coin_score;
+        //SceneManager.LoadScene("Title_ 1");
     }
 }
