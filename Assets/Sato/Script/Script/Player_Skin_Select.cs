@@ -25,7 +25,7 @@ public class Player_Skin_Select : MonoBehaviour
     void Start()
     {
         GameObject childObject = Instantiate(players[player_skin_number],transform.position,transform.rotation) as GameObject;
-        childObject.transform.localScale = new Vector3(4f, 4f, 4f);
+        childObject.transform.localScale *= gameObject.transform.localScale.y;
         childObject.transform.parent = this.transform;
     }
 }

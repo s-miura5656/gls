@@ -110,17 +110,29 @@ public class Time_Manager : MonoBehaviour
 
             if (time_count_down_main > 6f)
             {
-                game_time.text = "" + game_main_second;                
+                game_time.text = "" + game_main_second;
+
+                if (end_count_down_text.gameObject.activeSelf != false)
+                {
+                    end_count_down_text.gameObject.SetActive(false);
+                }
             }
             else if (time_count_down_main > 1f && time_count_down_main <= 6f)
             {
+                game_time.text = "" + game_main_second;
                 end_count_down_text.text = "" + game_main_second;
-                game_time.gameObject.SetActive(false);
+                //game_time.gameObject.SetActive(false);
+
                 end_count_down_text.gameObject.SetActive(true);
 
             }
             else if (time_count_down_main <= 1f && time_count_down_main > end_time)
             {
+                if (game_main_second > -1)
+                {
+                    game_time.text = "" + game_main_second;
+                }
+
                 end_count_down_text.text = "TIME UP";
                 game_play_state = false;
             }

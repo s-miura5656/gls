@@ -97,17 +97,10 @@ public class Player_Level_Manager : MonoBehaviour
 
                     exp_slider.maxValue = level_up_exp[player_level - 1];
 
-                    if (player_level > player_level_max)
-                    {
-                        player_level = player_level_max;
-                    }
-                    else
-                    {
-                        // サイズ変更
-                        player.transform.localScale = player_scale * player_level;
-                        // サイズ変更に合わせて高さを変更
-                        player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
-                    }
+                    // サイズ変更
+                    player.transform.localScale = player_scale * player_level;
+                    // サイズ変更に合わせて高さを変更
+                    player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
                 }
             }
         }
