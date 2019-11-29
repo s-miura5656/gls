@@ -46,9 +46,9 @@ public class Player_Level_Manager : MonoBehaviour
         level_up_exp[3] = level_up_exp[2] + 1500;
         level_up_exp[4] = level_up_exp[3] + 2000;
         level_up_exp[5] = level_up_exp[4] + 2500;
-        level_up_exp[6] = level_up_exp[5] + 3000;
-        level_up_exp[7] = level_up_exp[6] + 3500;
-        level_up_exp[8] = level_up_exp[7] + 4000;
+        level_up_exp[6] = level_up_exp[5] + 3500;
+        level_up_exp[7] = level_up_exp[6] + 4500;
+        level_up_exp[8] = level_up_exp[7] + 6000;
 
         player = game_level_script.GetPlayer();
         
