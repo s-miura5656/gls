@@ -66,7 +66,7 @@ public class PossessionCoin_Manager : MonoBehaviour
     void Start()
     {
         possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
-        //possession_coin = 10000;
+        possession_coin = 10000;
         get_coin_text.text = " " + possession_coin;
         skin2_ID = Variable_Manager.Instance.Skin2_Open;
         skin3_ID = Variable_Manager.Instance.Skin3_Open;
@@ -74,39 +74,62 @@ public class PossessionCoin_Manager : MonoBehaviour
         skin5_ID = Variable_Manager.Instance.Skin5_Open;
         skin6_ID = Variable_Manager.Instance.Skin6_Open;
 
+        if(skin2_ID == false)
+        {
+            botton_2_image.SetActive(false);
+            botton_2_text.text = "-";
+        }
 
+        if (skin3_ID == false)
+        {
+            botton_3_image.SetActive(false);
+            botton_3_text.text = "-";
+        }
 
+        if (skin4_ID == false)
+        {
+            botton_4_image.SetActive(false);
+            botton_4_text.text = "-";
+        }
+
+        if (skin5_ID == false)
+        {
+            botton_5_image.SetActive(false);
+            botton_5_text.text = "-";
+        }
+
+        if (skin6_ID == false)
+        {
+            botton_6_image.SetActive(false);
+            botton_6_text.text = "-";
+        }
 
     }
 
-    private void Awake()
-    {
-        Application.targetFrameRate = 30;
-    }
+    
 
 
     public void Skin_open1000_2()
     {
 
-        if (skin2_ID)
+        if(skin2_ID)
         {
-            if (possession_coin >= 1000)
+            if (botton_2_image.activeInHierarchy == true)
             {
-                if (botton_2_image.activeInHierarchy == true)
+                if (possession_coin >= 1000)
                 {
                     skin_after_coin = possession_coin - 1000;
                     botton_2_image.SetActive(false);
                     botton_2_text.text = "-";
                     get_coin_text.text = " " + skin_after_coin;
                     possession_coin = skin_after_coin;
+                    Variable_Manager.Instance.Skin2_Open = false;
                 }
             }
         }
 
         else
-            botton_2_text.text = "-";
-        
-
+            botton_3_text.text = "-";
     }
 
     public void Skin_open1000_3()
@@ -122,6 +145,7 @@ public class PossessionCoin_Manager : MonoBehaviour
                     botton_3_text.text = "-";
                     get_coin_text.text = " " + skin_after_coin;
                     possession_coin = skin_after_coin;
+                    Variable_Manager.Instance.Skin3_Open = false;
                 }
             }
         }
@@ -146,6 +170,7 @@ public class PossessionCoin_Manager : MonoBehaviour
                     botton_4_text.text = "-";
                     get_coin_text.text = " " + skin_after_coin;
                     possession_coin = skin_after_coin;
+                    Variable_Manager.Instance.Skin4_Open = false;
                 }
             }
         }
@@ -168,6 +193,7 @@ public class PossessionCoin_Manager : MonoBehaviour
                     botton_5_text.text = "-";
                     get_coin_text.text = " " + skin_after_coin;
                     possession_coin = skin_after_coin;
+                    Variable_Manager.Instance.Skin5_Open = false;
                 }
             }
         }
@@ -193,6 +219,7 @@ public class PossessionCoin_Manager : MonoBehaviour
                     botton_6_text.text = "-";
                     get_coin_text.text = " " + skin_after_coin;
                     possession_coin = skin_after_coin;
+                    Variable_Manager.Instance.Skin6_Open = false;
                 }
             }
         }
@@ -200,6 +227,8 @@ public class PossessionCoin_Manager : MonoBehaviour
         else
             botton_6_text.text = "-";
     }
+
+
 
 
 }

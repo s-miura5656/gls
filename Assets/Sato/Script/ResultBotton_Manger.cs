@@ -73,15 +73,15 @@ public class ResultBotton_Manger : MonoBehaviour
     private void InterstitialResult(ShowResult showResult)
     {
 
-        if (script.after_score > script.bouns)
+        if (script.after_score != 0)
         {
             Variable_Manager.Instance.GetSetPossessionCoin += script.after_score;
             UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
         }
 
-        else if(script.score <= script.bouns)
+        else 
         {
-            Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bouns;
+            Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bonus_score;
             UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
         }
 
