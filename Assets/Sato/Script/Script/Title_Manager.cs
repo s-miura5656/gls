@@ -36,7 +36,7 @@ public class Title_Manager : MonoBehaviour
 
         //SceneManager.LoadScene("GameMain_" + scene_number);
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameMain_1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameMain_2");
     }
 
     public void SetSkin() 
