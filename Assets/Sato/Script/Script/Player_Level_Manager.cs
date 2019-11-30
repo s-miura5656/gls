@@ -19,6 +19,8 @@ public class Player_Level_Manager : MonoBehaviour
     [SerializeField] private Game_Level_Manager game_level_script = null;
     // ビルレベルに合わせてコライダーのisTriggerを付けはずし管理する
     [SerializeField] private Bill_Level_manager bill_level_script = null;
+    // レベルアップエフェクト
+    [SerializeField] private ParticleSystem level_up_effect = null;
 
     // レベルアップに必要な経験値
     private int[] level_up_exp;
@@ -83,38 +85,38 @@ public class Player_Level_Manager : MonoBehaviour
     /// </summary>
     private void PlayerLevelUpPhase() 
     {
-        if (player_level < player_level_max)
+        if (player_level >= player_level_max) return;
+
+        for (int i = player_level - 1; i < level_up_exp.Length; i++)
         {
-            for (int i = player_level - 1; i < level_up_exp.Length; i++)
+            // 現在の経験値が指定の経験値と同じか超えるかした場合レベルアップ
+            if (player_get_exp_script.GetExp() < level_up_exp[i]) continue;
+
+            exp_slider.minValue = level_up_exp[player_level - 1];
+
+            player_level = player_level + 1;
+
+            time_script.TimeCountDownMainPlus();
+
+            bill_level_script.BillPossible(player_level);
+
+            level_up_text.SetActive(true);
+
+            level_up_effect.Play();
+
+            if (player_level >= player_level_max)
             {
-                // 現在の経験値が指定の経験値と同じか超えるかした場合レベルアップ
-                if (player_get_exp_script.GetExp() >= level_up_exp[i])
-                {
-                    exp_slider.minValue = level_up_exp[player_level - 1];
-
-                    player_level = player_level + 1;
-
-                    time_script.TimeCountDownMainPlus();
-
-                    bill_level_script.BillPossible(player_level);
-
-                    level_up_text.SetActive(true);
-
-                    if (player_level >= player_level_max)
-                    {
-                        player_level = player_level_max;
-                    }
-                    else
-                    {
-                        exp_slider.maxValue = level_up_exp[player_level - 1];
-                    }
-
-                    // サイズ変更
-                    player.transform.localScale = player_scale * player_level;
-                    // サイズ変更に合わせて高さを変更
-                    player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
-                }
+                player_level = player_level_max;
             }
+            else
+            {
+                exp_slider.maxValue = level_up_exp[player_level - 1];
+            }
+
+            // サイズ変更
+            player.transform.localScale = player_scale * player_level;
+            // サイズ変更に合わせて高さを変更
+            player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
         }
     }
 
@@ -147,6 +149,8 @@ public class Player_Level_Manager : MonoBehaviour
         player = GameObject.Find("Player");
 
         level_up_text = GameObject.Find("Level_Up");
+
+        level_up_effect = player.GetComponent<ParticleSystem>();
 
         exp_slider = GameObject.Find("ExpGage").GetComponent<Slider>();
 
