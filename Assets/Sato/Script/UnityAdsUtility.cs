@@ -69,4 +69,9 @@ public class UnityAdsUtility : SingletonMonoBehaviour<UnityAdsUtility>
         // インタースティシャル広告再生
         unityAdsInterstitial.ShowAds(showAdCallbacks);
     }
+
+    public bool IsReadyInterstitialVideo()
+    {
+        return unityAdsInterstitial.IsReadyInterstitial();
+    }
 }

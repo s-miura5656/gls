@@ -38,7 +38,7 @@ public class ResultBotton_Manger : MonoBehaviour
         showAdInterstitialCallbacks.finishCallback += InterstitialResult;
 
         rewardButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdRewardCallbacks));
-        interstitialButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowInterstitialVideo(showAdInterstitialCallbacks));
+        interstitialButton.onClick.AddListener(() => ShowInterstitial());
     }
 
     private void OnDestroy()
@@ -46,6 +46,31 @@ public class ResultBotton_Manger : MonoBehaviour
         // ShowAdCallbacksにコールバックを解除
         showAdRewardCallbacks.finishCallback -= VideoRerwardResult;
         showAdInterstitialCallbacks.finishCallback -= InterstitialResult;
+    }
+
+    private void ShowInterstitial()
+    {
+        if (UnityAdsUtility.Instance.IsReadyInterstitialVideo())
+        {
+            UnityAdsUtility.Instance.ShowInterstitialVideo(showAdInterstitialCallbacks);
+        }
+        else
+        {
+            GetPossessionCoin();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+        }
+    }
+
+    private void GetPossessionCoin()
+    {
+        if (script.after_score != 0)
+        {
+            Variable_Manager.Instance.GetSetPossessionCoin += script.after_score;
+        }
+        else
+        {
+            Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bonus_score;
+        }
     }
 
     private void VideoRerwardResult(ShowResult showResult)
@@ -72,21 +97,8 @@ public class ResultBotton_Manger : MonoBehaviour
 
     private void InterstitialResult(ShowResult showResult)
     {
-
-        if (script.after_score > script.bouns)
-        {
-            Variable_Manager.Instance.GetSetPossessionCoin += script.after_score;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
-        }
-
-        else if(script.score <= script.bouns)
-        {
-            Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bouns;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
-        }
-
+        GetPossessionCoin();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
-
     }
 
     public void PushBotton()
