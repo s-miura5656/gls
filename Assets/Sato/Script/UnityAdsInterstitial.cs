@@ -24,9 +24,14 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
         Advertisement.Load(placementId);
     }
 
+    public bool IsReadyInterstitial()
+    {
+        return Advertisement.IsReady(placementId);
+    }
+
     public void ShowAds(UnityEngine.Monetization.ShowAdCallbacks showAdCallbacks)
     {
-        if (!Advertisement.IsReady(placementId)) return;
+        if (!IsReadyInterstitial()) return;
 
         UnityEngine.Monetization.ShowAdPlacementContent content =
             (UnityEngine.Monetization.ShowAdPlacementContent)UnityEngine.Monetization.Monetization.GetPlacementContent(placementId);

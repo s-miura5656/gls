@@ -14,16 +14,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int possession_coin = 0; //save
     // 振動のON,OFF
     private bool vibrate_state = true;
-   //スキン２開放確認
-    private bool skine2_open = true;
-    //スキン３開放確認
-    private bool skine3_open = true;
-    //スキン４開放確認
-    private bool skine4_open = true;
-    //スキン５開放確認
-    private bool skine5_open = true;
-    //スキン６開放確認
-    private bool skine6_open = true;
+    // スキンデータ
+    private SkinData skinData = null;
 
     /// <summary>
     /// ゲットしたコイン数
@@ -70,49 +62,42 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { vibrate_state = value; }
     }
 
-    public bool Skin2_Open
+    public SkinData GetSkinData
     {
-        get { return skine2_open; }
-        set { skine3_open = value; }
-    }
-
-    public bool Skin3_Open
-    {
-        get { return skine3_open; }
-        set { skine3_open = value; }
-    }
-
-    public bool Skin4_Open
-    {
-        get { return skine4_open; }
-        set { skine4_open = value; }
-    }
-
-    public bool Skin5_Open
-    {
-        get { return skine5_open; }
-        set { skine5_open = value; }
-    }
-
-    public bool Skin6_Open
-    {
-        get { return skine6_open; }
-        set { skine6_open = value; }
-    }
+        get { return skinData; }
+    } 
 
     public void Save()
     {
+        skinData.SkinDataSave();
+
         PlayerPrefs.SetInt("avatar_number", GetSetAvatarNumber);
         PlayerPrefs.SetInt("possession_coin", GetSetPossessionCoin);
         PlayerPrefs.Save();
     }
 
-
-
     public void Load()
     {
+        skinData = new SkinData();
+        skinData.SkinDataLoad();
+
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            // バックグラウンドに行ったとき
+            Debug.Log("バックグラウンドに行った");
+            Save();
+        }
+        else
+        {
+            // バックグラウンドから戻ってきたとき
+            Debug.Log("バックグラウンドから戻った");
+        }
     }
 
     protected override void Awake()
