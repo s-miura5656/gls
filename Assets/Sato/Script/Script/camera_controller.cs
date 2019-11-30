@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,29 +56,29 @@ public class camera_controller : MonoBehaviour
 
         // プレイヤーを中心に捉える
         transform.LookAt(game_level_script.GetPlayer().transform.position);
-
-        // レベルが上がったらレベルに合わせてカメラの位置変更
-        if (script.GetLevel() > old_player_level)
-        {
-            ZoomCamera();
-
-            old_player_level = script.GetLevel();
-        }
     }    
+
     private void MoveCamera()
     {
         // カメラの transform.yの位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
-        camera_move_pos = new Vector3(game_level_script.GetPlayer().transform.position.x, transform.position.y, game_level_script.GetPlayer().transform.position.z) + new Vector3(offset.x, 0f, offset.z);
+        camera_move_pos = game_level_script.GetPlayer().transform.position + offset;
 
         // Lerp補完で滑らか移動
         gameObject.transform.position = Vector3.Lerp(camera_base_pos, camera_move_pos, camera_speed);
     }
 
-    private void ZoomCamera()
+
+    public void ZoomCamera()
     {
-        gameObject.transform.position += level_up_camera_pos;
-        offset = gameObject.transform.position - game_level_script.GetPlayer().transform.position;
-        old_player_level = script.GetLevel();
+        var newPos = gameObject.transform.position + level_up_camera_pos;
+        var offSet = newPos - game_level_script.GetPlayer().transform.position;
+
+        DOTween.To(
+            () => offset,          // 何を対象にするのか
+            num => offset = num,   // 値の更新
+            offSet,                  // 最終的な値
+            0.5f                  // アニメーション時間
+        ).SetEase(Ease.OutCubic);
     }
 
     /// <summary>

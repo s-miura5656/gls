@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Player_Level_Manager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Player_Level_Manager : MonoBehaviour
     [SerializeField] private Bill_Level_manager bill_level_script = null;
     // レベルアップエフェクト
     [SerializeField] private ParticleSystem level_up_effect = null;
+    
+    [SerializeField] private camera_controller camera_scipt = null;
 
     // レベルアップに必要な経験値
     private int[] level_up_exp;
@@ -113,10 +116,14 @@ public class Player_Level_Manager : MonoBehaviour
                 exp_slider.maxValue = level_up_exp[player_level - 1];
             }
 
+
+            player.transform.DOScale(player_scale * player_level, 0.5f);
+
             // サイズ変更
-            player.transform.localScale = player_scale * player_level;
+            //player.transform.localScale = player_scale * player_level;
             // サイズ変更に合わせて高さを変更
             player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
+            camera_scipt.ZoomCamera();
         }
     }
 

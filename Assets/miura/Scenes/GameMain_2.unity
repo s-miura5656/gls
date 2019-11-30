@@ -1579,6 +1579,11 @@ PrefabInstance:
       propertyPath: level_up_effect
       value: 
       objectReference: {fileID: 432064517}
+    - target: {fileID: 5139672406963182428, guid: c858278059d83ae48bc494d97239aa2a,
+        type: 3}
+      propertyPath: camera_scipt
+      value: 
+      objectReference: {fileID: 432064518}
     - target: {fileID: 5139672406963182429, guid: c858278059d83ae48bc494d97239aa2a,
         type: 3}
       propertyPath: start_count_down
@@ -17008,6 +17013,18 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 432064423}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &432064518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6059706304418263906, guid: c858278059d83ae48bc494d97239aa2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 432064423}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432066644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ab245f24191f0449b40415a23f8b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &432064550 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4740940888725140057, guid: c858278059d83ae48bc494d97239aa2a,
