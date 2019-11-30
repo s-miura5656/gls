@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "TeruTeru/Create GameLevelData", fileName = "GameLevelData")]
 public class GameLevelData : ScriptableObject
 {
     [Header("プレイヤーのレベルの最大値")] public int player_level_max = 0;

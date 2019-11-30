@@ -1574,6 +1574,11 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 1844499498}
+    - target: {fileID: 5139672406963182428, guid: c858278059d83ae48bc494d97239aa2a,
+        type: 3}
+      propertyPath: level_up_effect
+      value: 
+      objectReference: {fileID: 432064517}
     - target: {fileID: 5139672406963182429, guid: c858278059d83ae48bc494d97239aa2a,
         type: 3}
       propertyPath: start_count_down
@@ -16230,6 +16235,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 7596481468365490260, guid: c858278059d83ae48bc494d97239aa2a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596481468365490260, guid: c858278059d83ae48bc494d97239aa2a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596481468365490260, guid: c858278059d83ae48bc494d97239aa2a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c858278059d83ae48bc494d97239aa2a, type: 3}
 --- !u!114 &432064424 stripped
@@ -16979,6 +16999,12 @@ MonoBehaviour:
 --- !u!65 &432064516 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3200266534445238423, guid: c858278059d83ae48bc494d97239aa2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 432064423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &432064517 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7596481468365490261, guid: c858278059d83ae48bc494d97239aa2a,
     type: 3}
   m_PrefabInstance: {fileID: 432064423}
   m_PrefabAsset: {fileID: 0}
