@@ -42,6 +42,8 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private Text total_text;
 
+    private bool score_up = true;
+
 
 
     void Start()
@@ -73,12 +75,14 @@ public class Coin_Manager : MonoBehaviour
         time++;
         if (time > 60)
         {
-
-            Coin_move();
-            total_text.text = " " + bonus_score;
-
+            if (score_up == true)
+            {
+                Coin_move();
+                score_up = false;
+            }
         }
 
+        total_text.text = " " + score;
 
         //if (score_count == true)
         //{
@@ -186,22 +190,19 @@ public class Coin_Manager : MonoBehaviour
         int cs = (int)Mathf.Floor(bonus_score);
 
         DOTween.To(
-            () => bonus_score,          // 何を対象にするのか
-            num => bonus_score = num,   // 値の更新
+            () => score,          // 何を対象にするのか
+            num => score = num,   // 値の更新
            cs,                  // 最終的な値
-            0.0f                  // アニメーション時間
+            5.0f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
     }
 
 
     public void Calculation_Manager()
     {
-
         after_score = (int)bonus_score * 2;
         AftterGet_Manager();
         // CrashRate_Get();
-
-
     }
 
     public void AftterGet_Manager()
@@ -209,24 +210,24 @@ public class Coin_Manager : MonoBehaviour
         //   before_score = before_score;
         // 数値の変更
         DOTween.To(
-            () => bonus_score,          // 何を対象にするのか
-            num => bonus_score = num,   // 値の更新
+            () => score,          // 何を対象にするのか
+            num => score = num,   // 値の更新
             after_score,          // 最終的な値
-            0.0f                  // アニメーション時間
+            5.0f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
 
         total_text.text = "" + score;
     }
 
-    private void FixedUpdate()
-    {
-        time++;
-        if (time > 60)
-        {
-            Coin_move();
-            total_text.text = "" + score;
-        }
-    }
+    //private void FixedUpdate()
+    //{
+    //    time++;
+    //    if (time > 60)
+    //    {
+    //        Coin_move();
+    //        total_text.text = "" + score;
+    //    }
+    //}
 
     public void test_botton()
     {
