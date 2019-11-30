@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5889644109147225236}
   - component: {fileID: 6368713926304298664}
-  - component: {fileID: 5889644109147225257}
+  - component: {fileID: 3944357030677863160}
+  - component: {fileID: 7908965063490812040}
   - component: {fileID: 5889644109147225256}
   - component: {fileID: 5889644109147225262}
   - component: {fileID: 705178216488091664}
@@ -45,14 +46,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5889644109147225250}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!135 &5889644109147225257
+--- !u!65 &3944357030677863160
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889644109147225250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &7908965063490812040
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5889644109147225250}
-  m_Material: {fileID: 13400000, guid: 7c43297606f4c1e478e69791d55041e6, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
