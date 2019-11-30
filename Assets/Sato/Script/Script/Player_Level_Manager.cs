@@ -46,9 +46,9 @@ public class Player_Level_Manager : MonoBehaviour
         level_up_exp[3] = level_up_exp[2] + 1500;
         level_up_exp[4] = level_up_exp[3] + 2000;
         level_up_exp[5] = level_up_exp[4] + 2500;
-        level_up_exp[6] = level_up_exp[5] + 3500;
-        level_up_exp[7] = level_up_exp[6] + 4500;
-        level_up_exp[8] = level_up_exp[7] + 6000;
+        level_up_exp[6] = level_up_exp[5] + 6000;
+        level_up_exp[7] = level_up_exp[6] + 10000;
+        level_up_exp[8] = level_up_exp[7] + 14000;
 
         player = game_level_script.GetPlayer();
         
@@ -100,7 +100,14 @@ public class Player_Level_Manager : MonoBehaviour
 
                     level_up_text.SetActive(true);
 
-                    exp_slider.maxValue = level_up_exp[player_level - 1];
+                    if (player_level >= player_level_max)
+                    {
+                        player_level = player_level_max;
+                    }
+                    else
+                    {
+                        exp_slider.maxValue = level_up_exp[player_level - 1];
+                    }
 
                     // サイズ変更
                     player.transform.localScale = player_scale * player_level;

@@ -29,9 +29,9 @@ public class Player_Exp_Get : MonoBehaviour
         get_exp[0] = 5;
         get_exp[1] = 25;
         get_exp[2] = 100;
-        get_exp[3] = 250;
-        get_exp[4] = 500;
-        get_exp[5] = 1000;
+        get_exp[3] = 200;
+        get_exp[4] = 400;
+        get_exp[5] = 800;
 
         coin[0] = 1;
         coin[1] = 3;
