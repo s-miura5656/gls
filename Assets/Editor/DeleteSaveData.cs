@@ -8,6 +8,6 @@ public class DeleteSaveData : MonoBehaviour
     public static void Delete()
     {
         PlayerPrefs.DeleteAll();
-        Debug.Log("delete all save data");
+        Debug.Log("全てのセーブデータを削除しました。");
     }
 }
