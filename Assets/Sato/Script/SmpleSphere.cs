@@ -4,54 +4,76 @@ using UnityEngine;
 
 public class SmpleSphere : MonoBehaviour
 {
-    [SerializeField] private Color[] skinColors;
+    [SerializeField]
+    private GameObject[] SkinObjects;
 
     private Color smple_color;
     private int avatar_number;
 
 
+    //private void Awake()
+    //{
+        
+    //    avatar_number = Variable_Manager.Instance.GetSetAvatarNumber;
+
+    //}
 
     void Start()
     {
-        //avatar_number = Variable_Manager.Instance.GetSetAvatarNumber;
+        Set_avatar_number();
 
     }
 
     void Update()
     {
+        
+
+        //if (avatar_number == 0)
+        //{
+        //    //GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[0]);
+
+        //}
+
+        //else if(avatar_number == 1)
+        //{
+        //    GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[1]);
+        //}
+
+        //else if (avatar_number == 2)
+        //{
+        //    GetComponent<Renderer>().material.SetColor ("_BaseColor",skinColors[2]);
+        //}
+
+        //else if (avatar_number == 3)
+        //{
+        //    GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[3]);
+        //}
+
+        //else if (avatar_number == 4)
+        //{
+        //    GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[4]);
+        //}
+
+        //else if (avatar_number == 5)
+        //{
+        //    GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[5]);
+        //}
+
+        
+
+    }
+
+
+    public void Set_avatar_number()
+    {
         avatar_number = Variable_Manager.Instance.GetSetAvatarNumber;
-
-        if(avatar_number == 0)
+        for (int i = 0; i < SkinObjects.Length; i++)
         {
-            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[0]);
+            SkinObjects[i].SetActive(false);
         }
-
-        else if(avatar_number == 1)
-        {
-            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[1]);
-        }
-
-        else if (avatar_number == 2)
-        {
-            GetComponent<Renderer>().material.SetColor ("_BaseColor",skinColors[2]);
-        }
-
-        else if (avatar_number == 3)
-        {
-            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[3]);
-        }
-
-        else if (avatar_number == 4)
-        {
-            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[4]);
-        }
-
-        else if (avatar_number == 5)
-        {
-            GetComponent<Renderer>().material.SetColor("_BaseColor", skinColors[5]);
-        }
-
-        Variable_Manager.Instance.GetSetAvatarNumber = avatar_number;
-
+            SkinObjects[avatar_number].SetActive(true);
+            
+            Variable_Manager.Instance.GetSetAvatarNumber = avatar_number;
+        
     }
 }

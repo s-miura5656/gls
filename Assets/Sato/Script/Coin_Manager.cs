@@ -70,7 +70,7 @@ public class Coin_Manager : MonoBehaviour
     void Update()
     {
 
-
+        
 
         time++;
         if (time > 60)

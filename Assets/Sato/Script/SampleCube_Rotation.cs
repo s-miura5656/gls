@@ -17,7 +17,7 @@ public class SampleCube_Rotation : MonoBehaviour
     void Update()
     {
      
-        transform.Rotate(new Vector3(0, 90, 0) * Time.deltaTime, Space.World);
+        transform.Rotate(new Vector3(0, 90, 0) * Time.deltaTime, Space.Self);
 
     }
 }
