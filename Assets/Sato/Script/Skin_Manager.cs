@@ -7,16 +7,16 @@ using UnityEngine.UI;
 
 public class Skin_Manager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject title;
-    [SerializeField]
-    private GameObject skin;
+    //[SerializeField]
+    //private GameObject title;
+    //[SerializeField]
+    //private GameObject skin;
     [SerializeField]
     private float _animtime = 1.0f;
-    [SerializeField]
-    private GameObject back_bottom;
-    [SerializeField]
-    private float botton_animtime = 1.0f;
+    //[SerializeField]
+    //private GameObject back_bottom;
+    //[SerializeField]
+    //private float botton_animtime = 1.0f;
 
 
     [SerializeField] private Button closeButton = null;
