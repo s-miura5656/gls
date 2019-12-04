@@ -18,7 +18,7 @@ public class Player_Exp_Get : MonoBehaviour
     // プレイヤーのレベルを管理しているスクリプトを取得
     private Player_Level_Manager player_level = null;
     // コイン取得数表示のテキスト
-    [SerializeField] private TMP_Text now_coin = null;
+    //[SerializeField] private TMP_Text now_coin = null;
     
     // Start is called before the first frame update
     void Start()
@@ -46,7 +46,7 @@ public class Player_Exp_Get : MonoBehaviour
     void Update()
     {
         SetCoin();
-        now_coin.text = "Coin:" + get_coin;
+        //now_coin.text = "Coin:" + get_coin;
     }
 
     /// <summary>
@@ -79,6 +79,6 @@ public class Player_Exp_Get : MonoBehaviour
 
     private void Reset()
     {
-        now_coin = GameObject.Find("Coin").GetComponent<TMP_Text>();
+        //now_coin = GameObject.Find("Coin").GetComponent<TMP_Text>();
     }
 }

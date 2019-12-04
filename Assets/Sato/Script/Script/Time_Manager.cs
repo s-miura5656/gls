@@ -20,8 +20,6 @@ public class Time_Manager : MonoBehaviour
 
     [SerializeField] private Image game_timer = null;
 
-    [SerializeField] private TextMeshProUGUI game_time_text = null;
-
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 4f;
     // スタート
@@ -40,12 +38,13 @@ public class Time_Manager : MonoBehaviour
     private bool game_play_state = false;
     // プラスするタイムを表示する時間
     private float plus_time_count = 0;
-
-
+    private RectTransform time_plus_rect = null;
+    private Vector3 default_time_plus_pos = new Vector3(0f, 0f, 0f);
     // Start is called before the first frame update
     void Start()
     {
-        game_time_text.text = "" + (int)time_count_down_main;
+        time_plus_rect = time_plus_obj.GetComponent<RectTransform>();
+        default_time_plus_pos = time_plus_rect.transform.position;
     }
 
     // Update is called once per frame
@@ -57,11 +56,16 @@ public class Time_Manager : MonoBehaviour
             GameTime();
         }
 
-        plus_time_count += Time.deltaTime;
-
-        if (plus_time_count >= 2f)
+        // プラスした時間が徐々に上に行く演出
+        if (time_plus_obj.activeSelf)
         {
-            time_plus_obj.SetActive(false);
+            plus_time_count += Time.deltaTime;
+            time_plus_rect.transform.position += new Vector3(0f, 0.1f, 0f);
+            if (plus_time_count >= 2f)
+            {
+                time_plus_rect.transform.position = default_time_plus_pos;
+                time_plus_obj.SetActive(false);
+            }
         }
     }
 
@@ -109,13 +113,10 @@ public class Time_Manager : MonoBehaviour
             {
                 // タイマーゲージのアニメーション
                 game_timer.fillAmount = game_timer.fillAmount - ((game_timer.fillAmount / time_count_down_main) * Time.deltaTime);
-
-                game_time_text.text = "" + (int)(time_count_down_main + 1f);
             }
             else
             {
                 game_timer.fillAmount = 0f;
-                game_time_text.text = "0";
             }
 
             if (time_count_down_main > 5f)
