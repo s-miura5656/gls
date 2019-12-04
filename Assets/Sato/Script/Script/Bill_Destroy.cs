@@ -34,12 +34,11 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (other.gameObject.tag != "Player") return;
 
-        // ビルにヒットした時に音を出す
-        bill_Obsever.Player_SE_Manager.PlayBillDestroySound();
-
         // ビルレベルがプレイヤーのレベルより小さいときに
         if (bill_level < bill_Obsever.Player_Level_Manager.GetLevel())
         {
+            // ビルにヒットした時に音を出す
+            bill_Obsever.Player_SE_Manager.PlayBillDestroySound();
             Vector3 hitPos = other.ClosestPointOnBounds(this.transform.position);
             BillDestroy(hitPos, 10);
         }
@@ -99,6 +98,8 @@ public class Bill_Destroy : MonoBehaviour
             bill_Obsever.Destruction_Rate_Manager.DownNowRate();
             // 経験値ゲット用
             bill_Obsever.Player_Exp_Get.SetExp(exp_bill_level);
+            // 経験値ゲージ加算用
+            bill_Obsever.Player_Level_Manager.LevelUpGage();
         }
 
         // ゲームオブジェクトを非表示にする

@@ -10,8 +10,6 @@ public class Bill_Obsever : MonoBehaviour
     private GameObject data_manager = null;
     // プレイヤーのレベルのスクリプトの取得
     [SerializeField] private Player_Level_Manager player_level_script = null;
-    // ヒットストップのスクリプトを取得
-    [SerializeField] private Hit_Stop_Manager hit_stop_script = null;
     // 破壊率を管理しているスクリプトを取得
     [SerializeField] private Destruction_Rate_Manager destruction_rate_script = null;
     // 経験値を管理しているスクリプトを取得
@@ -43,12 +41,6 @@ public class Bill_Obsever : MonoBehaviour
     {
         get { return player_level_script; }
         private set { player_level_script = value; }
-    }
-
-    public Hit_Stop_Manager Hit_Stop_Manager
-    {
-        get { return hit_stop_script; }
-        private set { hit_stop_script = value; }
     }
 
     public Player_Exp_Get Player_Exp_Get
@@ -96,6 +88,7 @@ public class Bill_Obsever : MonoBehaviour
         {
             // ビル破壊時の破片のパーティクルを出す
             crash_particle[i].transform.position = bill_pos;
+
             // 破片のパーティクルをビルのレベルに合わせて拡大
             var cras_scale = Vector3.one * default_crash_particle_scale * billLevel;
             // 
@@ -161,7 +154,6 @@ public class Bill_Obsever : MonoBehaviour
     {
         game_manager = GameObject.Find("GameManager");
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
-        hit_stop_script = game_manager.GetComponent<Hit_Stop_Manager>();
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
         bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
         player_exp_script = game_manager.GetComponent<Player_Exp_Get>();
