@@ -24,9 +24,9 @@ public class camera_controller : MonoBehaviour
     // ズーム変更時に必要なレベルアップ前のレベルを記憶する変数
     private int old_player_level = 0;
     // カメラの初期位置
-    private Vector3 first_pos = new Vector3(0f, 30f, -30f);
+    private Vector3 first_pos = new Vector3(0f, 60f, -50f);
     // レベルが上がるにつれて上がるカメラのZ軸の値
-    private Vector3 level_up_camera_pos = new Vector3(0f, 20f, -20f);
+    private Vector3 level_up_camera_pos = new Vector3(0f, 30f, -20f);
 
     private Vector3 new_camera_pos = new Vector3(0f, 0f, 0f);
 
@@ -76,8 +76,8 @@ public class camera_controller : MonoBehaviour
         DOTween.To(
             () => offset,          // 何を対象にするのか
             num => offset = num,   // 値の更新
-            offSet,                  // 最終的な値
-            0.5f                  // アニメーション時間
+            offSet,                // 最終的な値
+            0.5f                   // アニメーション時間
         ).SetEase(Ease.OutCubic);
     }
 

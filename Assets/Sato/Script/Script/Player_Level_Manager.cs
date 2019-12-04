@@ -38,11 +38,9 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーレベルの限界値
     private int player_level_max = 10;
     // プレイヤーの大きさ
-    private Vector3 player_scale = new Vector3(1f, 1f, 1f);
+    private Vector3[] player_scale = new Vector3[10];
     // プレイヤーのスケールを割る数
     private float half = 2f;
-    // レベルアップゲージ用
-    int gage_count = 0;
     
     [SerializeField] private Text text = null;
 
@@ -66,7 +64,7 @@ public class Player_Level_Manager : MonoBehaviour
 
         player = game_level_script.GetPlayer();
         
-        player.transform.localScale = player_scale;
+        player.transform.localScale = player_scale[0];
 
         // サイズ変更に合わせて高さを変更
         player.transform.position = new Vector3(transform.position.x, player.transform.localScale.y / half, transform.position.z);
@@ -84,7 +82,10 @@ public class Player_Level_Manager : MonoBehaviour
             PlayerLevelUpPhase();
         }
 
-        text.text = "" + player_get_exp_script.GetExp();
+        // サイズ変更に合わせて高さを変更
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
+
+        //text.text = "" + player_get_exp_script.GetExp();
     }
 
     /// <summary>
@@ -117,12 +118,10 @@ public class Player_Level_Manager : MonoBehaviour
                 player_level = player_level_max;
             }
 
-            player.transform.DOScale(player_scale * player_level, 2f);
-
             // サイズ変更
-            //player.transform.localScale = player_scale * player_level;
-            // サイズ変更に合わせて高さを変更
-            player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
+            player.transform.DOScale(player_scale[player_level - 1], 2f);
+
+            
             camera_scipt.ZoomCamera();
         }
     }
@@ -132,7 +131,7 @@ public class Player_Level_Manager : MonoBehaviour
     /// </summary>
     public void LevelUpGage() 
     {
-        exp_slider.fillAmount = (((float)player_get_exp_script.GetExp()) / (float)level_up_exp[gage_count]);
+        exp_slider.fillAmount = (((float)player_get_exp_script.GetExp()) / (float)level_up_exp[player_level - 1]);
     }
 
     /// <summary>
@@ -140,8 +139,6 @@ public class Player_Level_Manager : MonoBehaviour
     /// </summary>
     private void LevelUpGageReset() 
     {
-        gage_count++;
-
         exp_slider.fillAmount = 0f;
     }
 
@@ -164,9 +161,12 @@ public class Player_Level_Manager : MonoBehaviour
     /// プレイヤーの大きさ設定
     /// </summary>
     /// <param name="pos"></param>
-    public void SetPlayerScale(float scale) 
+    public void SetPlayerScale(float[] scale) 
     {
-        player_scale = new Vector3(scale, scale, scale);
+        for (int i = 0; i < scale.Length; i++)
+        {
+            player_scale[i] = new Vector3(1f, 1f, 1f) * scale[i];
+        }
     }
 
     private void Reset()
@@ -180,7 +180,6 @@ public class Player_Level_Manager : MonoBehaviour
         game_level_script = gameObject.GetComponent<Game_Level_Manager>();
 
         player_get_exp_script = gameObject.GetComponent<Player_Exp_Get>();
-
 
         time_script = gameObject.GetComponent<Time_Manager>();
     }
