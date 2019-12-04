@@ -9,16 +9,18 @@ public class Time_Manager : MonoBehaviour
 {
     // スタートカウントダウンオブジェクト
     [SerializeField] private GameObject start_count_down = null;
-    // カウントダウンテキスト
+    // スタートカウントダウンテキスト
     [SerializeField] private TextMeshProUGUI start_count = null;
-    // ゲームタイムのテキスト
-    [SerializeField] private TextMeshProUGUI game_time = null;
-    // カウントダウンのテキスト
+    // エンドカウントダウンのテキスト
     [SerializeField] private TextMeshProUGUI end_count_down_text = null;
     // 時間加算時に表示するオブジェクト
     [SerializeField] private GameObject time_plus_obj = null;
     // スタートのローディングを管理するスクリプト
     [SerializeField] private Start_Loading loading_script = null;
+
+    [SerializeField] private Image game_timer = null;
+
+    [SerializeField] private TextMeshProUGUI game_time_text = null;
 
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 4f;
@@ -29,11 +31,9 @@ public class Time_Manager : MonoBehaviour
     // ゲーム終了時までの時間（ゲーム時間）
     private float time_count_down_main = 41f;
     // ゲームが終わる時間
-    private float end_time = -1f;
+    private float end_time = -3f;
     // ゲーム中かどうか
     private bool game_main_state = false;
-    private int game_main_second = 0;
-
     // 増やす時間
     private float increase_time = 3f;
     // 操作等可能にするための変数
@@ -45,9 +45,7 @@ public class Time_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        game_main_second = (int)time_count_down_main - 1;
-
-        game_time.text = "" + game_main_second;
+        game_time_text.text = "" + (int)time_count_down_main;
     }
 
     // Update is called once per frame
@@ -92,7 +90,6 @@ public class Time_Manager : MonoBehaviour
                 {
                     game_start_state = false;
                     start_count_down.SetActive(false);
-                    game_time.gameObject.SetActive(true);
                 }
             }
         }
@@ -105,40 +102,50 @@ public class Time_Manager : MonoBehaviour
     {
         if (game_main_state)
         {
+            // ゲームメインの時間
             time_count_down_main -= Time.deltaTime;
-            game_main_second = (int)time_count_down_main;
 
-            if (time_count_down_main > 6f)
+            if (time_count_down_main > -1f)
             {
-                game_time.text = "" + game_main_second;
+                // タイマーゲージのアニメーション
+                game_timer.fillAmount = game_timer.fillAmount - ((game_timer.fillAmount / time_count_down_main) * Time.deltaTime);
 
+                game_time_text.text = "" + (int)(time_count_down_main + 1f);
+            }
+            else
+            {
+                game_timer.fillAmount = 0f;
+                game_time_text.text = "0";
+            }
+
+            if (time_count_down_main > 5f)
+            {
+                // ５秒前カウントダウン中にタイムが増えたとき用の５秒前のカウントダウン非表示
                 if (end_count_down_text.gameObject.activeSelf != false)
                 {
+                    // ５秒前カウントダウン非表示
                     end_count_down_text.gameObject.SetActive(false);
                 }
             }
-            else if (time_count_down_main > 1f && time_count_down_main <= 6f)
+            else
             {
-                game_time.text = "" + game_main_second;
-                end_count_down_text.text = "" + game_main_second;
-                //game_time.gameObject.SetActive(false);
-
-                end_count_down_text.gameObject.SetActive(true);
-
-            }
-            else if (time_count_down_main <= 1f && time_count_down_main > end_time)
-            {
-                if (game_main_second > -1)
+                if (end_count_down_text.gameObject.activeSelf != true)
                 {
-                    game_time.text = "" + game_main_second;
+                    // ５秒前カウントの表示
+                    end_count_down_text.gameObject.SetActive(true);
                 }
 
-                end_count_down_text.text = "TIME UP";
-                game_play_state = false;
+                end_count_down_text.text = "" + (int)(time_count_down_main + 1f);
             }
-            else if (time_count_down_main < end_time)
+
+            if (game_timer.fillAmount == 0)
             {
-                game_main_state = false;
+                game_play_state = false;
+                end_count_down_text.text = "TIME UP";
+            }
+
+            if (time_count_down_main < end_time)
+            {
                 SceneManager.LoadScene("Result");
             }
         }
@@ -149,6 +156,7 @@ public class Time_Manager : MonoBehaviour
         plus_time_count = 0f;
         time_plus_obj.SetActive(true);
         time_count_down_main += increase_time;
+        game_timer.fillAmount += (game_timer.fillAmount / time_count_down_main);
     }
 
     /// <summary>

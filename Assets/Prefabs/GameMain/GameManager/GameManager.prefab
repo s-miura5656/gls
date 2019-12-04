@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6469966206114064498}
   - component: {fileID: 6469966206114064502}
   - component: {fileID: 6469966206114064503}
-  - component: {fileID: 6469966206114064496}
   - component: {fileID: 6469966206114064497}
   - component: {fileID: 7337115660854500533}
   - component: {fileID: 5717232161546214196}
@@ -67,8 +66,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  player_get_exp_script: {fileID: 0}
   exp_slider: {fileID: 0}
   level_up_text: {fileID: 0}
+  time_script: {fileID: 0}
+  game_level_script: {fileID: 0}
+  bill_level_script: {fileID: 0}
+  level_up_effect: {fileID: 0}
+  camera_scipt: {fileID: 0}
+  variable_manager_script: {fileID: 0}
+  text: {fileID: 0}
 --- !u!114 &6469966206114064503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,22 +90,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start_count_down: {fileID: 0}
   start_count: {fileID: 0}
-  game_time: {fileID: 0}
   end_count_down_text: {fileID: 0}
   time_plus_obj: {fileID: 0}
   loading_script: {fileID: 0}
---- !u!114 &6469966206114064496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6469966206114064506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becc72605f0dcc2418338a191e800c5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  game_timer: {fileID: 0}
+  game_time_text: {fileID: 0}
 --- !u!114 &6469966206114064497
 MonoBehaviour:
   m_ObjectHideFlags: 0

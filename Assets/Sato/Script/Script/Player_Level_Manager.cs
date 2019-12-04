@@ -11,7 +11,7 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーの経験値を持っているスクリプト
     [SerializeField] private Player_Exp_Get player_get_exp_script = null;
     // 経験値ゲージ
-    [SerializeField] private Slider exp_slider = null;
+    [SerializeField] private Image exp_slider = null;
     // レベルアップのテキスト
     [SerializeField] private GameObject level_up_text = null;
     // タイムを管理しているスクリプト
@@ -25,6 +25,8 @@ public class Player_Level_Manager : MonoBehaviour
     
     [SerializeField] private camera_controller camera_scipt = null;
 
+    [SerializeField] private Variable_Manager variable_manager_script = null;
+
     // レベルアップに必要な経験値
     private int[] level_up_exp;
     // プレイヤーのレベル
@@ -36,8 +38,7 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーのスケールを割る数
     private float half = 2f;
 
-    [SerializeField] Text text = null;
-
+    [SerializeField] private Text text = null;
 
     // Start is called before the first frame update
     void Start()
@@ -61,26 +62,20 @@ public class Player_Level_Manager : MonoBehaviour
 
         // サイズ変更に合わせて高さを変更
         player.transform.position = new Vector3(transform.position.x, player.transform.localScale.y / half, transform.position.z);
-
-        exp_slider.maxValue = level_up_exp[player_level - 1];
     }
 
     // Update is called once per frame
     void Update()
     {
-        text.text = "" + player_level;
 
         if (time_script.GetGamePlayState())
         {
             PlayerLevelUpPhase();
         }
 
-        if (player_get_exp_script.GetExp() >= exp_slider.maxValue)
-        {
-            exp_slider.value = 0;
-        }
+        exp_slider.fillAmount = variable_manager_script.GetSetDestructionRate / 100;
 
-        exp_slider.value = player_get_exp_script.GetExp();
+        text.text = "" + exp_slider.fillAmount;
     }
 
     /// <summary>
@@ -94,8 +89,6 @@ public class Player_Level_Manager : MonoBehaviour
         {
             // 現在の経験値が指定の経験値と同じか超えるかした場合レベルアップ
             if (player_get_exp_script.GetExp() < level_up_exp[i]) continue;
-
-            exp_slider.minValue = level_up_exp[player_level - 1];
 
             player_level = player_level + 1;
 
@@ -111,11 +104,6 @@ public class Player_Level_Manager : MonoBehaviour
             {
                 player_level = player_level_max;
             }
-            else
-            {
-                exp_slider.maxValue = level_up_exp[player_level - 1];
-            }
-
 
             player.transform.DOScale(player_scale * player_level, 0.5f);
 
@@ -159,11 +147,11 @@ public class Player_Level_Manager : MonoBehaviour
 
         level_up_effect = player.GetComponent<ParticleSystem>();
 
-        exp_slider = GameObject.Find("ExpGage").GetComponent<Slider>();
-
         game_level_script = gameObject.GetComponent<Game_Level_Manager>();
 
         player_get_exp_script = gameObject.GetComponent<Player_Exp_Get>();
+
+        variable_manager_script = GameObject.Find("Data_Manager").GetComponent<Variable_Manager>();
 
         time_script = gameObject.GetComponent<Time_Manager>();
     }
