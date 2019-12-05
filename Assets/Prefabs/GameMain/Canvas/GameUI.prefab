@@ -89,7 +89,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 342}
+  m_AnchoredPosition: {x: 0, y: 545}
   m_SizeDelta: {x: 1112, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2085842157878965659
@@ -951,6 +951,11 @@ PrefabInstance:
       propertyPath: m_fontSizeMin
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 153633915018768492, guid: a782b0dafa2b07b439751a0bbb47eeca,
+        type: 3}
+      propertyPath: m_geometrySortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a782b0dafa2b07b439751a0bbb47eeca, type: 3}
 --- !u!224 &5691671691898505267 stripped
@@ -970,6 +975,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Finger
+      objectReference: {fileID: 0}
+    - target: {fileID: 9065362141949081804, guid: 40d6be2f1765f5643bd9871d9932350a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4009194641225566715, guid: 40d6be2f1765f5643bd9871d9932350a,
         type: 3}
@@ -1185,7 +1195,7 @@ PrefabInstance:
     - target: {fileID: 8822655209768221595, guid: 5e4aad4b9a7dfb34f814d25a885b1f06,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 40
+      value: 40.000122
       objectReference: {fileID: 0}
     - target: {fileID: 8822655209768221595, guid: 5e4aad4b9a7dfb34f814d25a885b1f06,
         type: 3}
