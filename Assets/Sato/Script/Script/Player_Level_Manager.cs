@@ -21,9 +21,10 @@ public class Player_Level_Manager : MonoBehaviour
     [SerializeField] private Game_Level_Manager game_level_script = null;
     // ビルレベルに合わせてコライダーのisTriggerを付けはずし管理する
     [SerializeField] private Bill_Level_manager bill_level_script = null;
+    // レベルアップのエフェクトの親オブジェクト
+    [SerializeField] private GameObject level_up_effect_obj = null;
     // レベルアップエフェクト
-    [SerializeField] private ParticleSystem level_up_effect = null;
-    [SerializeField] private ParticleSystem level_up_effect_ = null;
+    [SerializeField] private ParticleSystem level_up_effect= null;
     // カメラのスクリプト
     [SerializeField] private camera_controller camera_scipt = null;
     // シングルトンクラスの取得
@@ -85,6 +86,9 @@ public class Player_Level_Manager : MonoBehaviour
         // サイズ変更に合わせて高さを変更
         player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
 
+        // レベルアップエフェクトをプレイヤーに追従させる
+        level_up_effect_obj.transform.position = new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
+
         //text.text = "" + player_get_exp_script.GetExp();
     }
 
@@ -110,8 +114,7 @@ public class Player_Level_Manager : MonoBehaviour
 
             level_up_text.SetActive(true);
 
-            level_up_effect.Play();
-            level_up_effect_.Play();
+            PlayLevelUpEffect();
 
             if (player_level >= player_level_max)
             {
@@ -146,6 +149,12 @@ public class Player_Level_Manager : MonoBehaviour
         {
             exp_slider.fillAmount = 0f;
         }
+    }
+
+    private void PlayLevelUpEffect() 
+    {
+        level_up_effect_obj.transform.localScale *= player_level;
+        level_up_effect.Play();
     }
 
     /// <summary>
