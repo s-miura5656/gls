@@ -97,45 +97,47 @@ public class Skin_RandomSerect : MonoBehaviour
         //skin8_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[7];
         //skin9_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[8];
 
-        for (int i = 0; i < Lock_image.Length; i++) {
-            Lock_image[i].SetActive(false);
-        }
-        lock_image_count = 0;
-        DOTween.To(
-            () => lock_image_count,          // 何を対象にするのか
-            num => lock_image_count = num,   // 値の更新
-            30,                  // 最終的な値
-            2.0f                  // アニメーション時間
-        ).SetEase(Ease.OutCirc); 
+        StartCoroutine(RandomSelect());
+
+        //for (int i = 0; i < Lock_image.Length; i++) {
+        //    Lock_image[i].SetActive(false);
+        //}
+        //lock_image_count = 0;
+        //DOTween.To(
+        //    () => lock_image_count,          // 何を対象にするのか
+        //    num => lock_image_count = num,   // 値の更新
+        //    30,                  // 最終的な値
+        //    2.0f                  // アニメーション時間
+        //).SetEase(Ease.OutCirc); 
     }
 
     private void Update()
     {
-        if (state == 0)
-        {
-            if (lock_image_count > lock_image_old_count)
-            {
-                lock_image_old_count = lock_image_count;
+        //if (state == 0)
+        //{
+        //    if (lock_image_count > lock_image_old_count)
+        //    {
+        //        lock_image_old_count = lock_image_count;
 
-                Lock_image[lock_image_index].SetActive(false);
-                lock_image_index = Random.Range(0, Lock_image.Length);
-                Lock_image[lock_image_index].SetActive(true);
+        //        Lock_image[lock_image_index].SetActive(false);
+        //        lock_image_index = Random.Range(0, Lock_image.Length);
+        //        Lock_image[lock_image_index].SetActive(true);
 
 
-            }
-            if (lock_image_count == 30)
-            {
-                alpha_Sin = Lock_image[lock_image_index].Mathf.Sin(Time.time) / 2 + 0.5f;
-                Lock_image[lock_image_index].SetActive(false);
-                key_image[lock_image_index].SetActive(false);
-
-            }
-        }
-
-            if(state == 1)
-            {
+        //    }
+        //    if (lock_image_count == 30)
+        //    {
                 
-            }
+        //        Lock_image[lock_image_index].SetActive(false);
+        //        key_image[lock_image_index].SetActive(false);
+
+        //    }
+        //}
+
+        //    if(state == 1)
+        //    {
+                
+        //    }
 
         //        if (lock_image_count >= 600)
         //        {
@@ -178,5 +180,37 @@ public class Skin_RandomSerect : MonoBehaviour
 
     }
 
+    public int randomcount = 6;
+    [Range(0.01f, 1.0f)] public float[] speed = new float[] { };
+
+    public AnimationCurve curve = new AnimationCurve();
+
+    private int preNumber = 0;
+    private int nextNumber = 0;
+
+    private IEnumerator RandomSelect()
+    {
+        for (int i = 0; i < randomcount; i++)
+        {
+            // 指定した秒数待つ
+            yield return new WaitForSecondsRealtime(curve[i].value);
+            //yield return new WaitForSecondsRealtime(speed[i]);
+
+            // 同じ番号にならないようにする
+            while (preNumber == nextNumber)
+            {
+                nextNumber = Random.Range(0, Lock_image.Length);
+            }
+
+            //　選ばれた番号を明るくする
+            for (int j = 0; j < Lock_image.Length; j++)
+            {
+                var enable = j == nextNumber;
+                Lock_image[j].SetActive(enable);
+            }
+
+            preNumber = nextNumber;
+        }
+    }
 }
 
