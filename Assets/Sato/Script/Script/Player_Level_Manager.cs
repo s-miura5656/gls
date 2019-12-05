@@ -131,7 +131,10 @@ public class Player_Level_Manager : MonoBehaviour
     /// </summary>
     public void LevelUpGage() 
     {
-        exp_slider.fillAmount = (((float)player_get_exp_script.GetExp()) / (float)level_up_exp[player_level - 1]);
+        if (player_level < player_level_max)
+        {
+            exp_slider.fillAmount = (((float)player_get_exp_script.GetExp()) / (float)level_up_exp[player_level - 1]);
+        }
     }
 
     /// <summary>
@@ -139,7 +142,10 @@ public class Player_Level_Manager : MonoBehaviour
     /// </summary>
     private void LevelUpGageReset() 
     {
-        exp_slider.fillAmount = 0f;
+        if (player_level < player_level_max)
+        {
+            exp_slider.fillAmount = 0f;
+        }
     }
 
     /// <summary>
