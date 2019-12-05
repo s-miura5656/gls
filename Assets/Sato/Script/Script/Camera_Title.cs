@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camera_Title : MonoBehaviour
 {
-    [SerializeField] private GameObject look_obj;
+    [SerializeField] private GameObject look_obj = null;
 
     private float angle = 1f;
 

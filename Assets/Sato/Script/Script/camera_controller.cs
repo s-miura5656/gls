@@ -39,12 +39,12 @@ public class camera_controller : MonoBehaviour
 
         game_level_script = game_manager.GetComponent<Game_Level_Manager>();
 
-        // プレイヤーとカメラ間の距離を取得してそのオフセット値を計算し、格納します。
-        offset = transform.position - game_level_script.GetPlayer().transform.position;
-
         old_player_level = script.GetLevel();
 
         gameObject.transform.position = game_level_script.GetPlayer().transform.position + first_pos;
+
+        // プレイヤーとカメラ間の距離を取得してそのオフセット値を計算し、格納します。
+        offset = transform.position - game_level_script.GetPlayer().transform.position;
     }
     
     void FixedUpdate()
