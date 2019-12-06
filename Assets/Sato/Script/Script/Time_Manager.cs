@@ -17,8 +17,10 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private GameObject time_plus_obj = null;
     // スタートのローディングを管理するスクリプト
     [SerializeField] private Start_Loading loading_script = null;
-
+    // 回転する時計のイメージ
     [SerializeField] private Image game_timer = null;
+    // ゲームの時間（テキスト）
+    [SerializeField] private TextMeshProUGUI game_timer_text = null;
 
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 4f;
@@ -106,7 +108,7 @@ public class Time_Manager : MonoBehaviour
     {
         if (game_main_state)
         {
-            // ゲームメインの時間
+            // ゲーム時間（時計型ゲージ）
             time_count_down_main -= Time.deltaTime;
 
             if (time_count_down_main > -1f)
@@ -117,6 +119,16 @@ public class Time_Manager : MonoBehaviour
             else
             {
                 game_timer.fillAmount = 0f;
+            }
+
+            // ゲーム時間（数字）
+            if (time_count_down_main > 0)
+            {
+                game_timer_text.text = "" + ((int)time_count_down_main + 1);
+            }
+            else
+            {
+                game_timer_text.text = "0";
             }
 
             if (time_count_down_main > 5f)

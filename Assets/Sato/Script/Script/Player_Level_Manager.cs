@@ -12,7 +12,7 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーの経験値を持っているスクリプト
     [SerializeField] private Player_Exp_Get player_get_exp_script = null;
     // 経験値ゲージ
-    [SerializeField] private Image exp_slider = null;
+    //[SerializeField] private Image exp_slider = null;
     // レベルアップのテキスト
     [SerializeField] private GameObject level_up_text = null;
     // タイムを管理しているスクリプト
@@ -23,15 +23,11 @@ public class Player_Level_Manager : MonoBehaviour
     [SerializeField] private Bill_Level_manager bill_level_script = null;
     // レベルアップのエフェクトの親オブジェクト
     [SerializeField] private GameObject level_up_effect_obj = null;
-    // レベルアップエフェクト
-    [SerializeField] private ParticleSystem level_up_effect= null;
     // カメラのスクリプト
     [SerializeField] private camera_controller camera_scipt = null;
     // シングルトンクラスの取得
     [SerializeField] private Variable_Manager variable_manager_script = null;
-    // レベル表記のテキスト
-    [SerializeField] private TextMeshProUGUI level_text = null;
-
+    
     // レベルアップに必要な経験値
     private int[] level_up_exp;
     // プレイヤーのレベル
@@ -69,15 +65,11 @@ public class Player_Level_Manager : MonoBehaviour
 
         // サイズ変更に合わせて高さを変更
         player.transform.position = new Vector3(transform.position.x, player.transform.localScale.y / half, transform.position.z);
-
-        exp_slider.fillAmount = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        level_text.text = "" + player_level;
-
         if (time_script.GetGamePlayState())
         {
             PlayerLevelUpPhase();
@@ -86,10 +78,7 @@ public class Player_Level_Manager : MonoBehaviour
         // サイズ変更に合わせて高さを変更
         player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
 
-        // レベルアップエフェクトをプレイヤーに追従させる
-        level_up_effect_obj.transform.position = new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
-
-        //text.text = "" + player_get_exp_script.GetExp();
+        text.text = "" + player_level;
     }
 
     /// <summary>
@@ -110,8 +99,6 @@ public class Player_Level_Manager : MonoBehaviour
 
             bill_level_script.BillPossible(player_level);
 
-            LevelUpGageReset();
-
             level_up_text.SetActive(true);
 
             PlayLevelUpEffect();
@@ -129,32 +116,11 @@ public class Player_Level_Manager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 取得経験値をゲージに反映
-    /// </summary>
-    public void LevelUpGage() 
-    {
-        if (player_level < player_level_max)
-        {
-            exp_slider.fillAmount = (((float)player_get_exp_script.GetExp()) / (float)level_up_exp[player_level - 1]);
-        }
-    }
-
-    /// <summary>
-    /// レベルアップ時にゲージをリセエエエエエエエエエエエット！！
-    /// </summary>
-    private void LevelUpGageReset() 
-    {
-        if (player_level < player_level_max)
-        {
-            exp_slider.fillAmount = 0f;
-        }
-    }
-
     private void PlayLevelUpEffect() 
     {
-        level_up_effect_obj.transform.localScale *= player_level;
-        level_up_effect.Play();
+        GameObject childObject = Instantiate(level_up_effect_obj);
+        childObject.transform.localScale *= (float)player_level;
+        childObject.transform.position = player.transform.position;
     }
 
     /// <summary>
@@ -189,8 +155,6 @@ public class Player_Level_Manager : MonoBehaviour
         player = GameObject.Find("Player");
 
         level_up_text = GameObject.Find("Level_Up");
-
-        level_up_effect = player.GetComponent<ParticleSystem>();
 
         game_level_script = gameObject.GetComponent<Game_Level_Manager>();
 
