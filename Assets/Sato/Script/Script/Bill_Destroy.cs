@@ -98,8 +98,6 @@ public class Bill_Destroy : MonoBehaviour
             bill_Obsever.Destruction_Rate_Manager.DownNowRate();
             // 経験値ゲット用
             bill_Obsever.Player_Exp_Get.SetExp(exp_bill_level);
-            // 経験値ゲージ加算用
-            bill_Obsever.Player_Level_Manager.LevelUpGage();
         }
 
         // ゲームオブジェクトを非表示にする
