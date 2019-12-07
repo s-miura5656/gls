@@ -38,12 +38,28 @@ public class Skin_RandomSerect : MonoBehaviour
     [SerializeField]
     private GameObject block_buttton;
 
+    private int[] skin_number;
 
+    private bool skin_open;
 
     void Start()
     {
-        
+        int number_Length = Variable_Manager.Instance.GetSkinData.SkinOpen.Length;
 
+        for (int i = 0; i < number_Length; i++)
+        {
+            skin_open = Variable_Manager.Instance.GetSkinData.SkinOpen[i];
+            if (skin_open == true)
+            {
+                Lock_image[i].SetActive(false);
+                key_image[i].SetActive(false);
+            }
+            else
+            {
+                Lock_image[i].SetActive(true);
+                key_image[i].SetActive(true);
+            }
+        }
     }
 
     private void Update()
@@ -135,11 +151,16 @@ public class Skin_RandomSerect : MonoBehaviour
 
         Lock_image[nextNumber].SetActive(false);
         key_image[nextNumber].SetActive(false);
+
+        Variable_Manager.Instance.GetSkinData.SkinOpen[nextNumber] = true;
+
+        //Lock_image[nextNumber] = Variable_Manager.Instance.GetSetKey_image[];
+        //key_image[nextNumber] = Variable_Manager.Instance.GetSetKey_image[];
+
+
         if (skin_rest != 1)
         {
             randam_button.interactable = true;
-            
-
         }
 
         if (skin_rest == 1)
