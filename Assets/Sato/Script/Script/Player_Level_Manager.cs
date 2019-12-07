@@ -11,8 +11,10 @@ public class Player_Level_Manager : MonoBehaviour
     [SerializeField] private GameObject player = null;
     // プレイヤーの経験値を持っているスクリプト
     [SerializeField] private Player_Exp_Get player_get_exp_script = null;
+    // 経験値ゲージ用のキャンバス
+    [SerializeField] private GameObject gage_canvas = null;
     // 経験値ゲージ
-    //[SerializeField] private Image exp_slider = null;
+    [SerializeField] private Image exp_slider = null;
     // レベルアップのテキスト
     [SerializeField] private GameObject level_up_text = null;
     // タイムを管理しているスクリプト
@@ -77,6 +79,8 @@ public class Player_Level_Manager : MonoBehaviour
 
         // サイズ変更に合わせて高さを変更
         player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
+
+        gage_canvas.transform.position = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
 
         text.text = "" + player_level;
     }
