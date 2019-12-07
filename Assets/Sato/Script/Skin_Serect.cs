@@ -1,103 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Skin_Serect : MonoBehaviour
 {
-
     [SerializeField]
     private GameObject[] skin_serect;
+    [SerializeField]
+    private SkinData serect_number;
+
+    private int skin_number;
+
+    //[SerializeField]private Button[] buttons = new Button[9];
+
 
     void Start()
     {
+        //for (int i = 0; i < buttons.Length; i++)
+        //{
+        //    int selectNumber = i;
+        //    buttons[i].onClick.AddListener(() => SkinSelect(selectNumber));
+        //}
+
+        // ゲームオブジェクトを消したいとき
+        // buttons[0].gameObject.SetActive(false);
+
+        // コンポーネントを消したいとき
+        // buttons[0].enabled = false;
+
+
+
+        skin_number = Variable_Manager.Instance.GetSetAvatarNumber;
+
+
+
+
+        for(int i = 0; i< skin_serect.Length; i++)
+        {
+            skin_serect[i].SetActive(false);
+            if (skin_number == i)
+            {
+               
+                skin_serect[i].SetActive(true);
+            }
+
+
+
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void SkinSelect_0()
+    public void SkinSelect(int skinNumber)
     {
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < skin_serect.Length; i++)
         {
             skin_serect[i].SetActive(false);
         }
-        skin_serect[0].SetActive(true);
-    }
 
-    public void SkinSelect_1()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            skin_serect[i].SetActive(false);
-        }
-        skin_serect[1].SetActive(true);
+        skin_serect[skinNumber].SetActive(true);
+        Variable_Manager.Instance.GetSetAvatarNumber = skinNumber;
     }
-
-    public void SkinSelect_2()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            skin_serect[i].SetActive(false);
-        }
-        skin_serect[2].SetActive(true);
-    }
-
-    public void SkinSelect_3()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            skin_serect[i].SetActive(false);
-        }
-        skin_serect[3].SetActive(true);
-    }
-
-    public void SkinSelect_4()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            skin_serect[i].SetActive(false);
-        }
-        skin_serect[4].SetActive(true);
-    }
-
-    public void SkinSelect_5()
-    {
-        for(int i = 0; i < 9; i++)
-        {
-            skin_serect[i].SetActive(false);
-        }
-        skin_serect[5].SetActive(true);
-    }
-
-    public void SkinSelect_6()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            skin_serect[i].SetActive(false);
-        }
-        skin_serect[6].SetActive(true);
-    }
-
-    public void SkinSelect_7()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            skin_serect[i].SetActive(false);
-        }
-        skin_serect[7].SetActive(true);
-    }
-
-    public void SkinSelect_8()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            skin_serect[i].SetActive(false);
-        }
-        skin_serect[8].SetActive(true);
-    }
-
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkinData
 {
-    private static readonly int SkinNumber = 6;
+    public static readonly int SkinNumber = 8;
     private static readonly string SaveSkinBuyKey = "buy_skin_";
 
     private bool[] skine_open = new bool[SkinNumber];

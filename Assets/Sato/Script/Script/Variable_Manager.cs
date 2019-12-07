@@ -17,6 +17,14 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     // スキンデータ
     private SkinData skinData = null;
 
+
+    // スキンの解放確認1
+    private bool[] Lock_image = new bool[SkinData.SkinNumber];
+    // スキンの解放確認2
+    private bool[] key_image = new bool[SkinData.SkinNumber];
+
+
+
     /// <summary>
     /// ゲットしたコイン数
     /// </summary>
@@ -65,7 +73,19 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     public SkinData GetSkinData
     {
         get { return skinData; }
-    } 
+    }
+
+    public bool[] GetSetLockImage
+    {
+        get { return Lock_image; }
+        set { Lock_image = value; }
+    }
+
+    public bool[] GetSetKey_image
+    {
+        get { return key_image; }
+        set { key_image = value; }
+    }
 
     public void Save()
     {
@@ -83,6 +103,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
+        GetSetPossessionCoin = 10000;
+         
 
         if (GetSetPossessionCoin < 0)
         {

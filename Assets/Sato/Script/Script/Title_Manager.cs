@@ -31,8 +31,8 @@ public class Title_Manager : MonoBehaviour
 
     public void PlayGame() 
     {
-        Variable_Manager.Instance.GetSetVibrate = script.GetStatus();
-
+        //Variable_Manager.Instance.GetSetVibrate = script.GetStatus();
+        
         //scene_number = Random.Range(scene_number_min, scene_number_max);
 
         //SceneManager.LoadScene("GameMain_" + scene_number);
