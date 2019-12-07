@@ -8,62 +8,6 @@ public class Skin_RandomSerect : MonoBehaviour
 {
 
 
-    //private Text possession_text;
-    //[SerializeField]
-    //private Text get_coin_text;
-    //private int possession_coin;
-
-    //private Variable_Manager script;
-
-
-
-    //[SerializeField]
-    //private GameObject botton_2;
-    //[SerializeField]
-    //private Text botton_2_text;
-    //[SerializeField]
-    //private GameObject botton_2_image;
-
-    //private bool skin2_ID;
-
-    //[SerializeField]
-    //private GameObject botton_3;
-    //[SerializeField]
-    //private Text botton_3_text;
-    //[SerializeField]
-    //private GameObject botton_3_image;
-    //private bool skin3_ID;
-
-    //[SerializeField]
-    //private GameObject botton_4;
-    //[SerializeField]
-    //private Text botton_4_text;
-    //[SerializeField]
-    //private GameObject botton_4_image;
-    //private bool skin4_ID;
-
-    //[SerializeField]
-    //private GameObject botton_5;
-    //[SerializeField]
-    //private Text botton_5_text;
-    //[SerializeField]
-    //private GameObject botton_5_image;
-    //private bool skin5_ID;
-
-    //[SerializeField]
-
-    //private GameObject botton_6;
-    //[SerializeField]
-    //private Text botton_6_text;
-    //[SerializeField]
-    //private GameObject botton_6_image;
-    //private bool skin6_ID;
-
-    //private int skin_after_coin;
-
-    //private bool skin7_ID;
-    //private bool skin8_ID;
-    //private bool skin9_ID;
 
     int state = 0;
     int lock_image_index = 0;
@@ -76,111 +20,80 @@ public class Skin_RandomSerect : MonoBehaviour
     [SerializeField]
     private GameObject[] key_image;
 
+    private int[] random_index;
+    private int skin_rest;
+
     float alpha_Sin;
 
 
+    [SerializeField]
+    private Button randam_button;
 
+    [SerializeField]
+    private Text use_coin_text;
+
+    [SerializeField]
+    private Variable_Manager coin_script;
+    private int possession_coin;
+    [SerializeField]
+    private GameObject block_buttton;
 
 
 
     void Start()
     {
-        //possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
-        ////possession_coin = 10000;
-        //get_coin_text.text = possession_coin.ToString();
-        //skin2_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[1];
-        //skin3_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[2];
-        //skin4_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[3];
-        //skin5_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[4];
-        //skin6_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[5];
-        //skin7_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[6];
-        //skin8_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[7];
-        //skin9_ID = Variable_Manager.Instance.GetSkinData.SkinOpen[8];
+        
 
-        StartCoroutine(RandomSelect());
-
-        //for (int i = 0; i < Lock_image.Length; i++) {
-        //    Lock_image[i].SetActive(false);
-        //}
-        //lock_image_count = 0;
-        //DOTween.To(
-        //    () => lock_image_count,          // 何を対象にするのか
-        //    num => lock_image_count = num,   // 値の更新
-        //    30,                  // 最終的な値
-        //    2.0f                  // アニメーション時間
-        //).SetEase(Ease.OutCirc); 
     }
 
     private void Update()
     {
-        //if (state == 0)
-        //{
-        //    if (lock_image_count > lock_image_old_count)
-        //    {
-        //        lock_image_old_count = lock_image_count;
+        possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
+        if (possession_coin < 3000)
+        {
+            block_buttton.SetActive(true);
+        }
 
-        //        Lock_image[lock_image_index].SetActive(false);
-        //        lock_image_index = Random.Range(0, Lock_image.Length);
-        //        Lock_image[lock_image_index].SetActive(true);
-
-
-        //    }
-        //    if (lock_image_count == 30)
-        //    {
-                
-        //        Lock_image[lock_image_index].SetActive(false);
-        //        key_image[lock_image_index].SetActive(false);
-
-        //    }
-        //}
-
-        //    if(state == 1)
-        //    {
-                
-        //    }
-
-        //        if (lock_image_count >= 600)
-        //        {
-        //            state = 1;
-
-        //            lock_image_count = 0;
-        //            lock_image_old_count = 0;
-        //            DOTween.To(
-        //                () => lock_image_count,          // 何を対象にするのか
-        //                num => lock_image_count = num,   // 値の更新
-        //                5,                  // 最終的な値
-        //                10.0f                  // アニメーション時間
-        //            ).SetEase(Ease.OutCirc);
-        //        }
-        //    }
-        //}
-        //else if (state == 1)
-        //{
-        //    if (lock_image_count > lock_image_old_count)
-        //    {
-        //        lock_image_old_count = lock_image_count;
-
-        //        Lock_image[lock_image_index].SetActive(false);
-        //        lock_image_index = Random.Range(0, Lock_image.Length);
-        //        Lock_image[lock_image_index].SetActive(true);
-        //    }
-
+        else if (possession_coin >= 3000)
+        {
+            block_buttton.SetActive(false);
+        }
+        
 
     }
 
-    private void Random_time()
+    public void Clik_Random()
     {
-        lock_image_count = 0;
-        DOTween.To(
-            () => lock_image_count,          // 何を対象にするのか
-            num => lock_image_count = num,   // 値の更新
-            600,                  // 最終的な値
-            3.0f                  // アニメーション時間
-        );
 
+        Variable_Manager.Instance.GetSetPossessionCoin -=  3000;
+        randam_button.interactable = false;
+
+        // 解放済みのスキンの数を数える
+        random_index = new int[key_image.Length];
+        skin_rest = 0;
+        for (int i = 0; i < key_image.Length; i++)
+        {
+            if (key_image[i].activeInHierarchy)
+            {
+                random_index[skin_rest] = i;
+                skin_rest++;
+            }
+        }
+        
+        // ランダムな順列
+        for (int i = 0; i < skin_rest; i++)
+        {
+            int work = random_index[i];
+            int rnd = Random.Range(0, skin_rest);
+            random_index[i] = random_index[rnd];
+            random_index[rnd] = work;
+        }
+
+        StartCoroutine(RandomSelect());
     }
 
-    public int randomcount = 6;
+
+    public int randomcount = 600;
     [Range(0.01f, 1.0f)] public float[] speed = new float[] { };
 
     public AnimationCurve curve = new AnimationCurve();
@@ -193,24 +106,51 @@ public class Skin_RandomSerect : MonoBehaviour
         for (int i = 0; i < randomcount; i++)
         {
             // 指定した秒数待つ
-            yield return new WaitForSecondsRealtime(curve[i].value);
+            yield return new WaitForSecondsRealtime(curve[i % curve.length].value);
             //yield return new WaitForSecondsRealtime(speed[i]);
 
             // 同じ番号にならないようにする
-            while (preNumber == nextNumber)
-            {
-                nextNumber = Random.Range(0, Lock_image.Length);
-            }
+            //            while (preNumber == nextNumber)
+            //            {
+            //                nextNumber = Random.Range(0, Lock_image.Length);
+            //            }
 
             //　選ばれた番号を明るくする
-            for (int j = 0; j < Lock_image.Length; j++)
+            nextNumber = random_index[i % skin_rest];
+            for (int j = 0; j < skin_rest; j++)
             {
-                var enable = j == nextNumber;
-                Lock_image[j].SetActive(enable);
+                var enable = random_index[j] == nextNumber;
+                Lock_image[random_index[j]].SetActive(enable);
             }
+
+            ////　選ばれた番号を明るくする
+            //for (int j = 0; j < Lock_image.Length; j++)
+            //{
+            //    var enable = j == nextNumber;
+            //    Lock_image[j].SetActive(enable);
+            //}
 
             preNumber = nextNumber;
         }
+
+        Lock_image[nextNumber].SetActive(false);
+        key_image[nextNumber].SetActive(false);
+        if (skin_rest != 1)
+        {
+            randam_button.interactable = true;
+            
+
+        }
+
+        if (skin_rest == 1)
+        {
+           
+            use_coin_text.text = "SOLD OUT";
+            use_coin_text.fontSize = 70;
+
+        }
     }
+
+
 }
 
