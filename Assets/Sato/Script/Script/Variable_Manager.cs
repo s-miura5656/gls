@@ -83,6 +83,12 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
+
+        if (GetSetPossessionCoin < 0)
+        {
+            Debug.LogError("GetSetPossessionCoin=" + GetSetPossessionCoin);
+            GetSetPossessionCoin = 0;
+        }
     }
 
     private void OnApplicationPause(bool pause)
