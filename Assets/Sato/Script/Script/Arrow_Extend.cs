@@ -81,10 +81,10 @@ public class Arrow_Extend : MonoBehaviour
             // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる
             transform.position = player.transform.position
                                + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized
-                               * (player_size.z + (arrow_dist * (player_level_script.GetLevel() * 4))));
+                               * (player_size.z + (arrow_dist * (player_level_script.GetLevel() * 3))));
 
             // 引っ張りに対して矢印を引き延ばす
-            transform.localScale = new Vector3((dist / 30) * player_level_script.GetLevel(), (dist / 50) * player_level_script.GetLevel(), transform.localScale.z);
+            transform.localScale = new Vector3((dist / 60) * player_level_script.GetLevel(), (dist / 60) * player_level_script.GetLevel(), transform.localScale.z);
         }
 
         // 左クリックを放したときに矢印を消す

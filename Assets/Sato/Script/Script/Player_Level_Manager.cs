@@ -12,7 +12,7 @@ public class Player_Level_Manager : MonoBehaviour
     // プレイヤーの経験値を持っているスクリプト
     [SerializeField] private Player_Exp_Get player_get_exp_script = null;
     // 経験値ゲージ用のキャンバス
-    [SerializeField] private GameObject gage_canvas = null;
+    [SerializeField] private RectTransform gage_canvas = null;
     // 経験値ゲージ
     [SerializeField] private Image exp_slider = null;
     // レベルアップのテキスト
@@ -40,7 +40,9 @@ public class Player_Level_Manager : MonoBehaviour
     private Vector3[] player_scale = new Vector3[10];
     // プレイヤーのスケールを割る数
     private float half = 2f;
-    
+    // 経験値ゲージの一番最初のサイズ
+    private Vector3 default_gage_size = new Vector3(0f, 0f, 0f);
+
     [SerializeField] private Text text = null;
 
     // Start is called before the first frame update
@@ -67,6 +69,8 @@ public class Player_Level_Manager : MonoBehaviour
 
         // サイズ変更に合わせて高さを変更
         player.transform.position = new Vector3(transform.position.x, player.transform.localScale.y / half, transform.position.z);
+
+        default_gage_size = gage_canvas.transform.localScale;
     }
 
     // Update is called once per frame
@@ -81,6 +85,8 @@ public class Player_Level_Manager : MonoBehaviour
         player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
 
         gage_canvas.transform.position = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
+
+        ExpGage();
 
         text.text = "" + player_level;
     }
@@ -102,6 +108,8 @@ public class Player_Level_Manager : MonoBehaviour
             time_script.TimeCountDownMainPlus();
 
             bill_level_script.BillPossible(player_level);
+
+            gage_canvas.transform.localScale = default_gage_size * player_level;
 
             level_up_text.SetActive(true);
 
@@ -126,6 +134,24 @@ public class Player_Level_Manager : MonoBehaviour
         childObject.transform.localScale *= (float)player_level;
         childObject.transform.position = player.transform.position;
     }
+
+    private void ExpGage() 
+    {
+        if (exp_slider.fillAmount >= 1f)
+        {
+            exp_slider.fillAmount = 0f;
+        }
+
+        if (player_level == 1)
+        {
+            exp_slider.fillAmount = (float)player_get_exp_script.GetExp() / (float)level_up_exp[player_level - 1];
+        }
+        else
+        {
+            exp_slider.fillAmount = ((float)player_get_exp_script.GetExp() - (float)level_up_exp[player_level - 2]) / (float)level_up_exp[player_level - 1];
+        }
+    }
+
 
     /// <summary>
     /// プレイヤーの現在のレベル

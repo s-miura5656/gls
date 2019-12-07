@@ -57,6 +57,12 @@ public class player_controller_move : MonoBehaviour
         PullController();
 
         SpeedDown();
+
+        if (!time_script.GetGamePlayState())
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 
     private void FixedUpdate()
@@ -123,16 +129,18 @@ public class player_controller_move : MonoBehaviour
             // 引っ張った時の始点から離すまでの移動距離
             dist = (start_pos - end_pos).magnitude;
 
-            // 引っ張り上限
-            if (dist >= 200.0f)
-            {
-                dist = 200.0f;
-            }
-            // 引っ張り下限
-            if (dist <= 30.0f)
-            {
-                dist = 30.0f;
-            }
+            dist = 200.0f;
+
+            //// 引っ張り上限
+            //if (dist >= 200.0f)
+            //{
+            //    dist = 200.0f;
+            //}
+            //// 引っ張り下限
+            //if (dist <= 30.0f)
+            //{
+            //    dist = 30.0f;
+            //}
 
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
