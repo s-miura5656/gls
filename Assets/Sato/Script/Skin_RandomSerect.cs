@@ -68,12 +68,12 @@ public class Skin_RandomSerect : MonoBehaviour
     private void Update()
     {
         possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
-        if (possession_coin < 3000)
+        if (possession_coin < 5000)
         {
             block_buttton.SetActive(true);
         }
 
-        else if (possession_coin >= 3000)
+        else if (possession_coin >= 5000)
         {
             block_buttton.SetActive(false);
         }
@@ -84,7 +84,7 @@ public class Skin_RandomSerect : MonoBehaviour
     public void Clik_Random()
     {
 
-        Variable_Manager.Instance.GetSetPossessionCoin -=  3000;
+        Variable_Manager.Instance.GetSetPossessionCoin -=  5000;
         open_numbers++;
         Variable_Manager.Instance.GetSetOpenSkin = open_numbers;
         randam_button.interactable = false;
