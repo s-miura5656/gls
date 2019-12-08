@@ -42,6 +42,8 @@ public class Skin_RandomSerect : MonoBehaviour
 
     private bool skin_open;
 
+    public int open_numbers = 0;
+
     void Start()
     {
         int number_Length = Variable_Manager.Instance.GetSkinData.SkinOpen.Length;
@@ -82,6 +84,7 @@ public class Skin_RandomSerect : MonoBehaviour
     {
 
         Variable_Manager.Instance.GetSetPossessionCoin -=  3000;
+        open_numbers++;
         randam_button.interactable = false;
 
         // 解放済みのスキンの数を数える
