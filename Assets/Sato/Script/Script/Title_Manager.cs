@@ -18,6 +18,10 @@ public class Title_Manager : MonoBehaviour
     [SerializeField]
     private UnityAnaltics Ana_script;
 
+    // ゲームが始まって最初に決まったステージが選ばれるステート
+    private bool start_stage = false;
+    // 最初に選ばれるステージの番号
+    private int first_stage = 1;
     private void Awake()
     {
         Application.targetFrameRate = 30;
@@ -37,13 +41,17 @@ public class Title_Manager : MonoBehaviour
 
     public void PlayGame() 
     {
-        //Variable_Manager.Instance.GetSetVibrate = script.GetStatus();
-        
-        //scene_number = Random.Range(scene_number_min, scene_number_max);
+        if (!start_stage)
+        {
+            SceneManager.LoadScene("GameMain_" + first_stage);
+        }
+        else
+        {
+            scene_number = Random.Range(scene_number_min, scene_number_max);
 
-        //SceneManager.LoadScene("GameMain_" + scene_number);
+            SceneManager.LoadScene("GameMain_" + scene_number);
+        }
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameMain_2");
         game_start++;
         Variable_Manager.Instance.GetSetPlayGames = game_start;
 
