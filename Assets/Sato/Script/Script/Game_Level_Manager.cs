@@ -29,8 +29,6 @@ public class Game_Level_Manager : MonoBehaviour
         bill_obsever = city.GetComponent<Bill_Obsever>();
 
         // それぞれの数値を変化させる処理
-        player_level_manager.SetLevelMax(gameLevelData.player_level_max);
-        player_level_manager.SetPlayerScale(gameLevelData.player_scale);
         camera_move.SetFirstPos(gameLevelData.camera_first_pos);
         camera_move.SetLevelUpCameraPos(gameLevelData.camera_moving_value);
         player_controller.SetMovePowor(gameLevelData.move_powor);

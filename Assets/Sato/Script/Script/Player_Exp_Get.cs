@@ -68,7 +68,11 @@ public class Player_Exp_Get : MonoBehaviour
     /// プレイヤーの経験値
     /// </summary>
     /// <returns></returns>
-    public int GetExp() { return exp; }
+    public int PlayerExp 
+    {
+        get { return exp; }
+        set { exp = value; }
+    }
 
     /// <summary>
     /// コインの取得
