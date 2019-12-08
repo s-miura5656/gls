@@ -6,12 +6,10 @@ using UnityEngine.Analytics;
 public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
 {
 
-    [SerializeField]
-    private Skin_RandomSerect serect_script;
+    
     [SerializeField]
     private Variable_Manager manager_script;
-    [SerializeField]
-    private Title_Manager title_script;
+    
 
 
     void Start()
@@ -75,7 +73,7 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
     {
 
 
-        int open_number = serect_script.open_numbers;
+        int open_number = Variable_Manager.Instance.GetSetOpenSkin;
 
         if (open_number == 0)
         {
@@ -323,7 +321,7 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
     public void Title()
     {
 
-        int play_game = title_script.game_start;
+        int play_game = Variable_Manager.Instance.GetSetPlayGames;
 
 
 

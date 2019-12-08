@@ -65,11 +65,11 @@ public class ResultBotton_Manger : MonoBehaviour
     {
         if (script.after_score != 0)
         {
-            Variable_Manager.Instance.GetSetPossessionCoin += script.after_score;
+            Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bonus_score;
         }
         else
         {
-            Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bonus_score;
+            //Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bonus_score;
         }
     }
 

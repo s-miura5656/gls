@@ -14,6 +14,10 @@ public class Title_Manager : MonoBehaviour
     private int scene_number_max = 3;
 
     public int game_start = 0;
+
+    [SerializeField]
+    private UnityAnaltics Ana_script;
+
     private void Awake()
     {
         Application.targetFrameRate = 30;
@@ -21,7 +25,7 @@ public class Title_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        game_start = Variable_Manager.Instance.GetSetPlayGames;
     }
 
     // Update is called once per frame
@@ -41,6 +45,8 @@ public class Title_Manager : MonoBehaviour
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameMain_2");
         game_start++;
+        Variable_Manager.Instance.GetSetPlayGames = game_start;
+
     }
 
     public void SetSkin() 
