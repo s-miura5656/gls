@@ -52,7 +52,7 @@ public class Vibrations_Manager : MonoBehaviour
         vibrations_on.SetActive(false);
         vibrations_off.SetActive(true);
         status = false;
-        //Variable_Manager.Instance.GetSetVibrate = status;
+        Variable_Manager.Instance.GetSetVibrate = status;
 
     }
 
@@ -61,7 +61,7 @@ public class Vibrations_Manager : MonoBehaviour
         vibrations_on.SetActive(true);
         vibrations_off.SetActive(false);
         status = true;
-        //Variable_Manager.Instance.GetSetVibrate = status;
+        Variable_Manager.Instance.GetSetVibrate = status;
 
     }
 

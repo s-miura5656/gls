@@ -278,39 +278,67 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
                 { "yen", 1000 }
             });
         }
-        else if (coin_now >= 1000 && coin_now < 2000)
-        {
-            SendAnalytics("possession_coin", new Dictionary<string, object>
-            {
-                { "yen", 2000 }
-            });
-        }
-        else if (coin_now >= 2000 && coin_now < 3000)
-        {
-            SendAnalytics("possession_coin", new Dictionary<string, object>
-            {
-                { "yen", 3000 }
-            });
-        }
-        else if (coin_now >= 3000 && coin_now < 5000)
+        else if (coin_now >= 1000 && coin_now < 5000)
         {
             SendAnalytics("possession_coin", new Dictionary<string, object>
             {
                 { "yen", 5000 }
             });
         }
-        else if (coin_now >= 5000 && coin_now < 8000)
+        else if (coin_now >= 5000 && coin_now < 10000)
         {
             SendAnalytics("possession_coin", new Dictionary<string, object>
             {
-                { "yen", 8000 }
+                { "yen", 10000 }
             });
         }
-        else if (coin_now >= 8000)
+        else if (coin_now >= 10000 && coin_now < 15000)
         {
             SendAnalytics("possession_coin", new Dictionary<string, object>
             {
-                { "yen", 9999 }
+                { "yen", 15000 }
+            });
+        }
+        else if (coin_now >= 15000 && coin_now < 20000)
+        {
+            SendAnalytics("possession_coin", new Dictionary<string, object>
+            {
+                { "yen", 20000 }
+            });
+        }
+        else if (coin_now >= 20000 && coin_now < 25000)
+        {
+            SendAnalytics("possession_coin", new Dictionary<string, object>
+            {
+                { "yen", 25000 }
+            });
+        }
+        else if (coin_now >= 25000 && coin_now < 30000)
+        {
+            SendAnalytics("possession_coin", new Dictionary<string, object>
+            {
+                { "yen", 30000 }
+            });
+        }
+        else if (coin_now >= 30000 && coin_now < 35000)
+        {
+            SendAnalytics("possession_coin", new Dictionary<string, object>
+            {
+                { "yen", 35000 }
+            });
+        }
+        else if (coin_now >= 35000 && coin_now < 40000)
+        {
+            SendAnalytics("possession_coin", new Dictionary<string, object>
+            {
+                { "yen", 40000 }
+            });
+        }
+        else if (coin_now >= 40000)
+        {
+            SendAnalytics("possession_coin", new Dictionary<string, object>
+            {
+                { "yen", 99999 }
             });
         }
 
