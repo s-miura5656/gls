@@ -70,7 +70,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     /// </summary>
     public void DownNowRate() 
     {
-        if (time_script.GetGamePlayState())
+        if (time_script.GetGamePlayState)
         {
             now_number--;
         }

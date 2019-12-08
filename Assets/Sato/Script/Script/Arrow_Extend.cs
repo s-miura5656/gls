@@ -37,11 +37,12 @@ public class Arrow_Extend : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (time_script.GetGamePlayState())
+        if (!time_script.GetGameEndState)
         {
+            ArrowController();
         }
 
-        ArrowController();
+
     }
 
     private void ArrowController() 

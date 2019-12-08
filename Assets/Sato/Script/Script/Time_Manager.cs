@@ -21,7 +21,7 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private Image game_timer = null;
     // ゲームの時間（テキスト）
     [SerializeField] private TextMeshProUGUI game_timer_text = null;
-
+    
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 4f;
     // スタート
@@ -40,8 +40,13 @@ public class Time_Manager : MonoBehaviour
     private bool game_play_state = false;
     // プラスするタイムを表示する時間
     private float plus_time_count = 0;
+    // 追加される時間のテキストのポジション
     private RectTransform time_plus_rect = null;
-    private Vector3 default_time_plus_pos = new Vector3(0f, 0f, 0f);
+    // 追加される時間のテキストの初期位置
+    private Vector3 default_time_plus_pos = Vector3.zero;
+    // ゲームが終了した時のステート
+    private bool game_end_state = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -154,6 +159,7 @@ public class Time_Manager : MonoBehaviour
             if (game_timer.fillAmount == 0)
             {
                 game_play_state = false;
+                game_end_state = true;
                 end_count_down_text.text = "TIME UP";
             }
 
@@ -176,7 +182,18 @@ public class Time_Manager : MonoBehaviour
     /// 操作可能かどうか
     /// </summary>
     /// <returns></returns>
-    public bool GetGamePlayState() { return game_play_state; }
+    public bool GetGamePlayState 
+    {
+        get { return game_play_state; } 
+    }
+
+    /// <summary>
+    /// ゲームのメインが終了しているかどうか
+    /// </summary>
+    public bool GetGameEndState 
+    {
+        get { return game_end_state; }
+    }
 
     /// <summary>
     /// 制限時間
