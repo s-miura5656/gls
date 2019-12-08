@@ -11,7 +11,9 @@ public class Title_Manager : MonoBehaviour
 
     private int scene_number = 1;
     private int scene_number_min = 1;
-    private int scene_number_max = 3; 
+    private int scene_number_max = 3;
+
+    public int game_start = 0;
     private void Awake()
     {
         Application.targetFrameRate = 30;
@@ -38,6 +40,7 @@ public class Title_Manager : MonoBehaviour
         //SceneManager.LoadScene("GameMain_" + scene_number);
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameMain_2");
+        game_start++;
     }
 
     public void SetSkin() 

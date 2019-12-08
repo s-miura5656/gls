@@ -23,6 +23,12 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     // スキンの解放確認2
     private bool[] key_image = new bool[SkinData.SkinNumber];
 
+    public float play_time = 0;
+
+    //[SerializeField]
+    //private UnityAnaltics ana_script;
+
+
 
 
     /// <summary>
@@ -94,6 +100,18 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.SetInt("avatar_number", GetSetAvatarNumber);
         PlayerPrefs.SetInt("possession_coin", GetSetPossessionCoin);
         PlayerPrefs.Save();
+
+        play_time = Time.time;
+        Debug.Log(play_time);
+
+
+        //ana_script.Play_time();
+        //ana_script.Skin_now();
+        //ana_script.Coin();
+        //ana_script.Title();
+
+        UnityAnaltics.Instance.open_number();
+
     }
 
     public void Load()
@@ -103,7 +121,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
-        GetSetPossessionCoin = 10000;
+        GetSetPossessionCoin = 100000;
          
 
         if (GetSetPossessionCoin < 0)
