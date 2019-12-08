@@ -27,9 +27,9 @@ public class Player_Level_Manager : MonoBehaviour
     [SerializeField] private GameObject level_up_effect_obj = null;
     // カメラのスクリプト
     [SerializeField] private camera_controller camera_scipt = null;
-    // シングルトンクラスの取得
-    [SerializeField] private Variable_Manager variable_manager_script = null;
-    
+    // プレイヤーパラメーターの取得
+    [SerializeField] private PlayerParametor player_parametor = null;
+
     // レベルアップに必要な経験値
     private int[] level_up_exp;
     // プレイヤーのレベル
@@ -48,20 +48,23 @@ public class Player_Level_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        variable_manager_script = GameObject.Find("Data_Manager").GetComponent<Variable_Manager>();
+        player_level_max = player_parametor.PlayerLevelMax;
 
         level_up_exp = new int[player_level_max - 1];
 
-        // レベルアップに必要な経験値の初期化
-        level_up_exp[0] = 25;
-        level_up_exp[1] = level_up_exp[0] + 100;
-        level_up_exp[2] = level_up_exp[1] + 500;
-        level_up_exp[3] = level_up_exp[2] + 1500;
-        level_up_exp[4] = level_up_exp[3] + 2000;
-        level_up_exp[5] = level_up_exp[4] + 2500;
-        level_up_exp[6] = level_up_exp[5] + 6000;
-        level_up_exp[7] = level_up_exp[6] + 10000;
-        level_up_exp[8] = level_up_exp[7] + 14000;
+        player_scale = new Vector3[player_level_max];
+
+        // レベルごとの必要経験値の初期化
+        for (int i = 0; i < level_up_exp.Length; i++)
+        {
+            level_up_exp[i] = player_parametor.PlayerLevelUpExp[i];
+        }
+
+        // レベルごとのサイズの初期化
+        for (int i = 0; i < player_scale.Length; i++)
+        {
+            player_scale[i] = Vector3.one * player_parametor.PlayerScale[i];
+        }
 
         player = game_level_script.GetPlayer();
         
@@ -101,13 +104,15 @@ public class Player_Level_Manager : MonoBehaviour
         for (int i = player_level - 1; i < level_up_exp.Length; i++)
         {
             // 現在の経験値が指定の経験値と同じか超えるかした場合レベルアップ
-            if (player_get_exp_script.GetExp() < level_up_exp[i]) continue;
+            if (player_get_exp_script.PlayerExp < level_up_exp[i]) continue;
 
             player_level = player_level + 1;
 
             time_script.TimeCountDownMainPlus();
 
             bill_level_script.BillPossible(player_level);
+
+            player_get_exp_script.PlayerExp = 0;
 
             gage_canvas.transform.localScale = default_gage_size * player_level;
 
@@ -137,19 +142,10 @@ public class Player_Level_Manager : MonoBehaviour
 
     private void ExpGage() 
     {
-        if (exp_slider.fillAmount >= 1f)
-        {
-            exp_slider.fillAmount = 0f;
-        }
+        if (player_level >= player_level_max) 
+            return;
 
-        if (player_level == 1)
-        {
-            exp_slider.fillAmount = (float)player_get_exp_script.GetExp() / (float)level_up_exp[player_level - 1];
-        }
-        else
-        {
-            exp_slider.fillAmount = ((float)player_get_exp_script.GetExp() - (float)level_up_exp[player_level - 2]) / (float)level_up_exp[player_level - 1];
-        }
+        exp_slider.fillAmount = (float)player_get_exp_script.PlayerExp / (float)level_up_exp[player_level - 1];
     }
 
 
@@ -166,18 +162,6 @@ public class Player_Level_Manager : MonoBehaviour
     public void SetLevelMax(int level_max) 
     {
         player_level_max = level_max;
-    }
-
-    /// <summary>
-    /// プレイヤーの大きさ設定
-    /// </summary>
-    /// <param name="pos"></param>
-    public void SetPlayerScale(float[] scale) 
-    {
-        for (int i = 0; i < scale.Length; i++)
-        {
-            player_scale[i] = new Vector3(1f, 1f, 1f) * scale[i];
-        }
     }
 
     private void Reset()

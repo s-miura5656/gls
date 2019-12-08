@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6469966206114064502}
   - component: {fileID: 6469966206114064503}
   - component: {fileID: 5717232161546214196}
-  - component: {fileID: -5252821139547028214}
   - component: {fileID: 8535278035699483302}
   - component: {fileID: 1717271582861240550}
+  - component: {fileID: -5252821139547028214}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -67,16 +67,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   player_get_exp_script: {fileID: 0}
+  gage_canvas: {fileID: 0}
   exp_slider: {fileID: 0}
   level_up_text: {fileID: 0}
   time_script: {fileID: 0}
   game_level_script: {fileID: 0}
   bill_level_script: {fileID: 0}
-  level_up_effect: {fileID: 0}
-  level_up_effect_: {fileID: 0}
+  level_up_effect_obj: {fileID: 0}
   camera_scipt: {fileID: 0}
-  variable_manager_script: {fileID: 0}
-  level_text: {fileID: 0}
+  player_parametor_script: {fileID: 0}
   text: {fileID: 0}
 --- !u!114 &6469966206114064503
 MonoBehaviour:
@@ -96,6 +95,7 @@ MonoBehaviour:
   time_plus_obj: {fileID: 0}
   loading_script: {fileID: 0}
   game_timer: {fileID: 0}
+  game_timer_text: {fileID: 0}
 --- !u!114 &5717232161546214196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +110,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroy_sound: {fileID: 8300000, guid: e14991cd6f358674396996060e285b5c, type: 3}
   impact_sound: {fileID: 8300000, guid: 3a5cea25dd843c2459ff0ecd7b905521, type: 3}
+--- !u!114 &8535278035699483302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469966206114064506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232b5beac200e2b46ac80252f1ffd2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1717271582861240550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469966206114064506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9eadd88bae985f4785d01e1914e6b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destruction_rate_text: {fileID: 0}
 --- !u!82 &-5252821139547028214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -206,27 +231,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8535278035699483302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6469966206114064506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 232b5beac200e2b46ac80252f1ffd2d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1717271582861240550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6469966206114064506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9eadd88bae985f4785d01e1914e6b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
