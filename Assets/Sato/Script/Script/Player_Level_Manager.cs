@@ -43,7 +43,7 @@ public class Player_Level_Manager : MonoBehaviour
     // 経験値ゲージの一番最初のサイズ
     private Vector3 default_gage_size = new Vector3(0f, 0f, 0f);
 
-    [SerializeField] private Text text = null;
+    //[SerializeField] private Text text = null;
 
     // Start is called before the first frame update
     void Start()
@@ -91,7 +91,7 @@ public class Player_Level_Manager : MonoBehaviour
 
         ExpGage();
 
-        text.text = "" + player_level;
+        //text.text = "" + player_level;
     }
 
     /// <summary>
