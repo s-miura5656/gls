@@ -92,7 +92,7 @@ public class Bill_Destroy : MonoBehaviour
         bill_Obsever.PlayHitEffect(player_level, hitPosition);
 
         // ゲーム時間内だけ破壊率と経験値を追加していく処理
-        if (bill_Obsever.Time_Manager.GetGamePlayState())
+        if (bill_Obsever.Time_Manager.GetGamePlayState)
         {
             // 破壊率計算用の関数
             bill_Obsever.Destruction_Rate_Manager.DownNowRate();

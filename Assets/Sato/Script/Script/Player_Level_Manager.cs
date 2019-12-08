@@ -67,7 +67,7 @@ public class Player_Level_Manager : MonoBehaviour
         }
 
         player = game_level_script.GetPlayer();
-        
+
         player.transform.localScale = player_scale[0];
 
         // サイズ変更に合わせて高さを変更
@@ -79,7 +79,7 @@ public class Player_Level_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (time_script.GetGamePlayState())
+        if (time_script.GetGamePlayState)
         {
             PlayerLevelUpPhase();
         }
@@ -97,7 +97,7 @@ public class Player_Level_Manager : MonoBehaviour
     /// <summary>
     /// プレイヤーのレベルアップとそれに合わせてサイズを変更する
     /// </summary>
-    private void PlayerLevelUpPhase() 
+    private void PlayerLevelUpPhase()
     {
         if (player_level >= player_level_max) return;
 
@@ -128,21 +128,21 @@ public class Player_Level_Manager : MonoBehaviour
             // サイズ変更
             player.transform.DOScale(player_scale[player_level - 1], 2f);
 
-            
+
             camera_scipt.ZoomCamera();
         }
     }
 
-    private void PlayLevelUpEffect() 
+    private void PlayLevelUpEffect()
     {
         GameObject childObject = Instantiate(level_up_effect_obj);
         childObject.transform.localScale *= (float)player_level;
         childObject.transform.position = player.transform.position;
     }
 
-    private void ExpGage() 
+    private void ExpGage()
     {
-        if (player_level >= player_level_max) 
+        if (player_level >= player_level_max)
             return;
 
         exp_slider.fillAmount = (float)player_get_exp_script.PlayerExp / (float)level_up_exp[player_level - 1];
@@ -159,9 +159,9 @@ public class Player_Level_Manager : MonoBehaviour
     /// レベル上限の設定
     /// </summary>
     /// <param name="level_max"></param>
-    public void SetLevelMax(int level_max) 
+    public int PlayerLevelMax
     {
-        player_level_max = level_max;
+        get { return player_level_max; }
     }
 
     private void Reset()

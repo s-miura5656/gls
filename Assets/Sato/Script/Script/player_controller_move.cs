@@ -31,6 +31,10 @@ public class player_controller_move : MonoBehaviour
     private Player_Level_Manager player_level_manager_script;
     // プレイヤーのレベルが上がっていくにつれて加える力
     private float[] player_powor = new float[10];
+    // 操作説明のアニメーション
+    [SerializeField] private GameObject operation_anime = null;
+    // プレイヤーパラメーターの取得
+    [SerializeField] private PlayerParametor player_parametor = null;
 
 
     void Start()
@@ -40,16 +44,12 @@ public class player_controller_move : MonoBehaviour
         time_script = game_manager.GetComponent<Time_Manager>();
         player_level_manager_script = game_manager.GetComponent<Player_Level_Manager>();
 
-        player_powor[0] = 0.8f;
-        player_powor[1] = 1.2f;
-        player_powor[2] = 1.5f;
-        player_powor[3] = 1.7f;
-        player_powor[4] = 1.7f;
-        player_powor[5] = 1.7f;
-        player_powor[6] = 1.7f;
-        player_powor[7] = 1.7f;
-        player_powor[8] = 1.7f;
-        player_powor[9] = 1.7f;
+        player_powor = new float[player_level_manager_script.PlayerLevelMax];
+
+        for (int i = 0; i < player_powor.Length; i++)
+        {
+            player_powor[i] = player_parametor.PlayerPowor[i];
+        }
     }
 
     void Update()
@@ -58,7 +58,7 @@ public class player_controller_move : MonoBehaviour
 
         SpeedDown();
 
-        if (!time_script.GetGamePlayState())
+        if (!time_script.GetGamePlayState)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
@@ -131,17 +131,6 @@ public class player_controller_move : MonoBehaviour
 
             dist = 200.0f;
 
-            //// 引っ張り上限
-            //if (dist >= 200.0f)
-            //{
-            //    dist = 200.0f;
-            //}
-            //// 引っ張り下限
-            //if (dist <= 30.0f)
-            //{
-            //    dist = 30.0f;
-            //}
-
             // 引っ張りに応じて力を加える
             powor = dist / powor_up;
 
@@ -152,8 +141,13 @@ public class player_controller_move : MonoBehaviour
             start_direction = -1 * (end_pos - start_pos).normalized;
 
             // カウントダウン後動けるようになる
-            if (time_script.GetGamePlayState())
+            if (time_script.GetGamePlayState)
             {
+                if (operation_anime.activeSelf)
+                {
+                    operation_anime.SetActive(false);
+                }
+
                 rb.AddForce(new Vector3(start_direction.x * powor, 0.0f, start_direction.y * powor), ForceMode.Impulse);
             }
         }
