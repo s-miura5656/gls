@@ -73,7 +73,7 @@ public class Coin_Manager : MonoBehaviour
  
             if (score_up == true)
             {
-                Variable_Manager.Instance.GetSetPossessionCoin += (int)coin_score;
+                Variable_Manager.Instance.GetSetPossessionCoin += (int)bonus_score;
                 Coin_move();
                 score_up = false;
             }

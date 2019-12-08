@@ -9,7 +9,7 @@ public class Title_Manager : MonoBehaviour
     [SerializeField]
     private Vibrations_Manager script;
 
-    private int scene_number = 1;
+    private int scene_number = 0;
     private int scene_number_min = 1;
     private int scene_number_max = 3;
 
@@ -18,8 +18,6 @@ public class Title_Manager : MonoBehaviour
     [SerializeField]
     private UnityAnaltics Ana_script;
 
-    // ゲームが始まって最初に決まったステージが選ばれるステート
-    private bool start_stage = false;
     // 最初に選ばれるステージの番号
     private int first_stage = 1;
     private void Awake()
@@ -41,9 +39,10 @@ public class Title_Manager : MonoBehaviour
 
     public void PlayGame() 
     {
-        if (!start_stage)
+        if (!Variable_Manager.Instance.GetSetStageState)
         {
             SceneManager.LoadScene("GameMain_" + first_stage);
+            Variable_Manager.Instance.GetSetStageState = true;
         }
         else
         {

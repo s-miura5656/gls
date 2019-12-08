@@ -20,7 +20,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int play_games = 0;
     //スキンのオープン数
     private int skin_open = 0;
-    
+    // 毎回ゲーム起動初回時に簡単なステージが選択されるステート
+    private bool stage_state = false;
 
 
     // スキンの解放確認1
@@ -79,6 +80,15 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return vibrate_state; }
         set { vibrate_state = value; }
+    }
+
+    /// <summary>
+    /// ゲーム起動初回かそうでないか
+    /// </summary>
+    public bool GetSetStageState
+    {
+        get { return stage_state; }
+        set { stage_state = value; }
     }
 
     public SkinData GetSkinData
