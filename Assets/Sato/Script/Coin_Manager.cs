@@ -70,17 +70,14 @@ public class Coin_Manager : MonoBehaviour
     void Update()
     {
 
-        
-
-        time++;
-        if (time > 60)
-        {
+ 
             if (score_up == true)
             {
+                Variable_Manager.Instance.GetSetPossessionCoin += (int)coin_score;
                 Coin_move();
                 score_up = false;
             }
-        }
+        
 
         total_text.text = " " + score;
 

@@ -16,6 +16,11 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private bool vibrate_state = true;
     // スキンデータ
     private SkinData skinData = null;
+    //play回数
+    private int play_games = 0;
+    //スキンのオープン数
+    private int skin_open = 0;
+    
 
 
     // スキンの解放確認1
@@ -93,6 +98,18 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { key_image = value; }
     }
 
+    public int GetSetOpenSkin
+    {
+        get { return skin_open; }
+        set { skin_open = value; }
+    }
+
+    public int GetSetPlayGames
+    {
+        get { return play_games; }
+        set { play_games = value; }
+    }
+
     public void Save()
     {
         skinData.SkinDataSave();
@@ -100,6 +117,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.SetInt("avatar_number", GetSetAvatarNumber);
         PlayerPrefs.SetInt("possession_coin", GetSetPossessionCoin);
         PlayerPrefs.Save();
+        PlayerPrefs.SetInt("skin_open", GetSetOpenSkin);
 
         play_time = Time.time;
         Debug.Log(play_time);
@@ -111,6 +129,10 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         //ana_script.Title();
 
         UnityAnaltics.Instance.open_number();
+        UnityAnaltics.Instance.Play_time();
+        UnityAnaltics.Instance.Skin_now();
+        UnityAnaltics.Instance.Title();
+        UnityAnaltics.Instance.Coin();
 
     }
 
@@ -121,8 +143,10 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
-        GetSetPossessionCoin = 100000;
-         
+        //GetSetPossessionCoin = 100000;
+        GetSetOpenSkin = PlayerPrefs.GetInt("skin_open");
+
+
 
         if (GetSetPossessionCoin < 0)
         {
