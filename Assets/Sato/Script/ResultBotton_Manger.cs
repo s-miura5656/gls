@@ -31,6 +31,8 @@ public class ResultBotton_Manger : MonoBehaviour
     [SerializeField]
     private Coin_Manager script;
 
+    private int button_time = 0;
+
     void Start()
     {
         // ShowAdCallbacksにコールバックを設定
@@ -39,6 +41,18 @@ public class ResultBotton_Manger : MonoBehaviour
 
         rewardButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdRewardCallbacks));
         interstitialButton.onClick.AddListener(() => ShowInterstitial());
+
+        interstitialButton.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        button_time++;
+        if(button_time >= 90)
+        {
+            interstitialButton.gameObject.SetActive(true);
+
+        }
     }
 
     private void OnDestroy()
