@@ -6,29 +6,29 @@ using UnityEngine;
 public class player_controller_move : MonoBehaviour
 {
     // プレイヤーのリジッドボディ
-    private Rigidbody rb;
+    private Rigidbody rb = null;
     // 引っ張りの始点
-    private Vector3 start_pos;
+    private Vector3 start_pos = Vector3.zero;
     // 引っ張って離したときの点
-    private Vector3 end_pos;
+    private Vector3 end_pos = Vector3.zero;
     // 離したときにプレイヤーにかける力
-    private Vector3 start_direction;
+    private Vector3 start_direction = Vector3.zero;
     // 離したときにプレイヤーにかける力に追加する値
-    private float powor;
+    private float powor = 0f;
     // 最初にタップした位置から動かして離すまでの距離
-    private float dist;
+    private float dist = 0f;
     // distに割ってspeedを出すための変数
     private float powor_up = 20f;
     // プレイヤーの速度
-    private float speed;
+    private float speed = 0f;
     // ゲームマネージャーオブジェクトの取得
-    [SerializeField] private GameObject game_manager;
+    [SerializeField] private GameObject game_manager = null;
     // ゲーム開始の時間を管理しているスクリプト
-    private Time_Manager time_script;
+    private Time_Manager time_script = null;
     // プレイヤーを回転させるためのコライダー
-    private SphereCollider sphere_collider;
+    private SphereCollider sphere_collider = null;
     // プレイヤーのレベルを管理するスクリプト
-    private Player_Level_Manager player_level_manager_script;
+    private Player_Level_Manager player_level_manager_script = null;
     // プレイヤーのレベルが上がっていくにつれて加える力
     private float[] player_powor = new float[10];
     // 操作説明のアニメーション
@@ -39,11 +39,6 @@ public class player_controller_move : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        sphere_collider = gameObject.GetComponent<SphereCollider>();
-        time_script = game_manager.GetComponent<Time_Manager>();
-        player_level_manager_script = game_manager.GetComponent<Player_Level_Manager>();
-
         player_powor = new float[player_level_manager_script.PlayerLevelMax];
 
         for (int i = 0; i < player_powor.Length; i++)
@@ -169,17 +164,12 @@ public class player_controller_move : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// プレイヤーの速度を変える
-    /// </summary>
-    /// <param name="powor"></param>
-    public void SetMovePowor(float powor) 
-    {
-       powor_up = powor;
-    }
-
     private void Reset()
     {
         game_manager = GameObject.Find("GameManager");
+        rb = gameObject.GetComponent<Rigidbody>();
+        sphere_collider = gameObject.GetComponent<SphereCollider>();
+        time_script = game_manager.GetComponent<Time_Manager>();
+        player_level_manager_script = game_manager.GetComponent<Player_Level_Manager>();
     }
 }

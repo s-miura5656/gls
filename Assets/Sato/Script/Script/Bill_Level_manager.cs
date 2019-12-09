@@ -42,6 +42,9 @@ public class Bill_Level_manager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 壊れるもののボックスコライダーを取得
+    /// </summary>
     private void Reset()
     {    
         var childs = GetComponentsInChildren<Transform>();

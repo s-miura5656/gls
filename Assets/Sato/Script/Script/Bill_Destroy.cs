@@ -18,7 +18,7 @@ public class Bill_Destroy : MonoBehaviour
     // ビルオブザーバーの取得
     private Bill_Obsever bill_Obsever = null;
     // ビルにレンダラー取得
-    private Renderer renderer;
+    private Renderer renderer = null;
     // ダメージ表現用
     private float damege = 0.5f;
 
@@ -103,7 +103,7 @@ public class Bill_Destroy : MonoBehaviour
         // ゲームオブジェクトを非表示にする
         gameObject.SetActive(false);
 
-        if (bill_Obsever.Variable_Manager.GetSetVibrate)
+        if (Variable_Manager.Instance.GetSetVibrate)
         {
             // 当たった時のバイブレーション
             Vibration.Vibrate(vibrate);
