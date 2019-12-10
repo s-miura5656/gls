@@ -56,15 +56,27 @@ public class Vibrations_Manager : MonoBehaviour
 
     }
 
-    public void Variable_Off_On()
+    public void Variable_Off_On(int vibrate)
     {
         vibrations_on.SetActive(true);
         vibrations_off.SetActive(false);
         status = true;
         Variable_Manager.Instance.GetSetVibrate = status;
-
+        Vibration.Vibrate(vibrate);
     }
 
     public bool GetStatus() { return status; }
+
+
+    //private void VibrateMove(int vibrate)
+    //{
+       
+
+    //    if (script.GetSetVibrate)
+    //    {
+    //        // 当たった時のバイブレーション
+    //        Vibration.Vibrate(vibrate);
+    //    }
+    //}
 
 }
