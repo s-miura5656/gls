@@ -15,12 +15,10 @@ public class player_controller_move : MonoBehaviour
     private Vector3 start_direction = Vector3.zero;
     // 離したときにプレイヤーにかける力に追加する値
     private float powor = 0f;
-    // 最初にタップした位置から動かして離すまでの距離
-    private float dist = 0f;
-    // distに割ってspeedを出すための変数
-    private float powor_up = 20f;
     // プレイヤーの速度
     private float speed = 0f;
+    // プレイヤーの速度の下限値
+    private float lower_limit_speed = 5f;
     // ゲームマネージャーオブジェクトの取得
     [SerializeField] private GameObject game_manager = null;
     // ゲーム開始の時間を管理しているスクリプト
@@ -35,7 +33,6 @@ public class player_controller_move : MonoBehaviour
     [SerializeField] private GameObject operation_anime = null;
     // プレイヤーパラメーターの取得
     [SerializeField] private PlayerParametor player_parametor = null;
-
 
     void Start()
     {
@@ -107,11 +104,9 @@ public class player_controller_move : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
-            // プレイヤーを遅くする（バレットタイム）
-            //this.rb.velocity = Vector3.Normalize(this.rb.velocity) * 3.0f;
-
             // マウスのボタンを押した場所（始点）
             this.start_pos = Input.mousePosition;
+
             // プレイヤーにかける力の変数を０に戻す
             start_direction *= 0;
 
@@ -121,16 +116,8 @@ public class player_controller_move : MonoBehaviour
             // マウスのボタンを離した場所（終点）
             end_pos = Input.mousePosition;
 
-            // 引っ張った時の始点から離すまでの移動距離
-            dist = (start_pos - end_pos).magnitude;
-
-            dist = 200.0f;
-
-            // 引っ張りに応じて力を加える
-            powor = dist / powor_up;
-
             // 引っ張りに応じた力にプレイヤーのレベルを追加
-            powor = powor * player_powor[player_level_manager_script.GetLevel() - 1];
+            powor = player_parametor.DistFlat * player_powor[player_level_manager_script.GetLevel() - 1];
 
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
@@ -143,7 +130,7 @@ public class player_controller_move : MonoBehaviour
                     operation_anime.SetActive(false);
                 }
 
-                rb.AddForce(new Vector3(start_direction.x * powor, 0.0f, start_direction.y * powor), ForceMode.Impulse);
+                rb.AddForce(new Vector3(start_direction.x * powor, 0f, start_direction.y * powor), ForceMode.Impulse);
             }
         }
     }
@@ -157,7 +144,7 @@ public class player_controller_move : MonoBehaviour
         speed = rb.velocity.magnitude;
 
         // 一定速度以下になった時にプレイヤーを停止させる
-        if (speed <= 5f)
+        if (speed <= lower_limit_speed)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;

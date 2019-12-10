@@ -5,12 +5,8 @@ using UnityEngine;
 
 public class camera_controller : MonoBehaviour
 {
-    // プレイヤーのレベルを取得用
-    [SerializeField] private GameObject game_manager = null;
-    // プレイヤーレベルを管理しているスクリプト
-    private Player_Level_Manager script = null;
     // データマネージャーの取得
-    private Game_Level_Manager game_level_script = null;
+    [SerializeField] private Game_Level_Manager game_level_script = null;
     // プレイヤーとカメラ間のオフセット距離
     private Vector3 offset = new Vector3(0f, 0f, 0f);
     // カメラの位置
@@ -18,8 +14,6 @@ public class camera_controller : MonoBehaviour
     private Vector3 camera_move_pos = new Vector3(0f, 0f, 0f);
     // ラープ補完用カメラの移動速度
     private float camera_speed = 0.7f;
-    // ズーム変更時に必要なレベルアップ前のレベルを記憶する変数
-    private int old_player_level = 0;
     // カメラの初期位置
     private Vector3 first_pos = new Vector3(0f, 60f, -50f);
     // レベルが上がるにつれて上がるカメラのZ軸の値
@@ -28,12 +22,6 @@ public class camera_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        script = game_manager.GetComponent<Player_Level_Manager>();
-
-        game_level_script = game_manager.GetComponent<Game_Level_Manager>();
-
-        old_player_level = script.GetLevel();
-
         gameObject.transform.position = game_level_script.GetPlayer().transform.position + first_pos;
 
         // プレイヤーとカメラ間の距離を取得してそのオフセット値を計算し、格納します。
@@ -49,8 +37,11 @@ public class camera_controller : MonoBehaviour
 
         // プレイヤーを中心に捉える
         transform.LookAt(game_level_script.GetPlayer().transform.position);
-    }    
+    }   
 
+    /// <summary>
+    /// カメラの移動
+    /// </summary>
     private void MoveCamera()
     {
         // カメラの transform.yの位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
@@ -60,7 +51,9 @@ public class camera_controller : MonoBehaviour
         gameObject.transform.position = Vector3.Lerp(camera_base_pos, camera_move_pos, camera_speed);
     }
 
-
+    /// <summary>
+    /// レベルアップ時のカメラのズーム
+    /// </summary>
     public void ZoomCamera()
     {
         var newPos = gameObject.transform.position + level_up_camera_pos;
@@ -90,10 +83,5 @@ public class camera_controller : MonoBehaviour
     public void SetLevelUpCameraPos(Vector3 pos)
     {
         level_up_camera_pos = pos;
-    }
-
-    private void Reset()
-    {
-        game_manager = GameObject.Find("GameManager");
     }
 }

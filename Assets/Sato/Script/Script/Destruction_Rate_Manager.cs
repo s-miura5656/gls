@@ -16,9 +16,9 @@ public class Destruction_Rate_Manager : MonoBehaviour
     // 最終的に表示させる破壊率
     private float last_destruction_rate = 0f;
     // テキストオブジェクトのテキストコンポーネント
-    [SerializeField] private TextMeshProUGUI destruction_rate_text;
+    [SerializeField] private TextMeshProUGUI destruction_rate_text = null;
     // 時間を管理しているスクリプトの取得
-    private Time_Manager time_script;
+    private Time_Manager time_script = null;
 
     // Start is called before the first frame update
     void Start()
