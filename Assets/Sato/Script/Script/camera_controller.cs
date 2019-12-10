@@ -11,9 +11,6 @@ public class camera_controller : MonoBehaviour
     private Player_Level_Manager script = null;
     // データマネージャーの取得
     private Game_Level_Manager game_level_script = null;
-    // メインカメラを取得
-    private Camera main_cam = null;
-
     // プレイヤーとカメラ間のオフセット距離
     private Vector3 offset = new Vector3(0f, 0f, 0f);
     // カメラの位置
@@ -28,14 +25,10 @@ public class camera_controller : MonoBehaviour
     // レベルが上がるにつれて上がるカメラのZ軸の値
     private Vector3 level_up_camera_pos = new Vector3(0f, 30f, -20f);
 
-    private Vector3 new_camera_pos = new Vector3(0f, 0f, 0f);
-
     // Start is called before the first frame update
     void Start()
     {
         script = game_manager.GetComponent<Player_Level_Manager>();
-
-        main_cam = gameObject.GetComponent<Camera>();
 
         game_level_script = game_manager.GetComponent<Game_Level_Manager>();
 

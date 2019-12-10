@@ -6,7 +6,7 @@ using UnityEngine;
 public class player_controller_move : MonoBehaviour
 {
     // プレイヤーのリジッドボディ
-    private Rigidbody rb = null;
+    [SerializeField]private Rigidbody rb = null;
     // 引っ張りの始点
     private Vector3 start_pos = Vector3.zero;
     // 引っ張って離したときの点
@@ -24,13 +24,13 @@ public class player_controller_move : MonoBehaviour
     // ゲームマネージャーオブジェクトの取得
     [SerializeField] private GameObject game_manager = null;
     // ゲーム開始の時間を管理しているスクリプト
-    private Time_Manager time_script = null;
+    [SerializeField] private Time_Manager time_script = null;
     // プレイヤーを回転させるためのコライダー
-    private SphereCollider sphere_collider = null;
+    [SerializeField] private SphereCollider sphere_collider = null;
     // プレイヤーのレベルを管理するスクリプト
-    private Player_Level_Manager player_level_manager_script = null;
+    [SerializeField] private Player_Level_Manager player_level_manager_script = null;
     // プレイヤーのレベルが上がっていくにつれて加える力
-    private float[] player_powor = new float[10];
+    private float[] player_powor;
     // 操作説明のアニメーション
     [SerializeField] private GameObject operation_anime = null;
     // プレイヤーパラメーターの取得
