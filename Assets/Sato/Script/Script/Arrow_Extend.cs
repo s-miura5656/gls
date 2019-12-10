@@ -19,7 +19,7 @@ public class Arrow_Extend : MonoBehaviour
     // プレイヤーのサイズ
     private Vector3 player_size = Vector3.one;
     // プレイヤーの周りをまわる矢印のプレイヤーからの距離
-    private float arrow_dist = 10f;
+    private float arrow_dist = 1f;
     // 時間を管理するスクリプト
     private Time_Manager time_script = null;
 
@@ -50,6 +50,12 @@ public class Arrow_Extend : MonoBehaviour
         {
             // マウスの場所を保存（始点）
             base_mouse_pos = Input.mousePosition;
+
+            // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる
+            transform.position = player.transform.position
+                               + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized
+                               * ((player.transform.localScale.y / 2)));
+
             // 矢印の表示
             spriteRenderer.enabled = true;
         }
@@ -66,24 +72,18 @@ public class Arrow_Extend : MonoBehaviour
             // 左クリックを押した場所と現在動かしている場所の距離の計算
             dist = (base_mouse_pos - Input.mousePosition).magnitude;
 
-            // 移動距離の最大値
-            if (dist >= 200.0f)
+            if (dist >= 1f)
             {
-                dist = 200.0f;
+                dist = 1f;
             }
-            // 移動距離の下限値
-            if (dist <= 100.0f)
-            {
-                dist = 100.0f;
-            }
-
+            
             // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる
             transform.position = player.transform.position
                                + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized
-                               * (player_size.z + (arrow_dist * (player_level_script.GetLevel()))));
+                               * ((player.transform.localScale.y / 2)));
 
-            // 引っ張りに対して矢印を引き延ばす
-            transform.localScale = new Vector3((dist / 60) * player_level_script.GetLevel(), (dist / 60) * player_level_script.GetLevel(), transform.localScale.z);
+            //// 引っ張りに対して矢印を引き延ばす
+            transform.localScale = new Vector3(dist * player_level_script.GetLevel(), dist * player_level_script.GetLevel(), transform.localScale.z);
         }
 
         // 左クリックを放したときに矢印を消す

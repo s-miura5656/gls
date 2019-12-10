@@ -67,7 +67,6 @@ public class Destruction_Rate_Manager : MonoBehaviour
         last_destruction_rate = 100f - base_destruction_rate;
     }
 
-
     /// <summary>
     /// 破壊率計算用の関数、オブジェクトが破壊されたら減らしていく
     /// </summary>

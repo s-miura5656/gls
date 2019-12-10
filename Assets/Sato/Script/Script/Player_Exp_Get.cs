@@ -15,16 +15,12 @@ public class Player_Exp_Get : MonoBehaviour
     private int get_coin = 0;
     // 倒したときに手に入る経験値（レベル１）
     private int[] get_exp = new int[6];
-    // プレイヤーのレベルを管理しているスクリプトを取得
-    private Player_Level_Manager player_level = null;
     // ゲームレベルデータの取得
     [SerializeField] private GameLevelData level_data_script = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        player_level = gameObject.GetComponent<Player_Level_Manager>();
-
         for (int i = 0; i < get_exp.Length; i++)
         {
             get_exp[i] = level_data_script.BillGetExp[i];
