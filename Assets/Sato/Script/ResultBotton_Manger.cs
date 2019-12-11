@@ -33,6 +33,9 @@ public class ResultBotton_Manger : MonoBehaviour
 
     private int button_time = 0;
 
+    [SerializeField]
+    private GameObject Loading;
+
     void Start()
     {
         // ShowAdCallbacksにコールバックを設定
@@ -43,6 +46,8 @@ public class ResultBotton_Manger : MonoBehaviour
         interstitialButton.onClick.AddListener(() => ShowInterstitial());
 
         interstitialButton.gameObject.SetActive(false);
+
+        Loading.SetActive(false);
     }
 
     private void Update()
@@ -113,6 +118,7 @@ public class ResultBotton_Manger : MonoBehaviour
     {
         GetPossessionCoin();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+        Loading.SetActive(true);
     }
 
     public void PushBotton()

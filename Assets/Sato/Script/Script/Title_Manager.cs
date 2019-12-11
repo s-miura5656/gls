@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+
 public class Title_Manager : MonoBehaviour
 {
     [SerializeField]
@@ -12,8 +13,11 @@ public class Title_Manager : MonoBehaviour
     private int scene_number = 0;
     private int scene_number_min = 1;
     private int scene_number_max = 3;
-
+                                                                                                                                                                                        
     public int game_start = 0;
+
+    bool isFinishedSplashScreenAndPassedUpdate = false;
+
 
     [SerializeField]
     private UnityAnaltics Ana_script;
@@ -37,22 +41,35 @@ public class Title_Manager : MonoBehaviour
         //Debug.Log(scene_number);
     }
 
-    public void PlayGame() 
+    public void PlayGame()
     {
-        if (!Variable_Manager.Instance.GetSetStageState)
-        {
-            SceneManager.LoadScene("GameMain_" + first_stage);
-            Variable_Manager.Instance.GetSetStageState = true;
-        }
-        else
-        {
-            scene_number = Random.Range(scene_number_min, scene_number_max);
 
-            SceneManager.LoadScene("GameMain_" + scene_number);
+        if (UnityEngine.Rendering.SplashScreen.isFinished)
+        {
+                
+            isFinishedSplashScreenAndPassedUpdate = true;
         }
 
-        game_start++;
-        Variable_Manager.Instance.GetSetPlayGames = game_start;
+        if (isFinishedSplashScreenAndPassedUpdate == true)
+        {
+
+            if (!Variable_Manager.Instance.GetSetStageState)
+            {
+                SceneManager.LoadScene("GameMain_" + first_stage);
+                Variable_Manager.Instance.GetSetStageState = true;
+            }
+            else
+            {
+                scene_number = Random.Range(scene_number_min, scene_number_max);
+
+                SceneManager.LoadScene("GameMain_" + scene_number);
+            }
+
+            game_start++;
+            Variable_Manager.Instance.GetSetPlayGames = game_start;
+        }
+
+     
     }
 
     public void SetSkin() 
