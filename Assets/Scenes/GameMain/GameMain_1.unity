@@ -197,6 +197,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2317358174179089165, guid: c858278059d83ae48bc494d97239aa2a,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2099858433}
     - target: {fileID: 2725741316123629001, guid: c858278059d83ae48bc494d97239aa2a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -584,4 +589,10 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3085121911957070266, guid: 77ddaef18f206b14c8a82de25f0245ac,
     type: 3}
   m_PrefabInstance: {fileID: 1927971110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2099858433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2103311535719706415, guid: c858278059d83ae48bc494d97239aa2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 570461694}
   m_PrefabAsset: {fileID: 0}
