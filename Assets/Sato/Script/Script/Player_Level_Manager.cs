@@ -43,8 +43,6 @@ public class Player_Level_Manager : MonoBehaviour
     // 経験値ゲージの一番最初のサイズ
     private Vector3 default_gage_size = new Vector3(0f, 0f, 0f);
 
-    //[SerializeField] private Text text = null;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -90,8 +88,6 @@ public class Player_Level_Manager : MonoBehaviour
         gage_canvas.transform.position = new Vector3(player.transform.position.x, 0.3f, player.transform.position.z);
 
         ExpGage();
-
-        //text.text = "" + player_level;
     }
 
     /// <summary>
@@ -128,7 +124,6 @@ public class Player_Level_Manager : MonoBehaviour
             // サイズ変更
             player.transform.DOScale(player_scale[player_level - 1], 2f);
 
-
             camera_scipt.ZoomCamera();
         }
     }
@@ -147,7 +142,6 @@ public class Player_Level_Manager : MonoBehaviour
 
         exp_slider.fillAmount = (float)player_get_exp_script.PlayerExp / (float)level_up_exp[player_level - 1];
     }
-
 
     /// <summary>
     /// プレイヤーの現在のレベル

@@ -5,10 +5,46 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "TeruTeru/Create GameLevelData", fileName = "GameLevelData")]
 public class GameLevelData : ScriptableObject
 {
-    [Header("移動させる速度")] public float move_powor = 0f;
-    [Header("ゲーム時間")] public float game_time_max = 0f;
-    [Header("レベルアップ時に増える時間")] public float level_up_time_plus = 0f;
-    [Header("カメラの初期位置（プレイヤー起点）")] public Vector3 camera_first_pos = new Vector3(0f, 0f, 0f);
-    [Header("レベルアップ時にカメラを離す距離")] public Vector3 camera_moving_value = new Vector3(0f, 0f, 0f);
-    [Header("１レベル時のコインの出る数")] public int coin_number = 3;
+    [Header("ゲーム時間")] [SerializeField] private float game_time_max = 0f;
+    [Header("レベルアップ時に増える時間")] [SerializeField] private float level_up_time_plus = 0f;
+    [Header("カメラの初期位置（プレイヤー起点）")] [SerializeField] private Vector3 camera_first_pos = Vector3.zero;
+    [Header("レベルアップ時にカメラを離す距離")] [SerializeField] private Vector3 camera_moving_value = Vector3.zero;
+    [Header("１レベル時のコインの出る数")] [SerializeField] private int coin_number = 0;
+    [Header("ビルレベル毎の経験値")] [SerializeField] private int[] bill_get_exp;
+    [Header("ビルレベル毎のコイン取得数")] [SerializeField] private int[] bill_get_coin;
+
+    public float GameTimeMax
+    {
+        get { return game_time_max; }
+    }
+
+    public float LevelUpTimePlus
+    {
+        get { return level_up_time_plus; }
+    }
+
+    public Vector3 CameraFirstPos
+    {
+        get { return camera_first_pos; }
+    }
+
+    public Vector3 CameraMoveValue 
+    {
+        get { return camera_moving_value; }
+    }
+
+    public int CoinNumber 
+    {
+        get { return coin_number; }
+    }
+
+    public int[] BillGetExp
+    {
+        get { return bill_get_exp; }
+    }
+
+    public int[] BillGetCoin
+    {
+        get { return bill_get_coin; }
+    }
 }

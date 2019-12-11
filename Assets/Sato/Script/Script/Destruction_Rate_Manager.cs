@@ -15,11 +15,10 @@ public class Destruction_Rate_Manager : MonoBehaviour
     private float base_destruction_rate = 0f;
     // 最終的に表示させる破壊率
     private float last_destruction_rate = 0f;
-    // 破壊率を表示させるテキストオブジェクト
     // テキストオブジェクトのテキストコンポーネント
-    [SerializeField] private TextMeshProUGUI destruction_rate_text;
+    [SerializeField] private TextMeshProUGUI destruction_rate_text = null;
     // 時間を管理しているスクリプトの取得
-    private Time_Manager time_script;
+    private Time_Manager time_script = null;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +43,10 @@ public class Destruction_Rate_Manager : MonoBehaviour
         SetDestructionRate();
     }
 
+    /// <summary>
+    /// タグのついたオブジェクトを探す
+    /// </summary>
+    /// <param name="tagname"></param>
     private void Check(string tagname)
     {
         tag_objects = GameObject.FindGameObjectsWithTag(tagname);
@@ -64,7 +67,6 @@ public class Destruction_Rate_Manager : MonoBehaviour
         last_destruction_rate = 100f - base_destruction_rate;
     }
 
-
     /// <summary>
     /// 破壊率計算用の関数、オブジェクトが破壊されたら減らしていく
     /// </summary>
@@ -78,6 +80,9 @@ public class Destruction_Rate_Manager : MonoBehaviour
         DestructionRateCalculation();
     }
 
+    /// <summary>
+    /// 最終的な破壊率
+    /// </summary>
     public void SetDestructionRate() 
     {
         Variable_Manager.Instance.GetSetDestructionRate = last_destruction_rate;

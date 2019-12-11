@@ -10,43 +10,32 @@ public class Player_Exp_Get : MonoBehaviour
     // 取得経験値
     private int exp = 0;
     // 破壊した時に手に入るコイン
-    private int[] coin = new int [6];
+    private int[] coin = new int[6];
     // 今回のゲームで取得したコイン
     private int get_coin = 0;
     // 倒したときに手に入る経験値（レベル１）
     private int[] get_exp = new int[6];
-    // プレイヤーのレベルを管理しているスクリプトを取得
-    private Player_Level_Manager player_level = null;
-    // コイン取得数表示のテキスト
-    //[SerializeField] private TMP_Text now_coin = null;
-    
+    // ゲームレベルデータの取得
+    [SerializeField] private GameLevelData level_data_script = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        player_level = gameObject.GetComponent<Player_Level_Manager>();
+        for (int i = 0; i < get_exp.Length; i++)
+        {
+            get_exp[i] = level_data_script.BillGetExp[i];
+        }
 
-        // ビルレベルごとの経験値
-        get_exp[0] = 5;
-        get_exp[1] = 25;
-        get_exp[2] = 100;
-        get_exp[3] = 200;
-        get_exp[4] = 400;
-        get_exp[5] = 800;
-
-        coin[0] = 1;
-        coin[1] = 3;
-        coin[2] = 5;
-        coin[3] = 10;
-        coin[4] = 30;
-        coin[5] = 50;
-
+        for (int i = 0; i < coin.Length; i++)
+        {
+            coin[i] = level_data_script.BillGetCoin[i];
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         SetCoin();
-        //now_coin.text = "Coin:" + get_coin;
     }
 
     /// <summary>
@@ -59,6 +48,9 @@ public class Player_Exp_Get : MonoBehaviour
         get_coin += coin[bill_level];
     }
 
+    /// <summary>
+    /// 今回のゲームで取得したコイン
+    /// </summary>
     public void SetCoin()
     {
         Variable_Manager.Instance.GetSetCoin = get_coin;
@@ -80,9 +72,4 @@ public class Player_Exp_Get : MonoBehaviour
     /// <param name="bill_level"></param>
     /// <returns></returns>
     public int GetCoin(int bill_level) { return coin[bill_level]; }
-
-    private void Reset()
-    {
-        //now_coin = GameObject.Find("Coin").GetComponent<TMP_Text>();
-    }
 }

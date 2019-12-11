@@ -9,6 +9,7 @@ public class PlayerParametor : ScriptableObject
     [Header("プレイヤーのレベル毎の経験値")] [SerializeField] private int[] player_level_up_exp;
     [Header("プレイヤーのレベル毎のサイズ")] [SerializeField] private float[] player_scale;
     [Header("プレイヤーのレベル毎に力を加える力")] [SerializeField] private float[] player_powor;
+    [Header("引っ張り距離の固定")] [SerializeField] private float dist_flat = 200f;
 
     public int PlayerLevelMax 
     {
@@ -28,5 +29,10 @@ public class PlayerParametor : ScriptableObject
     public float[] PlayerPowor 
     {
         get { return player_powor; }
+    }
+
+    public float DistFlat 
+    {
+        get { return dist_flat; }
     }
 }

@@ -6,8 +6,6 @@ public class Bill_Obsever : MonoBehaviour
 {
     // プレイヤーのレベルを取得するためのオブジェクト取得
     [SerializeField] private GameObject game_manager = null;
-    // データマネージャーの取得
-    private GameObject data_manager = null;
     // プレイヤーのレベルのスクリプトの取得
     [SerializeField] private Player_Level_Manager player_level_script = null;
     // 破壊率を管理しているスクリプトを取得
@@ -18,8 +16,6 @@ public class Bill_Obsever : MonoBehaviour
     [SerializeField] private Player_SE_Manager player_se_script = null;
     // ゲームの時間を管理しているスクリプト
     [SerializeField] private Time_Manager time_script = null;
-    // ゲーム全体のデータを管理しているスクリプト
-    private Variable_Manager variable_script;
     // ビルについている破壊に関するスクリプトを取得
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
     // 壊れるパーティクル
@@ -67,19 +63,13 @@ public class Bill_Obsever : MonoBehaviour
         private set { time_script = value; }
     }
 
-    public Variable_Manager Variable_Manager
-    {
-        get { return variable_script; }
-        private set { variable_script = value; }
-    }
-
     /// <summary>
     /// ビルの壊れるエフェクト
     /// </summary>
-    /// <param name="billLevel"></param>
-    /// <param name="bill_pos"></param>
-    /// <param name="playerLevel"></param>
-    /// <param name="coin"></param>
+    /// <param name="billLevel">ビルのレベル</param>
+    /// <param name="bill_pos">ビルの座標</param>
+    /// <param name="playerLevel">プレイヤーレベル</param>
+    /// <param name="coin">取得したコインの数</param>
     [System.Obsolete]
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
     {
@@ -91,7 +81,6 @@ public class Bill_Obsever : MonoBehaviour
 
             // 破片のパーティクルをビルのレベルに合わせて拡大
             var cras_scale = Vector3.one * default_crash_particle_scale * billLevel;
-            // 
             crash_particle[i].transform.localScale = cras_scale;
 
             crash_particle[i].Play();
@@ -101,7 +90,7 @@ public class Bill_Obsever : MonoBehaviour
         coin_particle.transform.position = bill_pos;
         var coin_scale = Vector3.one * default_coin_particle_scale * playerLevel;
         coin_particle.transform.localScale = coin_scale;
-
+        // 出るコインの数
         var burst = coin_particle.emission.GetBurst(0);
         burst.count = coin_number * billLevel;
         coin_particle.emission.SetBurst(0, burst);
@@ -110,6 +99,11 @@ public class Bill_Obsever : MonoBehaviour
         coin_particle.Play();
     }
 
+    /// <summary>
+    /// ヒットエフェクト
+    /// </summary>
+    /// <param name="playerLevel">プレイヤーのレベル</param>
+    /// <param name="hit_pos">当たった座標</param>
     public void PlayHitEffect(int playerLevel, Vector3 hit_pos)
     {
         for (int i = 0; i < hit_particle.Length; i++)
@@ -126,24 +120,25 @@ public class Bill_Obsever : MonoBehaviour
 
     private void Start()
     {
+        // ビルの破片エフェクトの初期化
         var crash = (GameObject)Resources.Load("Collapse_Effect");
         var crash_obj = Instantiate(crash, gameObject.transform);
         crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
         default_crash_particle_scale = crash_particle[0].transform.localScale.x;
 
+        // ヒットエフェクトの初期化
         var hit_effect = (GameObject)Resources.Load("hit");
         var hit_effect_obj = Instantiate(hit_effect, gameObject.transform);
         hit_particle = hit_effect_obj.GetComponentsInChildren<ParticleSystem>();
         default_hit_particle_scale = hit_particle[0].transform.localScale.x;
 
+        // コインエフェクトの初期化
         var hit_coin = (GameObject)Resources.Load("Coin_Test");
         var hit_coin_obj = Instantiate(hit_coin, gameObject.transform);
         coin_particle = hit_coin_obj.GetComponent<ParticleSystem>();
         default_coin_particle_scale = coin_particle.transform.localScale.x;
 
-        data_manager = GameObject.Find("Data_Manager");
-        variable_script = data_manager.GetComponent<Variable_Manager>();
-
+        // ビルの破壊のスクリプトの初期化
         for (int i = 0; i < bill_Destroise.Length; i++)
         {
             bill_Destroise[i].Initialized(this);

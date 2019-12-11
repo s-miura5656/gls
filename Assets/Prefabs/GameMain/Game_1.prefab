@@ -572,6 +572,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8535278035699483302, guid: 57b5bff468ad150408e1755731b86e9f,
+        type: 3}
+      propertyPath: level_data_script
+      value: 
+      objectReference: {fileID: 11400000, guid: e8e73063e14fe174eb99a5f98b0558b4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b5bff468ad150408e1755731b86e9f, type: 3}
 --- !u!1 &5139672406963182416 stripped
@@ -955,6 +961,22 @@ PrefabInstance:
       propertyPath: operation_anime
       value: 
       objectReference: {fileID: 1856263432198100587}
+    - target: {fileID: 5889644109147225262, guid: 7f7d349b936e27643abad6a849743e70,
+        type: 3}
+      propertyPath: player_level_manager_script
+      value: 
+      objectReference: {fileID: 5139672406963182428}
+    - target: {fileID: 5889644109147225262, guid: 7f7d349b936e27643abad6a849743e70,
+        type: 3}
+      propertyPath: player_parametor
+      value: 
+      objectReference: {fileID: 11400000, guid: 979ff0ccf58148e458676db8ad1ea1a6,
+        type: 2}
+    - target: {fileID: 5889644109147225262, guid: 7f7d349b936e27643abad6a849743e70,
+        type: 3}
+      propertyPath: time_script
+      value: 
+      objectReference: {fileID: 5139672406963182429}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f7d349b936e27643abad6a849743e70, type: 3}
 --- !u!1 &2103311535719706415 stripped
@@ -1036,6 +1058,11 @@ PrefabInstance:
       propertyPath: game_manager
       value: 
       objectReference: {fileID: 5139672406963182416}
+    - target: {fileID: 1719684536245574467, guid: ad537903ed1d2f740a49c2793d1a595a,
+        type: 3}
+      propertyPath: game_level_script
+      value: 
+      objectReference: {fileID: 5139672406963182424}
     - target: {fileID: 1719684536245574471, guid: ad537903ed1d2f740a49c2793d1a595a,
         type: 3}
       propertyPath: m_Name
@@ -6249,6 +6276,21 @@ PrefabInstance:
       propertyPath: time_script
       value: 
       objectReference: {fileID: 5139672406963182429}
+    - target: {fileID: 4411474081907581415, guid: 008ea8f44c8d880469439c8f247af9bb,
+        type: 3}
+      propertyPath: main_cam
+      value: 
+      objectReference: {fileID: 6489400511947193564}
+    - target: {fileID: 4411474081907581415, guid: 008ea8f44c8d880469439c8f247af9bb,
+        type: 3}
+      propertyPath: konami_camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411474081907581415, guid: 008ea8f44c8d880469439c8f247af9bb,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2103311535719706415}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 008ea8f44c8d880469439c8f247af9bb, type: 3}
 --- !u!114 &7192711392530425067 stripped
