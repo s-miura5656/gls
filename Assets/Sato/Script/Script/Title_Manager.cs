@@ -44,13 +44,13 @@ public class Title_Manager : MonoBehaviour
     public void PlayGame()
     {
 
-        if (!UnityEngine.Rendering.SplashScreen.isFinished)
+        if (UnityEngine.Rendering.SplashScreen.isFinished)
         {
                 
             isFinishedSplashScreenAndPassedUpdate = true;
         }
 
-        if (isFinishedSplashScreenAndPassedUpdate)
+        if (isFinishedSplashScreenAndPassedUpdate == true)
         {
 
             if (!Variable_Manager.Instance.GetSetStageState)
