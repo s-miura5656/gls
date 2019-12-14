@@ -19,6 +19,10 @@ public class player_controller_move : MonoBehaviour
     private float speed = 0f;
     // プレイヤーの速度の下限値
     private float lower_limit_speed = 5f;
+    // チャージ用
+    private float charge_powor = 0f;
+    // チャージパワーのリセット
+    private float charge_reset = 1f;
     // ゲームマネージャーオブジェクトの取得
     [SerializeField] private GameObject game_manager = null;
     // ゲーム開始の時間を管理しているスクリプト
@@ -111,13 +115,17 @@ public class player_controller_move : MonoBehaviour
             start_direction *= 0;
 
         }
+        else if (Input.GetMouseButton(0))
+        {
+            charge_powor += player_parametor.ChargePowor;
+        }
         else if (Input.GetMouseButtonUp(0))
         {
             // マウスのボタンを離した場所（終点）
             end_pos = Input.mousePosition;
 
             // 引っ張りに応じた力にプレイヤーのレベルを追加
-            powor = player_parametor.DistFlat * player_powor[player_level_manager_script.GetLevel() - 1];
+            powor = (player_parametor.DistFlat * player_powor[player_level_manager_script.GetLevel() - 1]) * charge_powor;
 
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
@@ -132,6 +140,8 @@ public class player_controller_move : MonoBehaviour
 
                 rb.AddForce(new Vector3(start_direction.x * powor, 0f, start_direction.y * powor), ForceMode.Impulse);
             }
+
+            charge_powor = charge_reset; 
         }
     }
 

@@ -5,29 +5,32 @@ using UnityEngine;
 public class Player_Move_Smoke : MonoBehaviour
 {
     // 動いてる時の土煙
-    [SerializeField] private ParticleSystem smoke;
-    // ゲームマネージャーの取得
-    [SerializeField] private GameObject game_manager;
+    [SerializeField] private ParticleSystem smoke = null;
     // プレイヤーのレベルを管理してるスクリプト
-    private Player_Level_Manager player_level_script;
+    [SerializeField] private Player_Level_Manager player_level_script = null;
+    // プレイヤーパラメーター
+    [SerializeField] private PlayerParametor player_parametor_script = null;
     // プレイヤーのリジッドボディ
-    private Rigidbody rb;
+    [SerializeField] private Rigidbody rb = null;
+    // プレイヤー
+    [SerializeField] private GameObject player = null;
     // 土煙をプレイヤーレベルに合わせて大きくするためのステートマシン
     private bool smoke_scale_up_state = true;
     // 土煙のベースサイズ
-    private Vector3 smoke_scale_base = new Vector3(4f, 4f, 4f);
+    private Vector3 smoke_scale_base = Vector3.one;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        player_level_script = game_manager.GetComponent<Player_Level_Manager>();
+        smoke_scale_base = player_parametor_script.SmokeSize;
         smoke.transform.localScale = smoke_scale_base * player_level_script.GetLevel();
     }
 
     // Update is called once per frame
     void Update()
     {
+        gameObject.transform.position = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
+
         // 速度が0.1以上なら
         if (rb.velocity.magnitude > 15f)
         {
@@ -51,7 +54,6 @@ public class Player_Move_Smoke : MonoBehaviour
             {
                 // スモークをプレイヤーレベルに合わせて大きくする
                 smoke.transform.localScale = smoke_scale_base * player_level_script.GetLevel();
-
                 smoke_scale_up_state = false;
             } 
         }
@@ -59,6 +61,6 @@ public class Player_Move_Smoke : MonoBehaviour
 
     private void Reset()
     {
-        game_manager = GameObject.Find("GameManager");
+        smoke = gameObject.GetComponent<ParticleSystem>();
     }
 }

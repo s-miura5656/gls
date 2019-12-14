@@ -10,6 +10,8 @@ public class PlayerParametor : ScriptableObject
     [Header("プレイヤーのレベル毎のサイズ")] [SerializeField] private float[] player_scale;
     [Header("プレイヤーのレベル毎に力を加える力")] [SerializeField] private float[] player_powor;
     [Header("引っ張り距離の固定")] [SerializeField] private float dist_flat = 200f;
+    [Header("チャージの時に溜まっていく力")] [SerializeField] private float charge_powor = 0;
+    [Header("プレイヤーについているスモークの大きさ")] [SerializeField] private Vector3 smoke_size = Vector3.one;
 
     public int PlayerLevelMax 
     {
@@ -34,5 +36,15 @@ public class PlayerParametor : ScriptableObject
     public float DistFlat 
     {
         get { return dist_flat; }
+    }
+
+    public float ChargePowor 
+    {
+        get { return charge_powor; }
+    }
+
+    public Vector3 SmokeSize 
+    {
+        get { return smoke_size; }
     }
 }
