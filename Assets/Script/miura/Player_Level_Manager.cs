@@ -68,8 +68,9 @@ public class Player_Level_Manager : MonoBehaviour
 
         player.transform.localScale = player_scale[0];
 
+
         // サイズ変更に合わせて高さを変更
-        player.transform.position = new Vector3(transform.position.x, player.transform.localScale.y / half, transform.position.z);
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
 
         default_gage_size = gage_canvas.transform.localScale;
     }

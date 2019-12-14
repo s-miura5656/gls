@@ -12,11 +12,15 @@ public class Game_Level_Manager : MonoBehaviour
     [SerializeField] private GameObject player = null;
     [SerializeField] private GameObject city = null;
     [SerializeField] private GameLevelData gameLevelData = null;
+    [SerializeField] private PlayerParametor player_parametor_script = null;
 
     // 参照するクラス
     private Bill_Obsever bill_obsever;
     private Time_Manager time_manager;
     private camera_controller camera_move;
+
+    // プレイヤーの初期位置用
+    private int pos_number = 0;
 
     private void Awake()
     {
@@ -31,6 +35,11 @@ public class Game_Level_Manager : MonoBehaviour
         time_manager.SetGameTime(gameLevelData.GameTimeMax);
         time_manager.SetIncreaseTime(gameLevelData.LevelUpTimePlus);
         bill_obsever.SetCoinNumber(gameLevelData.CoinNumber);
+
+        pos_number = Random.Range(0, player_parametor_script.PlayerFirstPos.Length);
+
+        city.transform.position = player_parametor_script.PlayerFirstPos[pos_number];
+        city.transform.rotation = Quaternion.Euler(player_parametor_script.PlayerFirstRotation[pos_number]);
     }
 
     public GameObject GetPlayer() { return player; }

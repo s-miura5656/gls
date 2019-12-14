@@ -19,6 +19,14 @@ public class player_controller_move : MonoBehaviour
     private float speed = 0f;
     // プレイヤーの速度の下限値
     private float lower_limit_speed = 5f;
+    // チャージ時間
+    private float charge_time = 0f;
+    // チャージ時間のリセット
+    private float charge_time_reset = 0f;
+    // チャージパワー
+    private float charge_powor = 1;
+    // チャージパワーのリセット
+    private float charge_powor_reset = 1f;
     // ゲームマネージャーオブジェクトの取得
     [SerializeField] private GameObject game_manager = null;
     // ゲーム開始の時間を管理しているスクリプト
@@ -32,7 +40,7 @@ public class player_controller_move : MonoBehaviour
     // 操作説明のアニメーション
     [SerializeField] private GameObject operation_anime = null;
     // プレイヤーパラメーターの取得
-    [SerializeField] private PlayerParametor player_parametor = null;
+    [SerializeField] private PlayerParametor player_parametor_script = null;
 
     void Start()
     {
@@ -40,7 +48,7 @@ public class player_controller_move : MonoBehaviour
 
         for (int i = 0; i < player_powor.Length; i++)
         {
-            player_powor[i] = player_parametor.PlayerPowor[i];
+            player_powor[i] = player_parametor_script.PlayerPowor[i];
         }
     }
 
@@ -111,13 +119,22 @@ public class player_controller_move : MonoBehaviour
             start_direction *= 0;
 
         }
+        else if (Input.GetMouseButton(0))
+        {
+            charge_time += Time.deltaTime;
+
+            if (charge_time >= player_parametor_script.ChargeCompleteTime)
+            {
+                charge_powor = player_parametor_script.ChargePowor;
+            }
+        }
         else if (Input.GetMouseButtonUp(0))
         {
             // マウスのボタンを離した場所（終点）
             end_pos = Input.mousePosition;
 
             // 引っ張りに応じた力にプレイヤーのレベルを追加
-            powor = player_parametor.DistFlat * player_powor[player_level_manager_script.GetLevel() - 1];
+            powor = (player_parametor_script.DistFlat * player_powor[player_level_manager_script.GetLevel() - 1]) * charge_powor;
 
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
@@ -132,6 +149,9 @@ public class player_controller_move : MonoBehaviour
 
                 rb.AddForce(new Vector3(start_direction.x * powor, 0f, start_direction.y * powor), ForceMode.Impulse);
             }
+
+            charge_powor = charge_powor_reset;
+            charge_time = charge_time_reset;
         }
     }
 
