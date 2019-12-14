@@ -53,6 +53,8 @@ MonoBehaviour:
   player: {fileID: 0}
   city: {fileID: 0}
   gameLevelData: {fileID: 0}
+  player_parametor_script: {fileID: 11400000, guid: 979ff0ccf58148e458676db8ad1ea1a6,
+    type: 2}
 --- !u!114 &6469966206114064502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,8 +77,7 @@ MonoBehaviour:
   bill_level_script: {fileID: 0}
   level_up_effect_obj: {fileID: 0}
   camera_scipt: {fileID: 0}
-  player_parametor_script: {fileID: 0}
-  text: {fileID: 0}
+  player_parametor: {fileID: 0}
 --- !u!114 &6469966206114064503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232b5beac200e2b46ac80252f1ffd2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level_data_script: {fileID: 0}
 --- !u!114 &1717271582861240550
 MonoBehaviour:
   m_ObjectHideFlags: 0

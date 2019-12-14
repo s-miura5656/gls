@@ -24,7 +24,7 @@ public class Player_Skin_Select : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject childObject = Instantiate(players[player_skin_number],transform.position,transform.rotation) as GameObject;
+        GameObject childObject = Instantiate(players[player_skin_number], gameObject.transform.position,transform.rotation) as GameObject;
         childObject.transform.localScale *= gameObject.transform.localScale.y;
         childObject.transform.parent = this.transform;
     }
