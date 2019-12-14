@@ -153,7 +153,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
-        //GetSetPossessionCoin = 100000;
+        GetSetPossessionCoin = 100000;
         GetSetOpenSkin = PlayerPrefs.GetInt("skin_open");
 
 

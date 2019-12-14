@@ -70,8 +70,6 @@ public class Title_Manager : MonoBehaviour
             game_start++;
             Variable_Manager.Instance.GetSetPlayGames = game_start;
         }
-
-     
     }
 
     public void SetSkin() 

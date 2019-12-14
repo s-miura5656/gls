@@ -23,6 +23,7 @@ public class Skin_Manager : MonoBehaviour
     [SerializeField] private Transform closeTransform = null;
     [SerializeField] private Button openButton = null;
     [SerializeField] private Transform openTransform = null;
+    [SerializeField] private Image button_stop;
 
     private bool count;
 
@@ -30,6 +31,7 @@ public class Skin_Manager : MonoBehaviour
     {
         closeButton.onClick.AddListener(CloseSkin);
         openButton.onClick.AddListener(OpenSkin);
+        //button_stop.gameObject.SetActive(false);
     }
 
     private void CloseSkin()
@@ -70,6 +72,8 @@ public class Skin_Manager : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         // アニメーション追加
         seq.Append(openTransform.DOScaleY(1.0f, _animtime));
+
+        button_stop.gameObject.SetActive(true);
 
         seq.OnStart(() => {
             // アニメーション開始時によばれる
