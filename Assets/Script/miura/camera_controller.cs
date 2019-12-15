@@ -13,7 +13,7 @@ public class camera_controller : MonoBehaviour
     private Vector3 camera_base_pos = new Vector3(0f, 0f, 0f);
     private Vector3 camera_move_pos = new Vector3(0f, 0f, 0f);
     // ラープ補完用カメラの移動速度
-    private float camera_speed = 0.7f;
+    private float camera_speed = 0.6f;
     // カメラの初期位置
     private Vector3 first_pos = new Vector3(0f, 60f, -50f);
     // レベルが上がるにつれて上がるカメラのZ軸の値

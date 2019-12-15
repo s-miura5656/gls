@@ -147,7 +147,7 @@ public class player_controller_move : MonoBehaviour
                     operation_anime.SetActive(false);
                 }
 
-                rb.AddForce(new Vector3(start_direction.x * powor, 0f, start_direction.y * powor), ForceMode.Impulse);
+                rb.AddForce(new Vector3(start_direction.x * powor, -1f, start_direction.y * powor), ForceMode.Impulse);
             }
 
             charge_powor = charge_powor_reset;
