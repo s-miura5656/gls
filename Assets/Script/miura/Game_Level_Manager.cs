@@ -31,7 +31,6 @@ public class Game_Level_Manager : MonoBehaviour
 
         // それぞれの数値を変化させる処理
         camera_move.SetFirstPos(gameLevelData.CameraFirstPos);
-        camera_move.SetLevelUpCameraPos(gameLevelData.CameraMoveValue);
         time_manager.SetGameTime(gameLevelData.GameTimeMax);
         time_manager.SetIncreaseTime(gameLevelData.LevelUpTimePlus);
         bill_obsever.SetCoinNumber(gameLevelData.CoinNumber);

@@ -125,7 +125,7 @@ public class Player_Level_Manager : MonoBehaviour
             // サイズ変更
             player.transform.DOScale(player_scale[player_level - 1], 2f);
 
-            camera_scipt.ZoomCamera();
+            camera_scipt.ZoomCamera(player_level);
         }
     }
 

@@ -8,7 +8,6 @@ public class GameLevelData : ScriptableObject
     [Header("ゲーム時間")] [SerializeField] private float game_time_max = 0f;
     [Header("レベルアップ時に増える時間")] [SerializeField] private float level_up_time_plus = 0f;
     [Header("カメラの初期位置（プレイヤー起点）")] [SerializeField] private Vector3 camera_first_pos = Vector3.zero;
-    [Header("レベルアップ時にカメラを離す距離")] [SerializeField] private Vector3 camera_moving_value = Vector3.zero;
     [Header("１レベル時のコインの出る数")] [SerializeField] private int coin_number = 0;
     [Header("ビルレベル毎の経験値")] [SerializeField] private int[] bill_get_exp;
     [Header("ビルレベル毎のコイン取得数")] [SerializeField] private int[] bill_get_coin;
@@ -26,11 +25,6 @@ public class GameLevelData : ScriptableObject
     public Vector3 CameraFirstPos
     {
         get { return camera_first_pos; }
-    }
-
-    public Vector3 CameraMoveValue 
-    {
-        get { return camera_moving_value; }
     }
 
     public int CoinNumber 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class player_controller_move : MonoBehaviour
 {
     // プレイヤーのリジッドボディ
-    [SerializeField]private Rigidbody rb = null;
+    [SerializeField] private Rigidbody rb = null;
     // 引っ張りの始点
     private Vector3 start_pos = Vector3.zero;
     // 引っ張って離したときの点
@@ -41,7 +41,10 @@ public class player_controller_move : MonoBehaviour
     [SerializeField] private GameObject operation_anime = null;
     // プレイヤーパラメーターの取得
     [SerializeField] private PlayerParametor player_parametor_script = null;
-
+    // 三回タッチしたかどうか
+    private int touch_screen_count = 0;
+    // 何回タッチしたらアニメを停止するか 
+    private int touch_screen_count_max = 3;
     void Start()
     {
         player_powor = new float[player_level_manager_script.PlayerLevelMax];
@@ -73,7 +76,7 @@ public class player_controller_move : MonoBehaviour
     /// <summary>
     /// 進行方向へ回転させる
     /// </summary>
-    private void FowardRotation() 
+    private void FowardRotation()
     {
         // 位置の変化量
         var translation = rb.velocity * Time.deltaTime;
@@ -94,7 +97,7 @@ public class player_controller_move : MonoBehaviour
         var axis = Vector3.Cross(Vector3.up, translation).normalized;
 
         // 現在の回転に加えるべき回転
-        var deltaRotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, axis); 
+        var deltaRotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, axis);
 
         // 現在の回転からさらにdeltaRotationだけ回転させる
         rb.MoveRotation(deltaRotation * rb.rotation);
@@ -103,7 +106,7 @@ public class player_controller_move : MonoBehaviour
     /// <summary>
     /// 引っ張り操作
     /// </summary>
-    private void PullController() 
+    private void PullController()
     {
         // マウスの動きと反対方向に発射される
         if (Input.GetMouseButtonDown(0))
@@ -118,6 +121,13 @@ public class player_controller_move : MonoBehaviour
             // プレイヤーにかける力の変数を０に戻す
             start_direction *= 0;
 
+            // 操作説明のアニメの停止
+            if (time_script.GetGamePlayState)
+            {
+                if (operation_anime.activeSelf)
+                    operation_anime.SetActive(false);
+            }
+            
         }
         else if (Input.GetMouseButton(0))
         {
@@ -142,12 +152,13 @@ public class player_controller_move : MonoBehaviour
             // カウントダウン後動けるようになる
             if (time_script.GetGamePlayState)
             {
-                if (operation_anime.activeSelf)
-                {
-                    operation_anime.SetActive(false);
-                }
-
                 rb.AddForce(new Vector3(start_direction.x * powor, -1f, start_direction.y * powor), ForceMode.Impulse);
+
+                // 操作説明のアニメの再生
+                if (touch_screen_count < touch_screen_count_max)
+                    operation_anime.SetActive(true);
+
+                touch_screen_count++;
             }
 
             charge_powor = charge_powor_reset;
