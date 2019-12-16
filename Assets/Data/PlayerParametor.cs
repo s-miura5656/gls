@@ -9,6 +9,7 @@ public class PlayerParametor : ScriptableObject
     [Header("プレイヤーのレベル毎の経験値")] [SerializeField] private int[] player_level_up_exp;
     [Header("プレイヤーのレベル毎のサイズ")] [SerializeField] private float[] player_scale;
     [Header("プレイヤーのレベル毎に力を加える力")] [SerializeField] private float[] player_powor;
+    [Header("プレイヤーのレベル毎のカメラの離れていく距離")] [SerializeField] private Vector3[] player_level_up_camera;
     [Header("引っ張り距離の固定")] [SerializeField] private float dist_flat = 200f;
     [Header("チャージ完了時に加える力")] [SerializeField] private float charge_powor = 0;
     [Header("プレイヤーについているスモークの大きさ")] [SerializeField] private Vector3 smoke_size = Vector3.one;
@@ -64,5 +65,10 @@ public class PlayerParametor : ScriptableObject
     public Vector3[] PlayerFirstRotation
     {
         get { return player_first_rotation; }
+    }
+
+    public Vector3[] PlayerLevelUpCamera 
+    {
+        get { return player_level_up_camera; }
     }
 }

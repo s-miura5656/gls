@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class camera_controller : MonoBehaviour
 {
+    // プレイヤーパラメーターの取得
+    [SerializeField] private PlayerParametor player_parametor_script = null;
     // データマネージャーの取得
     [SerializeField] private Game_Level_Manager game_level_script = null;
     // プレイヤーとカメラ間のオフセット距離
@@ -13,11 +15,9 @@ public class camera_controller : MonoBehaviour
     private Vector3 camera_base_pos = new Vector3(0f, 0f, 0f);
     private Vector3 camera_move_pos = new Vector3(0f, 0f, 0f);
     // ラープ補完用カメラの移動速度
-    private float camera_speed = 0.7f;
+    private float camera_speed = 0.6f;
     // カメラの初期位置
     private Vector3 first_pos = new Vector3(0f, 60f, -50f);
-    // レベルが上がるにつれて上がるカメラのZ軸の値
-    private Vector3 level_up_camera_pos = new Vector3(0f, 30f, -20f);
 
     // Start is called before the first frame update
     void Start()
@@ -54,9 +54,9 @@ public class camera_controller : MonoBehaviour
     /// <summary>
     /// レベルアップ時のカメラのズーム
     /// </summary>
-    public void ZoomCamera()
+    public void ZoomCamera(int player_level)
     {
-        var newPos = gameObject.transform.position + level_up_camera_pos;
+        var newPos = gameObject.transform.position + player_parametor_script.PlayerLevelUpCamera[player_level - 1];
         var offSet = newPos - game_level_script.GetPlayer().transform.position;
 
         DOTween.To(
@@ -74,14 +74,5 @@ public class camera_controller : MonoBehaviour
     public void SetFirstPos(Vector3 pos)
     {
         first_pos = pos;
-    }
-
-    /// <summary>
-    /// レベルアップした時に離れる距離
-    /// </summary>
-    /// <param name="pos"></param>
-    public void SetLevelUpCameraPos(Vector3 pos)
-    {
-        level_up_camera_pos = pos;
     }
 }
