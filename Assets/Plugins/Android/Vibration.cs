@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Timers;
 
 public static class Vibration
 {
+    private static bool isvibrate = false; 
 
 #if UNITY_ANDROID && !UNITY_EDITOR
     public static AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -16,8 +18,24 @@ public static class Vibration
 
     public static void Vibrate(long milliseconds)
     {
-        if (isAndroid())
-            vibrator.Call("vibrate", milliseconds);
+        if (isAndroid()) {
+
+            if (!isvibrate)
+            {
+                vibrator.Call("vibrate", milliseconds);
+                isvibrate = true;
+
+                Timer timer = new Timer(milliseconds);
+
+                timer.Elapsed += (sender, e) =>
+                {
+                    isvibrate = false;
+                    timer.Stop();
+                };
+
+                timer.Start();
+            }
+        }
         else
             Handheld.Vibrate();
     }
