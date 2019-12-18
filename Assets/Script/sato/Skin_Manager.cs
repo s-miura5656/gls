@@ -27,6 +27,8 @@ public class Skin_Manager : MonoBehaviour
 
     private bool count;
 
+    public int skin_click = 0;
+
     private void Start()
     {
         closeButton.onClick.AddListener(CloseSkin);
@@ -68,6 +70,16 @@ public class Skin_Manager : MonoBehaviour
     private void OpenSkin()
     {
         //RectTransform rectTransform = skin.GetComponent<RectTransform>();
+
+        
+
+        if (Variable_Manager.Instance.GetSetPossessionCoin >= 5000)
+        {
+          skin_click = 1;
+          Variable_Manager.Instance.Skin_button_click = skin_click;
+          skin_click = 0;
+        }
+
 
         Sequence seq = DOTween.Sequence();
         // アニメーション追加

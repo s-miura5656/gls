@@ -28,8 +28,12 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private bool[] Lock_image = new bool[SkinData.SkinNumber];
     // スキンの解放確認2
     private bool[] key_image = new bool[SkinData.SkinNumber];
+    //スキンの全開放確認
+    private int all_open = 0;
 
     public float play_time = 0;
+
+    private int skin_click = 0;
 
     //[SerializeField]
     //private UnityAnaltics ana_script;
@@ -120,6 +124,22 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { play_games = value; }
     }
 
+
+    public int Skin_All
+    {
+        get { return all_open; }
+        set { all_open = value; }
+    }
+
+
+    public int Skin_button_click
+    {
+        get { return skin_click; }
+        set { skin_click = value; }
+    }
+    
+
+
     public void Save()
     {
         skinData.SkinDataSave();
@@ -128,6 +148,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.SetInt("possession_coin", GetSetPossessionCoin);
         PlayerPrefs.Save();
         PlayerPrefs.SetInt("skin_open", GetSetOpenSkin);
+        PlayerPrefs.SetInt("skin_all",Skin_All);
+
 
         play_time = Time.time;
         Debug.Log(play_time);
@@ -155,6 +177,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
         GetSetPossessionCoin = 100000;
         GetSetOpenSkin = PlayerPrefs.GetInt("skin_open");
+        Skin_All = PlayerPrefs.GetInt("skin_all");
 
 
 
