@@ -26,6 +26,7 @@ public class Title_Manager : MonoBehaviour
 
     // 最初に選ばれるステージの番号
     private int first_stage = 1;
+
     private void Awake()
     {
         Application.targetFrameRate = 30;
@@ -75,16 +76,6 @@ public class Title_Manager : MonoBehaviour
         }
 
 
-    }
-
-    public void SetSkin() 
-    {
-        SceneManager.LoadScene("");
-    }
-
-    public void StageSelect(int number)
-    {
-        SceneManager.LoadScene("GameMain_" + number);
     }
 
     public void OpenStageSelect()
