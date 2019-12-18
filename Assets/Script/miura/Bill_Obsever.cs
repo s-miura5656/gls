@@ -20,22 +20,29 @@ public class Bill_Obsever : MonoBehaviour
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
     // ビルの破片パーティクル
     [SerializeField] private GameObject crash = null;
-    // ヒットエフェクトのパーティクル
+    // ヒットエフェクト貫通のオブジェクト
     [SerializeField] private GameObject hit_effect = null;
+    // ヒットエフェクト反射のオブジェクト
+    [SerializeField] private GameObject hit_ref_effect = null;
     // コインエフェクトのパーティクル
     [SerializeField] private GameObject coin_effect = null;
     // 壊れるパーティクル
     private ParticleSystem[] crash_particle;
-    // ヒットエフェクト
-    private ParticleSystem[] hit_particle;
+    // ヒットエフェクト貫通
+    private ParticleSystem hit_particle = null;
+    // ヒットエフェクト反射
+    private ParticleSystem hit_ref_particle = null;
     // コインのパーティクル
     private ParticleSystem coin_particle;
     // ビルが壊れるエフェクトの大きさの基準
     private float default_crash_particle_scale = 0.0f;
-    // ヒットエフェクトの大きさの基準
+    // ヒットエフェクト貫通の大きさの基準
     private float default_hit_particle_scale = 0.0f;
+    // ヒットエフェクト反射の大きさの基準
+    private float default_hit_ref_particle_scale = 0.0f;
     // コインエフェクトの大きさの基準
     private float default_coin_particle_scale = 0.0f;
+
     // コインの出る基準値
     private int coin_number = 1;
 
@@ -101,26 +108,39 @@ public class Bill_Obsever : MonoBehaviour
         coin_particle.emission.SetBurst(0, burst);
         coin_particle.gravityModifier = 10 * playerLevel;
 
-        //coin_particle.Play();
+        coin_particle.Play();
     }
 
     /// <summary>
-    /// ヒットエフェクト
+    /// ヒットエフェクト貫通
     /// </summary>
     /// <param name="playerLevel">プレイヤーのレベル</param>
     /// <param name="hit_pos">当たった座標</param>
     public void PlayHitEffect(int playerLevel, Vector3 hit_pos)
     {
-        for (int i = 0; i < hit_particle.Length; i++)
-        {
-            // プレイヤーと当たった場所にヒットエフェクトを移動
-            hit_particle[i].transform.position = hit_pos;
-            // ヒットエフェクトのパーティクルをプレイヤーのレベルに合わせて拡大
-            var hit_scale = Vector3.one * default_hit_particle_scale * playerLevel;
-            hit_particle[i].transform.localScale = hit_scale;
+        // プレイヤーと当たった場所にヒットエフェクトを移動
+        hit_particle.transform.position = hit_pos;
+        // ヒットエフェクトのパーティクルをプレイヤーのレベルに合わせて拡大
+        var hit_scale = Vector3.one * default_hit_particle_scale * playerLevel;
+        hit_particle.transform.localScale = hit_scale;
 
-            hit_particle[i].Play();
-        }
+        hit_particle.Play();
+    }
+
+    /// <summary>
+    /// ヒットエフェクト反射
+    /// </summary>
+    /// <param name="playerLevel">プレイヤーのレベル</param>
+    /// <param name="hit_pos">当たった座標</param>
+    public void PlayHitRefEffect(int playerLevel, Vector3 hit_pos)
+    {
+        // プレイヤーと当たった場所にヒットエフェクトを移動
+        hit_ref_particle.transform.position = hit_pos;
+        // ヒットエフェクトのパーティクルをプレイヤーのレベルに合わせて拡大
+        var hit_ref_scale = Vector3.one * default_hit_ref_particle_scale * playerLevel;
+        hit_ref_particle.transform.localScale = hit_ref_scale;
+
+        hit_ref_particle.Play();
     }
 
     private void Start()
@@ -132,11 +152,13 @@ public class Bill_Obsever : MonoBehaviour
 
         // 貫通用ヒットエフェクトの初期化
         var hit_effect_obj = Instantiate(hit_effect, gameObject.transform);
-        hit_particle = hit_effect_obj.GetComponentsInChildren<ParticleSystem>();
-        default_hit_particle_scale = hit_particle[0].transform.localScale.x;
+        hit_particle = hit_effect_obj.GetComponent<ParticleSystem>();
+        default_hit_particle_scale = hit_particle.transform.localScale.x;
 
         // 反射用ヒットエフェクトの初期化
-        
+        var hit_ref_effect_obj = Instantiate(hit_ref_effect, gameObject.transform);
+        hit_ref_particle = hit_ref_effect_obj.GetComponent<ParticleSystem>();
+        default_hit_ref_particle_scale = hit_ref_particle.transform.localScale.x;
 
         // コインエフェクトの初期化
         var hit_coin_obj = Instantiate(coin_effect, gameObject.transform);
