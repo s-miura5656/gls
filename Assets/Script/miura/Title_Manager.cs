@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using UnityEngine.UI;
 
 
 
 public class Title_Manager : MonoBehaviour
 {
-    [SerializeField]
-    private Vibrations_Manager script;
-
+    [SerializeField] private Vibrations_Manager script;
+    [SerializeField] private RectTransform stage_select_transform = null;
+    [SerializeField] private Button open_button = null;
     private int scene_number = 0;
     private int scene_number_min = 1;
     private int scene_number_max = 4;
-                                                                                                                                                                                        
+    private float anime_time = 0.5f;                                                                                                                                                                   
     public int game_start = 0;
 
     bool isFinishedSplashScreenAndPassedUpdate = false;
@@ -32,6 +34,7 @@ public class Title_Manager : MonoBehaviour
     void Start()
     {
         game_start = Variable_Manager.Instance.GetSetPlayGames;
+        open_button.onClick.AddListener(OpenStageSelect);
     }
 
     // Update is called once per frame
@@ -65,17 +68,45 @@ public class Title_Manager : MonoBehaviour
             //    SceneManager.LoadScene("GameMain_" + scene_number);
             //}
 
-            SceneManager.LoadScene("GameMain_" + 3);
+            //SceneManager.LoadScene("GameMain_" + scene_number);
 
             game_start++;
             Variable_Manager.Instance.GetSetPlayGames = game_start;
         }
 
-     
+
     }
 
     public void SetSkin() 
     {
         SceneManager.LoadScene("");
+    }
+
+    public void StageSelect(int number)
+    {
+        SceneManager.LoadScene("GameMain_" + number);
+    }
+
+    public void OpenStageSelect()
+    {
+        Sequence seq = DOTween.Sequence();
+        // アニメーション追加
+        seq.Append(stage_select_transform.DOScaleY(1.0f, anime_time));
+
+        seq.OnStart(() => {
+            // アニメーション開始時によばれる
+            Debug.Log("Animation Start");
+        });
+
+        seq.OnUpdate(() => {
+            // 対象の値が変更される度によばれる
+            Debug.Log("Animation Update");
+        });
+
+        seq.OnComplete(() => {
+            Debug.Log("Animation End");
+            seq.Complete();
+            // アニメーションが終了時によばれる
+        });
     }
 }
