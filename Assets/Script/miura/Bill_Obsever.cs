@@ -18,6 +18,12 @@ public class Bill_Obsever : MonoBehaviour
     [SerializeField] private Time_Manager time_script = null;
     // ビルについている破壊に関するスクリプトを取得
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
+    // ビルの破片パーティクル
+    [SerializeField] private GameObject crash = null;
+    // ヒットエフェクトのパーティクル
+    [SerializeField] private GameObject hit_effect = null;
+    // コインエフェクトのパーティクル
+    [SerializeField] private GameObject coin_effect = null;
     // 壊れるパーティクル
     private ParticleSystem[] crash_particle;
     // ヒットエフェクト
@@ -80,9 +86,8 @@ public class Bill_Obsever : MonoBehaviour
             crash_particle[i].transform.position = bill_pos;
 
             // 破片のパーティクルをビルのレベルに合わせて拡大
-            var cras_scale = Vector3.one * default_crash_particle_scale * billLevel;
-            crash_particle[i].transform.localScale = cras_scale;
-
+            var crash_scale = Vector3.one * default_crash_particle_scale * billLevel;
+            crash_particle[i].transform.localScale = crash_scale;
             crash_particle[i].Play();
         }
 
@@ -96,7 +101,7 @@ public class Bill_Obsever : MonoBehaviour
         coin_particle.emission.SetBurst(0, burst);
         coin_particle.gravityModifier = 10 * playerLevel;
 
-        coin_particle.Play();
+        //coin_particle.Play();
     }
 
     /// <summary>
@@ -121,20 +126,20 @@ public class Bill_Obsever : MonoBehaviour
     private void Start()
     {
         // ビルの破片エフェクトの初期化
-        var crash = (GameObject)Resources.Load("Collapse_Effect");
         var crash_obj = Instantiate(crash, gameObject.transform);
         crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
         default_crash_particle_scale = crash_particle[0].transform.localScale.x;
 
-        // ヒットエフェクトの初期化
-        var hit_effect = (GameObject)Resources.Load("hit");
+        // 貫通用ヒットエフェクトの初期化
         var hit_effect_obj = Instantiate(hit_effect, gameObject.transform);
         hit_particle = hit_effect_obj.GetComponentsInChildren<ParticleSystem>();
         default_hit_particle_scale = hit_particle[0].transform.localScale.x;
 
+        // 反射用ヒットエフェクトの初期化
+        
+
         // コインエフェクトの初期化
-        var hit_coin = (GameObject)Resources.Load("Coin_Test");
-        var hit_coin_obj = Instantiate(hit_coin, gameObject.transform);
+        var hit_coin_obj = Instantiate(coin_effect, gameObject.transform);
         coin_particle = hit_coin_obj.GetComponent<ParticleSystem>();
         default_coin_particle_scale = coin_particle.transform.localScale.x;
 
