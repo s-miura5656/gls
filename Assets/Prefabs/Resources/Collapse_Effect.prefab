@@ -140,6 +140,11 @@ PrefabInstance:
       propertyPath: InitialModule.maxNumParticles
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 198846120171259526, guid: b7294268347cf4e558f2a909220956aa,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7294268347cf4e558f2a909220956aa, type: 3}
 --- !u!4 &850469805208294730 stripped
@@ -270,6 +275,11 @@ PrefabInstance:
       propertyPath: InitialModule.maxNumParticles
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 6512433541369211209, guid: 2ed8ca8841ea23544aaa39f5ed53d7e8,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ed8ca8841ea23544aaa39f5ed53d7e8, type: 3}
 --- !u!4 &2374573125828340561 stripped
@@ -368,12 +378,17 @@ PrefabInstance:
     - target: {fileID: 198593086297014100, guid: a55930bf8f4a0467cbde06b774f36645,
         type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 198593086297014100, guid: a55930bf8f4a0467cbde06b774f36645,
         type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198593086297014100, guid: a55930bf8f4a0467cbde06b774f36645,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a55930bf8f4a0467cbde06b774f36645, type: 3}
