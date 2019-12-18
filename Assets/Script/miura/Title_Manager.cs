@@ -43,16 +43,16 @@ public class Title_Manager : MonoBehaviour
 
     public void PlayGame()
     {
-
-        if (UnityEngine.Rendering.SplashScreen.isFinished)
+        if (!Variable_Manager.Instance.GetSetStageState)
         {
-                
-            isFinishedSplashScreenAndPassedUpdate = true;
+            SceneManager.LoadScene("GameMain_" + first_stage);
+            Variable_Manager.Instance.GetSetStageState = true;
         }
-
-        if (isFinishedSplashScreenAndPassedUpdate == true)
+        else
         {
+            scene_number = Random.Range(scene_number_min, scene_number_max);
 
+<<<<<<< HEAD
             //if (!Variable_Manager.Instance.GetSetStageState)
             //{
             //    SceneManager.LoadScene("GameMain_" + first_stage);
@@ -66,12 +66,19 @@ public class Title_Manager : MonoBehaviour
             //}
 
             SceneManager.LoadScene("GameMain_" + 3);
-
-            game_start++;
-            Variable_Manager.Instance.GetSetPlayGames = game_start;
+=======
+            SceneManager.LoadScene("GameMain_" + scene_number);
         }
 
-     
+        game_start++;
+        Variable_Manager.Instance.GetSetPlayGames = game_start;
+>>>>>>> ロゴ変更
+
+        //isFinishedSplashScreenAndPassedUpdate = true;
+   
+        //if (isFinishedSplashScreenAndPassedUpdate == true)
+        //{
+        //}
     }
 
     public void SetSkin() 

@@ -44,14 +44,30 @@ public class Skin_RandomSerect : MonoBehaviour
 
     public int open_numbers = 0;
 
+    private int skin_all_open = 0;
+
     void Start()
     {
+
+        
+
+
         int number_Length = Variable_Manager.Instance.GetSkinData.SkinOpen.Length;
         open_numbers = Variable_Manager.Instance.GetSetOpenSkin;
+        skin_all_open = Variable_Manager.Instance.Skin_All;
 
         for (int i = 0; i < number_Length; i++)
         {
             skin_open = Variable_Manager.Instance.GetSkinData.SkinOpen[i];
+
+           if(skin_all_open == 1)
+            {
+                randam_button.interactable = false;
+                use_coin_text.text = "SOLD OUT";
+                use_coin_text.fontSize = 70;
+            }
+
+
             if (skin_open == true)
             {
                 Lock_image[i].SetActive(false);
@@ -173,6 +189,7 @@ public class Skin_RandomSerect : MonoBehaviour
            
             use_coin_text.text = "SOLD OUT";
             use_coin_text.fontSize = 70;
+            Variable_Manager.Instance.Skin_All = 1;
 
         }
     }
