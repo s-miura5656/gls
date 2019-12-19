@@ -31,6 +31,7 @@ public class Title_Manager : MonoBehaviour
     {
         Application.targetFrameRate = 30;
     }
+
     // Start is called before the first frame update
     void Start()
     {
