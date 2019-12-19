@@ -103,6 +103,9 @@ public class ResultBotton_Manger : MonoBehaviour
             Advertisement_Bottoun.SetActive(false);
 
             coin_script.Calculation_Manager();
+            int push_rate = 0;
+            push_rate = 1;
+            UnityAnaltics.Instance.reword(push_rate);
         }
         else if (showResult == ShowResult.Failed)
         {

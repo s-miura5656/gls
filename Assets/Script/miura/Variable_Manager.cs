@@ -35,8 +35,12 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
     private int skin_click = 0;
 
-    //[SerializeField]
-    //private UnityAnaltics ana_script;
+    private int stage_serect;
+
+    //ステージの番号
+    private int stage_number_play;
+
+    private int vib = 0;
 
 
 
@@ -137,7 +141,15 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         get { return skin_click; }
         set { skin_click = value; }
     }
-    
+
+    public int Serect_Stage
+    {
+        get { return stage_serect; }
+        set { stage_serect = value; }
+
+
+    }
+
 
 
     public void Save()
@@ -151,18 +163,14 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.SetInt("skin_all",Skin_All);
 
 
+
         play_time = Time.time;
         Debug.Log(play_time);
 
 
-        //ana_script.Play_time();
-        //ana_script.Skin_now();
-        //ana_script.Coin();
-        //ana_script.Title();
 
         UnityAnaltics.Instance.open_number();
-        UnityAnaltics.Instance.Play_time();
-        UnityAnaltics.Instance.Skin_now();
+        UnityAnaltics.Instance.Play_time();      
         UnityAnaltics.Instance.Title();
         UnityAnaltics.Instance.Coin();
 
@@ -175,7 +183,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
-        GetSetPossessionCoin = 100000;
+        //GetSetPossessionCoin = 100000;
         GetSetOpenSkin = PlayerPrefs.GetInt("skin_open");
         Skin_All = PlayerPrefs.GetInt("skin_all");
 

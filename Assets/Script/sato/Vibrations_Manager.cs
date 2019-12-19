@@ -37,7 +37,7 @@ public class Vibrations_Manager : MonoBehaviour
             vibrations_off.SetActive(false);
         }
 
-        else if(status == false)
+        if(status == false)
         {
             vibrations_on.SetActive(false);
             vibrations_off.SetActive(true);
