@@ -105,18 +105,25 @@ public class Player_Level_Manager : MonoBehaviour
 
             player_level = player_level + 1;
 
+            // 時間をプラスする
             time_script.TimeCountDownMainPlus();
 
+            // ビルとの破壊判定
             bill_level_script.BillPossible(player_level);
 
+            // EXPのリセット
             player_get_exp_script.PlayerExp = 0;
 
+            // EXPゲージのサイズをレベルに合わせて大きくする
             gage_canvas.transform.localScale = default_gage_size * player_level;
 
+            // レベルアップ表示のアクティブ化
             level_up_text.SetActive(true);
 
+            // レベルアップのエフェクトの再生
             PlayLevelUpEffect();
 
+            // レベルが最大よりも上がらなくなる
             if (player_level >= player_level_max)
             {
                 player_level = player_level_max;
@@ -125,10 +132,14 @@ public class Player_Level_Manager : MonoBehaviour
             // サイズ変更
             player.transform.DOScale(player_scale[player_level - 1], 2f);
 
+            // カメラ位置をレベルに合わせて変更
             camera_scipt.ZoomCamera(player_level);
         }
     }
 
+    /// <summary>
+    /// レベルアップエフェクト再生
+    /// </summary>
     private void PlayLevelUpEffect()
     {
         GameObject childObject = Instantiate(level_up_effect_obj);
@@ -136,6 +147,9 @@ public class Player_Level_Manager : MonoBehaviour
         childObject.transform.position = player.transform.position;
     }
 
+    /// <summary>
+    /// 経験値ゲージを経験値に合わせてゲージを動かす
+    /// </summary>
     private void ExpGage()
     {
         if (player_level >= player_level_max)
