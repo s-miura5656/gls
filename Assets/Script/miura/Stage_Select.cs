@@ -13,6 +13,9 @@ public class Stage_Select : MonoBehaviour
     private int skin;
     public void StageSelect(int number)
     {
+
+
+
         SceneManager.LoadScene("GameMain_" + number);
     }
 
@@ -38,8 +41,12 @@ public class Stage_Select : MonoBehaviour
             // アニメーションが終了時によばれる
         });
         //skin = now_number.skin_number; 
+        skin = Variable_Manager.Instance.GetSetAvatarNumber; 
+
+
         UnityAnaltics.Instance.Stage_Serect(number);
         UnityAnaltics.Instance.Skin_now(skin);
         Variable_Manager.Instance.Serect_Stage = number;
+
     }
 }
