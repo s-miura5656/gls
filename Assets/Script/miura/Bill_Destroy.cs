@@ -38,8 +38,7 @@ public class Bill_Destroy : MonoBehaviour
         if (bill_level < bill_Obsever.Player_Level_Manager.GetLevel())
         {
             Vector3 hitPos = other.ClosestPointOnBounds(this.transform.position);
-            BillDestroy(10);
-            bill_Obsever.PlayHitEffect(bill_Obsever.Player_Level_Manager.GetLevel(), hitPos);
+            BillDestroy(10, hitPos);
         }
     }
 
@@ -76,17 +75,18 @@ public class Bill_Destroy : MonoBehaviour
 
             if (bill_attack_count > bill_crash_number)
             {
-                BillDestroy(40);
+                BillDestroy(40, hitPos);
             }
         }
     }
 
     [System.Obsolete]
-    private void BillDestroy(int vibrate)
+    private void BillDestroy(int vibrate, Vector3 hit_pos)
     {
         // エフェクト再生
         var player_level = bill_Obsever.Player_Level_Manager.GetLevel();
         bill_Obsever.PlayCrashEffect(bill_level, transform.position, player_level, bill_Obsever.Player_Exp_Get.GetCoin(exp_bill_level));
+        bill_Obsever.PlayHitEffect(bill_Obsever.Player_Level_Manager.GetLevel(), hit_pos);
 
         // ゲーム時間内だけ破壊率と経験値を追加していく処理
         if (bill_Obsever.Time_Manager.GetGamePlayState)
