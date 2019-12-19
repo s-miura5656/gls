@@ -15,7 +15,7 @@ public class Title_Manager : MonoBehaviour
     private int scene_number = 0;
     private int scene_number_min = 1;
     private int scene_number_max = 4;
-    private float anime_time = 0.5f;                                                                                                                                                                   
+    private float anime_time = 0.3f;                                                                                                                                                                   
     public int game_start = 0;
 
     bool isFinishedSplashScreenAndPassedUpdate = false;

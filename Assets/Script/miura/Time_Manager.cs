@@ -67,7 +67,7 @@ public class Time_Manager : MonoBehaviour
         if (time_plus_obj.activeSelf)
         {
             plus_time_count += Time.deltaTime;
-            time_plus_rect.transform.position += new Vector3(0f, 0.1f, 0f);
+            time_plus_rect.transform.position += new Vector3(0f, 0.2f, 0f);
             if (plus_time_count >= 2f)
             {
                 time_plus_rect.transform.position = default_time_plus_pos;

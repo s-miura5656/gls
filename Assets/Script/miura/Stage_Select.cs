@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Stage_Select : MonoBehaviour
 {
-    private float close_anime_time = 0.5f;
+    private float close_anime_time = 0.3f;
     public void StageSelect(int number)
     {
         SceneManager.LoadScene("GameMain_" + number);
