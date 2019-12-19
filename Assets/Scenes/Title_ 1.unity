@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1294,6 +1294,8 @@ MonoBehaviour:
   closeTransform: {fileID: 2016795176}
   openButton: {fileID: 1629889903}
   openTransform: {fileID: 2016795176}
+  button_stop: {fileID: 0}
+  skin_click: 0
 --- !u!4 &1040292981
 Transform:
   m_ObjectHideFlags: 0
@@ -1681,6 +1683,8 @@ MonoBehaviour:
   closeTransform: {fileID: 95998453}
   openButton: {fileID: 1602404801}
   openTransform: {fileID: 95998453}
+  button_stop: {fileID: 0}
+  skin_click: 0
 --- !u!4 &1272513255
 Transform:
   m_ObjectHideFlags: 0
@@ -2147,6 +2151,8 @@ MonoBehaviour:
   closeTransform: {fileID: 1579022507}
   openButton: {fileID: 1629889903}
   openTransform: {fileID: 1579022507}
+  button_stop: {fileID: 0}
+  skin_click: 0
 --- !u!4 &1744521790
 Transform:
   m_ObjectHideFlags: 0
@@ -3021,6 +3027,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 686306318}
+    - target: {fileID: 5140565379633705447, guid: 5cade2efd40e50c4ebca278d039e7c01,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7e26c62cb3a964646b682b3b46874ef4,
+        type: 3}
     - target: {fileID: 5140565379728587247, guid: 5cade2efd40e50c4ebca278d039e7c01,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     passTag: Expgage2
-    Event: 300
+    Event: 250
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -203,12 +203,12 @@ MonoBehaviour:
   m_Name: CustomForwardRendererData
   m_EditorClassIdentifier: 
   m_RendererFeatures:
-  - {fileID: -7033528066428634805}
-  - {fileID: 149027877990360650}
   - {fileID: -3336277161989076761}
-  - {fileID: -5426349341936591692}
+  - {fileID: 149027877990360650}
+  - {fileID: -7033528066428634805}
   - {fileID: -8756592904259848299}
   - {fileID: -808061868850286456}
+  - {fileID: -5426349341936591692}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
     copyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
