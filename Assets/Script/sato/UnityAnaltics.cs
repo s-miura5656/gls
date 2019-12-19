@@ -9,6 +9,8 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
     
     [SerializeField]
     private Variable_Manager manager_script;
+
+    private int stage_serect;
     
 
 
@@ -184,10 +186,10 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
 
     }
 
-    public void Skin_now()
+    public void Skin_now(int skin_number_now)
     {
 
-        int skin_number_now = Variable_Manager.Instance.GetSetAvatarNumber;
+        //int skin_number_now = Variable_Manager.Instance.GetSetAvatarNumber;
 
 
 
@@ -402,6 +404,233 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
                 { "play", 99 }
             });
         }
+
+    }
+
+    public void Stage_Serect(int number)
+    {
+       
+        
+       
+    
+
+        int stage_number = number;
+
+        if (stage_number == 1)
+        {
+            SendAnalytics("play_stage", new Dictionary<string, object>
+            {
+                { "Stage", 1 }
+            });
+        }
+        else if (stage_number == 2)
+        {
+            SendAnalytics("play_stage", new Dictionary<string, object>
+            {
+                { "Stage", 2 }
+            });
+        }
+        else if (stage_number == 3)
+        {
+            SendAnalytics("play_stage", new Dictionary<string, object>
+            {
+                { "Stage", 3 }
+            });
+        }
+    }
+
+    public void Stage1_Crash(float stage1_crash_rate)
+    {
+
+        //int stage1_crash_rate = Variable_Manager.Instance.GetSetPlayGames;
+
+
+
+        if (stage1_crash_rate == 1)
+        {
+            SendAnalytics("stage1_rate", new Dictionary<string, object>
+            {
+                { "rate", 0 }
+            });
+        }
+        else if (stage1_crash_rate > 0 && stage1_crash_rate < 20)
+        {
+            SendAnalytics("stage1_rate", new Dictionary<string, object>
+            {
+                { "rate", 20 }
+            });
+        }
+        else if (stage1_crash_rate >= 20 && stage1_crash_rate < 40)
+        {
+            SendAnalytics("stage1_rate", new Dictionary<string, object>
+            {
+                { "rate", 40 }
+            });
+        }
+        else if (stage1_crash_rate >= 40 && stage1_crash_rate < 60)
+        {
+            SendAnalytics("stage1_rate", new Dictionary<string, object>
+            {
+                { "rate", 60 }
+            });
+        }
+        else if (stage1_crash_rate >= 60 && stage1_crash_rate < 80)
+        {
+            SendAnalytics("stage1_rate", new Dictionary<string, object>
+            {
+                { "rate", 80 }
+            });
+        }
+        else if (stage1_crash_rate >= 80 && stage1_crash_rate < 100)
+        {
+            SendAnalytics("stage1_rate", new Dictionary<string, object>
+            {
+                { "rate", 100 }
+            });
+        }
+        
+
+    }
+
+    public void Stage2_Crash(float stage2_crash_rate)
+    {
+
+        //int stage2_crash_rate = Variable_Manager.Instance.GetSetPlayGames;
+
+
+
+        if (stage2_crash_rate == 2)
+        {
+            SendAnalytics("stage2_rate", new Dictionary<string, object>
+            {
+                { "rate", 0 }
+            });
+        }
+        else if (stage2_crash_rate > 0 && stage2_crash_rate < 20)
+        {
+            SendAnalytics("stage2_rate", new Dictionary<string, object>
+            {
+                { "rate", 20 }
+            });
+        }
+        else if (stage2_crash_rate >= 20 && stage2_crash_rate < 40)
+        {
+            SendAnalytics("stage2_rate", new Dictionary<string, object>
+            {
+                { "rate", 40 }
+            });
+        }
+        else if (stage2_crash_rate >= 40 && stage2_crash_rate < 60)
+        {
+            SendAnalytics("stage2_rate", new Dictionary<string, object>
+            {
+                { "rate", 60 }
+            });
+        }
+        else if (stage2_crash_rate >= 60 && stage2_crash_rate < 80)
+        {
+            SendAnalytics("stage2_rate", new Dictionary<string, object>
+            {
+                { "rate", 80 }
+            });
+        }
+        else if (stage2_crash_rate >= 80 && stage2_crash_rate < 100)
+        {
+            SendAnalytics("stage2_rate", new Dictionary<string, object>
+            {
+                { "rate", 100 }
+            });
+        }
+
+
+    }
+
+    public void Stage3_Crash(float stage3_crash_rate)
+    {
+
+        //int stage3_crash_rate = Variable_Manager.Instance.GetSetPlayGames;
+
+
+
+        if (stage3_crash_rate == 3)
+        {
+            SendAnalytics("stage3_rate", new Dictionary<string, object>
+            {
+                { "rate", 0 }
+            });
+        }
+        else if (stage3_crash_rate > 0 && stage3_crash_rate < 20)
+        {
+            SendAnalytics("stage3_rate", new Dictionary<string, object>
+            {
+                { "rate", 20 }
+            });
+        }
+        else if (stage3_crash_rate >= 20 && stage3_crash_rate < 40)
+        {
+            SendAnalytics("stage3_rate", new Dictionary<string, object>
+            {
+                { "rate", 40 }
+            });
+        }
+        else if (stage3_crash_rate >= 40 && stage3_crash_rate < 60)
+        {
+            SendAnalytics("stage3_rate", new Dictionary<string, object>
+            {
+                { "rate", 60 }
+            });
+        }
+        else if (stage3_crash_rate >= 60 && stage3_crash_rate < 80)
+        {
+            SendAnalytics("stage3_rate", new Dictionary<string, object>
+            {
+                { "rate", 80 }
+            });
+        }
+        else if (stage3_crash_rate >= 80 && stage3_crash_rate < 100)
+        {
+            SendAnalytics("stage3_rate", new Dictionary<string, object>
+            {
+                { "rate", 100 }
+            });
+        }
+
+
+    }
+
+    public void Skin_Click(int skin_push)
+    {
+
+        //int skin_push = Variable_Manager.Instance.Skin_button_click;
+
+
+
+        if (skin_push == 1)
+        {
+            SendAnalytics("skin_click", new Dictionary<string, object>
+            {
+                { "click", 1 }
+            });
+        }
+        
+
+    }
+
+    public void reword(int reword_push)
+    {
+
+        //int skin_push = Variable_Manager.Instance.Skin_button_click;
+
+
+
+        if (reword_push == 1)
+        {
+            SendAnalytics("reword_click", new Dictionary<string, object>
+            {
+                { "click", 1 }
+            });
+        }
+
 
     }
 }

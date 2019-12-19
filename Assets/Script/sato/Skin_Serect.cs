@@ -10,7 +10,7 @@ public class Skin_Serect : MonoBehaviour
     [SerializeField]
     private SkinData serect_number;
 
-    private int skin_number;
+    public int skin_number;
 
     //[SerializeField]private Button[] buttons = new Button[9];
 

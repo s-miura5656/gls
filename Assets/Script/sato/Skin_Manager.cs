@@ -23,7 +23,7 @@ public class Skin_Manager : MonoBehaviour
     [SerializeField] private Transform closeTransform = null;
     [SerializeField] private Button openButton = null;
     [SerializeField] private Transform openTransform = null;
-    [SerializeField] private Image button_stop;
+   // [SerializeField] private Image button_stop;
 
     private bool count;
 
@@ -75,9 +75,9 @@ public class Skin_Manager : MonoBehaviour
 
         if (Variable_Manager.Instance.GetSetPossessionCoin >= 5000)
         {
-          skin_click = 1;
-          Variable_Manager.Instance.Skin_button_click = skin_click;
-          skin_click = 0;
+            skin_click = 1;
+            UnityAnaltics.Instance.Skin_Click(skin_click);
+          
         }
 
 
@@ -85,7 +85,7 @@ public class Skin_Manager : MonoBehaviour
         // アニメーション追加
         seq.Append(openTransform.DOScaleY(1.0f, _animtime));
 
-        button_stop.gameObject.SetActive(true);
+        //button_stop.gameObject.SetActive(true);
 
         seq.OnStart(() => {
             // アニメーション開始時によばれる

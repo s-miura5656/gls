@@ -9,10 +9,10 @@ public class Skin_RandomSerect : MonoBehaviour
 
 
 
-    int state = 0;
-    int lock_image_index = 0;
-    int lock_image_count = 0;
-    int lock_image_old_count = 0;
+    //int state = 0;
+    //int lock_image_index = 0;
+    //int lock_image_count = 0;
+    //int lock_image_old_count = 0;
 
 
     [SerializeField]

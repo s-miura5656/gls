@@ -44,10 +44,15 @@ public class Coin_Manager : MonoBehaviour
 
     private bool score_up = true;
 
-
+    private float stage_crash = 0;
+    private float play_stage_number = 0;
+    private float stage1_rate = 0;
+    private float stage2_rate = 0;
+    private float stage3_rate = 0;
 
     void Start()
     {
+
         //獲得したコイン枚数
         coin_score = Variable_Manager.Instance.GetSetCoin;
 
@@ -61,11 +66,30 @@ public class Coin_Manager : MonoBehaviour
 
         bouns_text.text = bouns.ToString();
 
-        //coincount = GameObject.Find("Data_Manager");
-        // coin_score = coin_script.GetSetCoin;
-        //crash_score_rate = CrashScore_Manager.crash_count;  //0.53
 
-        // CrashRate_Get();
+        stage_crash = Variable_Manager.Instance.GetSetDestructionRate;
+        play_stage_number = Variable_Manager.Instance.Serect_Stage;
+
+        if(play_stage_number == 1)
+        {
+            stage1_rate = stage_crash;
+            UnityAnaltics.Instance.Stage1_Crash(stage1_rate);
+        }
+
+        if (play_stage_number == 2)
+        {
+            stage2_rate = stage_crash;
+            UnityAnaltics.Instance.Stage1_Crash(stage2_rate);
+        }
+
+        if (play_stage_number == 3)
+        {
+            stage3_rate = stage_crash;
+            UnityAnaltics.Instance.Stage1_Crash(stage3_rate);
+        }
+
+
+
     }
 
     // Update is called once per frame
