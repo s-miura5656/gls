@@ -8,20 +8,19 @@ using UnityEngine.UI;
 public class Stage_Select : MonoBehaviour
 {
     private float close_anime_time = 0.3f;
-    [SerializeField]
-    private Skin_Serect now_number;
-    private int skin;
+    
     public void StageSelect(int number)
     {
-
-
-
         SceneManager.LoadScene("GameMain_" + number);
+        UnityAnaltics.Instance.Stage_Serect(number);
+        UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
+        Variable_Manager.Instance.Serect_Stage = number;
     }
 
     public void CloseStageSelect()
     {
         Sequence seq = DOTween.Sequence();
+
         // アニメーション追加
         seq.Append(gameObject.transform.DOScaleY(0.0f, close_anime_time));
 
@@ -40,13 +39,7 @@ public class Stage_Select : MonoBehaviour
             seq.Complete();
             // アニメーションが終了時によばれる
         });
-        //skin = now_number.skin_number; 
-        skin = Variable_Manager.Instance.GetSetAvatarNumber; 
-
-
-        UnityAnaltics.Instance.Stage_Serect(number);
-        UnityAnaltics.Instance.Skin_now(skin);
-        Variable_Manager.Instance.Serect_Stage = number;
+        
 
     }
 }
