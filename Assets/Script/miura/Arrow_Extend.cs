@@ -31,7 +31,6 @@ public class Arrow_Extend : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         time_script = game_manager.GetComponent<Time_Manager>();
-
     }
 
     // Update is called once per frame

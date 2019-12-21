@@ -8,7 +8,9 @@ using UnityEngine.Rendering.LWRP;
 public class Bill_Destroy : MonoBehaviour
 {
     // ビルのレベル
-    private int bill_level = 0;
+    private int bill_level = 1;
+    // ビルのレベルの最大値
+    private int max_bill_level = 6;
     // 経験値用ビルのレベル
     private int exp_bill_level = 0;
     // ビルを壊すまでの回数
@@ -107,42 +109,18 @@ public class Bill_Destroy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ビルにレベルを割り当てる
+    /// </summary>
     private void BillLevelSerch()
     {
-        if (transform.tag == "Bill_Level_0")
+        for (int i = 0; i < max_bill_level; i++)
         {
-            bill_level = 1;
-            exp_bill_level = 0;
-        }
-
-        if (transform.tag == "Bill_Level_1")
-        {
-            bill_level = 3;
-            exp_bill_level = 1;
-        }
-
-        if (transform.tag == "Bill_Level_2")
-        {
-            bill_level = 5;
-            exp_bill_level = 2;
-        }
-
-        if (transform.tag == "Bill_Level_3")
-        {
-            bill_level = 7;
-            exp_bill_level = 3;
-        }
-
-        if (transform.tag == "Bill_Level_4")
-        {
-            bill_level = 9;
-            exp_bill_level = 4;
-        }
-
-        if (transform.tag == "Bill_Level_5")
-        {
-            bill_level = 11;
-            exp_bill_level = 5;
+            if (transform.tag == "Bill_Level_" + i)
+            {
+                bill_level += i * 2;
+                exp_bill_level = i;
+            }
         }
     }
 }
