@@ -12,8 +12,6 @@ public class Bill_Obsever : MonoBehaviour
     [SerializeField] private Destruction_Rate_Manager destruction_rate_script = null;
     // 経験値を管理しているスクリプトを取得
     [SerializeField] private Player_Exp_Get player_exp_script = null;
-    // ビルにヒットした時の音を管理しているスクリプト
-    [SerializeField] private Player_SE_Manager player_se_script = null;
     // ゲームの時間を管理しているスクリプト
     [SerializeField] private Time_Manager time_script = null;
     // ビルについている破壊に関するスクリプトを取得
@@ -62,12 +60,6 @@ public class Bill_Obsever : MonoBehaviour
     {
         get { return destruction_rate_script; }
         private set { destruction_rate_script = value; }
-    }
-
-    public Player_SE_Manager Player_SE_Manager
-    {
-        get { return player_se_script; }
-        private set { player_se_script = value; }
     }
 
     public Time_Manager Time_Manager
@@ -182,7 +174,6 @@ public class Bill_Obsever : MonoBehaviour
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
         bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
         player_exp_script = game_manager.GetComponent<Player_Exp_Get>();
-        player_se_script = game_manager.GetComponent<Player_SE_Manager>();
         time_script = game_manager.GetComponent<Time_Manager>();
     }
 
