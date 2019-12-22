@@ -11,6 +11,7 @@ public class Finger_Anime : MonoBehaviour
 
     private Vector3 default_finger_pos = Vector3.zero;
     private Vector3 default_arrow_scale = Vector3.one;
+
     // Start is called before the first frame update
     void Start()
     {
