@@ -23,7 +23,8 @@ public class Skin_Manager : MonoBehaviour
     [SerializeField] private Transform closeTransform = null;
     [SerializeField] private Button openButton = null;
     [SerializeField] private Transform openTransform = null;
-   // [SerializeField] private Image button_stop;
+    [SerializeField] private Image Exclamation_Mark;
+    // [SerializeField] private Image button_stop;
 
     private bool count;
 
@@ -36,9 +37,12 @@ public class Skin_Manager : MonoBehaviour
         //button_stop.gameObject.SetActive(false);
     }
 
+
     private void CloseSkin()
     {
         //RectTransform rectTransform = skin.GetComponent<RectTransform>();
+
+        Exclamation_Mark.color = new Color(255, 255,255,255);
 
         Sequence seq = DOTween.Sequence();
         // アニメーション追加
@@ -71,7 +75,7 @@ public class Skin_Manager : MonoBehaviour
     {
         //RectTransform rectTransform = skin.GetComponent<RectTransform>();
 
-        
+        Exclamation_Mark.color = new Color(255, 255, 255, 0);
 
         if (Variable_Manager.Instance.GetSetPossessionCoin >= 5000)
         {
@@ -109,4 +113,6 @@ public class Skin_Manager : MonoBehaviour
         //if(count == false)
         //SceneManager.LoadScene("Title_");
     }
+
+  
 }

@@ -56,7 +56,7 @@ public class Coin_Manager : MonoBehaviour
         //獲得したコイン枚数
         coin_score = Variable_Manager.Instance.GetSetCoin;
 
-        coin_score = 100000;
+        //coin_score = 1000;
         //破壊率
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
 
@@ -216,7 +216,7 @@ public class Coin_Manager : MonoBehaviour
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
            cs,                  // 最終的な値
-            5.0f                  // アニメーション時間
+            0.5f                  // アニメーション時間
         ).SetEase(Ease.Linear);
     }
 
@@ -236,7 +236,7 @@ public class Coin_Manager : MonoBehaviour
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
             after_score,          // 最終的な値
-            5.0f                  // アニメーション時間
+            0.5f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
 
         total_text.text = "" + score;
