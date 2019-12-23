@@ -101,14 +101,14 @@ public class Bill_Obsever : MonoBehaviour
     /// </summary>
     /// <param name="playerLevel">プレイヤーのレベル</param>
     /// <param name="hit_pos">当たった座標</param>
-    public void PlayHitEffect(int playerLevel, Vector3 hit_pos)
+    public void PlayHitEffect(int bill_level, Vector3 hit_pos)
     {
         for (int i = 0; i < hit_particle.Length; i++)
         {
             // プレイヤーと当たった場所にヒットエフェクトを移動
             hit_particle[i].transform.position = hit_pos;
             // ヒットエフェクトのパーティクルをプレイヤーのレベルに合わせて拡大
-            var hit_scale = Vector3.one * default_hit_particle_scale * playerLevel;
+            var hit_scale = Vector3.one * default_hit_particle_scale * (bill_level + 1);
             hit_particle[i].transform.localScale = hit_scale;
 
             hit_particle[i].Play();
