@@ -78,17 +78,10 @@ public class Bill_Obsever : MonoBehaviour
     [System.Obsolete]
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
     {
-        // ビルの破片の処理
-        for (int i = 0; i < crash_particle.Length; i++) 
-        {
-            // ビル破壊時の破片のパーティクルを出す
-            crash_particle[i].transform.position = bill_pos;
+        var crash_obj = Instantiate(crash, bill_pos,transform.rotation);
+        crash_obj.transform.localScale *= billLevel * 1;
 
-            // 破片のパーティクルをビルのレベルに合わせて拡大
-            var crash_scale = Vector3.one * default_crash_particle_scale * billLevel;
-            crash_particle[i].transform.localScale = crash_scale;
-            crash_particle[i].Play();
-        }
+        Destroy(crash_obj, 2f);
 
         // コインエフェクトの処理
         coin_particle.transform.position = bill_pos;
@@ -141,10 +134,10 @@ public class Bill_Obsever : MonoBehaviour
     private void Start()
     {
         // ビルの破片エフェクトの初期化
-        var crash_obj = Instantiate(crash, gameObject.transform);
-        crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
-        default_crash_particle_scale = crash_particle[0].transform.localScale.x;
-
+        //var crash_obj = Instantiate(crash, gameObject.transform);
+        //crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
+        //default_crash_particle_scale = crash_particle[0].transform.localScale.x;
+        
         // 貫通用ヒットエフェクトの初期化
         var hit_effect_obj = Instantiate(hit_effect, gameObject.transform);
         hit_particle = hit_effect_obj.GetComponentsInChildren<ParticleSystem>();
