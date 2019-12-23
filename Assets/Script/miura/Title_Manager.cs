@@ -12,6 +12,7 @@ public class Title_Manager : MonoBehaviour
     [SerializeField] private Vibrations_Manager script;
     [SerializeField] private RectTransform stage_select_transform = null;
     [SerializeField] private Button open_button = null;
+    [SerializeField] private Image Exclamation_Mark;
     private int scene_number = 0;
     private int scene_number_min = 1;
     private int scene_number_max = 4;
@@ -20,9 +21,9 @@ public class Title_Manager : MonoBehaviour
 
     bool isFinishedSplashScreenAndPassedUpdate = false;
 
-
     [SerializeField]
-    private UnityAnaltics Ana_script;
+    private ExclamationMark_Move ex_scrpt;
+
 
     // 最初に選ばれるステージの番号
     private int first_stage = 1;
@@ -81,6 +82,8 @@ public class Title_Manager : MonoBehaviour
 
     public void OpenStageSelect()
     {
+        ex_scrpt.Mark_Off();
+
         Sequence seq = DOTween.Sequence();
         // アニメーション追加
         seq.Append(stage_select_transform.DOScaleY(1.0f, anime_time));

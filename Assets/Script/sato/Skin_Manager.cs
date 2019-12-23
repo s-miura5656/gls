@@ -24,6 +24,8 @@ public class Skin_Manager : MonoBehaviour
     [SerializeField] private Button openButton = null;
     [SerializeField] private Transform openTransform = null;
     [SerializeField] private Image Exclamation_Mark;
+    [SerializeField]
+    private ExclamationMark_Move ex_scrpt;
     // [SerializeField] private Image button_stop;
 
     private bool count;
@@ -42,9 +44,9 @@ public class Skin_Manager : MonoBehaviour
     {
         //RectTransform rectTransform = skin.GetComponent<RectTransform>();
 
-        Exclamation_Mark.color = new Color(255, 255,255,255);
+        ex_scrpt.Mark_On();
 
-        Sequence seq = DOTween.Sequence();
+    Sequence seq = DOTween.Sequence();
         // アニメーション追加
         seq.Append(closeTransform.DOScaleY(0.0f, _animtime));
 
@@ -75,7 +77,7 @@ public class Skin_Manager : MonoBehaviour
     {
         //RectTransform rectTransform = skin.GetComponent<RectTransform>();
 
-        Exclamation_Mark.color = new Color(255, 255, 255, 0);
+        ex_scrpt.Mark_Off();
 
         if (Variable_Manager.Instance.GetSetPossessionCoin >= 5000)
         {

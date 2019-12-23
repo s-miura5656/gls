@@ -19,7 +19,11 @@ public class Skin_RandomSerect : MonoBehaviour
     private GameObject[] Lock_image;
     [SerializeField]
     private GameObject[] key_image;
-
+    [SerializeField]
+    private Image sold_out;
+    [SerializeField]
+    private Image block_button;
+    
     private int[] random_index;
     private int skin_rest;
 
@@ -37,6 +41,7 @@ public class Skin_RandomSerect : MonoBehaviour
     private int possession_coin;
     [SerializeField]
     private GameObject block_buttton;
+    
 
     private int[] skin_number;
 
@@ -65,6 +70,9 @@ public class Skin_RandomSerect : MonoBehaviour
                 randam_button.interactable = false;
                 use_coin_text.text = "SOLD OUT";
                 use_coin_text.fontSize = 70;
+                block_button.gameObject.SetActive(true);
+                sold_out.gameObject.SetActive(true);
+                randam_button.gameObject.SetActive(false);
             }
 
 
@@ -186,9 +194,11 @@ public class Skin_RandomSerect : MonoBehaviour
 
         if (skin_rest == 1)
         {
-           
-            use_coin_text.text = "SOLD OUT";
-            use_coin_text.fontSize = 70;
+            block_button.gameObject.SetActive(true);
+            sold_out.gameObject.SetActive(true);
+            randam_button.gameObject.SetActive(false);
+            //use_coin_text.text = "SOLD OUT";
+            //use_coin_text.fontSize = 70;
             Variable_Manager.Instance.Skin_All = 1;
 
         }
