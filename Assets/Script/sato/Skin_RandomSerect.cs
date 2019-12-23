@@ -95,7 +95,7 @@ public class Skin_RandomSerect : MonoBehaviour
         }
         
 
-    }
+        }
 
     public void Clik_Random()
     {
