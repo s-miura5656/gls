@@ -88,7 +88,7 @@ public class Bill_Destroy : MonoBehaviour
         // エフェクト再生
         var player_level = bill_Obsever.Player_Level_Manager.GetLevel();
         bill_Obsever.PlayCrashEffect(exp_bill_level, transform.position, player_level, bill_Obsever.Player_Exp_Get.GetCoin(exp_bill_level));
-        bill_Obsever.PlayHitEffect(bill_Obsever.Player_Level_Manager.GetLevel(), hit_pos);
+        bill_Obsever.PlayHitEffect(exp_bill_level, hit_pos);
 
         // ゲーム時間内だけ破壊率と経験値を追加していく処理
         if (bill_Obsever.Time_Manager.GetGamePlayState)
