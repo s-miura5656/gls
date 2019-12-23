@@ -39,15 +39,40 @@ public class ExclamationMark_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (coin >= 5000)
+
+        if (Variable_Manager.Instance.Skin_All == 1)
         {
-            Exclamation_Mark.gameObject.SetActive(true);
+            gameObject.SetActive(false);
+        }
+        //if (coin >= 5000)
+        //{
+        //    Exclamation_Mark.gameObject.SetActive(true);
+        //}
+
+        //else
+        //    Exclamation_Mark.gameObject.SetActive(false);
+
+        //coin = Variable_Manager.Instance.GetSetPossessionCoin;
+    }
+
+
+    public void Mark_On()
+    {
+        if(Variable_Manager.Instance.Skin_All == 1)
+        {
+            gameObject.SetActive(false);
         }
 
-        else
-            Exclamation_Mark.gameObject.SetActive(false);
+        if(Variable_Manager.Instance.GetSetPossessionCoin >= 5000)
+        {
+            gameObject.SetActive(true);
+        }
 
-        coin = Variable_Manager.Instance.GetSetPossessionCoin;
+    }
+
+    public void Mark_Off()
+    {
+        gameObject.SetActive(false);
     }
 
 }
