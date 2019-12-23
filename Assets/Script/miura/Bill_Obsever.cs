@@ -78,9 +78,6 @@ public class Bill_Obsever : MonoBehaviour
     [System.Obsolete]
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
     {
-        var crash_obj = Instantiate(crash, gameObject.transform);
-        crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
-
         // ビルの破片の処理
         for (int i = 0; i < crash_particle.Length; i++) 
         {
@@ -144,6 +141,8 @@ public class Bill_Obsever : MonoBehaviour
     private void Start()
     {
         // ビルの破片エフェクトの初期化
+        var crash_obj = Instantiate(crash, gameObject.transform);
+        crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
         default_crash_particle_scale = crash_particle[0].transform.localScale.x;
 
         // 貫通用ヒットエフェクトの初期化
