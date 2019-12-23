@@ -129,15 +129,6 @@ public class player_controller_move : MonoBehaviour
             }
             
         }
-        //else if (Input.GetMouseButton(0))
-        //{
-        //    charge_time += Time.deltaTime;
-
-        //    if (charge_time >= player_parametor_script.ChargeCompleteTime)
-        //    {
-        //        charge_powor = player_parametor_script.ChargePowor;
-        //    }
-        //}
         else if (Input.GetMouseButtonUp(0))
         {
             // マウスのボタンを離した場所（終点）
@@ -160,9 +151,6 @@ public class player_controller_move : MonoBehaviour
 
                 touch_screen_count++;
             }
-
-            //charge_powor = charge_powor_reset;
-            //charge_time = charge_time_reset;
         }
     }
 
