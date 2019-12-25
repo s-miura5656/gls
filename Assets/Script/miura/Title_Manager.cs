@@ -16,7 +16,7 @@ public class Title_Manager : MonoBehaviour
     private int scene_number = 0;
     private int scene_number_min = 1;
     private int scene_number_max = 4;
-    private float anime_time = 0.3f;                                                                                                                                                                   
+                                                                                                                                                                  
     public int game_start = 0;
 
     bool isFinishedSplashScreenAndPassedUpdate = false;
@@ -83,25 +83,8 @@ public class Title_Manager : MonoBehaviour
     public void OpenStageSelect()
     {
         ex_scrpt.Mark_Off();
+        //ランダムステージセレクトプログラム入力
 
-        Sequence seq = DOTween.Sequence();
-        // アニメーション追加
-        seq.Append(stage_select_transform.DOScaleY(1.0f, anime_time));
-
-        seq.OnStart(() => {
-            // アニメーション開始時によばれる
-            Debug.Log("Animation Start");
-        });
-
-        seq.OnUpdate(() => {
-            // 対象の値が変更される度によばれる
-            Debug.Log("Animation Update");
-        });
-
-        seq.OnComplete(() => {
-            Debug.Log("Animation End");
-            seq.Complete();
-            // アニメーションが終了時によばれる
-        });
+        
     }
 }
