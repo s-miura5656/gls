@@ -42,8 +42,11 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
     private int vib = 0;
 
+    // 生成するステージを入れるオブジェクト型の変数
+    [Header("ステージをレベルごとに入れる")] private GameObject[,] stage_;
 
-
+    // 生成するステージのレベルを入れる変数
+    private int stage_level = 1;
 
     /// <summary>
     /// ゲットしたコイン数
@@ -216,5 +219,17 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         base.Awake();
 
         Load();
+
+        stage_ = new GameObject[stage_number_play, stage_level];
+
+        for (int i = 0; i < stage_number_play; i++)
+        {
+            for (int v = 0; v < stage_level; v++)
+            {
+                stage_[i,v] = Resources.Load("Prefabs/GameMain/Stage/Game_" + (i + 1) + "_" + (v + 1)) as GameObject;
+            }
+        }
+
+        Instantiate(stage_[stage_number_play, stage_level]);
     }
 }
