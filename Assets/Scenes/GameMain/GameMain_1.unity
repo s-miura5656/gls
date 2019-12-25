@@ -247,6 +247,16 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5139672406963182424, guid: c858278059d83ae48bc494d97239aa2a,
+        type: 3}
+      propertyPath: city
+      value: 
+      objectReference: {fileID: 393220683}
+    - target: {fileID: 5139672406963182428, guid: c858278059d83ae48bc494d97239aa2a,
+        type: 3}
+      propertyPath: bill_level_script
+      value: 
+      objectReference: {fileID: 393220684}
     - target: {fileID: 8261410802750188122, guid: c858278059d83ae48bc494d97239aa2a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -329,3 +339,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c858278059d83ae48bc494d97239aa2a, type: 3}
+--- !u!1 &393220683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1677753044573231774, guid: c858278059d83ae48bc494d97239aa2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 393220682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &393220684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 378720463023840474, guid: c858278059d83ae48bc494d97239aa2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 393220682}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393220683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2069a5cf0e43104ea60db390e7fb7ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
