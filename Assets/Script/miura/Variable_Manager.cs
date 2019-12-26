@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 {
@@ -34,19 +35,14 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     public float play_time = 0;
 
     private int skin_click = 0;
-
-    private int stage_serect;
-
-    //ステージの番号
-    private int stage_number_play;
+    // 選択されているステージ番号
+    private int stage_serect = 0;
+    // 生成するステージのレベルを入れる変数
+    private int stage_level = 0;
 
     private int vib = 0;
 
-    // 生成するステージを入れるオブジェクト型の変数
-    [Header("ステージをレベルごとに入れる")] private GameObject[,] stage_;
-
-    // 生成するステージのレベルを入れる変数
-    private int stage_level = 1;
+    int test = 0;
 
     /// <summary>
     /// ゲットしたコイン数
@@ -102,6 +98,15 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { stage_state = value; }
     }
 
+    /// <summary>
+    /// ステージのレベル
+    /// </summary>
+    public int GetSetStageLevel 
+    {
+        get { return stage_level; }
+        set { stage_level = value; }
+    }
+
     public SkinData GetSkinData
     {
         get { return skinData; }
@@ -149,10 +154,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return stage_serect; }
         set { stage_serect = value; }
-
-
     }
-
 
 
     public void Save()
@@ -219,17 +221,5 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         base.Awake();
 
         Load();
-
-        stage_ = new GameObject[stage_number_play, stage_level];
-
-        for (int i = 0; i < stage_number_play; i++)
-        {
-            for (int v = 0; v < stage_level; v++)
-            {
-                stage_[i,v] = Resources.Load("Prefabs/GameMain/Stage/Game_" + (i + 1) + "_" + (v + 1)) as GameObject;
-            }
-        }
-
-        Instantiate(stage_[stage_number_play, stage_level]);
     }
 }

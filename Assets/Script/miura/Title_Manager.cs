@@ -9,24 +9,22 @@ using UnityEngine.UI;
 
 public class Title_Manager : MonoBehaviour
 {
-    [SerializeField] private Vibrations_Manager script;
-    [SerializeField] private RectTransform stage_select_transform = null;
     [SerializeField] private Button open_button = null;
-    [SerializeField] private Image Exclamation_Mark;
-    private int scene_number = 0;
-    private int scene_number_min = 1;
-    private int scene_number_max = 4;
-    private float anime_time = 0.3f;                                                                                                                                                                   
+                                                                                                                                                                  
     public int game_start = 0;
 
-    bool isFinishedSplashScreenAndPassedUpdate = false;
+    [SerializeField] private ExclamationMark_Move ex_scrpt;
 
-    [SerializeField]
-    private ExclamationMark_Move ex_scrpt;
+    // ステージナンバー(最大)
+    private int max_stage_number = 3;
+    // ステージレベル(最大)
+    private int max_stage_level = 3;
+    // 生成するステージを入れるオブジェクト型の変数
+    private GameObject[,] stage_;
 
+    Scene game_main;
 
-    // 最初に選ばれるステージの番号
-    private int first_stage = 1;
+    int count;
 
     private void Awake()
     {
@@ -40,68 +38,59 @@ public class Title_Manager : MonoBehaviour
         open_button.onClick.AddListener(OpenStageSelect);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //scene_number = Random.Range(scene_number_min, scene_number_max);
-        //Debug.Log(scene_number);
+        
     }
 
-    public void PlayGame()
-    {
-
-        if (UnityEngine.Rendering.SplashScreen.isFinished)
-        {
-                
-            isFinishedSplashScreenAndPassedUpdate = true;
-        }
-
-        if (isFinishedSplashScreenAndPassedUpdate == true)
-        {
-
-            //if (!Variable_Manager.Instance.GetSetStageState)
-            //{
-            //    SceneManager.LoadScene("GameMain_" + first_stage);
-            //    Variable_Manager.Instance.GetSetStageState = true;
-            //}
-            //else
-            //{
-            //    scene_number = Random.Range(scene_number_min, scene_number_max);
-
-            //    SceneManager.LoadScene("GameMain_" + scene_number);
-            //}
-
-            //SceneManager.LoadScene("GameMain_" + scene_number);
-
-            game_start++;
-            Variable_Manager.Instance.GetSetPlayGames = game_start;
-        }
-
-
-    }
-
+    [System.Obsolete]
     public void OpenStageSelect()
     {
         ex_scrpt.Mark_Off();
 
-        Sequence seq = DOTween.Sequence();
-        // アニメーション追加
-        seq.Append(stage_select_transform.DOScaleY(1.0f, anime_time));
+        //ランダムステージセレクトプログラム入力
 
-        seq.OnStart(() => {
-            // アニメーション開始時によばれる
-            Debug.Log("Animation Start");
-        });
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        game_main = SceneManager.GetSceneByBuildIndex(1);
+        SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, 0), game_main);
+        IEnumerator add_scene = AddScene();
+        StartCoroutine(add_scene);
+    }
 
-        seq.OnUpdate(() => {
-            // 対象の値が変更される度によばれる
-            Debug.Log("Animation Update");
-        });
+    [System.Obsolete]
+    private IEnumerator AddScene() 
+    {
+        while (!game_main.isLoaded)
+        {
+            yield return null;
+        }
 
-        seq.OnComplete(() => {
-            Debug.Log("Animation End");
-            seq.Complete();
-            // アニメーションが終了時によばれる
-        });
+        SceneManager.SetActiveScene(game_main);
+        SceneManager.UnloadScene(SceneManager.GetSceneByName("Title_1"));
+    }
+
+
+    private GameObject StageGanarator(int stage_number, int stage_level)
+    {
+        stage_ = new GameObject[max_stage_number, max_stage_level];
+
+        for (int i = 0; i < max_stage_number; i++)
+        {
+            for (int v = 0; v < max_stage_level; v++)
+            {
+                if (stage_[i, v] == null)
+                {
+                    stage_[i, v] = Resources.Load("Prefabs/GameMain/Stage/Game_" + (i + 1) + "_" + (v + 1)) as GameObject;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        GameObject stage = Instantiate(stage_[stage_number, stage_level]);
+
+        return stage;
     }
 }

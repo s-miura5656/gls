@@ -68,7 +68,7 @@ public class Coin_Manager : MonoBehaviour
 
 
         stage_crash = Variable_Manager.Instance.GetSetDestructionRate;
-        play_stage_number = Variable_Manager.Instance.Serect_Stage;
+        play_stage_number = Variable_Manager.Instance.Serect_Stage + 1;
 
         if(play_stage_number == 1)
         {
@@ -79,13 +79,13 @@ public class Coin_Manager : MonoBehaviour
         if (play_stage_number == 2)
         {
             stage2_rate = stage_crash;
-            UnityAnaltics.Instance.Stage1_Crash(stage2_rate);
+            UnityAnaltics.Instance.Stage2_Crash(stage2_rate);
         }
 
         if (play_stage_number == 3)
         {
             stage3_rate = stage_crash;
-            UnityAnaltics.Instance.Stage1_Crash(stage3_rate);
+            UnityAnaltics.Instance.Stage3_Crash(stage3_rate);
         }
 
 
