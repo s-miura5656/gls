@@ -9,21 +9,17 @@ public class Stage_Select : MonoBehaviour
 {
     private float close_anime_time = 0.3f;
 
-    [SerializeField]
-    private Image Exclamation_Mark;
-    [SerializeField]
-    private Image StageSelect_Image;
+    [SerializeField] private Image Exclamation_Mark = null;
+    [SerializeField] private Image StageSelect_Image = null;
     private float anime_time = 0.3f;
 
     private int coin;
 
     public void StageSelect(int number)
     {
-        SceneManager.LoadScene("GameMain_" + number);
         UnityAnaltics.Instance.Stage_Serect(number);
         UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
         Variable_Manager.Instance.Serect_Stage = number;
-        
     }
 
     public void CloseStageSelect()

@@ -68,7 +68,7 @@ public class Coin_Manager : MonoBehaviour
 
 
         stage_crash = Variable_Manager.Instance.GetSetDestructionRate;
-        play_stage_number = Variable_Manager.Instance.Serect_Stage;
+        play_stage_number = Variable_Manager.Instance.Serect_Stage + 1;
 
         if(play_stage_number == 1)
         {
