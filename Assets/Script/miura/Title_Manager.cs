@@ -21,10 +21,15 @@ public class Title_Manager : MonoBehaviour
     private int max_stage_level = 3;
     // 生成するステージを入れるオブジェクト型の変数
     private GameObject[,] stage_;
+    // ランダムで選ぶかステージ選択か切り替える
+    private bool random_mode = true;
+    // ゲームメインのシーン
+    private Scene game_main;
+    // ステージレベル
+    private int stage_level = 0;
+    // レベルが上がるのに必要な破壊率
+    private float[] destruction_rate_level = new float[2] { 40f, 60f };
 
-    Scene game_main;
-
-    int count;
 
     private void Awake()
     {
@@ -40,7 +45,8 @@ public class Title_Manager : MonoBehaviour
 
     private void Update()
     {
-        
+        //int a = 2;
+        //Debug.Log(PlayerPrefs.GetFloat("Stage_{a}_DestructionRateMax"));
     }
 
     [System.Obsolete]
@@ -50,9 +56,25 @@ public class Title_Manager : MonoBehaviour
 
         //ランダムステージセレクトプログラム入力
 
+
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
         game_main = SceneManager.GetSceneByBuildIndex(1);
-        SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, 0), game_main);
+
+        if (random_mode)
+        {
+            int random_stage = Random.Range(0, 3);
+            StageDecideTheLevel(random_stage);
+            SceneManager.MoveGameObjectToScene(StageGanarator(random_stage, PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")), game_main);
+        }
+        else
+        {
+            StageDecideTheLevel(Variable_Manager.Instance.Serect_Stage);
+            SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level")), game_main);
+        }
+
+        Debug.Log(PlayerPrefs.GetFloat("Stage_" + Variable_Manager.Instance.Serect_Stage + "_DestructionRateMax"));
+        Debug.Log(PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level"));
+
         IEnumerator add_scene = AddScene();
         StartCoroutine(add_scene);
     }
@@ -92,5 +114,31 @@ public class Title_Manager : MonoBehaviour
         GameObject stage = Instantiate(stage_[stage_number, stage_level]);
 
         return stage;
+    }
+
+    private void StageDecideTheLevel(int stage_number) 
+    {
+        
+
+        if (PlayerPrefs.GetInt("Stage_" + stage_number + "_Level") == 2)
+        {
+            return;
+        }
+
+        float stage_destruction_rate = PlayerPrefs.GetFloat("Stage_" + stage_number + "_DestructionRateMax");
+
+        for (int i = 0; i < destruction_rate_level.Length; i++)
+        {
+            if (stage_destruction_rate > destruction_rate_level[i] && PlayerPrefs.GetInt("Stage_" + stage_number + "_Level") == i)
+            {
+                stage_level = i + 1;
+                PlayerPrefs.SetInt("Stage_" + stage_number + "_Level", stage_level);
+            }
+        }
+    }
+
+    public bool RandomMode 
+    {
+        set { random_mode = value; }
     }
 }

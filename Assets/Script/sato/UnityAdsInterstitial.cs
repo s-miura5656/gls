@@ -41,7 +41,7 @@ public class UnityAdsInterstitial : MonoBehaviour, IUnityAdsListener
 
     public void OnUnityAdsReady(string placementId)
     {
-        Debug.Log("Ad Ready");
+        //Debug.Log("Ad Ready");
     }
 
     public void OnUnityAdsDidError(string message)

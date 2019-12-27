@@ -136,13 +136,11 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { play_games = value; }
     }
 
-
     public int Skin_All
     {
         get { return all_open; }
         set { all_open = value; }
     }
-
 
     public int Skin_button_click
     {
@@ -222,4 +220,6 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         Load();
     }
+
+    
 }

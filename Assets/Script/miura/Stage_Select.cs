@@ -11,6 +11,7 @@ public class Stage_Select : MonoBehaviour
 
     [SerializeField] private Image Exclamation_Mark = null;
     [SerializeField] private Image StageSelect_Image = null;
+    [SerializeField] private Title_Manager title_manager_script = null;
     private float anime_time = 0.3f;
 
     private int coin;
@@ -20,6 +21,7 @@ public class Stage_Select : MonoBehaviour
         UnityAnaltics.Instance.Stage_Serect(number);
         UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
         Variable_Manager.Instance.Serect_Stage = number;
+        title_manager_script.RandomMode = false;
     }
 
     public void CloseStageSelect()
@@ -32,16 +34,16 @@ public class Stage_Select : MonoBehaviour
 
         seq.OnStart(() => {
             // アニメーション開始時によばれる
-            Debug.Log("Animation Start");
+            //Debug.Log("Animation Start");
         });
 
         seq.OnUpdate(() => {
             // 対象の値が変更される度によばれる
-            Debug.Log("Animation Update");
+            //Debug.Log("Animation Update");
         });
 
         seq.OnComplete(() => {
-            Debug.Log("Animation End");
+            //Debug.Log("Animation End");
             seq.Complete();
             // アニメーションが終了時によばれる
         });
@@ -61,16 +63,16 @@ public class Stage_Select : MonoBehaviour
 
         seq.OnStart(() => {
             // アニメーション開始時によばれる
-            Debug.Log("Animation Start");
+            //Debug.Log("Animation Start");
         });
 
         seq.OnUpdate(() => {
             // 対象の値が変更される度によばれる
-            Debug.Log("Animation Update");
+            //Debug.Log("Animation Update");
         });
 
         seq.OnComplete(() => {
-            Debug.Log("Animation End");
+            //Debug.Log("Animation End");
             seq.Complete();
             // アニメーションが終了時によばれる
         });

@@ -40,7 +40,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     void Update()
     {
         destruction_rate_text.text = last_destruction_rate.ToString("f2");
-        SetDestructionRate();
+        //SetDestructionRate();
     }
 
     /// <summary>
@@ -86,5 +86,10 @@ public class Destruction_Rate_Manager : MonoBehaviour
     public void SetDestructionRate() 
     {
         Variable_Manager.Instance.GetSetDestructionRate = last_destruction_rate;
+    }
+
+    private void OnDestroy()
+    {
+        SetDestructionRate();
     }
 }
