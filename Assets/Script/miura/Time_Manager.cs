@@ -31,7 +31,7 @@ public class Time_Manager : MonoBehaviour
     // ゲーム終了時までの時間（ゲーム時間）
     private float time_count_down_main = 41f;
     // ゲームが終わる時間
-    private float end_time = -3f;
+    private float end_time = 2f;
     // ゲーム中かどうか
     private bool game_main_state = false;
     // 増やす時間
@@ -46,7 +46,10 @@ public class Time_Manager : MonoBehaviour
     private Vector3 default_time_plus_pos = Vector3.zero;
     // ゲームが終了した時のステート
     private bool game_end_state = false;
-
+    // ゲームが終了後に時間プラスするかどうかのステート
+    private bool bonus_time_state = false;
+    // タイムアップしてからリザルトに遷移するまでの時間
+    private float result_time = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -139,7 +142,7 @@ public class Time_Manager : MonoBehaviour
             if (time_count_down_main > 5f)
             {
                 // ５秒前カウントダウン中にタイムが増えたとき用の５秒前のカウントダウン非表示
-                if (end_count_down_text.gameObject.activeSelf != false)
+                if (end_count_down_text.gameObject.activeSelf)
                 {
                     // ５秒前カウントダウン非表示
                     end_count_down_text.gameObject.SetActive(false);
@@ -147,7 +150,7 @@ public class Time_Manager : MonoBehaviour
             }
             else
             {
-                if (end_count_down_text.gameObject.activeSelf != true)
+                if (!end_count_down_text.gameObject.activeSelf)
                 {
                     // ５秒前カウントの表示
                     end_count_down_text.gameObject.SetActive(true);
@@ -161,11 +164,23 @@ public class Time_Manager : MonoBehaviour
                 game_play_state = false;
                 game_end_state = true;
                 end_count_down_text.text = "TIME UP";
-            }
 
-            if (time_count_down_main < end_time)
-            {
-                SceneManager.LoadScene("Result");
+                if (!bonus_time_state)
+                {
+                    result_time += Time.deltaTime;
+
+                    if (result_time > end_time)
+                    {
+                        SceneManager.LoadScene("Result");
+                    }
+                }
+                else
+                {
+                    time_count_down_main = 5f;
+                    game_play_state = true;
+                    game_end_state = false;
+                    bonus_time_state = false;
+                }
             }
         }
     }
