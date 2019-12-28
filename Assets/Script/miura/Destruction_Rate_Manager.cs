@@ -10,8 +10,6 @@ public class Destruction_Rate_Manager : MonoBehaviour
     private float base_number = 0;
     // 現在の破壊できるオブジェクト数
     private float now_number = 0;
-    // 全体の割合（破壊率）
-    private float base_destruction_rate = 0f;
     // 最終的に表示させる破壊率
     private float last_destruction_rate = 0f;
     // テキストオブジェクトのテキストコンポーネント
@@ -51,8 +49,6 @@ public class Destruction_Rate_Manager : MonoBehaviour
             {
                 Debug.Log("Bill_Level_" + i + "タグがついたオブジェクトはありません");
             }
-
-            Debug.Log(tag_objects.Length);
         }
 
         base_number = now_number;
@@ -63,9 +59,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     /// </summary>
     private void DestructionRateCalculation() 
     {
-        base_destruction_rate = (now_number / base_number) * 100f;
-
-        last_destruction_rate = 100f - base_destruction_rate;
+        last_destruction_rate = 100f - (now_number / base_number) * 100f;
     }
 
     /// <summary>

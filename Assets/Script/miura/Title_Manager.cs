@@ -43,12 +43,6 @@ public class Title_Manager : MonoBehaviour
         open_button.onClick.AddListener(OpenStageSelect);
     }
 
-    private void Update()
-    {
-        //int a = 2;
-        //Debug.Log(PlayerPrefs.GetFloat("Stage_{a}_DestructionRateMax"));
-    }
-
     [System.Obsolete]
     public void OpenStageSelect()
     {
@@ -57,6 +51,7 @@ public class Title_Manager : MonoBehaviour
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
         game_main = SceneManager.GetSceneByBuildIndex(1);
 
+        // ランダムかそうでないか
         if (random_mode)
         {
             int random_stage = Random.Range(0, 3);
@@ -69,11 +64,12 @@ public class Title_Manager : MonoBehaviour
             SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level")), game_main);
         }
 
+        // ステージレベルごとの破壊率の表示
         Debug.Log(PlayerPrefs.GetFloat("Stage_" + Variable_Manager.Instance.Serect_Stage + "_DestructionRateMax_" + Variable_Manager.Instance.GetSetStageLevel));
+        // 現在のステージレベル
         Debug.Log(PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level"));
 
-        IEnumerator add_scene = AddScene();
-        StartCoroutine(add_scene);
+        StartCoroutine(AddScene());
     }
 
     [System.Obsolete]
