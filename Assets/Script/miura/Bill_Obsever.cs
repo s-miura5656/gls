@@ -163,9 +163,9 @@ public class Bill_Obsever : MonoBehaviour
     private void Reset()
     {
         game_manager = GameObject.Find("GameManager");
+        bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
         player_level_script = game_manager.GetComponent<Player_Level_Manager>();
         destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
-        bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
         player_exp_script = game_manager.GetComponent<Player_Exp_Get>();
         time_script = game_manager.GetComponent<Time_Manager>();
     }

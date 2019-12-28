@@ -54,9 +54,6 @@ public class Title_Manager : MonoBehaviour
     {
         ex_scrpt.Mark_Off();
 
-        //ランダムステージセレクトプログラム入力
-
-
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
         game_main = SceneManager.GetSceneByBuildIndex(1);
 
@@ -72,7 +69,7 @@ public class Title_Manager : MonoBehaviour
             SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level")), game_main);
         }
 
-        Debug.Log(PlayerPrefs.GetFloat("Stage_" + Variable_Manager.Instance.Serect_Stage + "_DestructionRateMax"));
+        Debug.Log(PlayerPrefs.GetFloat("Stage_" + Variable_Manager.Instance.Serect_Stage + "_DestructionRateMax_" + Variable_Manager.Instance.GetSetStageLevel));
         Debug.Log(PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level"));
 
         IEnumerator add_scene = AddScene();
@@ -118,21 +115,21 @@ public class Title_Manager : MonoBehaviour
 
     private void StageDecideTheLevel(int stage_number) 
     {
-        
-
         if (PlayerPrefs.GetInt("Stage_" + stage_number + "_Level") == 2)
         {
             return;
         }
 
-        float stage_destruction_rate = PlayerPrefs.GetFloat("Stage_" + stage_number + "_DestructionRateMax");
+        float stage_destruction_rate = PlayerPrefs.GetFloat("Stage_" + stage_number + "_DestructionRateMax_" + Variable_Manager.Instance.GetSetStageLevel);
 
         for (int i = 0; i < destruction_rate_level.Length; i++)
         {
             if (stage_destruction_rate > destruction_rate_level[i] && PlayerPrefs.GetInt("Stage_" + stage_number + "_Level") == i)
             {
                 stage_level = i + 1;
+                Variable_Manager.Instance.GetSetStageLevel = stage_level;
                 PlayerPrefs.SetInt("Stage_" + stage_number + "_Level", stage_level);
+                break;
             }
         }
     }
