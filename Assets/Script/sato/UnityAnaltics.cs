@@ -68,7 +68,7 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
 
     public void SendAnalytics(string title, Dictionary<string, object> data)
     {
-        Debug.Log(title);
+        //Debug.Log(title);
         Analytics.CustomEvent(title, data);
     }
 

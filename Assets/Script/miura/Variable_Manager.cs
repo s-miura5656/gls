@@ -24,7 +24,6 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     // 毎回ゲーム起動初回時に簡単なステージが選択されるステート
     private bool stage_state = false;
 
-
     // スキンの解放確認1
     private bool[] Lock_image = new bool[SkinData.SkinNumber];
     // スキンの解放確認2
@@ -37,7 +36,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int skin_click = 0;
     // 選択されているステージ番号
     private int stage_serect = 0;
-    // 生成するステージのレベルを入れる変数
+    // 生成するステージのレベル
     private int stage_level = 0;
 
     private int vib = 0;
@@ -136,13 +135,11 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { play_games = value; }
     }
 
-
     public int Skin_All
     {
         get { return all_open; }
         set { all_open = value; }
     }
-
 
     public int Skin_button_click
     {
@@ -222,4 +219,6 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
         Load();
     }
+
+    
 }

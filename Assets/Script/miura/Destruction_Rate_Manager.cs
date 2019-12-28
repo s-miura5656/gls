@@ -6,7 +6,6 @@ using TMPro;
 
 public class Destruction_Rate_Manager : MonoBehaviour
 {
-    private GameObject[] tag_objects;
     // 破壊できるオブジェクトの総数
     private float base_number = 0;
     // 現在の破壊できるオブジェクト数
@@ -25,13 +24,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     {
         time_script = gameObject.GetComponent<Time_Manager>();
 
-        for (int i = 0; i < 6; i++)
-        {
-            Check("Bill_Level_" + i);
-            now_number += tag_objects.Length;
-        }
-
-        base_number = now_number;
+        Check();
 
         DestructionRateCalculation();
     }
@@ -40,21 +33,29 @@ public class Destruction_Rate_Manager : MonoBehaviour
     void Update()
     {
         destruction_rate_text.text = last_destruction_rate.ToString("f2");
-        SetDestructionRate();
     }
 
     /// <summary>
     /// タグのついたオブジェクトを探す
     /// </summary>
-    /// <param name="tagname"></param>
-    private void Check(string tagname)
+    private void Check()
     {
-        tag_objects = GameObject.FindGameObjectsWithTag(tagname);
+        GameObject[] tag_objects; 
 
-        if (tag_objects.Length == 0)
+        for (int i = 0; i < 6; i++)
         {
-            Debug.Log(tagname + "タグがついたオブジェクトはありません");
+            tag_objects = GameObject.FindGameObjectsWithTag("Bill_Level_" + i);
+            now_number += tag_objects.Length;
+
+            if (tag_objects.Length == 0)
+            {
+                Debug.Log("Bill_Level_" + i + "タグがついたオブジェクトはありません");
+            }
+
+            Debug.Log(tag_objects.Length);
         }
+
+        base_number = now_number;
     }
 
     /// <summary>
@@ -86,5 +87,10 @@ public class Destruction_Rate_Manager : MonoBehaviour
     public void SetDestructionRate() 
     {
         Variable_Manager.Instance.GetSetDestructionRate = last_destruction_rate;
+    }
+
+    private void OnDestroy()
+    {
+        SetDestructionRate();
     }
 }
