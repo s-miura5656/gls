@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class Total_Bar : SingletonMonoBehaviour<Total_Bar>
 {
-   
+
     private float total_rate = 0;  //累計破壊率
-   
+
     private int rank_now = 0; //現在のランク 
-//    [SerializeField]
+                              //    [SerializeField]
     public Image bronze_rank;
-//    [SerializeField]
+    //    [SerializeField]
     public Image silver_rank;
-//    [SerializeField]
+    //    [SerializeField]
     public Image gold_rank;
     [SerializeField]
     private int[] rank_up;
@@ -35,7 +35,7 @@ public class Total_Bar : SingletonMonoBehaviour<Total_Bar>
     void Start()
     {
         total_rate = Variable_Manager.Instance.GetSetTotal_CrashRate;
-       //total_rate = 100;
+        //total_rate = 100;
         rank_now = Variable_Manager.Instance.GetSetRank;
         //rank_now = 1;
         Bar_Now();

@@ -84,7 +84,7 @@ public class Coin_Manager : MonoBehaviour
 
     void Start()
     {
-
+        total_rate_display.fillAmount = 1f;
         total_rate = Variable_Manager.Instance.GetSetTotal_CrashRate;
         rank_now = Variable_Manager.Instance.GetSetRank;
 
@@ -105,7 +105,7 @@ public class Coin_Manager : MonoBehaviour
         //coin_score = 1000;
         //破壊率
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
-        crash_score_rate = 30;
+        //crash_score_rate = 1030;
 
         coin_score_text = crash_score.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
@@ -356,7 +356,7 @@ public class Coin_Manager : MonoBehaviour
                 //gold_rank.gameObject.SetActive(true);
             }
 
-            //get_rate = 0;
+            get_rate = 0;
             bar_seq.Append(DOTween.To(
                 () =>  get_rate,          // 何を対象にするのか
                 num => get_rate = num,   // 値の更新

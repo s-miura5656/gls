@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1358,6 +1358,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: block
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608908850312542123, guid: be3b752c999831d469ec766f634f279c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be3b752c999831d469ec766f634f279c, type: 3}
@@ -2959,6 +2964,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7596072542149771091}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1039704210 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1813987159879130392, guid: f1ca57920c88a4d4eab028aa4c5916ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 133769305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1039704213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1813987159879130397, guid: f1ca57920c88a4d4eab028aa4c5916ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 133769305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1040292979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3809,6 +3832,24 @@ Transform:
   m_Father: {fileID: 1747859191}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1379783738 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1813987160158390644, guid: f1ca57920c88a4d4eab028aa4c5916ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 133769305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1379783741 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1813987160158390633, guid: f1ca57920c88a4d4eab028aa4c5916ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 133769305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1407169821
 GameObject:
   m_ObjectHideFlags: 0
@@ -4540,6 +4581,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7596072542149771091}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1856623820 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1813987161522338259, guid: f1ca57920c88a4d4eab028aa4c5916ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 133769305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1856623823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1813987161522338258, guid: f1ca57920c88a4d4eab028aa4c5916ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 133769305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1870041753
 GameObject:
   m_ObjectHideFlags: 0
@@ -5181,6 +5240,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084965870}
   m_CullTransparentMesh: 0
+--- !u!1 &2087094409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1813987160426959515, guid: f1ca57920c88a4d4eab028aa4c5916ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 133769305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2087094411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087094409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0603a6826501c46bfc1dd08df6998c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bronze_rank: {fileID: 1856623823}
+  silver_rank: {fileID: 1379783741}
+  gold_rank: {fileID: 1039704213}
+  rank_up: 
+  bar: 0
+  bar_image: {fileID: 1611124579}
+  canvas: {fileID: 1089661232}
+  bronze_rank_pos: {fileID: 1856623820}
+  silver_rank_pos: {fileID: 1379783738}
+  gold_rank_pos: {fileID: 1039704210}
 --- !u!1001 &2094772651
 PrefabInstance:
   m_ObjectHideFlags: 0
