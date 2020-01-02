@@ -44,26 +44,26 @@ public class Total_Bar : SingletonMonoBehaviour<Total_Bar>
     void Update()
     {
         //rank_now = 3;
-        //if (rank_now == 1)
-        //{
-        //    bronze_rank.gameObject.SetActive(true);
-        //    silver_rank.gameObject.SetActive(false);
-        //    gold_rank.gameObject.SetActive(false);
-        //}
+        if (rank_now == 1)
+        {
+            bronze_rank.gameObject.SetActive(true);
+            silver_rank.gameObject.SetActive(false);
+            gold_rank.gameObject.SetActive(false);
+        }
 
-        //else if (rank_now == 2)
-        //{
-        //    bronze_rank.gameObject.SetActive(false);
-        //    silver_rank.gameObject.SetActive(true);
-        //    gold_rank.gameObject.SetActive(false);
-        //}
+        else if (rank_now == 2)
+        {
+            bronze_rank.gameObject.SetActive(false);
+            silver_rank.gameObject.SetActive(true);
+            gold_rank.gameObject.SetActive(false);
+        }
 
-        //else if (rank_now == 3)
-        //{
-        //    bronze_rank.gameObject.SetActive(false);
-        //    silver_rank.gameObject.SetActive(false);
-        //    gold_rank.gameObject.SetActive(true);
-        //}
+        else if (rank_now == 3)
+        {
+            bronze_rank.gameObject.SetActive(false);
+            silver_rank.gameObject.SetActive(false);
+            gold_rank.gameObject.SetActive(true);
+        }
     }
 
     private void Bar_Now()
