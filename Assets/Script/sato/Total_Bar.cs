@@ -30,12 +30,14 @@ public class Total_Bar : SingletonMonoBehaviour<Total_Bar>
     [SerializeField]
     private RectTransform gold_rank_pos;
 
+    private float total;
+
     void Start()
     {
         total_rate = Variable_Manager.Instance.GetSetTotal_CrashRate;
-        //total_rate = 30;
+       //total_rate = 100;
         rank_now = Variable_Manager.Instance.GetSetRank;
-        
+        //rank_now = 1;
         Bar_Now();
     }
 
@@ -67,9 +69,9 @@ public class Total_Bar : SingletonMonoBehaviour<Total_Bar>
     private void Bar_Now()
     {
 
-        bar = total_rate >= rank_up[rank_now] ? 100 : total_rate / rank_up[rank_now] * 100;
+        total = total_rate >= rank_up[rank_now] ? 100 : total_rate / rank_up[rank_now] * 100;
 
 
-        bar_image.fillAmount = total_rate / 100.0f;
+        bar_image.fillAmount = total / 100.0f;
     }
 }

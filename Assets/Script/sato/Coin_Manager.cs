@@ -136,9 +136,10 @@ public class Coin_Manager : MonoBehaviour
         //total_rate = 20;// Variable_Manager.Instance.GetSetTotal_CrashRate;
         total_rate_display.fillAmount = total_rate / rank_up[rank_now];
         get_rate = total_rate_display.fillAmount * 100;
-        //total_rate += 50;// crash_score_rate;
+        total_rate += 50;// crash_score_rate;
+        total_rate += crash_score_rate;
 
-        if(total_rate >= rank_up[rank_now])
+        if (total_rate >= rank_up[rank_now])
         {
             bar_seq.Append(DOTween.To(
                             () => get_rate,          // 何を対象にするのか
@@ -362,7 +363,8 @@ public class Coin_Manager : MonoBehaviour
         total_rate_display.fillAmount = get_rate /100.0f;
 
 
-
+        Variable_Manager.Instance.GetSetTotal_CrashRate = total_rate;
+        Variable_Manager.Instance.GetSetRank = rank_now;
 
         //score = 0;
         // 数値の変更

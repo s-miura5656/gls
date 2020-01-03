@@ -43,6 +43,9 @@ public class ResultBotton_Manger : MonoBehaviour
 
     private int time_count = 0;
 
+    [SerializeField]
+    private GameObject bar;
+
     void Start()
     {
         interstitialButton.gameObject.SetActive(false);
@@ -88,7 +91,9 @@ public class ResultBotton_Manger : MonoBehaviour
         else
         {
             GetPossessionCoin();
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
+            bar.transform.parent = null;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+            
         }
     }
 
@@ -134,7 +139,8 @@ public class ResultBotton_Manger : MonoBehaviour
     private void InterstitialResult(ShowResult showResult)
     {
         GetPossessionCoin();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+        bar.transform.parent = null;
         Loading.SetActive(true);
     }
 
