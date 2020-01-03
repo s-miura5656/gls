@@ -11,6 +11,11 @@ public class Timer_Extension : MonoBehaviour
     [SerializeField]
     private Button timerButton = null;
     private ShowAdCallbacks showAdTimerCallbacks = new ShowAdCallbacks();
+    [SerializeField]
+    private Image ring;
+    [SerializeField]
+    private Image move;
+    private bool time_in = true;
 
     void Start()
     {
@@ -25,7 +30,21 @@ public class Timer_Extension : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ring.fillAmount -= 0.2f / 60.0f;
+
+        if (ring.fillAmount <= 0)
+        {
+
+            if (time_in == true)
+            {
+                //SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
+                Result_In();
+                ring.gameObject.SetActive(false);
+                timerButton.gameObject.SetActive(false);
+                move.gameObject.SetActive(false);
+            }
+
+        }
     }
 
     private void OnDestroy()
@@ -39,17 +58,25 @@ public class Timer_Extension : MonoBehaviour
         {
             //　広告を最後まで視聴した時
             
-            SceneManager.LoadScene("Result");
+            SceneManager.LoadScene("Result",LoadSceneMode.Additive);
         }
         else if (showResult == ShowResult.Failed)
         {
             // 広告読み込みエラー
-          //  SceneManager.LoadScene("Result");
+            SceneManager.LoadScene("Result", LoadSceneMode.Additive);
         }
         else if (showResult == ShowResult.Skipped)
         {
             // 広告をスキップした時
-            //SceneManager.LoadScene("Result");
+            SceneManager.LoadScene("Result", LoadSceneMode.Additive);
         }
+    }
+
+    private void Result_In()
+    {
+
+        SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
+        time_in = false;
+       
     }
 }

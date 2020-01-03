@@ -23,6 +23,10 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int skin_open = 0;
     // 毎回ゲーム起動初回時に簡単なステージが選択されるステート
     private bool stage_state = false;
+    //トータル破壊率
+    private float total_rate = 0;
+    //ランク確認
+    private int rank = 1;
 
     // スキンの解放確認1
     private bool[] Lock_image = new bool[SkinData.SkinNumber];
@@ -151,6 +155,21 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return stage_serect; }
         set { stage_serect = value; }
+    }
+
+    /// <summary>
+    /// トータル破壊率
+    /// </summary>
+    public float GetSetTotal_CrashRate
+    {
+        get { return total_rate; }
+        set { total_rate = value; }
+    }
+
+    public int GetSetRank
+    {
+        get { return rank; }
+        set { rank = value; }
     }
 
 

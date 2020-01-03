@@ -41,8 +41,13 @@ public class ResultBotton_Manger : MonoBehaviour
     [SerializeField]
     private GameObject Loading;
 
+    private int time_count = 0;
+
     void Start()
     {
+        interstitialButton.gameObject.SetActive(false);
+
+
         // ShowAdCallbacksにコールバックを設定
         showAdRewardCallbacks.finishCallback += VideoRerwardResult;
         showAdInterstitialCallbacks.finishCallback += InterstitialResult;
@@ -59,7 +64,7 @@ public class ResultBotton_Manger : MonoBehaviour
     private void Update()
     {
         button_time++;
-        if(button_time >= 90)
+        if(button_time >= 120)
         {
             interstitialButton.gameObject.SetActive(true);
 

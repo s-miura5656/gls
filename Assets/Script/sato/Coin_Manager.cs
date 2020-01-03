@@ -12,8 +12,17 @@ public class Coin_Manager : MonoBehaviour
     private Text coin_score_text;
     public int score = 0;
     private Variable_Manager coin_script;
+    [SerializeField]
+    private GameObject goal;
 
     private int time = 0;
+
+    [SerializeField]
+    private GameObject star;
+    [SerializeField]
+    private Canvas canvas;
+    [SerializeField]
+    private Transform star_pos;
 
 
 
@@ -41,6 +50,21 @@ public class Coin_Manager : MonoBehaviour
 
     [SerializeField]
     private Text total_text;
+    [SerializeField]
+    private Image total_bar;
+    [SerializeField]
+    private Image total_rate_display;
+    private int rank_now = 0;
+    [SerializeField]
+    private Image bronze_rank;
+    [SerializeField]
+    private Image silver_rank;
+    [SerializeField]
+    private Image gold_rank;
+
+    private int total_rate = 0;
+    private int get_rate = 0;
+
 
     private bool score_up = true;
 
@@ -59,6 +83,7 @@ public class Coin_Manager : MonoBehaviour
         //coin_score = 1000;
         //破壊率
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
+        crash_score_rate = 100;
 
         coin_score_text = crash_score.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
@@ -88,16 +113,18 @@ public class Coin_Manager : MonoBehaviour
             UnityAnaltics.Instance.Stage3_Crash(stage3_rate);
         }
 
-
-
+        rank_now = 0;
+        get_rate = 100;
+        // InvokeRepeating("Star_Generate",2f,1f);
+        StartCoroutine("StarGenerate");
     }
 
     // Update is called once per frame
     void Update()
     {
+       
 
- 
-            if (score_up == true)
+        if (score_up == true)
             {
                 Variable_Manager.Instance.GetSetPossessionCoin += (int)bonus_score;
                 Coin_move();
@@ -112,6 +139,7 @@ public class Coin_Manager : MonoBehaviour
 
         //    CrashRate_Get();
         //}
+        TotalBar_Move();
     }
 
     public void Coinget_Manager()
@@ -127,14 +155,11 @@ public class Coin_Manager : MonoBehaviour
 
 
         //score_count = true;
+
+        
     }
 
-    //public int GetSetScore
-    //{
-    //    get { return score; }
-    //    //set { score = value; }
-    //}
-
+   
 
 
 
@@ -255,6 +280,79 @@ public class Coin_Manager : MonoBehaviour
     public void test_botton()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+    }
+
+    private void TotalBar_Move()
+    {
+
+       if(get_rate >= 100)
+        {
+
+            rank_now++;
+            if (rank_now == 1)
+            {
+                bronze_rank.gameObject.SetActive(true);
+                silver_rank.gameObject.SetActive(false);
+                gold_rank.gameObject.SetActive(false);
+            }
+
+            else if (rank_now == 2)
+            {
+                bronze_rank.gameObject.SetActive(false);
+                silver_rank.gameObject.SetActive(true);
+                gold_rank.gameObject.SetActive(false);
+            }
+
+            else if (rank_now == 3)
+            {
+                bronze_rank.gameObject.SetActive(false);
+                silver_rank.gameObject.SetActive(false);
+                gold_rank.gameObject.SetActive(true);
+            }
+
+            get_rate -= 100;
+            DOTween.To(
+                () =>  get_rate,          // 何を対象にするのか
+                num => get_rate = num,   // 値の更新
+                100,                  // 最終的な値
+                5.0f                  // アニメーション時間
+            ).SetEase(Ease.OutCubic);
+        }
+
+        total_rate_display.fillAmount = get_rate /100.0f;
+
+
+
+
+        score = 0;
+        // 数値の変更
+
+
+
+
+    }
+
+
+    IEnumerator StarGenerate()
+    {
+        int _starNum = ((int)crash_score_rate) / 2;
+
+        for (int i = 0; i < _starNum; i++)
+        {
+           
+            GameObject _star = Instantiate(star, star_pos.transform.position, Quaternion.identity);
+
+            _star.transform.parent = canvas.transform;
+            _star.transform.position = star_pos.position;
+            _star.transform.localScale = Vector3.one;
+            _star.GetComponent<Star_Move>().Goal_Set(goal);
+            
+
+            yield return new WaitForSeconds(0.1f);
+
+        }
+
+        
     }
 
 }
