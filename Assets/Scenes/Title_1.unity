@@ -2988,10 +2988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55853deb1ac381441862c38946eac6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: {fileID: 1272513256}
-  stage_select_transform: {fileID: 4376970198596180589}
   open_button: {fileID: 754243514}
-  Exclamation_Mark: {fileID: 1664635284905318731}
   game_start: 0
   ex_scrpt: {fileID: 96523953}
 --- !u!4 &1123822457
@@ -5571,6 +5568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Exclamation_Mark: {fileID: 1664635284905318731}
   StageSelect_Image: {fileID: 4376970198596180588}
+  title_manager_script: {fileID: 0}
 --- !u!222 &4376970198596180591
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7148,6 +7146,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8791341773128269032}
     m_Modifications:
+    - target: {fileID: 8286170022577863400, guid: 20db6b45507da0c4cbb3ad5cecd04e00,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8286170022577863400, guid: 20db6b45507da0c4cbb3ad5cecd04e00,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

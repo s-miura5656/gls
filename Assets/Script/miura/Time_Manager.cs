@@ -171,7 +171,7 @@ public class Time_Manager : MonoBehaviour
 
                     if (result_time > end_time)
                     {
-                        SceneManager.LoadScene("Result");
+                        SceneManager.LoadScene("new_Result");
                     }
                 }
                 else

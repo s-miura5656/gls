@@ -29,7 +29,8 @@ public class Title_Manager : MonoBehaviour
     private int stage_level = 0;
     // レベルが上がるのに必要な破壊率
     private float[] destruction_rate_level = new float[2] { 40f, 60f };
-
+    // 選ばれるステージの最大値
+    private int stage_number = 2;
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class Title_Manager : MonoBehaviour
     }
 
     // Start is called before the first frame update
+    [System.Obsolete]
     void Start()
     {
         game_start = Variable_Manager.Instance.GetSetPlayGames;
@@ -54,7 +56,7 @@ public class Title_Manager : MonoBehaviour
         // ランダムかそうでないか
         if (random_mode)
         {
-            int random_stage = Random.Range(0, 3);
+            int random_stage = Random.Range(0, stage_number + 1);
             StageDecideTheLevel(random_stage);
             SceneManager.MoveGameObjectToScene(StageGanarator(random_stage, PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")), game_main);
         }
@@ -133,5 +135,10 @@ public class Title_Manager : MonoBehaviour
     public bool RandomMode 
     {
         set { random_mode = value; }
+    }
+
+    public int StageNumber
+    {
+        set { stage_number = value; }
     }
 }
