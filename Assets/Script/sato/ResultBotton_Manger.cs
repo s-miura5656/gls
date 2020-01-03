@@ -46,6 +46,9 @@ public class ResultBotton_Manger : MonoBehaviour
     [SerializeField]
     private GameObject bar;
 
+    [SerializeField]
+    private Text coin_text;
+
     void Start()
     {
         interstitialButton.gameObject.SetActive(false);
@@ -116,7 +119,7 @@ public class ResultBotton_Manger : MonoBehaviour
             //　広告を最後まで視聴した時
             var coin_object = GameObject.Find("coin");
             var coin_script = coin_object.GetComponent<Coin_Manager>();
-
+            coin_text.gameObject.SetActive(false);
             Advertisement_Bottoun.SetActive(false);
 
             coin_script.Calculation_Manager();

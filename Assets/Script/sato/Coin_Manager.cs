@@ -23,6 +23,8 @@ public class Coin_Manager : MonoBehaviour
     private Canvas canvas;
     [SerializeField]
     private Transform star_pos;
+    [SerializeField]
+    private Text reword_total;
 
 
 
@@ -80,7 +82,7 @@ public class Coin_Manager : MonoBehaviour
 
     private Sequence bar_seq;
 
-    private GameObject[] bars = new GameObject[3];
+    public GameObject[] bars = new GameObject[3];
 
     void Start()
     {
@@ -89,24 +91,48 @@ public class Coin_Manager : MonoBehaviour
         rank_now = Variable_Manager.Instance.GetSetRank;
 
 
+
+
         bars[0] = GameObject.Find("bronze_rank_image");
         bars[1] = GameObject.Find("silver_rank_image");
         bars[2] = GameObject.Find("gold_rank_image");
 
-        bars[0].gameObject.SetActive(true);
-        bars[1].gameObject.SetActive(false);
-        bars[2].gameObject.SetActive(false);
+
+        if (rank_now == 1)
+        {
+            bars[0].gameObject.SetActive(true);
+            bars[1].gameObject.SetActive(false);
+            bars[2].gameObject.SetActive(false);
+        }
+
+        if (rank_now == 2)
+        {
+            bars[0].gameObject.SetActive(false);
+            bars[1].gameObject.SetActive(true);
+            bars[2].gameObject.SetActive(false);
+        }
+
+        if (rank_now == 3)
+        {
+            bars[0].gameObject.SetActive(false);
+            bars[1].gameObject.SetActive(false);
+            bars[2].gameObject.SetActive(true);
+        }
 
         bar_seq = DOTween.Sequence();
 
-        //獲得したコイン枚数
+        //獲得したコイン枚数 
         coin_score = Variable_Manager.Instance.GetSetCoin;
-
         //coin_score = 1000;
-        //破壊率
-        crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
-        //crash_score_rate = 1030;
+        reword_total.text = "×" + coin_score * 2; 
 
+        
+        //破壊率
+
+        //crash_score_rate = 15f; 
+        crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
+        Variable_Manager.Instance.GetSetTotal_CrashRate += crash_score_rate;
+        
         coin_score_text = crash_score.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
         CrashRate_Get();
@@ -114,28 +140,28 @@ public class Coin_Manager : MonoBehaviour
         bouns_text.text = bouns.ToString();
 
 
-        stage_crash = Variable_Manager.Instance.GetSetDestructionRate;
-        play_stage_number = Variable_Manager.Instance.Serect_Stage + 1;
+       // stage_crash = Variable_Manager.Instance.GetSetDestructionRate;
+        play_stage_number = Variable_Manager.Instance.Serect_Stage;
 
         if(play_stage_number == 1)
         {
-            stage1_rate = stage_crash;
+            stage1_rate = crash_score_rate;
             UnityAnaltics.Instance.Stage1_Crash(stage1_rate);
         }
 
         if (play_stage_number == 2)
         {
-            stage2_rate = stage_crash;
+            stage2_rate = crash_score_rate;
             UnityAnaltics.Instance.Stage2_Crash(stage2_rate);
         }
 
         if (play_stage_number == 3)
         {
-            stage3_rate = stage_crash;
+            stage3_rate = crash_score_rate;
             UnityAnaltics.Instance.Stage3_Crash(stage3_rate);
         }
 
-        rank_now = 1;
+        //rank_now = 1;
        InvokeRepeating("Star_Generate",2f,1f);
 
         //total_rate = 20;// Variable_Manager.Instance.GetSetTotal_CrashRate;
@@ -143,6 +169,7 @@ public class Coin_Manager : MonoBehaviour
         get_rate = total_rate_display.fillAmount * 100;
         //total_rate += 50;// crash_score_rate;
         total_rate += crash_score_rate;
+
 
         if (total_rate >= rank_up[rank_now])
         {
@@ -153,7 +180,17 @@ public class Coin_Manager : MonoBehaviour
                             2.0f                  // アニメーション時間
                         )).SetEase(Ease.OutCubic);
         }
-        
+
+        else
+        {
+            bar_seq.Append(DOTween.To(
+                              () => get_rate,          // 何を対象にするのか
+                              num => get_rate = num,   // 値の更新
+                              total_rate / rank_up[rank_now] * 100,                 // 最終的な値
+                              2.0f                  // アニメーション時間
+                          )).SetEase(Ease.OutCubic);
+            }
+
         StartCoroutine("StarGenerate");
     }
 
@@ -368,8 +405,8 @@ public class Coin_Manager : MonoBehaviour
         total_rate_display.fillAmount = get_rate /100.0f;
 
 
-        Variable_Manager.Instance.GetSetTotal_CrashRate = total_rate;
-        Variable_Manager.Instance.GetSetRank = rank_now;
+        
+       
 
         //score = 0;
         // 数値の変更
@@ -378,18 +415,18 @@ public class Coin_Manager : MonoBehaviour
 
     private void Rank_UP()
     {
-        
+
 
         if (total_rate >= rank_up[2])
         {
             rank_now = 3;
-            rank_now = Variable_Manager.Instance.GetSetRank;
         }
+
 
         else if (total_rate >= rank_up[1])
         {
             rank_now = 2;
-            rank_now = Variable_Manager.Instance.GetSetRank;
+
         }
         else
         {

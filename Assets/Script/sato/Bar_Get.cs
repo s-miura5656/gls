@@ -20,7 +20,7 @@ public class Bar_Get : MonoBehaviour
     void Start()
     {
         //        rectTransform = GetComponent<RectTransform>();
-        bar.transform.SetParent(canvas.transform);
+        //bar.transform.SetParent(canvas.transform);
         //        bar.transform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, bar.transform.position);
 
         bar.transform.position = new Vector3(0, 0, 0);

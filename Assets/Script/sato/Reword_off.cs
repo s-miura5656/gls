@@ -11,6 +11,8 @@ public class Reword_off : MonoBehaviour
     [SerializeField]
     private Button reword;
 
+  
+
 
     public float waitTime = 30.0f;
     public float waitTime_carve = 30.0f;
