@@ -5,8 +5,12 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Monetization;
 
+
 public class ResultBotton_Manger : MonoBehaviour
 {
+    
+
+
     [SerializeField]
     private Button rewardButton = null;
     [SerializeField]
@@ -28,6 +32,7 @@ public class ResultBotton_Manger : MonoBehaviour
     private ShowAdCallbacks showAdRewardCallbacks = new ShowAdCallbacks();
     private ShowAdCallbacks showAdInterstitialCallbacks = new ShowAdCallbacks();
 
+
     [SerializeField]
     private Coin_Manager script;
 
@@ -41,6 +46,7 @@ public class ResultBotton_Manger : MonoBehaviour
         // ShowAdCallbacksにコールバックを設定
         showAdRewardCallbacks.finishCallback += VideoRerwardResult;
         showAdInterstitialCallbacks.finishCallback += InterstitialResult;
+
 
         rewardButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdRewardCallbacks));
         interstitialButton.onClick.AddListener(() => ShowInterstitial());
@@ -65,6 +71,7 @@ public class ResultBotton_Manger : MonoBehaviour
         // ShowAdCallbacksにコールバックを解除
         showAdRewardCallbacks.finishCallback -= VideoRerwardResult;
         showAdInterstitialCallbacks.finishCallback -= InterstitialResult;
+
     }
 
     private void ShowInterstitial()
@@ -116,6 +123,8 @@ public class ResultBotton_Manger : MonoBehaviour
             // 広告をスキップした時
         }
     }
+
+    
 
     private void InterstitialResult(ShowResult showResult)
     {
