@@ -31,11 +31,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: dc427d4ae9a4b2947867e3050112bff3, type: 3}
-    totalSpriteSurfaceArea: 7976554
+    totalSpriteSurfaceArea: 8320594
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: 4ddd3298ca1ae673329e55c02fa8dc67
+      Hash: c9fe4185d8d9bcde6c7a6b3802593a07
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 169a9f307147d504a9d4aae1585a5c0c, type: 3}
@@ -64,11 +64,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 01899e76cd5a15a4bb6c951304933ece, type: 3}
   - {fileID: 21300000, guid: 40c084177c8b5ae4998b2042cc7fe217, type: 3}
   - {fileID: 21300000, guid: a7639f3780173cf4b8472ea69af68f8f, type: 3}
+  - {fileID: 21300000, guid: afe6ca57e1e161b41af7b749d1ecfdb7, type: 3}
   - {fileID: 21300000, guid: 0348a66791035c8408b8a125090585ff, type: 3}
   - {fileID: 21300000, guid: 790ed967fabf3f14db975671a3c16ea8, type: 3}
   - {fileID: 21300000, guid: cd40755825d9b3e41940b072b02d3fc3, type: 3}
   - {fileID: 21300000, guid: 506a7c784832ba54fa7e841b3db8bf8e, type: 3}
   - {fileID: 21300000, guid: 442940c8427e34741a69b9c05fea970e, type: 3}
+  - {fileID: 21300000, guid: bec53dc8d876f1f419893a8ac44ba35e, type: 3}
+  - {fileID: 21300000, guid: 422ee039242880e438570ca57a662ede, type: 3}
+  - {fileID: 21300000, guid: d8c424598fd13a34fbdb223695964c7d, type: 3}
   - {fileID: 21300000, guid: f046553a21095fa45ab480d718cbba77, type: 3}
   - {fileID: 21300000, guid: 1ef8736a6ec3fe9458fa792919c00c7a, type: 3}
   - {fileID: 21300000, guid: ead0689ad068cfb4683fbf8bc0af7b5b, type: 3}
@@ -77,13 +81,17 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f7b2ae8b3d0854d41bd48dc54ef6206a, type: 3}
   - {fileID: 21300000, guid: a12a72ab35a61be4cab77a9fd66ece5e, type: 3}
   - {fileID: 21300000, guid: f3231fcbec78ca8449d9772110c21d0c, type: 3}
+  - {fileID: 21300000, guid: 2846b20c91b4f56409679c06cf6ca8dd, type: 3}
   - {fileID: 21300000, guid: 7e26c62cb3a964646b682b3b46874ef4, type: 3}
   - {fileID: 21300000, guid: d4e3b86c527488c4e9e4bc65f103f6c2, type: 3}
   - {fileID: 21300000, guid: 92589dbc9f559a74aa4b3c4a52b51d8e, type: 3}
   - {fileID: 21300000, guid: 111645dc90240e94baa1e31f497b14ba, type: 3}
+  - {fileID: 21300000, guid: 7bb784fc49a3c1441bbe281bb1b8c930, type: 3}
+  - {fileID: 21300000, guid: 131036dd57948c94ba8ec00a91205fad, type: 3}
   - {fileID: 21300000, guid: e722b46ef3248254fb900fe018f4662d, type: 3}
   - {fileID: 21300000, guid: 0cb484de4fbdd5c4e845f359d01f1986, type: 3}
   - {fileID: 21300000, guid: 66fc9a7fd918b4e4287c17615c939098, type: 3}
+  - {fileID: 21300000, guid: 3f1f34af9e20b0f49b329c5ebbae1831, type: 3}
   - {fileID: 21300000, guid: 8668e3ff581fabe48b2e18224e16735b, type: 3}
   m_PackedSpriteNamesToIndex:
   - Vibrations_OFF2
@@ -112,11 +120,15 @@ SpriteAtlas:
   - skin_waku_y
   - Vibrations_ON2
   - batu_ON
+  - skins_up
   - Play
   - Vibrations_ON
   - Ball_baseball
   - screen1
   - skin_waku
+  - skins_up
+  - skins_down
+  - stage_up
   - menu_on
   - skin_ball1
   - Title (3) (1)
@@ -125,13 +137,17 @@ SpriteAtlas:
   - Skins_OFF
   - movie_on
   - skin_key
+  - stage_dwon
   - rogo02
   - Ball_medama
   - skin_check
   - skin_open_soldout
+  - stage_up
+  - skins_down
   - skin_open_up
   - Ball_nikotyan
   - Coin_ue (1)
+  - stage_dwon
   - next_on
   m_Tag: Title_Atlas
   m_IsVariant: 0
