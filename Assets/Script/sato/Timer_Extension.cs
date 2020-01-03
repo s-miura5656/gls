@@ -30,8 +30,8 @@ public class Timer_Extension : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ring.fillAmount -= 0.2f / 60.0f;
         ring.fillAmount -= 1.0f / 60.0f;
+        //ring.fillAmount -= 1.0f / 60.0f;
 
         if (ring.fillAmount <= 0)
         {

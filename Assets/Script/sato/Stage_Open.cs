@@ -12,12 +12,12 @@ public class Stage_Open : MonoBehaviour
 
     void Start()
     {
-        stage_block.gameObject.SetActive(false);
+        stage_block.gameObject.SetActive(true);
         rank = Variable_Manager.Instance.GetSetRank;
-
+        rank = 2;
         if (rank >= 2)
         {
-        stage_block.gameObject.SetActive(true);
+        stage_block.gameObject.SetActive(false);
         }
     }
 
