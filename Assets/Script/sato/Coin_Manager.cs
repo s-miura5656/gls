@@ -61,9 +61,13 @@ public class Coin_Manager : MonoBehaviour
     private Image silver_rank;
     [SerializeField]
     private Image gold_rank;
+    [SerializeField]
+    private int[] rank_up;
 
-    private int total_rate = 0;
-    private int get_rate = 0;
+    // トータル破壊率
+    private float total_rate = 0;
+    // 獲得破壊率
+    private float get_rate = 0;
 
 
     private bool score_up = true;
@@ -74,8 +78,21 @@ public class Coin_Manager : MonoBehaviour
     private float stage2_rate = 0;
     private float stage3_rate = 0;
 
+    private Sequence bar_seq;
+
+    private GameObject[] bars = new GameObject[3];
+
     void Start()
     {
+        bars[0] = GameObject.Find("bronze_rank_image");
+        bars[1] = GameObject.Find("silver_rank_image");
+        bars[2] = GameObject.Find("gold_rank_image");
+
+        bars[0].gameObject.SetActive(true);
+        bars[1].gameObject.SetActive(false);
+        bars[2].gameObject.SetActive(false);
+
+        bar_seq = DOTween.Sequence();
 
         //獲得したコイン枚数
         coin_score = Variable_Manager.Instance.GetSetCoin;
@@ -83,7 +100,7 @@ public class Coin_Manager : MonoBehaviour
         //coin_score = 1000;
         //破壊率
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
-        crash_score_rate = 100;
+        //crash_score_rate = 100;
 
         coin_score_text = crash_score.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
@@ -113,9 +130,24 @@ public class Coin_Manager : MonoBehaviour
             UnityAnaltics.Instance.Stage3_Crash(stage3_rate);
         }
 
-        rank_now = 0;
-        get_rate = 100;
+        rank_now = 1;
         // InvokeRepeating("Star_Generate",2f,1f);
+
+        //total_rate = 20;// Variable_Manager.Instance.GetSetTotal_CrashRate;
+        total_rate_display.fillAmount = total_rate / rank_up[rank_now];
+        get_rate = total_rate_display.fillAmount * 100;
+        //total_rate += 50;// crash_score_rate;
+
+        if(total_rate >= rank_up[rank_now])
+        {
+            bar_seq.Append(DOTween.To(
+                            () => get_rate,          // 何を対象にするのか
+                            num => get_rate = num,   // 値の更新
+                            100,                  // 最終的な値
+                            2.0f                  // アニメーション時間
+                        )).SetEase(Ease.OutCubic);
+        }
+        
         StartCoroutine("StarGenerate");
     }
 
@@ -240,7 +272,7 @@ public class Coin_Manager : MonoBehaviour
         DOTween.To(
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
-           cs,                  // 最終的な値
+            cs,                  // 最終的な値
             0.5f                  // アニメーション時間
         ).SetEase(Ease.Linear);
     }
@@ -287,36 +319,44 @@ public class Coin_Manager : MonoBehaviour
 
        if(get_rate >= 100)
         {
+            bar_seq.Complete();
 
             rank_now++;
-            if (rank_now == 1)
-            {
-                bronze_rank.gameObject.SetActive(true);
-                silver_rank.gameObject.SetActive(false);
-                gold_rank.gameObject.SetActive(false);
-            }
+            Variable_Manager.Instance.GetSetRank = rank_now;
+            //if (rank_now == 1)
+            //{
+            //    bronze_rank.gameObject.SetActive(true);
+            //    silver_rank.gameObject.SetActive(false);
+            //    gold_rank.gameObject.SetActive(false);
+            //}
 
-            else if (rank_now == 2)
+            if (rank_now == 2)
             {
-                bronze_rank.gameObject.SetActive(false);
-                silver_rank.gameObject.SetActive(true);
-                gold_rank.gameObject.SetActive(false);
+                bars[0].SetActive(false);
+                bars[1].SetActive(true);
+                bars[2].SetActive(false);
+                //bronze_rank.gameObject.SetActive(false);
+                //silver_rank.gameObject.SetActive(true);
+                //gold_rank.gameObject.SetActive(false);
             }
 
             else if (rank_now == 3)
             {
-                bronze_rank.gameObject.SetActive(false);
-                silver_rank.gameObject.SetActive(false);
-                gold_rank.gameObject.SetActive(true);
+                bars[0].SetActive(false);
+                bars[1].SetActive(false);
+                bars[2].SetActive(true);
+                //bronze_rank.gameObject.SetActive(false);
+                //silver_rank.gameObject.SetActive(false);
+                //gold_rank.gameObject.SetActive(true);
             }
 
-            get_rate -= 100;
-            DOTween.To(
+            get_rate = 0;
+            bar_seq.Append(DOTween.To(
                 () =>  get_rate,          // 何を対象にするのか
                 num => get_rate = num,   // 値の更新
-                100,                  // 最終的な値
+                total_rate >= rank_up[rank_now] ? 100 : total_rate / rank_up[rank_now] * 100,                  // 最終的な値
                 5.0f                  // アニメーション時間
-            ).SetEase(Ease.OutCubic);
+            )).SetEase(Ease.OutCubic);
         }
 
         total_rate_display.fillAmount = get_rate /100.0f;
@@ -324,12 +364,30 @@ public class Coin_Manager : MonoBehaviour
 
 
 
-        score = 0;
+        //score = 0;
         // 数値の変更
 
+    }
 
+    private void Rank_UP()
+    {
+        
 
+        if (total_rate >= rank_up[2])
+        {
+            rank_now = 3;
+            rank_now = Variable_Manager.Instance.GetSetRank;
+        }
 
+        else if (total_rate >= rank_up[1])
+        {
+            rank_now = 2;
+            rank_now = Variable_Manager.Instance.GetSetRank;
+        }
+        else
+        {
+            rank_now = 1;
+        }
     }
 
 

@@ -14,8 +14,8 @@ public class Star_Move : MonoBehaviour
     //private Vector3 start_pos;
     //private Vector3 goal_pos;
     private Vector3 distance;
-
-    public float speed = 0;
+    [SerializeField]
+    private float speed = 0;
 
     // Start is called before the first frame update
     void Start()
