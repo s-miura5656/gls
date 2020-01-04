@@ -21,6 +21,8 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private Image game_timer = null;
     // ゲームの時間（テキスト）
     [SerializeField] private TextMeshProUGUI game_timer_text = null;
+    // ボーナスボタン
+    [SerializeField] private GameObject continue_botton = null;
     
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 4f;
@@ -47,9 +49,8 @@ public class Time_Manager : MonoBehaviour
     // ゲームが終了した時のステート
     private bool game_end_state = false;
     // ゲームが終了後に時間プラスするかどうかのステート
-    private bool bonus_time_state = false;
-    // タイムアップしてからリザルトに遷移するまでの時間
-    private float result_time = 0f;
+    private bool bonus_time_state = true;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -165,21 +166,18 @@ public class Time_Manager : MonoBehaviour
                 game_end_state = true;
                 end_count_down_text.text = "TIME UP";
 
-                if (!bonus_time_state)
+                if (bonus_time_state)
                 {
-                    result_time += Time.deltaTime;
+                    continue_botton.SetActive(true);
 
-                    if (result_time > end_time)
-                    {
-                        SceneManager.LoadScene("new_Result");
-                    }
+                    bonus_time_state = false;
                 }
                 else
                 {
-                    time_count_down_main = 5f;
-                    game_play_state = true;
-                    game_end_state = false;
-                    bonus_time_state = false;
+                    if (!continue_botton.activeSelf)
+                    {
+                        SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
+                    }
                 }
             }
         }
@@ -226,5 +224,16 @@ public class Time_Manager : MonoBehaviour
     public void SetIncreaseTime(float time) 
     {
         increase_time = time;
+    }
+
+    /// <summary>
+    /// ボーナスタイムの時間の処理
+    /// </summary>
+    /// <param name="bonus_time">ボーナスで追加する時間</param>
+    public void BonusTime(float bonus_time) 
+    {
+        time_count_down_main = bonus_time;
+        game_play_state = true;
+        game_end_state = false;
     }
 }

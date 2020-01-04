@@ -8,43 +8,27 @@ using UnityEngine.Monetization;
 public class Timer_Extension : MonoBehaviour
 {
 
-    [SerializeField]
-    private Button timerButton = null;
+    [SerializeField] private Button timerButton = null;
+    [SerializeField] private Image ring = null;
+    [SerializeField] private Time_Manager time_manager_script = null;
     private ShowAdCallbacks showAdTimerCallbacks = new ShowAdCallbacks();
-    [SerializeField]
-    private Image ring;
-    [SerializeField]
-    private Image move;
-    private bool time_in = true;
-
+    
     void Start()
     {
-
-
         showAdTimerCallbacks.finishCallback += VideoRerwardTimer;
 
         timerButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdTimerCallbacks));
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 一定時間たったらリザルトへ遷移
         ring.fillAmount -= 1.0f / 60.0f;
-        //ring.fillAmount -= 1.0f / 60.0f;
-
+        
         if (ring.fillAmount <= 0)
         {
-
-            if (time_in == true)
-            {
-                //SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
-                Result_In();
-                ring.gameObject.SetActive(false);
-                timerButton.gameObject.SetActive(false);
-                move.gameObject.SetActive(false);
-            }
-
+            TimeInOut(false);
         }
     }
 
@@ -57,27 +41,38 @@ public class Timer_Extension : MonoBehaviour
     {
         if (showResult == ShowResult.Finished)
         {
-            //　広告を最後まで視聴した時
-            
-            SceneManager.LoadScene("Result",LoadSceneMode.Additive);
+            // 広告を最後まで視聴した時
+            TimeInOut(true);
         }
         else if (showResult == ShowResult.Failed)
         {
             // 広告読み込みエラー
-            SceneManager.LoadScene("Result", LoadSceneMode.Additive);
+            TimeInOut(false);
         }
         else if (showResult == ShowResult.Skipped)
         {
             // 広告をスキップした時
-            SceneManager.LoadScene("Result", LoadSceneMode.Additive);
+            TimeInOut(false);
         }
     }
 
-    private void Result_In()
+    /// <summary>
+    /// 時間をプラスするかしないか
+    /// </summary>
+    /// <param name="time_plus">true = プラス false = リザルトへ</param>
+    private void TimeInOut(bool time_in) 
     {
+        if (time_in)
+        {
+            time_manager_script.BonusTime(5f);
 
-        SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
-        time_in = false;
-       
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
+
+            gameObject.SetActive(false);
+        }
     }
 }
