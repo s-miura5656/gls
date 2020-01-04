@@ -142,7 +142,7 @@ public class ResultBotton_Manger : MonoBehaviour
     private void InterstitialResult(ShowResult showResult)
     {
         GetPossessionCoin();
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
         bar.transform.parent = null;
         Loading.SetActive(true);
     }
