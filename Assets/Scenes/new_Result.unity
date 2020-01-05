@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -487,7 +487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &234348196
 RectTransform:
   m_ObjectHideFlags: 0
@@ -944,7 +944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &446909764
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1417,7 +1417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1088095270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,7 +1525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1492672241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3808,6 +3808,21 @@ PrefabInstance:
       propertyPath: reword_total
       value: 
       objectReference: {fileID: 2131048125}
+    - target: {fileID: 6527534651918473040, guid: b8051f52fd8cd20429caa6a6fa695465,
+        type: 3}
+      propertyPath: stage_open
+      value: 
+      objectReference: {fileID: 1088095269}
+    - target: {fileID: 6527534651918473040, guid: b8051f52fd8cd20429caa6a6fa695465,
+        type: 3}
+      propertyPath: silver_up
+      value: 
+      objectReference: {fileID: 234348197}
+    - target: {fileID: 6527534651918473040, guid: b8051f52fd8cd20429caa6a6fa695465,
+        type: 3}
+      propertyPath: gold_up
+      value: 
+      objectReference: {fileID: 1492672242}
     - target: {fileID: 6527534651918473041, guid: b8051f52fd8cd20429caa6a6fa695465,
         type: 3}
       propertyPath: m_Name
