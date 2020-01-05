@@ -5,8 +5,12 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Monetization;
 
+
 public class ResultBotton_Manger : MonoBehaviour
 {
+    
+
+
     [SerializeField]
     private Button rewardButton = null;
     [SerializeField]
@@ -28,6 +32,7 @@ public class ResultBotton_Manger : MonoBehaviour
     private ShowAdCallbacks showAdRewardCallbacks = new ShowAdCallbacks();
     private ShowAdCallbacks showAdInterstitialCallbacks = new ShowAdCallbacks();
 
+
     [SerializeField]
     private Coin_Manager script;
 
@@ -36,11 +41,23 @@ public class ResultBotton_Manger : MonoBehaviour
     [SerializeField]
     private GameObject Loading;
 
+    private int time_count = 0;
+
+    [SerializeField]
+    private GameObject bar;
+
+    [SerializeField]
+    private Text coin_text;
+
     void Start()
     {
+        interstitialButton.gameObject.SetActive(false);
+
+
         // ShowAdCallbacksにコールバックを設定
         showAdRewardCallbacks.finishCallback += VideoRerwardResult;
         showAdInterstitialCallbacks.finishCallback += InterstitialResult;
+
 
         rewardButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdRewardCallbacks));
         interstitialButton.onClick.AddListener(() => ShowInterstitial());
@@ -53,7 +70,7 @@ public class ResultBotton_Manger : MonoBehaviour
     private void Update()
     {
         button_time++;
-        if(button_time >= 90)
+        if(button_time >= 120)
         {
             interstitialButton.gameObject.SetActive(true);
 
@@ -65,6 +82,7 @@ public class ResultBotton_Manger : MonoBehaviour
         // ShowAdCallbacksにコールバックを解除
         showAdRewardCallbacks.finishCallback -= VideoRerwardResult;
         showAdInterstitialCallbacks.finishCallback -= InterstitialResult;
+
     }
 
     private void ShowInterstitial()
@@ -76,7 +94,9 @@ public class ResultBotton_Manger : MonoBehaviour
         else
         {
             GetPossessionCoin();
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
+            bar.transform.parent = null;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+            
         }
     }
 
@@ -99,7 +119,7 @@ public class ResultBotton_Manger : MonoBehaviour
             //　広告を最後まで視聴した時
             var coin_object = GameObject.Find("coin");
             var coin_script = coin_object.GetComponent<Coin_Manager>();
-
+            coin_text.gameObject.SetActive(false);
             Advertisement_Bottoun.SetActive(false);
 
             coin_script.Calculation_Manager();
@@ -117,10 +137,13 @@ public class ResultBotton_Manger : MonoBehaviour
         }
     }
 
+    
+
     private void InterstitialResult(ShowResult showResult)
     {
         GetPossessionCoin();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
+        bar.transform.parent = null;
         Loading.SetActive(true);
     }
 

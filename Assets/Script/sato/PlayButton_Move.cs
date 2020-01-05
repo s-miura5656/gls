@@ -19,9 +19,9 @@ public class PlayButton_Move : MonoBehaviour
             // シーケンスの繰り返す回数をセット、-1で無限ループ
             seq.SetLoops(-1);
             // シーケンスに拡大処理を追加。
-            seq.Append(play_button.DOScale(new Vector3(1.25f, 1.25f, 1.25f), 1.8f));
+            seq.Append(play_button.DOScale(new Vector3(1.25f, 1.25f, 1.25f), 1.0f));
             // シーケンスに拡縮処理を追加。
-            seq.Append(play_button.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.8f));
+            seq.Append(play_button.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.0f));
         
     }
 
