@@ -477,6 +477,16 @@ PrefabInstance:
       propertyPath: destruction_rate_text
       value: 
       objectReference: {fileID: 2002861006974664284}
+    - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
+        type: 3}
+      propertyPath: destruction_rate
+      value: 
+      objectReference: {fileID: 2002861006974664284}
+    - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
+        type: 3}
+      propertyPath: hi_score
+      value: 
+      objectReference: {fileID: 5368418726274704664}
     - target: {fileID: 5717232161546214196, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: destroy_sound
@@ -1218,6 +1228,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e44d4d0395885be4c88a36b9720f09f0, type: 3}
+--- !u!114 &5368418726274704664 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8414398845395106910, guid: e44d4d0395885be4c88a36b9720f09f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4487141348445772102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5567280318672413146 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8288721988599281820, guid: e44d4d0395885be4c88a36b9720f09f0,
