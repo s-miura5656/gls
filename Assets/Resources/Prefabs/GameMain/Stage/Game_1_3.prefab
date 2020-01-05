@@ -581,12 +581,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e44d4d0395885be4c88a36b9720f09f0, type: 3}
---- !u!1 &6023827680019353772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5691671691898505268, guid: e44d4d0395885be4c88a36b9720f09f0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2117833549619517592}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8261410802750188122 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8053108202487034562, guid: e44d4d0395885be4c88a36b9720f09f0,
@@ -620,6 +614,18 @@ GameObject:
 --- !u!114 &4101123764154974082 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2706118229610686234, guid: e44d4d0395885be4c88a36b9720f09f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2117833549619517592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7611643363665814726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8414398845395106910, guid: e44d4d0395885be4c88a36b9720f09f0,
     type: 3}
   m_PrefabInstance: {fileID: 2117833549619517592}
   m_PrefabAsset: {fileID: 0}
@@ -683,6 +689,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2117833549619517592}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6023827680019353772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5691671691898505268, guid: e44d4d0395885be4c88a36b9720f09f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2117833549619517592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2205118048738685738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -710,6 +722,16 @@ PrefabInstance:
       propertyPath: destruction_rate_text
       value: 
       objectReference: {fileID: 4101123764154974082}
+    - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
+        type: 3}
+      propertyPath: destruction_rate
+      value: 
+      objectReference: {fileID: 4101123764154974082}
+    - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
+        type: 3}
+      propertyPath: hi_score
+      value: 
+      objectReference: {fileID: 7611643363665814726}
     - target: {fileID: 6469966206114064498, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: main_camera

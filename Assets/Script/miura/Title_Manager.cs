@@ -42,7 +42,9 @@ public class Title_Manager : MonoBehaviour
     void Start()
     {
         game_start = Variable_Manager.Instance.GetSetPlayGames;
+
         open_button.onClick.AddListener(OpenStageSelect);
+        
         Debug.Log(PlayerPrefs.GetInt("rank"));
 
         if (PlayerPrefs.GetInt("rank") >= 2)
@@ -54,36 +56,40 @@ public class Title_Manager : MonoBehaviour
     [System.Obsolete]
     public void OpenStageSelect()
     {
-        UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
-        ex_scrpt.Mark_Off();
-
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
-        game_main = SceneManager.GetSceneByBuildIndex(1);
-
-        // ランダムかそうでないか
-        if (random_mode)
+        if (!Application.isShowingSplashScreen)
         {
-            int random_stage = Random.Range(0, stage_number);
-            StageDecideTheLevel(random_stage);
-            SceneManager.MoveGameObjectToScene(StageGanarator(random_stage, PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")), game_main);
-            Variable_Manager.Instance.Serect_Stage = random_stage;
+            UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
+            ex_scrpt.Mark_Off();
 
-            // ステージレベルごとの破壊率の表示
-            Debug.Log(PlayerPrefs.GetFloat("Stage_" + random_stage +"_DestructionRateMax_" + PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")));
-            // 現在のステージレベル
-            Debug.Log(PlayerPrefs.GetInt("Stage_" + random_stage + "_Level"));
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            game_main = SceneManager.GetSceneByBuildIndex(1);
+
+            // ランダムかそうでないか
+            if (random_mode)
+            {
+                int random_stage = Random.Range(0, stage_number);
+                StageDecideTheLevel(random_stage);
+                SceneManager.MoveGameObjectToScene(StageGanarator(random_stage, PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")), game_main);
+                Variable_Manager.Instance.Serect_Stage = random_stage;
+                Variable_Manager.Instance.GetSetStageLevel = PlayerPrefs.GetInt("Stage_" + random_stage + "_Level");
+
+                // ステージレベルごとの破壊率の表示
+                Debug.Log(PlayerPrefs.GetFloat("Stage_" + random_stage + "_DestructionRateMax_" + PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")));
+                // 現在のステージレベル
+                Debug.Log(PlayerPrefs.GetInt("Stage_" + random_stage + "_Level"));
+            }
+            else
+            {
+                StageDecideTheLevel(Variable_Manager.Instance.Serect_Stage);
+                SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level")), game_main);
+            }
+
+
+            //Debug.Log(Variable_Manager.Instance.Serect_Stage);
+
+
+            StartCoroutine(AddScene());
         }
-        else
-        {
-            StageDecideTheLevel(Variable_Manager.Instance.Serect_Stage);
-            SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level")), game_main);
-        }
-
-
-        //Debug.Log(Variable_Manager.Instance.Serect_Stage);
-        
-
-        StartCoroutine(AddScene());
     }
 
     [System.Obsolete]
