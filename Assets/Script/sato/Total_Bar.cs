@@ -34,15 +34,17 @@ public class Total_Bar : SingletonMonoBehaviour<Total_Bar>
 
     void Start()
     {
+        
+    }
+
+    void Update()
+    {
         total_rate = Variable_Manager.Instance.GetSetTotal_CrashRate;
         //total_rate = 100;
         rank_now = Variable_Manager.Instance.GetSetRank;
         //rank_now = 1;
         Bar_Now();
-    }
 
-    void Update()
-    {
         //rank_now = 3;
         if (rank_now == 1)
         {

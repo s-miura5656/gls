@@ -15,13 +15,17 @@ public class Timer_Extension : MonoBehaviour
     private ShowAdCallbacks showAdTimerCallbacks = new ShowAdCallbacks();
 
     // ボタンが出ている時間
-    private float continue_time = 5f;
+    private float continue_time = 4f;
     // リザルトへ遷移するまでの時間のカウント
     private float wait_result_count = 0f;
     // リザルトへ遷移する時間
     private float change_result_time = 3f;
     // 一回だけリザルトを読み込むフラグ
     private bool load_result = true;
+    //タイムを延長した 
+    private int on_time = 0;
+    //タイムを延長しなかった 
+    private int off_time = 0;
 
     void Start()
     {
@@ -89,6 +93,10 @@ public class Timer_Extension : MonoBehaviour
             time_manager_script.BonusTime(5f);
 
             continue_button.SetActive(false);
+            on_time = 1;
+            UnityAnaltics.Instance.Timer_on(on_time);
+            on_time = 0;
+
         }
         else
         {
@@ -109,6 +117,9 @@ public class Timer_Extension : MonoBehaviour
         {
             ContinueInput(false);
             load_result = false;
+            off_time = 1;
+            UnityAnaltics.Instance.Timer_off(off_time);
+            off_time = 0;
         }
     }
 }
