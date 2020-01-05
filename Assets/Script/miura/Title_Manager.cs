@@ -30,7 +30,7 @@ public class Title_Manager : MonoBehaviour
     // レベルが上がるのに必要な破壊率
     private float[] destruction_rate_level = new float[2] { 40f, 60f };
     // 選ばれるステージの最大値
-    private int stage_number = 3;
+    private int stage_number = 2;
 
     private void Awake()
     {
@@ -43,6 +43,12 @@ public class Title_Manager : MonoBehaviour
     {
         game_start = Variable_Manager.Instance.GetSetPlayGames;
         open_button.onClick.AddListener(OpenStageSelect);
+        Debug.Log(PlayerPrefs.GetInt("rank"));
+
+        if (PlayerPrefs.GetInt("rank") >= 2)
+        {
+            stage_number = 3;
+        }
     }
 
     [System.Obsolete]
@@ -60,6 +66,12 @@ public class Title_Manager : MonoBehaviour
             int random_stage = Random.Range(0, stage_number);
             StageDecideTheLevel(random_stage);
             SceneManager.MoveGameObjectToScene(StageGanarator(random_stage, PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")), game_main);
+            Variable_Manager.Instance.Serect_Stage = random_stage;
+
+            // ステージレベルごとの破壊率の表示
+            Debug.Log(PlayerPrefs.GetFloat("Stage_" + random_stage +"_DestructionRateMax_" + PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")));
+            // 現在のステージレベル
+            Debug.Log(PlayerPrefs.GetInt("Stage_" + random_stage + "_Level"));
         }
         else
         {
@@ -67,11 +79,9 @@ public class Title_Manager : MonoBehaviour
             SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level")), game_main);
         }
 
-        Debug.Log(Variable_Manager.Instance.Serect_Stage);
-        // ステージレベルごとの破壊率の表示
-        Debug.Log(PlayerPrefs.GetFloat("Stage_" + Variable_Manager.Instance.Serect_Stage + "_DestructionRateMax_" + Variable_Manager.Instance.GetSetStageLevel));
-        // 現在のステージレベル
-        Debug.Log(PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level"));
+
+        //Debug.Log(Variable_Manager.Instance.Serect_Stage);
+        
 
         StartCoroutine(AddScene());
     }
