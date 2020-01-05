@@ -30,7 +30,7 @@ public class Title_Manager : MonoBehaviour
     // レベルが上がるのに必要な破壊率
     private float[] destruction_rate_level = new float[2] { 40f, 60f };
     // 選ばれるステージの最大値
-    private int stage_number = 3;
+    private int stage_number = 2;
 
     private void Awake()
     {
@@ -44,6 +44,11 @@ public class Title_Manager : MonoBehaviour
         game_start = Variable_Manager.Instance.GetSetPlayGames;
         open_button.onClick.AddListener(OpenStageSelect);
         Debug.Log(PlayerPrefs.GetInt("rank"));
+
+        if (PlayerPrefs.GetInt("rank") >= 2)
+        {
+            stage_number = 3;
+        }
     }
 
     [System.Obsolete]
