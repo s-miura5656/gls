@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+
 public class Coin_Manager : MonoBehaviour
 {
     private int silver_now = 0;
@@ -375,7 +376,7 @@ public class Coin_Manager : MonoBehaviour
 
     public void test_botton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
     }
 
     private void TotalBar_Move()
