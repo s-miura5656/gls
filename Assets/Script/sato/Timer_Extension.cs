@@ -11,7 +11,7 @@ public class Timer_Extension : MonoBehaviour
     [SerializeField] private Button timerButton = null;
     [SerializeField] private Image ring = null;
     [SerializeField] private Time_Manager time_manager_script = null;
-
+    [SerializeField] private Destruction_Rate_Manager destruction_rate_script = null;
     private ShowAdCallbacks showAdTimerCallbacks = new ShowAdCallbacks();
 
     // ボタンが出ている時間
@@ -47,6 +47,7 @@ public class Timer_Extension : MonoBehaviour
             if (wait_result_count >= change_result_time && load_result)
             {
                 time_manager_script.ChangeResult();
+                destruction_rate_script.SetDestructionRate();
                 load_result = false;
             }
         }
@@ -92,7 +93,7 @@ public class Timer_Extension : MonoBehaviour
         else
         {
             time_manager_script.ChangeResult();
-
+            destruction_rate_script.SetDestructionRate();
             continue_button.SetActive(false);
         }
     }
