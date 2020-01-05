@@ -82,9 +82,4 @@ public class Destruction_Rate_Manager : MonoBehaviour
     {
         Variable_Manager.Instance.GetSetDestructionRate = last_destruction_rate;
     }
-
-    private void OnDestroy()
-    {
-        SetDestructionRate();
-    }
 }
