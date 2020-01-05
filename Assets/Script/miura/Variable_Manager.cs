@@ -28,6 +28,11 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     //ランク確認
     private int rank = 1;
 
+    //シルバーランクupの表示の確認
+    private int silver_up = 0;
+    //ゴールドランクupの表示の確認
+    private int gold_up = 0;
+
     // スキンの解放確認1
     private bool[] Lock_image = new bool[SkinData.SkinNumber];
     // スキンの解放確認2
@@ -86,7 +91,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     /// <summary>
     /// 振動の切り替え ON = true, OFF = false
     /// </summary>
-    public bool GetSetVibrate 
+    public bool GetSetVibrate
     {
         get { return vibrate_state; }
         set { vibrate_state = value; }
@@ -104,7 +109,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     /// <summary>
     /// ステージのレベル
     /// </summary>
-    public int GetSetStageLevel 
+    public int GetSetStageLevel
     {
         get { return stage_level; }
         set { stage_level = value; }
@@ -172,6 +177,22 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { rank = value; }
     }
 
+    public int Silver_Up
+    {
+        get { return silver_up; }
+        set { silver_up = value; }
+
+
+    }
+
+    public int Gold_Up
+    {
+        get { return gold_up; }
+        set { gold_up = value; }
+
+
+    }
+
 
     public void Save()
     {
@@ -181,7 +202,11 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.SetInt("possession_coin", GetSetPossessionCoin);
         PlayerPrefs.Save();
         PlayerPrefs.SetInt("skin_open", GetSetOpenSkin);
-        PlayerPrefs.SetInt("skin_all",Skin_All);
+        PlayerPrefs.SetInt("skin_all", Skin_All);
+        PlayerPrefs.SetInt("silver_up", Silver_Up);
+        PlayerPrefs.SetInt("gold_up", Gold_Up);
+        PlayerPrefs.SetFloat("total_rate", GetSetTotal_CrashRate);
+        PlayerPrefs.SetInt("rank", GetSetRank);
 
 
 
@@ -191,7 +216,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
 
 
         UnityAnaltics.Instance.open_number();
-        UnityAnaltics.Instance.Play_time();      
+        UnityAnaltics.Instance.Play_time();
         UnityAnaltics.Instance.Title();
         UnityAnaltics.Instance.Coin();
 
@@ -207,6 +232,10 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         //GetSetPossessionCoin = 100000;
         GetSetOpenSkin = PlayerPrefs.GetInt("skin_open");
         Skin_All = PlayerPrefs.GetInt("skin_all");
+        Silver_Up = PlayerPrefs.GetInt("silver_up");
+        Gold_Up = PlayerPrefs.GetInt("gold_up");
+        GetSetTotal_CrashRate = PlayerPrefs.GetFloat("total_rate");
+        GetSetRank = PlayerPrefs.GetInt("rank");
 
 
 
@@ -239,5 +268,17 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         Load();
     }
 
-    
+    void Start()
+    {
+        if (rank == 0)
+        {
+            rank = 1;
+        }
+        else
+        {
+            rank = Variable_Manager.Instance.GetSetRank;
+        }
+        
+    }
+
 }

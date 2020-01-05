@@ -56,7 +56,7 @@ public class Coin_Manager : MonoBehaviour
     private Image total_bar;
     [SerializeField]
     private Image total_rate_display;
-    private int rank_now = 0;
+    private int rank_now = 1;
     [SerializeField]
     private Image bronze_rank;
     [SerializeField]
@@ -83,6 +83,22 @@ public class Coin_Manager : MonoBehaviour
     private Sequence bar_seq;
 
     public GameObject[] bars = new GameObject[3];
+
+    [SerializeField]
+    private GameObject stage_open;
+    [SerializeField]
+    private Image silver_up;
+    [SerializeField]
+    private Image gold_up;
+    private float display_time = 0;
+    private float pos_y;
+    private bool silver_on = false;
+    private bool gold_on = false;
+
+    //シルバーランクに上がったかの確認
+    private int rank_up_silver = 0;
+    //ゴールドランクに上がったかの確認
+    private int rank_up_gold = 0;
 
     void Start()
     {
@@ -124,26 +140,28 @@ public class Coin_Manager : MonoBehaviour
         //獲得したコイン枚数 
         coin_score = Variable_Manager.Instance.GetSetCoin;
         //coin_score = 1000;
-        reword_total.text = "×" + coin_score * 2; 
 
-        
+
+
         //破壊率
 
-        //crash_score_rate = 15f; 
+
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
         Variable_Manager.Instance.GetSetTotal_CrashRate += crash_score_rate;
-        
+        //crash_score_rate = 30f;
         coin_score_text = crash_score.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
         CrashRate_Get();
 
+        reword_total.text = "×" + (int)bonus_score * 2;
+
         bouns_text.text = bouns.ToString();
 
 
-       // stage_crash = Variable_Manager.Instance.GetSetDestructionRate;
+        // stage_crash = Variable_Manager.Instance.GetSetDestructionRate;
         play_stage_number = Variable_Manager.Instance.Serect_Stage;
 
-        if(play_stage_number == 1)
+        if (play_stage_number == 1)
         {
             stage1_rate = crash_score_rate;
             UnityAnaltics.Instance.Stage1_Crash(stage1_rate);
@@ -162,7 +180,7 @@ public class Coin_Manager : MonoBehaviour
         }
 
         //rank_now = 1;
-       InvokeRepeating("Star_Generate",2f,1f);
+        InvokeRepeating("Star_Generate", 2f, 1f);
 
         //total_rate = 20;// Variable_Manager.Instance.GetSetTotal_CrashRate;
         total_rate_display.fillAmount = total_rate / rank_up[rank_now];
@@ -189,7 +207,7 @@ public class Coin_Manager : MonoBehaviour
                               total_rate / rank_up[rank_now] * 100,                 // 最終的な値
                               2.0f                  // アニメーション時間
                           )).SetEase(Ease.OutCubic);
-            }
+        }
 
         StartCoroutine("StarGenerate");
     }
@@ -197,15 +215,15 @@ public class Coin_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
 
         if (score_up == true)
-            {
-                Variable_Manager.Instance.GetSetPossessionCoin += (int)bonus_score;
-                Coin_move();
-                score_up = false;
-            }
-        
+        {
+            Variable_Manager.Instance.GetSetPossessionCoin += (int)bonus_score;
+            Coin_move();
+            score_up = false;
+        }
+
 
         total_text.text = " " + score;
 
@@ -231,10 +249,10 @@ public class Coin_Manager : MonoBehaviour
 
         //score_count = true;
 
-        
+
     }
 
-   
+
 
 
 
@@ -360,7 +378,7 @@ public class Coin_Manager : MonoBehaviour
     private void TotalBar_Move()
     {
 
-       if(get_rate >= 100)
+        if (get_rate >= 100)
         {
             bar_seq.Complete();
 
@@ -395,23 +413,85 @@ public class Coin_Manager : MonoBehaviour
 
             get_rate = 0;
             bar_seq.Append(DOTween.To(
-                () =>  get_rate,          // 何を対象にするのか
+                () => get_rate,          // 何を対象にするのか
                 num => get_rate = num,   // 値の更新
                 total_rate >= rank_up[rank_now] ? 100 : total_rate / rank_up[rank_now] * 100,                  // 最終的な値
                 5.0f                  // アニメーション時間
             )).SetEase(Ease.OutCubic);
         }
 
-        total_rate_display.fillAmount = get_rate /100.0f;
+        total_rate_display.fillAmount = get_rate / 100.0f;
 
 
-        
-       
+        rank_up_silver = Variable_Manager.Instance.Silver_Up;
+        rank_up_gold = Variable_Manager.Instance.Gold_Up;
 
-        //score = 0;
-        // 数値の変更
+        if (rank_now == 2)
+        {
+            if (rank_up_silver == 0)
+            {
+
+
+                silver_up.gameObject.SetActive(true);
+
+
+
+                if (silver_on == false)
+                    Invoke("Silver_Rank_up", 3.0f);
+
+            }
+        }
+
+        if (rank_now == 3)
+        {
+            if (rank_up_gold == 0)
+            {
+                gold_up.gameObject.SetActive(true);
+                rank_up_gold = 1;
+                Variable_Manager.Instance.Gold_Up = rank_up_gold;
+
+                Invoke("Gold_Rank_up", 2.0f);
+
+            }
+        }
 
     }
+
+    private void Silver_Rank_up()
+    {
+        stage_open.SetActive(true);
+        pos_y = silver_up.rectTransform.rotation.y;
+
+        Sequence seq = DOTween.Sequence();
+        // アニメーション追加
+        // seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f)).SetEase(Ease.InQuad);
+
+        seq.OnStart(() => {
+            seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f));
+
+
+            seq.OnComplete(() =>
+
+            stage_open.gameObject.SetActive(false));
+            seq.Complete();
+
+        });
+
+
+
+        silver_on = true;
+        rank_up_silver = 1;
+        Variable_Manager.Instance.Silver_Up = rank_up_silver;
+    }
+
+
+    private void Gold_Rank_up()
+    {
+        Sequence seq = DOTween.Sequence();
+        // アニメーション追加
+        seq.Append(gold_up.transform.DOScaleY(0.0f, 0.3f));
+    }
+
 
     private void Rank_UP()
     {
@@ -441,22 +521,20 @@ public class Coin_Manager : MonoBehaviour
 
         for (int i = 0; i < _starNum; i++)
         {
-           
+
             GameObject _star = Instantiate(star, star_pos.transform.position, Quaternion.identity);
 
             _star.transform.parent = canvas.transform;
             _star.transform.position = star_pos.position;
             _star.transform.localScale = Vector3.one;
             _star.GetComponent<Star_Move>().Goal_Set(goal);
-            
+
 
             yield return new WaitForSeconds(0.1f);
 
         }
 
-        
+
     }
 
 }
-
-
