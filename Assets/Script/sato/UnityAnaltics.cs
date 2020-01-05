@@ -634,4 +634,62 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
 
 
     }
+
+    public void Timer_on(int time_on)
+    {
+
+        if (time_on == 1)
+        {
+            SendAnalytics("on_time", new Dictionary<string, object>
+            {
+                { "click", 1 }
+            });
+        }
+
+
+    }
+
+
+    public void Timer_off(int time_off)
+    {
+
+        if (time_off == 1)
+        {
+            SendAnalytics("off_time", new Dictionary<string, object>
+            {
+                { "no_click", 1 }
+            });
+        }
+
+
+    }
+
+    public void Runk_Silver(int silver_now)
+    {
+
+        if (silver_now == 1)
+        {
+            SendAnalytics("silver_runk", new Dictionary<string, object>
+            {
+                { "runk", 2 }
+            });
+        }
+
+
+    }
+
+    public void Runk_Gold(int gold_now)
+    {
+
+        if (gold_now == 1)
+        {
+            SendAnalytics("gold_runk", new Dictionary<string, object>
+            {
+                { "runk", 3 }
+            });
+        }
+
+
+    }
+
 }

@@ -48,6 +48,7 @@ public class Title_Manager : MonoBehaviour
     [System.Obsolete]
     public void OpenStageSelect()
     {
+        UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
         ex_scrpt.Mark_Off();
 
         SceneManager.LoadScene(1, LoadSceneMode.Additive);

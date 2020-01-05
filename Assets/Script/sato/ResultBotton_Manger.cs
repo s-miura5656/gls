@@ -95,7 +95,7 @@ public class ResultBotton_Manger : MonoBehaviour
         {
             GetPossessionCoin();
             bar.transform.parent = null;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_ 1");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
             
         }
     }

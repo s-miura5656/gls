@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class Coin_Manager : MonoBehaviour
 {
+    private int silver_now = 0;
+    private int gold_now = 0;
+
     [SerializeField]
     private GameObject crash_score;
     private GameObject coincount;
@@ -439,6 +442,10 @@ public class Coin_Manager : MonoBehaviour
                 if (silver_on == false)
                     Invoke("Silver_Rank_up", 3.0f);
 
+                silver_now = 1;
+                UnityAnaltics.Instance.Runk_Silver(silver_now);
+                silver_now = 0;
+
             }
         }
 
@@ -451,6 +458,10 @@ public class Coin_Manager : MonoBehaviour
                 Variable_Manager.Instance.Gold_Up = rank_up_gold;
 
                 Invoke("Gold_Rank_up", 2.0f);
+
+                gold_now = 1;
+                UnityAnaltics.Instance.Runk_Gold(gold_now);
+                gold_now = 0;
 
             }
         }

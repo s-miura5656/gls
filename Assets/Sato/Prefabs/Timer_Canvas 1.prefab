@@ -336,9 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27176931d6122ec46886dcc59a08f377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  continue_button: {fileID: 0}
   timerButton: {fileID: 2273140261277188916}
   ring: {fileID: 2273140261785740040}
-  move: {fileID: 2273140262424036703}
+  time_manager_script: {fileID: 0}
+  destruction_rate_script: {fileID: 0}
 --- !u!1 &2273140261785740042
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
