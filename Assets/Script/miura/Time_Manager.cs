@@ -23,7 +23,9 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI game_timer_text = null;
     // ボーナスボタン
     [SerializeField] private GameObject continue_botton = null;
-    
+    // ゲームUI
+    [SerializeField] private GameObject game_ui = null;
+
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 4f;
     // スタート
@@ -50,7 +52,7 @@ public class Time_Manager : MonoBehaviour
     private bool game_end_state = false;
     // ゲームが終了後に時間プラスするかどうかのステート
     private bool bonus_time_state = true;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -160,7 +162,7 @@ public class Time_Manager : MonoBehaviour
                 end_count_down_text.text = "" + (int)(time_count_down_main + 1f);
             }
 
-            if (game_timer.fillAmount == 0)
+            if (time_count_down_main <= 0f)
             {
                 game_play_state = false;
                 game_end_state = true;
@@ -171,13 +173,6 @@ public class Time_Manager : MonoBehaviour
                     continue_botton.SetActive(true);
 
                     bonus_time_state = false;
-                }
-                else
-                {
-                    if (!continue_botton.activeSelf)
-                    {
-                        SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
-                    }
                 }
             }
         }
@@ -235,5 +230,14 @@ public class Time_Manager : MonoBehaviour
         time_count_down_main = bonus_time;
         game_play_state = true;
         game_end_state = false;
+    }
+
+    /// <summary>
+    /// リザルトシーンを表示させる
+    /// </summary>
+    public void ChangeResult() 
+    {
+        SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
+        game_ui.SetActive(false);
     }
 }

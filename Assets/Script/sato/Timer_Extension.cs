@@ -7,12 +7,22 @@ using UnityEngine.Monetization;
 
 public class Timer_Extension : MonoBehaviour
 {
-
+    [SerializeField] private GameObject continue_button = null;
     [SerializeField] private Button timerButton = null;
     [SerializeField] private Image ring = null;
     [SerializeField] private Time_Manager time_manager_script = null;
+
     private ShowAdCallbacks showAdTimerCallbacks = new ShowAdCallbacks();
-    
+
+    // ボタンが出ている時間
+    private float continue_time = 5f;
+    // リザルトへ遷移するまでの時間のカウント
+    private float wait_result_count = 0f;
+    // リザルトへ遷移する時間
+    private float change_result_time = 3f;
+    // 一回だけリザルトを読み込むフラグ
+    private bool load_result = true;
+
     void Start()
     {
         showAdTimerCallbacks.finishCallback += VideoRerwardTimer;
@@ -23,12 +33,22 @@ public class Timer_Extension : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 一定時間たったらリザルトへ遷移
-        ring.fillAmount -= 1.0f / 60.0f;
-        
-        if (ring.fillAmount <= 0)
+        if (!load_result)
+                return;
+
+        if (continue_button.activeSelf && !time_manager_script.GetGamePlayState)
         {
-            TimeInOut(false);
+            TimeOut();
+        }
+        else if(!continue_button.activeSelf && time_manager_script.GetGameEndState)
+        {
+            wait_result_count += Time.deltaTime;
+
+            if (wait_result_count >= change_result_time && load_result)
+            {
+                time_manager_script.ChangeResult();
+                load_result = false;
+            }
         }
     }
 
@@ -42,17 +62,18 @@ public class Timer_Extension : MonoBehaviour
         if (showResult == ShowResult.Finished)
         {
             // 広告を最後まで視聴した時
-            TimeInOut(true);
+            ContinueInput(true);
+            load_result = true;
         }
         else if (showResult == ShowResult.Failed)
         {
             // 広告読み込みエラー
-            TimeInOut(false);
+            ContinueInput(false);
         }
         else if (showResult == ShowResult.Skipped)
         {
             // 広告をスキップした時
-            TimeInOut(false);
+            ContinueInput(false);
         }
     }
 
@@ -60,19 +81,33 @@ public class Timer_Extension : MonoBehaviour
     /// 時間をプラスするかしないか
     /// </summary>
     /// <param name="time_plus">true = プラス false = リザルトへ</param>
-    private void TimeInOut(bool time_in) 
+    private void ContinueInput(bool time_in) 
     {
         if (time_in)
         {
             time_manager_script.BonusTime(5f);
 
-            gameObject.SetActive(false);
+            continue_button.SetActive(false);
         }
         else
         {
-            SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
+            time_manager_script.ChangeResult();
 
-            gameObject.SetActive(false);
+            continue_button.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// 一定時間後にリザルトへ遷移
+    /// </summary>
+    private void TimeOut() 
+    {
+        ring.fillAmount -= Time.deltaTime / continue_time;
+
+        if (ring.fillAmount <= 0)
+        {
+            ContinueInput(false);
+            load_result = false;
         }
     }
 }
