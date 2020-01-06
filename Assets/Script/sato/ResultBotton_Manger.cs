@@ -8,7 +8,8 @@ using UnityEngine.Monetization;
 
 public class ResultBotton_Manger : MonoBehaviour
 {
-    
+    [SerializeField]
+    private Text next_game;
 
 
     [SerializeField]
@@ -121,6 +122,7 @@ public class ResultBotton_Manger : MonoBehaviour
             var coin_script = coin_object.GetComponent<Coin_Manager>();
             coin_text.gameObject.SetActive(false);
             Advertisement_Bottoun.SetActive(false);
+            next_game.text = "NEXT";
 
             coin_script.Calculation_Manager();
             int push_rate = 0;
