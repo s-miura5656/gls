@@ -437,11 +437,11 @@ public class Coin_Manager : MonoBehaviour
 
 
                 silver_up.gameObject.SetActive(true);
+                rank_up_silver = 1;
+                Variable_Manager.Instance.Silver_Up = rank_up_silver;
 
-
-
-                if (silver_on == false)
-                    Invoke("Silver_Rank_up", 3.0f);
+                //if (silver_on == false)
+                Invoke("Silver_Rank_up", 3.0f);
 
                 silver_now = 1;
                 UnityAnaltics.Instance.Runk_Silver(silver_now);
@@ -491,9 +491,9 @@ public class Coin_Manager : MonoBehaviour
 
 
 
-        silver_on = true;
-        rank_up_silver = 1;
-        Variable_Manager.Instance.Silver_Up = rank_up_silver;
+        //silver_on = true;
+        //rank_up_silver = 1;
+        //Variable_Manager.Instance.Silver_Up = rank_up_silver;
     }
 
 
