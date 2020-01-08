@@ -16,13 +16,7 @@ public class Stage_Select : MonoBehaviour
 
     private int coin;
 
-    public void StageSelect(int number)
-    {
-        UnityAnaltics.Instance.Stage_Serect(number);
-        UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
-        Variable_Manager.Instance.Serect_Stage = number;
-        title_manager_script.RandomMode = false;
-    }
+    
 
     public void CloseStageSelect()
     {
