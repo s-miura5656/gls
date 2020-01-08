@@ -27,7 +27,7 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private GameObject game_ui = null;
 
     // ゲームスタート時のカウントダウン
-    private float time_count_down_start = 4f;
+    private float time_count_down_start = 3f;
     // スタート
     private bool game_start_state = true;
     private int count_down_second = 0;
@@ -52,6 +52,8 @@ public class Time_Manager : MonoBehaviour
     private bool game_end_state = false;
     // ゲームが終了後に時間プラスするかどうかのステート
     private bool bonus_time_state = true;
+
+    bool a = true;
 
     // Start is called before the first frame update
     void Start()
@@ -89,17 +91,17 @@ public class Time_Manager : MonoBehaviour
     {
         if (game_start_state)
         {
-            start_count_down.SetActive(true);
             time_count_down_start -= Time.deltaTime;
             count_down_second = (int)time_count_down_start;
 
             if (time_count_down_start > 1f)
             {
-                start_count.text = "" + count_down_second;    
+                start_count_down.SetActive(true);
+                start_count.text = "Ready";    
             }
             else if (time_count_down_start <= 1f)
             {
-                start_count.text = "START";
+                start_count.text = "Go!!";
                 game_main_state = true;
                 game_play_state = true;
 
@@ -178,6 +180,9 @@ public class Time_Manager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ゲーム時間に時間を追加する
+    /// </summary>
     public void TimeCountDownMainPlus() 
     {
         plus_time_count = 0f;
