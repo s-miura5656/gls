@@ -51,6 +51,8 @@ public class Skin_RandomSerect : MonoBehaviour
 
     private int skin_all_open = 0;
 
+
+
     void Start()
     {
 

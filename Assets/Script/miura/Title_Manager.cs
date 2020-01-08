@@ -58,7 +58,7 @@ public class Title_Manager : MonoBehaviour
     {
         if (!Application.isShowingSplashScreen)
         {
-            UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
+            //UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
             ex_scrpt.Mark_Off();
 
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
@@ -107,6 +107,7 @@ public class Title_Manager : MonoBehaviour
 
     private GameObject StageGanarator(int stage_number, int stage_level)
     {
+        UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
         stage_ = new GameObject[max_stage_number, max_stage_level];
 
         for (int i = 0; i < max_stage_number; i++)

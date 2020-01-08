@@ -13,6 +13,8 @@ public class ExclamationMark_Move : MonoBehaviour
     RectTransform Exclamation_Mark;
 
     private int coin = 0;
+    private bool skin_open;
+    private int all_open = 0;
 
 
     // Start is called before the first frame update
@@ -40,19 +42,28 @@ public class ExclamationMark_Move : MonoBehaviour
     void Update()
     {
 
-        if (Variable_Manager.Instance.Skin_All == 1)
+
+
+        all_open = Variable_Manager.Instance.Skin_All;
+
+            if (all_open == 1)
+            {
+                gameObject.SetActive(false);
+            }
+
+        if (all_open == 0)
         {
-            gameObject.SetActive(false);
+            if (coin >= 5000)
+            {
+                Exclamation_Mark.gameObject.SetActive(true);
+            }
+
+            else
+                Exclamation_Mark.gameObject.SetActive(false);
+
+            coin = Variable_Manager.Instance.GetSetPossessionCoin;
+
         }
-        //if (coin >= 5000)
-        //{
-        //    Exclamation_Mark.gameObject.SetActive(true);
-        //}
-
-        //else
-        //    Exclamation_Mark.gameObject.SetActive(false);
-
-        //coin = Variable_Manager.Instance.GetSetPossessionCoin;
     }
 
 
