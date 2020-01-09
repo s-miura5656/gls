@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class Player_Skin_Select : MonoBehaviour
 {
-    // プレイヤーの種類
+    // プレイヤースキン種類
     [SerializeField] private GameObject[] players = null;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         GameObject childObject = Instantiate(players[Variable_Manager.Instance.GetSetAvatarNumber], 
