@@ -10,27 +10,19 @@ using UnityEngine.UI;
 public class Title_Manager : MonoBehaviour
 {
     [SerializeField] private Button open_button = null;
-                                                                                                                                                                  
+    [SerializeField] private Button close_button = null;
+    [SerializeField] private Button[] stage_select_buttons = {null};
+    [SerializeField] private GameObject stage_select_obj = null;
     public int game_start = 0;
 
     [SerializeField] private ExclamationMark_Move ex_scrpt;
 
+    // アニメの時間
+    private float anime_time = 1f;
     // ステージナンバー(最大)
-    private int max_stage_number = 3;
-    // ステージレベル(最大)
-    private int max_stage_level = 3;
-    // 生成するステージを入れるオブジェクト型の変数
-    private GameObject[,] stage_;
-    // ランダムで選ぶかステージ選択か切り替える
-    private bool random_mode = true;
+    private int max_stage_number = 9;
     // ゲームメインのシーン
     private Scene game_main;
-    // ステージレベル
-    private int stage_level = 0;
-    // レベルが上がるのに必要な破壊率
-    private float[] destruction_rate_level = new float[2] { 40f, 60f };
-    // 選ばれるステージの最大値
-    private int stage_number = 2;
 
     private void Awake()
     {
@@ -44,51 +36,12 @@ public class Title_Manager : MonoBehaviour
         game_start = Variable_Manager.Instance.GetSetPlayGames;
 
         open_button.onClick.AddListener(OpenStageSelect);
-        
-        Debug.Log(PlayerPrefs.GetInt("rank"));
+        close_button.onClick.AddListener(CloseStageSelect);
 
-        if (PlayerPrefs.GetInt("rank") >= 2)
+        for (int i = 0; i < stage_select_buttons.Length; i++)
         {
-            stage_number = 3;
-        }
-    }
-
-    [System.Obsolete]
-    public void OpenStageSelect()
-    {
-        if (!Application.isShowingSplashScreen)
-        {
-            //UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
-            ex_scrpt.Mark_Off();
-
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
-            game_main = SceneManager.GetSceneByBuildIndex(1);
-
-            // ランダムかそうでないか
-            if (random_mode)
-            {
-                int random_stage = Random.Range(0, stage_number);
-                StageDecideTheLevel(random_stage);
-                SceneManager.MoveGameObjectToScene(StageGanarator(random_stage, PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")), game_main);
-                Variable_Manager.Instance.Serect_Stage = random_stage;
-                Variable_Manager.Instance.GetSetStageLevel = PlayerPrefs.GetInt("Stage_" + random_stage + "_Level");
-
-                // ステージレベルごとの破壊率の表示
-                Debug.Log(PlayerPrefs.GetFloat("Stage_" + random_stage + "_DestructionRateMax_" + PlayerPrefs.GetInt("Stage_" + random_stage + "_Level")));
-                // 現在のステージレベル
-                Debug.Log(PlayerPrefs.GetInt("Stage_" + random_stage + "_Level"));
-            }
-            else
-            {
-                StageDecideTheLevel(Variable_Manager.Instance.Serect_Stage);
-                SceneManager.MoveGameObjectToScene(StageGanarator(Variable_Manager.Instance.Serect_Stage, PlayerPrefs.GetInt("Stage_" + Variable_Manager.Instance.Serect_Stage + "_Level")), game_main);
-            }
-
-
-            //Debug.Log(Variable_Manager.Instance.Serect_Stage);
-
-
-            StartCoroutine(AddScene());
+            int v = i;
+            stage_select_buttons[i].onClick.AddListener(() => StageSelect(v));
         }
     }
 
@@ -104,66 +57,90 @@ public class Title_Manager : MonoBehaviour
         SceneManager.UnloadScene(SceneManager.GetSceneByName("Title_1"));
     }
 
-
-    private GameObject StageGanarator(int stage_number, int stage_level)
+    private GameObject StageGanarator(int stage_number)
     {
         UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
-        stage_ = new GameObject[max_stage_number, max_stage_level];
 
-        for (int i = 0; i < max_stage_number; i++)
-        {
-            for (int v = 0; v < max_stage_level; v++)
-            {
-                if (stage_[i, v] == null)
-                {
-                    stage_[i, v] = Resources.Load("Prefabs/GameMain/Stage/Game_" + (i + 1) + "_" + (v + 1)) as GameObject;
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
+        GameObject stage;
 
-        GameObject stage = Instantiate(stage_[stage_number, stage_level]);
-
+        stage = Instantiate(Resources.Load("Prefabs/GameMain/Stage/Game_" + (stage_number + 1)) as GameObject);
+        
         return stage;
     }
 
-    private void StageDecideTheLevel(int stage_number) 
+    [System.Obsolete]
+    private void ChangeGameMain(int stage_number) 
     {
-        if (PlayerPrefs.GetInt("Stage_" + stage_number + "_Level") == 2)
+        if (!Application.isShowingSplashScreen)
         {
-            return;
-        }
+            //UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
+            ex_scrpt.Mark_Off();
 
-        float stage_destruction_rate = PlayerPrefs.GetFloat("Stage_" + stage_number + "_DestructionRateMax_" + Variable_Manager.Instance.GetSetStageLevel);
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            game_main = SceneManager.GetSceneByBuildIndex(1);
 
-        for (int i = 0; i < destruction_rate_level.Length; i++)
-        {
-            if (stage_destruction_rate > destruction_rate_level[i] && PlayerPrefs.GetInt("Stage_" + stage_number + "_Level") == i)
-            {
-                stage_level = i + 1;
-                Variable_Manager.Instance.GetSetStageLevel = stage_level;
-                PlayerPrefs.SetInt("Stage_" + stage_number + "_Level", stage_level);
-                break;
-            }
+            SceneManager.MoveGameObjectToScene(StageGanarator(stage_number), game_main);
+            Variable_Manager.Instance.Serect_Stage = stage_number;
+
+            StartCoroutine(AddScene());
         }
     }
 
-    /// <summary>
-    /// ランダムにステージが選ばれるか
-    /// </summary>
-    public bool RandomMode 
+    [System.Obsolete]
+    private void StageSelect(int number)
     {
-        set { random_mode = value; }
+        UnityAnaltics.Instance.Stage_Serect(number);
+        UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
+        Variable_Manager.Instance.Serect_Stage = number;
+        ChangeGameMain(number);
     }
 
-    /// <summary>
-    /// 選ばれるステージの最大値
-    /// </summary>
-    public int StageNumber
+    [System.Obsolete]
+    private void OpenStageSelect()
     {
-        set { stage_number = value; }
+        Sequence seq = DOTween.Sequence();
+
+        // アニメーション追加
+        seq.Append(stage_select_obj.transform.DOScaleY(1.0f, anime_time));
+
+        seq.OnStart(() => {
+            // アニメーション開始時によばれる
+            Debug.Log("Animation Start");
+        });
+
+        seq.OnUpdate(() => {
+            // 対象の値が変更される度によばれる
+            Debug.Log("Animation Update");
+        });
+
+        seq.OnComplete(() => {
+            Debug.Log("Animation End");
+            seq.Complete();
+            // アニメーションが終了時によばれる
+        });
+    }
+
+    private void CloseStageSelect()
+    {
+        Sequence seq = DOTween.Sequence();
+
+        // アニメーション追加
+        seq.Append(stage_select_obj.transform.DOScaleY(0.0f, anime_time));
+
+        seq.OnStart(() => {
+            // アニメーション開始時によばれる
+            Debug.Log("Animation Start");
+        });
+
+        seq.OnUpdate(() => {
+            // 対象の値が変更される度によばれる
+            Debug.Log("Animation Update");
+        });
+
+        seq.OnComplete(() => {
+            Debug.Log("Animation End");
+            seq.Complete();
+            // アニメーションが終了時によばれる
+        });
     }
 }
