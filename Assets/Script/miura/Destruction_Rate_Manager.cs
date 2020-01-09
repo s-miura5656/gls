@@ -14,8 +14,6 @@ public class Destruction_Rate_Manager : MonoBehaviour
     private float last_destruction_rate = 0f;
     // 現在の破壊率を表示するテキスト
     [SerializeField] private TextMeshProUGUI destruction_rate = null;
-    // 自己ベストの破壊率を表示するテキスト
-    [SerializeField] private TextMeshProUGUI hi_score = null;
     // 時間を管理しているスクリプトの取得
     private Time_Manager time_script = null;
 
@@ -23,8 +21,6 @@ public class Destruction_Rate_Manager : MonoBehaviour
     void Start()
     {
         time_script = gameObject.GetComponent<Time_Manager>();
-
-        HiScoreLoad();
 
         Check();
 
@@ -64,14 +60,6 @@ public class Destruction_Rate_Manager : MonoBehaviour
     private void DestructionRateCalculation() 
     {
         last_destruction_rate = 100f - (now_number / base_number) * 100f;
-    }
-
-    /// <summary>
-    /// 各ステージのレベル毎の最大破壊率
-    /// </summary>
-    private void HiScoreLoad() 
-    {
-        hi_score.text = PlayerPrefs.GetFloat("Stage_" + Variable_Manager.Instance.Serect_Stage + "_DestructionRateMax_" + Variable_Manager.Instance.GetSetStageLevel).ToString("f2") + " %";
     }
 
     /// <summary>
