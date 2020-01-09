@@ -79,7 +79,7 @@ public class Bill_Obsever : MonoBehaviour
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
     {
         var crash_obj = Instantiate(crash, bill_pos,transform.rotation);
-        crash_obj.transform.localScale *= billLevel * 2;
+        crash_obj.transform.localScale *= (billLevel * billLevel);
 
         Destroy(crash_obj, 2f);
 
