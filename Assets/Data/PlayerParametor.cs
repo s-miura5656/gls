@@ -16,6 +16,7 @@ public class PlayerParametor : ScriptableObject
     [Header("チャージ完了までの時間")] [SerializeField] private float charge_complete_time = 0f;
     [Header("プレイヤーの初期位置変更_1")] [SerializeField] private Vector3[] player_first_pos;
     [Header("プレイヤーの初期位置変更_2")] [SerializeField] private Vector3[] player_first_rotation;
+    [Header("スキン毎の速度のパラメーター")] [SerializeField] private float[] player_skin_speed;
 
     public int PlayerLevelMax 
     {
@@ -70,5 +71,10 @@ public class PlayerParametor : ScriptableObject
     public Vector3[] PlayerLevelUpCamera 
     {
         get { return player_level_up_camera; }
+    }
+
+    public float[] PlayerSkinPramSpeed 
+    {
+        get { return player_skin_speed; }
     }
 }

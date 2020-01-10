@@ -37,7 +37,7 @@ public class player_controller_move : MonoBehaviour
     private int touch_screen_count = 0;
     // 何回タッチしたらアニメを停止するか 
     private int touch_screen_count_max = 3;
-
+    
     void Start()
     {
         player_powor = new float[player_level_manager_script.PlayerLevelMax];
@@ -130,13 +130,16 @@ public class player_controller_move : MonoBehaviour
             // 引っ張りに応じた力にプレイヤーのレベルを追加
             powor = (player_parametor_script.DistFlat * player_powor[player_level_manager_script.GetLevel() - 1]);
 
+            // スキン毎のスピードを追加
+            powor *= player_parametor_script.PlayerSkinPramSpeed[Variable_Manager.Instance.GetSetAvatarNumber];
+
             // 引っ張った方向とは逆方向のベクトル
             start_direction = -1 * (end_pos - start_pos).normalized;
 
             // カウントダウン後動けるようになる
             if (time_script.GetGamePlayState)
             {
-                rb.AddForce(new Vector3(start_direction.x * powor, -1f, start_direction.y * powor), ForceMode.Impulse);
+                rb.AddForce(new Vector3(start_direction.x * powor, 0f, start_direction.y * powor), ForceMode.Impulse);
 
                 // 操作説明のアニメの再生
                 if (touch_screen_count < touch_screen_count_max)
