@@ -83,13 +83,13 @@ public class Bill_Obsever : MonoBehaviour
         if (billLevel < 4)
         {
             var crash_obj = Instantiate(crash, bill_pos, transform.rotation);
-            crash_obj.transform.localScale *= billLevel;
+            crash_obj.transform.localScale *= 1;
             Destroy(crash_obj, 2f);
         }
         else
         {
             var crash_obj = Instantiate(crash_hi, bill_pos, transform.rotation);
-            crash_obj.transform.localScale *= billLevel;
+            crash_obj.transform.localScale *= 1;
             Destroy(crash_obj, 2f);
         }
 
