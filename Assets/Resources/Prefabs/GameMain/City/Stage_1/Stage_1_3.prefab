@@ -1196,9 +1196,13 @@ MonoBehaviour:
   - {fileID: 3194232421964314341}
   - {fileID: 2307337358909296323}
   - {fileID: 1955383037242989204}
-  crash: {fileID: 7440322340781953377, guid: 18042f67aca070a4ea18d12ffd1cf7fb, type: 3}
-  crash_hi: {fileID: 5768580609326683844, guid: 6a4593ca8ab70f1429f3296cd5707fc8,
-    type: 3}
+  crash:
+  - {fileID: 7819867683609087493, guid: c70a96252f6cb2f49a085e65db13eff4, type: 3}
+  - {fileID: 7819867683609087493, guid: c70a96252f6cb2f49a085e65db13eff4, type: 3}
+  - {fileID: 7819867683609087493, guid: c70a96252f6cb2f49a085e65db13eff4, type: 3}
+  - {fileID: 2473077127460695548, guid: 4e2a7a1584135f24989e9e90f1163003, type: 3}
+  - {fileID: 3402886701891053123, guid: daed33fceb9dc114381dc3c679690265, type: 3}
+  - {fileID: 1418775221141892631, guid: dcc9c8fee5f24e743ace6768b3c0c3e1, type: 3}
   hit_effect: {fileID: 1969317841303946909, guid: 84accafa73356ac4ca75b2df8b81d2d3,
     type: 3}
   hit_ref_effect: {fileID: 3543181564931748884, guid: a83da0650deddf94b82433629c3ff64f,
@@ -7062,7 +7066,7 @@ PrefabInstance:
     - target: {fileID: 8854697240760132021, guid: 6d30957cd75811e4480092d43adde9c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -49.9
       objectReference: {fileID: 0}
     - target: {fileID: 8854697240760132021, guid: 6d30957cd75811e4480092d43adde9c7,
         type: 3}

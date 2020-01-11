@@ -16,10 +16,8 @@ public class Bill_Obsever : MonoBehaviour
     [SerializeField] private Time_Manager time_script = null;
     // ビルについている破壊に関するスクリプトを取得
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
-    // ビルの破片パーティクル(低レベル)
-    [SerializeField] private GameObject crash = null;
-    // ビルの破片パーティクル(高レベル)
-    [SerializeField] private GameObject crash_hi = null;
+    // ビルの破片パーティクル
+    [SerializeField] private GameObject[] crash;
     // ヒットエフェクト貫通のオブジェクト
     [SerializeField] private GameObject hit_effect = null;
     // ヒットエフェクト反射のオブジェクト
@@ -80,18 +78,9 @@ public class Bill_Obsever : MonoBehaviour
     [System.Obsolete]
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
     {
-        if (billLevel < 4)
-        {
-            var crash_obj = Instantiate(crash, bill_pos, transform.rotation);
-            crash_obj.transform.localScale *= 1;
-            Destroy(crash_obj, 2f);
-        }
-        else
-        {
-            var crash_obj = Instantiate(crash_hi, bill_pos, transform.rotation);
-            crash_obj.transform.localScale *= 1;
-            Destroy(crash_obj, 2f);
-        }
+        var crash_obj = Instantiate(crash[billLevel], bill_pos, transform.rotation);
+        crash_obj.transform.localScale *= 1;
+        Destroy(crash_obj, 2f);
 
         // コインエフェクトの処理
         coin_particle.transform.position = bill_pos;

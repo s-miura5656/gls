@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 9173858752543539288}
   - component: {fileID: 18077479323623363}
   - component: {fileID: 8842826142457965385}
-  m_Layer: 0
+  - component: {fileID: 3504630507837944686}
+  m_Layer: 16
   m_Name: group11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,6 +79,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3504630507837944686
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823223768723891214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 6584541726933636078, guid: 1646b90115ef27a4ab7d342de9b21700, type: 3}
 --- !u!1 &5669952829627460289
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,9 +102,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8715839488657234130}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: city_road_2
-  m_TagString: Untagged
+  m_TagString: Load
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
