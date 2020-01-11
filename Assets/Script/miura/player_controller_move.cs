@@ -51,7 +51,7 @@ public class player_controller_move : MonoBehaviour
     void Update()
     {
         PullController();
-
+        
         SpeedDown();
 
         if (!time_script.GetGamePlayState)
@@ -59,6 +59,8 @@ public class player_controller_move : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
+
+        rb.AddForce(new Vector3(0, -80, 0), ForceMode.Acceleration);
     }
 
     private void FixedUpdate()
