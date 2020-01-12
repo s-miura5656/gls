@@ -132,11 +132,6 @@ public class Bill_Obsever : MonoBehaviour
 
     private void Start()
     {
-        // ビルの破片エフェクトの初期化
-        //var crash_obj = Instantiate(crash, gameObject.transform);
-        //crash_particle = crash_obj.GetComponentsInChildren<ParticleSystem>();
-        //default_crash_particle_scale = crash_particle[0].transform.localScale.x;
-        
         // 貫通用ヒットエフェクトの初期化
         var hit_effect_obj = Instantiate(hit_effect, gameObject.transform);
         hit_particle = hit_effect_obj.GetComponentsInChildren<ParticleSystem>();

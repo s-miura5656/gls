@@ -4787,7 +4787,7 @@ PrefabInstance:
     - target: {fileID: 8489349678852973706, guid: 568a6250435706249bf33455aba542fb,
         type: 3}
       propertyPath: m_MaxParticleSize
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8489845040390036402, guid: 568a6250435706249bf33455aba542fb,
         type: 3}
@@ -4909,6 +4909,16 @@ PrefabInstance:
       propertyPath: TrailModule.colorOverLifetime.maxGradient.atime2
       value: 59945
       objectReference: {fileID: 0}
+    - target: {fileID: 8489845040390036402, guid: 568a6250435706249bf33455aba542fb,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489845040390036402, guid: 568a6250435706249bf33455aba542fb,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8575503287820566256, guid: 568a6250435706249bf33455aba542fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5009,6 +5019,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: f5b8f969d9067af4a90a0b405cfb63db, type: 2}
+    - target: {fileID: 7217699273178461373, guid: ba1cefa13ea5a654ca5b5694a5b226a8,
+        type: 3}
+      propertyPath: m_MaxParticleSize
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7218836023524839297, guid: ba1cefa13ea5a654ca5b5694a5b226a8,
         type: 3}
       propertyPath: ShapeModule.radius.value
@@ -5143,6 +5158,16 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218836023524839297, guid: ba1cefa13ea5a654ca5b5694a5b226a8,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218836023524839297, guid: ba1cefa13ea5a654ca5b5694a5b226a8,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7413393279109290609, guid: ba1cefa13ea5a654ca5b5694a5b226a8,
         type: 3}

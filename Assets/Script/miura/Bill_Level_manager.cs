@@ -15,7 +15,7 @@ public class Bill_Level_manager : MonoBehaviour
     private static readonly int BillLevel = 6;
 
     [SerializeField] private ObjectLevelData[] objectLevelData = new ObjectLevelData[BillLevel];
-    [SerializeField] private int[] billDestroyLevel = { 2, 4, 6, 8, 10, 12 };
+    private int[] billDestroyLevel = { 0, 2, 4, 6, 8, 10 };
 
     /// <summary>
     /// ビルが破壊可能かどうか
@@ -58,7 +58,7 @@ public class Bill_Level_manager : MonoBehaviour
                     objectLevelData[i].bill_collider.Add(child.GetComponent<BoxCollider>());
                 }
             }
-            objectLevelData[i].hedderName = $"Level_{i + 1}";
+            objectLevelData[i].hedderName = $"Level_{i}";
         }
     }
 }

@@ -18,7 +18,7 @@ public class Title_Manager : MonoBehaviour
     [SerializeField] private ExclamationMark_Move ex_scrpt;
 
     // アニメの時間
-    private float anime_time = 1f;
+    private float anime_time = 0.2f;
     // ステージナンバー(最大)
     private int max_stage_number = 9;
     // ゲームメインのシーン

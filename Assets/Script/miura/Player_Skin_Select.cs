@@ -12,8 +12,8 @@ public class Player_Skin_Select : MonoBehaviour
 
     void Start()
     {
-        GameObject childObject = Instantiate(players[Variable_Manager.Instance.GetSetAvatarNumber], 
-                                             gameObject.transform.position, 
+        GameObject childObject = Instantiate(players[Variable_Manager.Instance.GetSetAvatarNumber],
+                                             gameObject.transform.position,
                                              players[Variable_Manager.Instance.GetSetAvatarNumber].transform.rotation);
 
         childObject.transform.localScale *= gameObject.transform.localScale.y;

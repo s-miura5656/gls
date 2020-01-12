@@ -68,6 +68,7 @@ public class Player_Level_Manager : MonoBehaviour
 
         player.transform.localScale = player_scale[0];
 
+        bill_level_script.BillPossible(player_level);
 
         // サイズ変更に合わせて高さを変更
         player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
