@@ -76,5 +76,7 @@ public class PlayerParametor : ScriptableObject
     public float[] PlayerSkinPramSpeed 
     {
         get { return player_skin_speed; }
+
+
     }
 }

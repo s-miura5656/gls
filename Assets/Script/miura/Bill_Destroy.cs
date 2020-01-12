@@ -8,7 +8,7 @@ using UnityEngine.Rendering.LWRP;
 public class Bill_Destroy : MonoBehaviour
 {
     // ビルのレベル
-    private int bill_level = 1;
+    private int bill_level = 0;
     // ビルのレベルの最大値
     private int max_bill_level = 6;
     // 経験値用ビルのレベル
@@ -37,7 +37,7 @@ public class Bill_Destroy : MonoBehaviour
         if (other.gameObject.tag != "Player") return;
 
         // ビルレベルがプレイヤーのレベルより小さいときに
-        if (bill_level < bill_Obsever.Player_Level_Manager.GetLevel())
+        if (bill_level <= bill_Obsever.Player_Level_Manager.GetLevel())
         {
             Vector3 hitPos = other.ClosestPointOnBounds(this.transform.position);
             BillDestroy(10, hitPos);
@@ -118,8 +118,9 @@ public class Bill_Destroy : MonoBehaviour
         {
             if (transform.tag == "Bill_Level_" + i)
             {
-                bill_level += i * 2;
                 exp_bill_level = i;
+
+                bill_level = i * 2;
             }
         }
     }
