@@ -30,8 +30,6 @@ public class Time_Manager : MonoBehaviour
     private float time_count_down_start = 3f;
     // スタート
     private bool game_start_state = true;
-    private int count_down_second = 0;
-
     // ゲーム終了時までの時間（ゲーム時間）
     private float time_count_down_main = 30f;
     // ゲーム中かどうか
@@ -50,12 +48,15 @@ public class Time_Manager : MonoBehaviour
     private bool game_end_state = false;
     // ゲームが終了後に時間プラスするかどうかのステート
     private bool bonus_time_state = true;
+    // 破壊率を入れる変数
+    private float destruction_rate = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         time_plus_rect = time_plus_obj.GetComponent<RectTransform>();
         default_time_plus_pos = time_plus_rect.transform.position;
+        game_timer_text.text = "" + (int)time_count_down_main;
     }
 
     // Update is called once per frame
@@ -90,9 +91,9 @@ public class Time_Manager : MonoBehaviour
             time_count_down_start -= Time.deltaTime;
 
             // カウントダウン表示用
-            count_down_second = (int)time_count_down_start;
+            int count_down_second = (int)time_count_down_start;
 
-            if (time_count_down_start > 1f)
+            if (time_count_down_start >= 1f)
             {
                 start_count_down.SetActive(true);
 
@@ -105,7 +106,7 @@ public class Time_Manager : MonoBehaviour
                     start_count.text = "" + count_down_second;
                 }
             }
-            else if (time_count_down_start <= 1f)
+            else if (time_count_down_start < 1f)
             {
                 start_count.text = "Go!!";
                 game_main_state = true;
@@ -115,7 +116,7 @@ public class Time_Manager : MonoBehaviour
                 {
                     game_start_state = false;
                     start_count_down.SetActive(false);
-                    time_count_down_start = 3f;
+                    time_count_down_start = 4f;
                 }
             }
         }
@@ -176,13 +177,23 @@ public class Time_Manager : MonoBehaviour
                 game_main_state = false;
                 game_play_state = false;
                 game_end_state = true;
-                end_count_down_text.text = "TIME UP";
 
                 if (bonus_time_state)
                 {
-                    continue_botton.SetActive(true);
-
-                    bonus_time_state = false;
+                    if (destruction_rate > 20f)
+                    {
+                        continue_botton.SetActive(true);
+                        end_count_down_text.gameObject.SetActive(false);
+                        bonus_time_state = false;
+                    }
+                    else
+                    {
+                        end_count_down_text.text = "TIME UP";
+                    }
+                }
+                else
+                {
+                    end_count_down_text.text = "TIME UP";
                 }
             }
         }
@@ -242,9 +253,10 @@ public class Time_Manager : MonoBehaviour
     {
         time_count_down_main = bonus_time;
         start_count_down.SetActive(true);
-        end_count_down_text.gameObject.SetActive(false);
         game_start_state = true;
         game_end_state = false;
+        game_timer.fillAmount = 1f;
+        game_timer_text.text = "" + ((int)time_count_down_main );
     }
 
     /// <summary>
@@ -254,5 +266,14 @@ public class Time_Manager : MonoBehaviour
     {
         SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
         game_ui.SetActive(false);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="last_destruction_rate">破壊率を入れる</param>
+    public void DestructionRate(float last_destruction_rate) 
+    { 
+        destruction_rate = last_destruction_rate; 
     }
 }
