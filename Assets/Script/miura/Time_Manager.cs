@@ -33,9 +33,7 @@ public class Time_Manager : MonoBehaviour
     private int count_down_second = 0;
 
     // ゲーム終了時までの時間（ゲーム時間）
-    private float time_count_down_main = 41f;
-    // ゲームが終わる時間
-    private float end_time = 2f;
+    private float time_count_down_main = 30f;
     // ゲーム中かどうか
     private bool game_main_state = false;
     // 増やす時間
@@ -52,8 +50,6 @@ public class Time_Manager : MonoBehaviour
     private bool game_end_state = false;
     // ゲームが終了後に時間プラスするかどうかのステート
     private bool bonus_time_state = true;
-
-    bool a = true;
 
     // Start is called before the first frame update
     void Start()
@@ -92,12 +88,22 @@ public class Time_Manager : MonoBehaviour
         if (game_start_state)
         {
             time_count_down_start -= Time.deltaTime;
+
+            // カウントダウン表示用
             count_down_second = (int)time_count_down_start;
 
             if (time_count_down_start > 1f)
             {
                 start_count_down.SetActive(true);
-                start_count.text = "Ready";    
+
+                if (bonus_time_state)
+                {
+                    start_count.text = "Ready";
+                }
+                else
+                {
+                    start_count.text = "" + count_down_second;
+                }
             }
             else if (time_count_down_start <= 1f)
             {
@@ -109,6 +115,7 @@ public class Time_Manager : MonoBehaviour
                 {
                     game_start_state = false;
                     start_count_down.SetActive(false);
+                    time_count_down_start = 3f;
                 }
             }
         }
@@ -166,6 +173,7 @@ public class Time_Manager : MonoBehaviour
 
             if (time_count_down_main <= 0f)
             {
+                game_main_state = false;
                 game_play_state = false;
                 game_end_state = true;
                 end_count_down_text.text = "TIME UP";
@@ -233,7 +241,9 @@ public class Time_Manager : MonoBehaviour
     public void BonusTime(float bonus_time) 
     {
         time_count_down_main = bonus_time;
-        game_play_state = true;
+        start_count_down.SetActive(true);
+        end_count_down_text.gameObject.SetActive(false);
+        game_start_state = true;
         game_end_state = false;
     }
 

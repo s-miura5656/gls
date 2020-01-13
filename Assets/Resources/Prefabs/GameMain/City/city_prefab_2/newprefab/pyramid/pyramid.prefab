@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 691420004072679480}
   - component: {fileID: 8413687737883218446}
   - component: {fileID: 2882274078182158071}
-  m_Layer: 0
+  - component: {fileID: -8919460953711019606}
+  - component: {fileID: 7909348239795348504}
+  m_Layer: 13
   m_Name: pyramid
-  m_TagString: Untagged
+  m_TagString: Bill_Level_5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,3 +80,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &-8919460953711019606
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594572173541055019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.97469544, y: 0.36976093, z: 0.95220673}
+  m_Center: {x: 0.000000044703484, y: 0.000000007450581, z: 0.000000014901161}
+--- !u!114 &7909348239795348504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594572173541055019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
