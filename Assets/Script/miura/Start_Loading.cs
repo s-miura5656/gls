@@ -11,13 +11,7 @@ public class Start_Loading : MonoBehaviour
     
     // 時間
     private float count = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     // Update is called once per frame
     void FixedUpdate()
     {

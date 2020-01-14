@@ -60,6 +60,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     private void DestructionRateCalculation() 
     {
         last_destruction_rate = 100f - (now_number / base_number) * 100f;
+        time_script.DestructionRate(last_destruction_rate);
     }
 
     /// <summary>
@@ -76,7 +77,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     }
 
     /// <summary>
-    /// 最終的な破壊率
+    /// 破壊率の記録
     /// </summary>
     public void SetDestructionRate() 
     {
