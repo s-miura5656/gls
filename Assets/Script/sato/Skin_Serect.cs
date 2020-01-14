@@ -17,24 +17,8 @@ public class Skin_Serect : MonoBehaviour
 
     void Start()
     {
-        //for (int i = 0; i < buttons.Length; i++)
-        //{
-        //    int selectNumber = i;
-        //    buttons[i].onClick.AddListener(() => SkinSelect(selectNumber));
-        //}
-
-        // ゲームオブジェクトを消したいとき
-        // buttons[0].gameObject.SetActive(false);
-
-        // コンポーネントを消したいとき
-        // buttons[0].enabled = false;
-
-
 
         skin_number = Variable_Manager.Instance.GetSetAvatarNumber;
-
-
-
 
         for(int i = 0; i< skin_serect.Length; i++)
         {
@@ -44,8 +28,6 @@ public class Skin_Serect : MonoBehaviour
                
                 skin_serect[i].SetActive(true);
             }
-
-
 
         }
         

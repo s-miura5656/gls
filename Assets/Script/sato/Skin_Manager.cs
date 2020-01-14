@@ -36,14 +36,11 @@ public class Skin_Manager : MonoBehaviour
     {
         closeButton.onClick.AddListener(CloseSkin);
         openButton.onClick.AddListener(OpenSkin);
-        //button_stop.gameObject.SetActive(false);
     }
 
 
     private void CloseSkin()
     {
-        //RectTransform rectTransform = skin.GetComponent<RectTransform>();
-
         ex_scrpt.Mark_On();
 
     Sequence seq = DOTween.Sequence();
@@ -69,29 +66,21 @@ public class Skin_Manager : MonoBehaviour
 
         count = false;
 
-        //if(count == false)
-        //SceneManager.LoadScene("Title_");
     }
 
     private void OpenSkin()
     {
-        //RectTransform rectTransform = skin.GetComponent<RectTransform>();
-
         ex_scrpt.Mark_Off();
 
         if (Variable_Manager.Instance.GetSetPossessionCoin >= 5000)
         {
             skin_click = 1;
-            UnityAnaltics.Instance.Skin_Click(skin_click);
-          
+            UnityAnaltics.Instance.Skin_Click(skin_click);         
         }
-
 
         Sequence seq = DOTween.Sequence();
         // アニメーション追加
         seq.Append(openTransform.DOScaleY(1.0f, _animtime));
-
-        //button_stop.gameObject.SetActive(true);
 
         seq.OnStart(() => {
             // アニメーション開始時によばれる
@@ -109,11 +98,8 @@ public class Skin_Manager : MonoBehaviour
             // アニメーションが終了時によばれる
         });
 
-
         count = false;
 
-        //if(count == false)
-        //SceneManager.LoadScene("Title_");
     }
 
   

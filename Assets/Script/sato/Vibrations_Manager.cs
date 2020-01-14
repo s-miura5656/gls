@@ -67,16 +67,4 @@ public class Vibrations_Manager : MonoBehaviour
 
     public bool GetStatus() { return status; }
 
-
-    //private void VibrateMove(int vibrate)
-    //{
-       
-
-    //    if (script.GetSetVibrate)
-    //    {
-    //        // 当たった時のバイブレーション
-    //        Vibration.Vibrate(vibrate);
-    //    }
-    //}
-
 }

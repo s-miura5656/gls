@@ -20,7 +20,7 @@ public class ExclamationMark_Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coin = Variable_Manager.Instance.GetSetPossessionCoin;
+       
         Exclamation_Mark.gameObject.SetActive(false);
 
         if (coin >= 5000)
@@ -42,7 +42,7 @@ public class ExclamationMark_Move : MonoBehaviour
     void Update()
     {
 
-
+        coin = Variable_Manager.Instance.GetSetPossessionCoin;
 
         all_open = Variable_Manager.Instance.Skin_All;
 
@@ -56,6 +56,15 @@ public class ExclamationMark_Move : MonoBehaviour
             if (coin >= 5000)
             {
                 Exclamation_Mark.gameObject.SetActive(true);
+
+                // DoTweenのシーケンス作成。
+                Sequence seq = DOTween.Sequence();
+                // シーケンスの繰り返す回数をセット、-1で無限ループ
+                seq.SetLoops(-1);
+                // シーケンスに拡大処理を追加。
+                seq.Append(Exclamation_Mark.DOScale(new Vector3(2, 2, 2), 1.0f));
+                // シーケンスに拡縮処理を追加。
+                seq.Append(Exclamation_Mark.DOScale(new Vector3(1, 1, 1), 1.0f));
             }
 
             else
