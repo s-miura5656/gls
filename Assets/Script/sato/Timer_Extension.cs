@@ -16,6 +16,8 @@ public class Timer_Extension : MonoBehaviour
 
     // ボタンが出ている時間
     private float continue_time = 4f;
+    // ボタン表示のカウントダウンのフラグ
+    private bool count_flag = false;
     // リザルトへ遷移するまでの時間のカウント
     private float wait_result_count = 0f;
     // リザルトへ遷移する時間
@@ -32,6 +34,7 @@ public class Timer_Extension : MonoBehaviour
         showAdTimerCallbacks.finishCallback += VideoRerwardTimer;
 
         timerButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdTimerCallbacks));
+        timerButton.onClick.AddListener(CountFlag);
     }
 
     // Update is called once per frame
@@ -42,12 +45,14 @@ public class Timer_Extension : MonoBehaviour
 
         if (continue_button.activeSelf && !time_manager_script.GetGamePlayState)
         {
+            // 延長前の選択処理
             TimeOut();
         }
         else if(!continue_button.activeSelf && time_manager_script.GetGameEndState)
         {
             wait_result_count += Time.deltaTime;
 
+            // 延長後の終了処理
             if (wait_result_count >= change_result_time && load_result)
             {
                 time_manager_script.ChangeResult();
@@ -73,12 +78,18 @@ public class Timer_Extension : MonoBehaviour
         else if (showResult == ShowResult.Failed)
         {
             // 広告読み込みエラー
-            ContinueInput(false);
+            //ContinueInput(false);
+
+            ContinueInput(true);
+            load_result = true;
         }
         else if (showResult == ShowResult.Skipped)
         {
             // 広告をスキップした時
-            ContinueInput(false);
+            //ContinueInput(false);
+
+            ContinueInput(true);
+            load_result = true;
         }
     }
 
@@ -90,7 +101,7 @@ public class Timer_Extension : MonoBehaviour
     {
         if (time_in)
         {
-            time_manager_script.BonusTime(5f);
+            time_manager_script.BonusTime(10f);
 
             continue_button.SetActive(false);
             on_time = 1;
@@ -111,6 +122,9 @@ public class Timer_Extension : MonoBehaviour
     /// </summary>
     private void TimeOut() 
     {
+        if (count_flag) 
+            return;
+
         ring.fillAmount -= Time.deltaTime / continue_time;
 
         if (ring.fillAmount <= 0)
@@ -121,5 +135,10 @@ public class Timer_Extension : MonoBehaviour
             UnityAnaltics.Instance.Timer_off(off_time);
             off_time = 0;
         }
+    }
+
+    private void CountFlag() 
+    {
+        count_flag = true;
     }
 }
