@@ -12,19 +12,22 @@ public class Money_Manager : MonoBehaviour
 
     private int possession_coin;
 
-
+    private void Awake()
+    {
+        
+    }
 
 
     void Start()
     {
-        
+        possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
+        coin_text.text = possession_coin.ToString();
     }
 
     
     void Update()
     {
         possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
-        //possession_coin = 10000;
         coin_text.text = possession_coin.ToString();
     }
 }
