@@ -18,11 +18,15 @@ public class Scrool_Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		upperlimit = select_rect.localPosition.y + 5f;
 		lowerlimit = select_rect.sizeDelta.y - canvas_select_rect.sizeDelta.y;
-    }
+		Debug.Log("上限:" + upperlimit);
+		Debug.Log("下限:" + lowerlimit);
+		Debug.Log(select_rect.localPosition.y);
+	}
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
 		Flick();
 	}
@@ -43,6 +47,7 @@ public class Scrool_Menu : MonoBehaviour
 			difference_y = now_touch_y - first_touch_y;
 			//スライドの振り幅を減らす。
 			difference_y /= 30f;
+			Debug.Log(select_rect.localPosition.y);
 		}
 
 		//徐々にスクロールスピードを落としたいのでdifference_yがマイナスの時には1.5f足していく。
@@ -86,7 +91,7 @@ public class Scrool_Menu : MonoBehaviour
 			select_rect.localPosition += new Vector3(0, 2f, 0);
 		}
 
-		if(select_rect.localPosition.y > lowerlimit)
+		if (select_rect.localPosition.y > lowerlimit)
 		{
 			difference_y = 0;
 			select_rect.localPosition += new Vector3(0, -2f, 0);
