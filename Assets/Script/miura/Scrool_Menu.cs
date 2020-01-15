@@ -26,8 +26,11 @@ public class Scrool_Menu : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		max_limit = select_rect.localPosition.y + 5f;
-		min_limit = select_rect.sizeDelta.y - select_rect.localPosition.y;
+		max_limit = select_rect.sizeDelta.y;
+		min_limit = select_rect.localPosition.y;
+
+		Debug.Log(select_rect.localPosition.y);
+		Debug.Log(select_rect.sizeDelta.y);
 	}
 
 	// Update is called once per frame
@@ -73,7 +76,7 @@ public class Scrool_Menu : MonoBehaviour
 		}
 
 		// 永遠に画面がスライドできてしまうので範囲内ならスクロールさせる。
-		if (select_rect.localPosition.y > max_limit && select_rect.localPosition.y < min_limit)
+		if (select_rect.localPosition.y <= max_limit && select_rect.localPosition.y >= min_limit)
 		{
 			select_rect.localPosition += new Vector3(0, swing_dist_y, 0);
 		}
@@ -89,16 +92,16 @@ public class Scrool_Menu : MonoBehaviour
 		}
 
 		// 画面がスライドして行き過ぎた分を自動で戻す。
-		if (select_rect.localPosition.y < max_limit)
-		{
-			swing_dist_y = 0;
-			select_rect.localPosition += new Vector3(0, 2f, 0);
-		}
-
-		if (select_rect.localPosition.y > min_limit)
+		if (select_rect.localPosition.y >= max_limit)
 		{
 			swing_dist_y = 0;
 			select_rect.localPosition += new Vector3(0, -2f, 0);
+		}
+
+		if (select_rect.localPosition.y <= min_limit)
+		{
+			swing_dist_y = 0;
+			select_rect.localPosition += new Vector3(0, 2f, 0);
 		}
 	}
 }
