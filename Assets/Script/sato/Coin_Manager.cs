@@ -35,7 +35,6 @@ public class Coin_Manager : MonoBehaviour
     private int crash_rate;
     public float bonus_score;
 
-    private bool score_count = false;
 
     [SerializeField]
     private Text bouns_text;
@@ -52,21 +51,14 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private int[] rank_up;
 
-    // トータル破壊率
-    private float total_rate = 0;
-    // 獲得破壊率
-    private float get_rate = 0;
-
     private bool score_up = true;
 
-    private float stage_crash = 0;
- 
     [SerializeField]
     private GameObject stage_open;
     [SerializeField]
     private Image silver_up;
-    [SerializeField]
-    private Image pos_y;
+  
+    private float pos_y;
 
 
 
@@ -87,6 +79,8 @@ public class Coin_Manager : MonoBehaviour
         CrashRate_Get();
 
         reword_total.text = "×" + (int)bonus_score * 2;
+
+        
 
     }
 
@@ -175,6 +169,8 @@ public class Coin_Manager : MonoBehaviour
             cs,                  // 最終的な値
             0.5f                  // アニメーション時間
         ).SetEase(Ease.Linear);
+
+       Silver_Rank_up();
     }
 
 
@@ -195,6 +191,8 @@ public class Coin_Manager : MonoBehaviour
         ).SetEase(Ease.OutCubic);
 
         total_text.text = "" + score;
+
+        
     }
 
     private void Silver_Rank_up()
@@ -205,20 +203,11 @@ public class Coin_Manager : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         // アニメーション追加
         // seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f)).SetEase(Ease.InQuad);
-
-        seq.OnStart(() =>
+        seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0),1.0f));
+        seq.OnComplete(() => 
         {
-            seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f));
-
-
-            seq.OnComplete(() =>
-
-            stage_open.gameObject.SetActive(false));
+            silver_up.gameObject.SetActive(false);
             seq.Complete();
-
         });
-
     }
-
-
 }
