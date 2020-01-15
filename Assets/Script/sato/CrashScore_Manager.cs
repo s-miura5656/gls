@@ -32,6 +32,7 @@ public class CrashScore_Manager : MonoBehaviour
     void Start()
     {
         crash_count = Variable_Manager.Instance.GetSetDestructionRate;
+        crash_count = 30;
         //Crash_Manager();
         Crash_Bonusew();
 

@@ -65,6 +65,8 @@ public class Coin_Manager : MonoBehaviour
     private GameObject stage_open;
     [SerializeField]
     private Image silver_up;
+    [SerializeField]
+    private Image pos_y;
 
 
 
@@ -86,7 +88,6 @@ public class Coin_Manager : MonoBehaviour
 
         reword_total.text = "×" + (int)bonus_score * 2;
 
-        bouns_text.text = bouns.ToString();
     }
 
     void Update()
@@ -196,27 +197,28 @@ public class Coin_Manager : MonoBehaviour
         total_text.text = "" + score;
     }
 
-    //private void Silver_Rank_up()
-    //{
-    //    stage_open.SetActive(true);
-    //    pos_y = silver_up.rectTransform.rotation.y;
+    private void Silver_Rank_up()
+    {
+        stage_open.SetActive(true);
+        pos_y = silver_up.rectTransform.rotation.y;
 
-    //    Sequence seq = DOTween.Sequence();
-    //    // アニメーション追加
-    //    // seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f)).SetEase(Ease.InQuad);
+        Sequence seq = DOTween.Sequence();
+        // アニメーション追加
+        // seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f)).SetEase(Ease.InQuad);
 
-    //    seq.OnStart(() => {
-    //        seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f));
+        seq.OnStart(() =>
+        {
+            seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f));
 
 
-    //        seq.OnComplete(() =>
+            seq.OnComplete(() =>
 
-    //        stage_open.gameObject.SetActive(false));
-    //        seq.Complete();
+            stage_open.gameObject.SetActive(false));
+            seq.Complete();
 
-    //    });
+        });
 
-    //}
+    }
 
 
 }
