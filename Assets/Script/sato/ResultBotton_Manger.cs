@@ -44,8 +44,6 @@ public class ResultBotton_Manger : MonoBehaviour
 
     private int time_count = 0;
 
-    [SerializeField]
-    private GameObject bar;
 
     [SerializeField]
     private Text coin_text;
@@ -95,7 +93,6 @@ public class ResultBotton_Manger : MonoBehaviour
         else
         {
             GetPossessionCoin();
-            bar.transform.parent = null;
             UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
             
         }
@@ -109,7 +106,7 @@ public class ResultBotton_Manger : MonoBehaviour
         }
         else
         {
-            //Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bonus_score;
+            
         }
     }
 
@@ -145,7 +142,6 @@ public class ResultBotton_Manger : MonoBehaviour
     {
         GetPossessionCoin();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Title_1");
-        bar.transform.parent = null;
         Loading.SetActive(true);
     }
 
