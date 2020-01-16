@@ -11,6 +11,7 @@ public class GameLevelData : ScriptableObject
     [Header("１レベル時のコインの出る数")] [SerializeField] private int coin_number = 0;
     [Header("ビルレベル毎の経験値")] [SerializeField] private int[] bill_get_exp;
     [Header("ビルレベル毎のコイン取得数")] [SerializeField] private int[] bill_get_coin;
+    [Header("各ステージの目標破壊率")] [SerializeField] private float[] destruction_target;
 
     public float GameTimeMax
     {
@@ -40,5 +41,10 @@ public class GameLevelData : ScriptableObject
     public int[] BillGetCoin
     {
         get { return bill_get_coin; }
+    }
+
+    public float[] DestructionTarget 
+    {
+        get { return destruction_target; }
     }
 }

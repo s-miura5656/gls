@@ -71,9 +71,8 @@ public class Title_Manager : MonoBehaviour
     [System.Obsolete]
     private void ChangeGameMain(int stage_number) 
     {
-        if (!Application.isShowingSplashScreen)
+        if (UnityEngine.Rendering.SplashScreen.isFinished)
         {
-            //UnityAnaltics.Instance.Skin_now(Variable_Manager.Instance.GetSetAvatarNumber);
             ex_scrpt.Mark_Off();
 
             SceneManager.LoadScene(1, LoadSceneMode.Additive);

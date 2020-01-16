@@ -20,7 +20,6 @@ public class Stage_Select : MonoBehaviour
 
     public void CloseStageSelect()
     {
-        
         Sequence seq = DOTween.Sequence();
 
         // アニメーション追加
