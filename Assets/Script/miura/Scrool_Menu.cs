@@ -95,13 +95,13 @@ public class Scrool_Menu : MonoBehaviour
 		if (select_rect.localPosition.y >= max_limit)
 		{
 			swing_dist_y = 0;
-			select_rect.localPosition += new Vector3(0, -2f, 0);
+			select_rect.localPosition = new Vector3(select_rect.localPosition.x, max_limit, select_rect.localPosition.z);
 		}
 
 		if (select_rect.localPosition.y <= min_limit)
 		{
 			swing_dist_y = 0;
-			select_rect.localPosition += new Vector3(0, 2f, 0);
+			select_rect.localPosition = new Vector3(select_rect.localPosition.x, min_limit, select_rect.localPosition.z);
 		}
 	}
 }

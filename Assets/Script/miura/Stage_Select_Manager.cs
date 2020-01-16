@@ -9,11 +9,15 @@ public class Stage_Select_Manager : MonoBehaviour
     // ステージセレクトのボタン
     [Header("ステージセレクトボタン")] [SerializeField] private GameObject[] stage_button = { null };
     // ☆マークのオブジェクト取得
-    [Header("☆マークのオブジェクト")] [SerializeField]private GameObject[] star_obj = { null };
-    // 目標破壊率
-    [SerializeField] private float[] destruction_target = { 0f };
+    [Header("☆マークのイメージ")] [SerializeField] private Image[] star_image = { null };
+    // 破壊率ゲージ　親
+    [Header("最大破壊率を表示するゲージ(親)")] [SerializeField] private RectTransform[] gage_parent = { null };
+    // 破壊率ゲージ　子
+    [Header("最大破壊率を表示するゲージ(子)")] [SerializeField] private Image[] gage_child = { null };
+    // ゲームレベルのスクリプト取得
+    [Header("ゲームレベルデータ")] [SerializeField] private GameLevelData game_level_script = null;
     // ステージセレクトのボタンの基準位置
-    private Vector3 base_button_pos = new Vector3(-430f, -50f, 0f);
+    private Vector3 base_button_pos = new Vector3(-430f, -100f, 0f);
     // ボタンのX軸移動量
     private float dist_x = 430f;
     // ボタンのY軸移動量
@@ -25,24 +29,27 @@ public class Stage_Select_Manager : MonoBehaviour
     private void Start()
     {
         SetStarColor();
+        SetTarget();
+        SetButton(Color.red);
     }
 
     [System.Obsolete]
     private void Reset()
     {
         stage_button = GameObject.FindGameObjectsWithTag("StageButton");
-        destruction_target = new float[stage_button.Length];
-        star_obj = new GameObject[stage_button.Length];
+        star_image = new Image[stage_button.Length];
+        gage_parent = new RectTransform[stage_button.Length];
+        gage_child = new Image[stage_button.Length];
 
         for (int i = 0; i < stage_button.Length; i++)
         {
-            destruction_target[i] = 60f;
-            star_obj[i] = stage_button[i].transform.FindChild("Star").gameObject;
+            star_image[i] = stage_button[i].transform.FindChild("Star").gameObject.GetComponent<Image>();
+            gage_parent[i] = stage_button[i].transform.FindChild("Gage").gameObject.GetComponent<RectTransform>();
+            gage_child[i] = gage_parent[i].transform.FindChild("Inside").gameObject.GetComponent<Image>();
         }
 
         SetButtonPos();
         SetButtonName();
-        SetTarget();
         SetButtonColor();
     }
 
@@ -98,13 +105,13 @@ public class Stage_Select_Manager : MonoBehaviour
             
             // 数値の表示 
             TextMeshProUGUI text = button_target.GetComponentInChildren<TextMeshProUGUI>();
-            text.text = $"{ PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax") } / {destruction_target[i]} %";
+            text.text = $"{ (int)PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax") } / { game_level_script.DestructionTarget[i] } %";
 
             // 目標メモリの設定
             RectTransform target_gage = button_target.transform.FindChild("Inside").gameObject.GetComponent<RectTransform>();
             RectTransform target_bar = target_gage.transform.FindChild("Goal_Bar").gameObject.GetComponent<RectTransform>();
 
-            target_bar.localPosition = new Vector3((target_gage.sizeDelta.x / 100f) * destruction_target[i], 0f, 0f);
+            target_bar.localPosition = new Vector3((target_gage.sizeDelta.x / 100f) * game_level_script.DestructionTarget[i], 0f, 0f);
         }
     }
 
@@ -144,13 +151,33 @@ public class Stage_Select_Manager : MonoBehaviour
     {
         for (int i = 0; i < stage_button.Length; i++)
         {
-            if (PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax") > destruction_target[i])
+            if (PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax") > game_level_script.DestructionTarget[i])
             {
-                star_obj[i].GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                star_image[i].color = Color.white;
             }
             else
             {
-                star_obj[i].GetComponent<Image>().color = new Color(0f, 0f, 0f);
+                star_image[i].color = Color.black;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 目標破壊率に応じてボタンのゲージ、☆を変更
+    /// </summary>
+    private void SetButton(Color target_clear_color) 
+    {
+        for (int i = 0; i < gage_child.Length; i++)
+        {
+            gage_child[i].fillAmount = ((gage_parent[i].sizeDelta.x / 100f) * (int)PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax")) / gage_parent[i].sizeDelta.x;
+
+            //if (gage_child[i].color != new Color(1f, 1f, 1f))
+            //    continue;
+
+            if (PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax") >= game_level_script.DestructionTarget[i])
+            {
+                star_image[i].color = Color.white;
+                gage_child[i].color = target_clear_color;
             }
         }
     }
