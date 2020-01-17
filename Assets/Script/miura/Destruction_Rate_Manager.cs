@@ -16,6 +16,8 @@ public class Destruction_Rate_Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI destruction_rate = null;
     // ゲームレベルデータのスクリプト
     [SerializeField] private GameLevelData game_level_script = null;
+    // ゲーム開始時に表示される目標破壊率
+    [SerializeField] private TextMeshProUGUI target_dest_rate = null;
     // 時間を管理しているスクリプトの取得
     private Time_Manager time_script = null;
     // 目標破壊率を表示するかどうかのフラグ
@@ -38,6 +40,8 @@ public class Destruction_Rate_Manager : MonoBehaviour
         {
             target_dest_rate_flag = false;
         }
+
+        target_dest_rate.text = game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage] + " %";
     }
 
     // Update is called once per frame
