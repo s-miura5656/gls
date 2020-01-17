@@ -33,10 +33,6 @@ public class player_controller_move : MonoBehaviour
     [SerializeField] private GameObject operation_anime = null;
     // プレイヤーパラメーターの取得
     [SerializeField] private PlayerParametor player_parametor_script = null;
-    // 三回タッチしたかどうか
-    private int touch_screen_count = 0;
-    // 何回タッチしたらアニメを停止するか 
-    private int touch_screen_count_max = 3;
     
     void Start()
     {
@@ -52,7 +48,7 @@ public class player_controller_move : MonoBehaviour
     {
         PullController();
         
-        SpeedDown();
+        MoveStop();
 
         if (!time_script.GetGamePlayState)
         {
@@ -60,7 +56,10 @@ public class player_controller_move : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
         }
 
+        // プレイヤーに重力をかける
         rb.AddForce(new Vector3(0, -80, 0), ForceMode.Acceleration);
+
+        Debug.Log(rb.velocity.magnitude);
     }
 
     private void FixedUpdate()
@@ -115,14 +114,6 @@ public class player_controller_move : MonoBehaviour
 
             // プレイヤーにかける力の変数を０に戻す
             start_direction *= 0;
-
-            // 操作説明のアニメの停止
-            if (time_script.GetGamePlayState)
-            {
-                if (operation_anime.activeSelf)
-                    operation_anime.SetActive(false);
-            }
-            
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -142,29 +133,35 @@ public class player_controller_move : MonoBehaviour
             if (time_script.GetGamePlayState)
             {
                 rb.AddForce(new Vector3(start_direction.x * powor, 0f, start_direction.y * powor), ForceMode.Impulse);
-
-                // 操作説明のアニメの再生
-                if (touch_screen_count < touch_screen_count_max)
-                    operation_anime.SetActive(true);
-
-                touch_screen_count++;
             }
         }
     }
 
     /// <summary>
-    /// 減速と停止
+    /// 停止
     /// </summary>
-    private void SpeedDown()
+    private void MoveStop()
     {
-        // プレイヤーの速度の計算
-        speed = rb.velocity.magnitude;
-
         // 一定速度以下になった時にプレイヤーを停止させる
-        if (speed <= lower_limit_speed)
+        if (rb.velocity.magnitude <= lower_limit_speed)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+        }
+
+        // 操作説明のアニメの再生と停止
+        if (Variable_Manager.Instance.Serect_Stage == 0)
+        {
+            if (rb.velocity.magnitude < player_parametor_script.AnimationStart)
+            {
+                if (!operation_anime.activeSelf)
+                    operation_anime.SetActive(true);
+            }
+            else
+            {
+                if (operation_anime.activeSelf)
+                    operation_anime.SetActive(false);
+            }
         }
     }
 

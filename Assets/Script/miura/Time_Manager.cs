@@ -25,7 +25,8 @@ public class Time_Manager : MonoBehaviour
     [SerializeField] private GameObject continue_botton = null;
     // ゲームUI
     [SerializeField] private GameObject game_ui = null;
-
+    // 現在の破壊率を表示するオブジェクト
+    [SerializeField] private GameObject now_dest_rate = null;
     // ゲームスタート時のカウントダウン
     private float time_count_down_start = 3f;
     // スタート
@@ -62,8 +63,9 @@ public class Time_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (loading_script.GetCountDownStart())
+        if (loading_script.GetCountDownStart)
         {
+            now_dest_rate.SetActive(true);
             CountDown();
             GameTime();
         }

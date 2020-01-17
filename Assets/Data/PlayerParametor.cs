@@ -17,6 +17,7 @@ public class PlayerParametor : ScriptableObject
     [Header("プレイヤーの初期位置変更_1")] [SerializeField] private Vector3[] player_first_pos;
     [Header("プレイヤーの初期位置変更_2")] [SerializeField] private Vector3[] player_first_rotation;
     [Header("スキン毎の速度のパラメーター")] [SerializeField] private float[] player_skin_speed;
+    [Header("引き直しのアニメが流れるようになる速度")] [SerializeField] private float animation_start;
 
     public int PlayerLevelMax 
     {
@@ -76,7 +77,10 @@ public class PlayerParametor : ScriptableObject
     public float[] PlayerSkinPramSpeed 
     {
         get { return player_skin_speed; }
+    }
 
-
+    public float AnimationStart 
+    {
+        get { return animation_start; }
     }
 }
