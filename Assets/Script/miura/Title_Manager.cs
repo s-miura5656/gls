@@ -79,7 +79,6 @@ public class Title_Manager : MonoBehaviour
             game_main = SceneManager.GetSceneByBuildIndex(1);
 
             SceneManager.MoveGameObjectToScene(StageGanarator(stage_number), game_main);
-            Variable_Manager.Instance.Serect_Stage = stage_number;
 
             StartCoroutine(AddScene());
         }

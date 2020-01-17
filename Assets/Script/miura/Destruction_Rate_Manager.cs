@@ -14,9 +14,12 @@ public class Destruction_Rate_Manager : MonoBehaviour
     private float last_destruction_rate = 0f;
     // 現在の破壊率を表示するテキスト
     [SerializeField] private TextMeshProUGUI destruction_rate = null;
+    // ゲームレベルデータのスクリプト
+    [SerializeField] private GameLevelData game_level_script = null;
     // 時間を管理しているスクリプトの取得
     private Time_Manager time_script = null;
-
+    // 目標破壊率を表示するかどうかのフラグ
+    private bool target_dest_rate_flag = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +28,29 @@ public class Destruction_Rate_Manager : MonoBehaviour
         Check();
 
         DestructionRateCalculation();
+
+        // 目標破壊率表示するかどうか
+        if (PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax") < game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage])
+        {
+            target_dest_rate_flag = true;
+        }
+        else
+        {
+            target_dest_rate_flag = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        destruction_rate.text = last_destruction_rate.ToString("f2");
+        if (target_dest_rate_flag)
+        {
+            destruction_rate.text = last_destruction_rate.ToString("f2") + " / " + game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage] + " %";
+        }
+        else
+        {
+            destruction_rate.text = last_destruction_rate.ToString("f2") + " %";
+        }
     }
 
     /// <summary>
