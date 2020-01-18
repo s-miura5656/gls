@@ -19,6 +19,8 @@ public class player_controller_move : MonoBehaviour
     private float speed = 0f;
     // プレイヤーの速度の下限値
     private float lower_limit_speed = 5f;
+    // プレイヤーの初期位置
+    private Vector3 player_default_pos = Vector3.zero;
     // ゲームマネージャーオブジェクトの取得
     [SerializeField] private GameObject game_manager = null;
     // ゲーム開始の時間を管理しているスクリプト
@@ -42,6 +44,8 @@ public class player_controller_move : MonoBehaviour
         {
             player_powor[i] = player_parametor_script.PlayerPowor[i];
         }
+
+        player_default_pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
     void Update()
@@ -49,6 +53,8 @@ public class player_controller_move : MonoBehaviour
         PullController();
         
         MoveStop();
+
+        ReStart();
 
         if (!time_script.GetGamePlayState)
         {
@@ -160,6 +166,17 @@ public class player_controller_move : MonoBehaviour
                 if (operation_anime.activeSelf)
                     operation_anime.SetActive(false);
             }
+        }
+    }
+
+    /// <summary>
+    /// 場外に落ちたらリスタート
+    /// </summary>
+    private void ReStart() 
+    {
+        if (transform.position.y <= -100f)
+        {
+            transform.position = player_default_pos + new Vector3(0, transform.localScale.y / 2f, 0);
         }
     }
 
