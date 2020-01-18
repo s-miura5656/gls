@@ -58,8 +58,6 @@ public class player_controller_move : MonoBehaviour
 
         // プレイヤーに重力をかける
         rb.AddForce(new Vector3(0, -80, 0), ForceMode.Acceleration);
-
-        Debug.Log(rb.velocity.magnitude);
     }
 
     private void FixedUpdate()
