@@ -189,7 +189,6 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { gold_up = value; }
     }
 
-
     public void Save()
     {
         skinData.SkinDataSave();

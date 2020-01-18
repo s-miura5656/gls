@@ -11,5 +11,9 @@ public class Destruction_Rate_Save : MonoBehaviour
         {
             PlayerPrefs.SetFloat(($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax"), Variable_Manager.Instance.GetSetDestructionRate);
         }
+
+        Debug.Log("ステージ番号" + Variable_Manager.Instance.Serect_Stage);
+        Debug.Log("今回の破壊率" + Variable_Manager.Instance.GetSetDestructionRate);
+
     }
 }

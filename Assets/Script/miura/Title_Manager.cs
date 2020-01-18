@@ -13,14 +13,15 @@ public class Title_Manager : MonoBehaviour
     [SerializeField] private Button close_button = null;
     [SerializeField] private Button[] stage_select_buttons = {null};
     [SerializeField] private GameObject stage_select_obj = null;
+    // ステージセレクトマネージャー
+    [SerializeField] private Stage_Select_Manager stage_select_manager_script = null;
+
     public int game_start = 0;
 
     [SerializeField] private ExclamationMark_Move ex_scrpt;
 
     // アニメの時間
     private float anime_time = 0.2f;
-    // ステージナンバー(最大)
-    private int max_stage_number = 9;
     // ゲームメインのシーン
     private Scene game_main;
 
@@ -37,11 +38,15 @@ public class Title_Manager : MonoBehaviour
 
         open_button.onClick.AddListener(OpenStageSelect);
         close_button.onClick.AddListener(CloseStageSelect);
+        stage_select_buttons[0].onClick.AddListener(() => StageSelect(0));
 
-        for (int i = 0; i < stage_select_buttons.Length; i++)
+        for (int i = 1; i < stage_select_buttons.Length; i++)
         {
-            int v = i;
-            stage_select_buttons[i].onClick.AddListener(() => StageSelect(v));
+            if (stage_select_manager_script.AchievementFlag[i - 1])
+            {
+                int v = i;
+                stage_select_buttons[i].onClick.AddListener(() => StageSelect(v));
+            }
         }
     }
 

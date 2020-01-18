@@ -7,10 +7,14 @@ using UnityEngine.Monetization;
 
 public class Timer_Extension : MonoBehaviour
 {
-    [SerializeField] private GameObject continue_button = null;
+    //[SerializeField] private GameObject continue_button = null;
+    // ボーナスボタン
     [SerializeField] private Button timerButton = null;
+    // ボーナスボタンの表示時間に合わせて減っていくゲージ
     [SerializeField] private Image ring = null;
+    // 時間を管理しているスクリプト   
     [SerializeField] private Time_Manager time_manager_script = null;
+    // 破壊率を管理しているスクリプト
     [SerializeField] private Destruction_Rate_Manager destruction_rate_script = null;
     private ShowAdCallbacks showAdTimerCallbacks = new ShowAdCallbacks();
 
@@ -24,11 +28,12 @@ public class Timer_Extension : MonoBehaviour
     private float change_result_time = 3f;
     // 一回だけリザルトを読み込むフラグ
     private bool load_result = true;
-    //タイムを延長した 
+    // タイムを延長した 
     private int on_time = 0;
-    //タイムを延長しなかった 
+    // タイムを延長しなかった 
     private int off_time = 0;
-
+    // 破壊率100%
+    private float dest_rate_max = 100f;
     void Start()
     {
         showAdTimerCallbacks.finishCallback += VideoRerwardTimer;
@@ -43,12 +48,12 @@ public class Timer_Extension : MonoBehaviour
         if (!load_result)
                 return;
 
-        if (continue_button.activeSelf && !time_manager_script.GetGamePlayState)
+        if (timerButton.transform.parent.gameObject.activeSelf && !time_manager_script.GetGamePlayState)
         {
             // 延長前の選択処理
             TimeOut();
         }
-        else if(!continue_button.activeSelf && time_manager_script.GetGameEndState)
+        else if(!timerButton.transform.parent.gameObject.activeSelf && time_manager_script.GetGameEndState && destruction_rate_script.GetDestRate < dest_rate_max)
         {
             wait_result_count += Time.deltaTime;
 
@@ -56,7 +61,6 @@ public class Timer_Extension : MonoBehaviour
             if (wait_result_count >= change_result_time && load_result)
             {
                 time_manager_script.ChangeResult();
-                destruction_rate_script.SetDestructionRate();
                 load_result = false;
             }
         }
@@ -78,17 +82,15 @@ public class Timer_Extension : MonoBehaviour
         else if (showResult == ShowResult.Failed)
         {
             // 広告読み込みエラー
-            //ContinueInput(false);
-
-            ContinueInput(true);
+            ContinueInput(false);
+            
             load_result = true;
         }
         else if (showResult == ShowResult.Skipped)
         {
             // 広告をスキップした時
-            //ContinueInput(false);
+            ContinueInput(false);
 
-            ContinueInput(true);
             load_result = true;
         }
     }
@@ -103,17 +105,16 @@ public class Timer_Extension : MonoBehaviour
         {
             time_manager_script.BonusTime(10f);
 
-            continue_button.SetActive(false);
+            timerButton.transform.parent.gameObject.SetActive(false);
             on_time = 1;
             UnityAnaltics.Instance.Timer_on(on_time);
             on_time = 0;
-
         }
         else
         {
             time_manager_script.ChangeResult();
             destruction_rate_script.SetDestructionRate();
-            continue_button.SetActive(false);
+            timerButton.transform.parent.gameObject.SetActive(false);
         }
     }
 

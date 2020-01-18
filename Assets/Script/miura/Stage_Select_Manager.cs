@@ -16,6 +16,8 @@ public class Stage_Select_Manager : MonoBehaviour
     [Header("最大破壊率を表示するゲージ(子)")] [SerializeField] private Image[] gage_child = { null };
     // ゲームレベルのスクリプト取得
     [Header("ゲームレベルデータ")] [SerializeField] private GameLevelData game_level_script = null;
+    // ボタンのロック画面
+    [Header("ボタンのロック画面")] [SerializeField] private GameObject[] button_lock = { null };
     // ステージセレクトのボタンの基準位置
     private Vector3 base_button_pos = new Vector3(-430f, -100f, 0f);
     // ボタンのX軸移動量
@@ -24,13 +26,17 @@ public class Stage_Select_Manager : MonoBehaviour
     private float dist_y = -450f;
     // ボタンの行
     private int button_line = 2;
+    // 目標を達成してるかどうかのフラグ
+    private bool[] achievement_flag = { false };
 
     [System.Obsolete]
-    private void Start()
+    private void Awake()
     {
+        AchievementRateChaker();
         SetStarColor();
         SetTarget();
         SetButton(Color.red);
+        SetLockDisplay();
     }
 
     [System.Obsolete]
@@ -40,12 +46,14 @@ public class Stage_Select_Manager : MonoBehaviour
         star_image = new Image[stage_button.Length];
         gage_parent = new RectTransform[stage_button.Length];
         gage_child = new Image[stage_button.Length];
+        button_lock = new GameObject[stage_button.Length];
 
         for (int i = 0; i < stage_button.Length; i++)
         {
             star_image[i] = stage_button[i].transform.FindChild("Star").gameObject.GetComponent<Image>();
             gage_parent[i] = stage_button[i].transform.FindChild("Gage").gameObject.GetComponent<RectTransform>();
             gage_child[i] = gage_parent[i].transform.FindChild("Inside").gameObject.GetComponent<Image>();
+            button_lock[i] = stage_button[i].transform.FindChild("LockDisplay").gameObject;
         }
 
         SetButtonPos();
@@ -88,8 +96,12 @@ public class Stage_Select_Manager : MonoBehaviour
             stage_button[i].transform.SetSiblingIndex(i);
             GameObject button_image = stage_button[i].transform.FindChild("Button_Parent").gameObject;
             TextMeshProUGUI text = button_image.GetComponentInChildren<TextMeshProUGUI>();
+            GameObject button_lock = stage_button[i].transform.FindChild("LockDisplay").gameObject;
+            TextMeshProUGUI lock_text = button_lock.transform.FindChild("Stage_Number").gameObject.GetComponent<TextMeshProUGUI>();
+
             stage_button[i].name = $"Stage_{i + 1}";
-            text.text = $"Stage {(i + 1)}";
+            text.text = $"STAGE {(i + 1)}";
+            lock_text.text = $"STAGE { i }";
         }
     }
 
@@ -151,7 +163,7 @@ public class Stage_Select_Manager : MonoBehaviour
     {
         for (int i = 0; i < stage_button.Length; i++)
         {
-            if (PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax") > game_level_script.DestructionTarget[i])
+            if (achievement_flag[i])
             {
                 star_image[i].color = Color.white;
             }
@@ -171,14 +183,48 @@ public class Stage_Select_Manager : MonoBehaviour
         {
             gage_child[i].fillAmount = ((gage_parent[i].sizeDelta.x / 100f) * (int)PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax")) / gage_parent[i].sizeDelta.x;
 
-            //if (gage_child[i].color != new Color(1f, 1f, 1f))
-            //    continue;
-
-            if (PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax") >= game_level_script.DestructionTarget[i])
+            if (achievement_flag[i])
             {
                 star_image[i].color = Color.white;
                 gage_child[i].color = target_clear_color;
             }
         }
+    }
+
+    /// <summary>
+    /// 破壊率の目標を達成しているかどうかを確認する
+    /// </summary>
+    private void AchievementRateChaker() 
+    {
+        achievement_flag = new bool[stage_button.Length];
+
+        for (int i = 0; i < stage_button.Length; i++)
+        {
+            if (PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax") >= game_level_script.DestructionTarget[i])
+            {
+                achievement_flag[i] = true;
+            }
+        }
+    }
+
+
+    private void SetLockDisplay() 
+    {
+        if (button_lock[0].activeSelf)
+            button_lock[0].SetActive(false);
+
+        for (int i = 1; i < button_lock.Length; i++)
+        {
+            if (achievement_flag[i - 1])
+            {
+                if(button_lock[i].activeSelf)
+                   button_lock[i].SetActive(false);
+            }
+        }
+    }
+
+    public bool[] AchievementFlag 
+    {
+        get { return achievement_flag; }
     }
 }
