@@ -28,7 +28,7 @@ public class Start_Loading : MonoBehaviour
 
         if (count > load_end)
         {
-            if (Variable_Manager.Instance.Serect_Stage!= 0)
+            if (Variable_Manager.Instance.Serect_Stage != 0 && PlayerPrefs.GetInt($"AchievementRateFlag_{ Variable_Manager.Instance.Serect_Stage }") != 1)
             {
                 DisplayOfTargetDestRate();
             }

@@ -41,7 +41,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
             target_dest_rate_flag = false;
         }
 
-        target_dest_rate.text = "GET  STAR" + "\n" + game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage] + " %";
+        target_dest_rate.text = game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage] + " %";
     }
 
     // Update is called once per frame
