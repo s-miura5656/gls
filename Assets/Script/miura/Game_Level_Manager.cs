@@ -34,14 +34,6 @@ public class Game_Level_Manager : MonoBehaviour
         time_manager.SetGameTime(gameLevelData.GameTimeMax);
         time_manager.SetIncreaseTime(gameLevelData.LevelUpTimePlus);
         bill_obsever.SetCoinNumber(gameLevelData.CoinNumber);
-
-        // チュートリアルステージ以外
-        if (Variable_Manager.Instance.Serect_Stage != 0)
-        {
-            pos_number = Random.Range(0, player_parametor_script.PlayerFirstPos.Length);
-            city.transform.position = player_parametor_script.PlayerFirstPos[pos_number];
-            city.transform.rotation = Quaternion.Euler(player_parametor_script.PlayerFirstRotation[pos_number]);
-        }
     }
 
     public GameObject GetPlayer() { return player; }
