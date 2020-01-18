@@ -28,7 +28,7 @@ public class Time_Manager : MonoBehaviour
     // 現在の破壊率を表示するオブジェクト
     [SerializeField] private GameObject now_dest_rate = null;
     // ゲームスタート時のカウントダウン
-    private float time_count_down_start = 3f;
+    private float time_count_down_start = 2f;
     // スタート
     private bool game_start_state = true;
     // ゲーム終了時までの時間（ゲーム時間）
