@@ -28,7 +28,7 @@ public class Time_Manager : MonoBehaviour
     // 現在の破壊率を表示するオブジェクト
     [SerializeField] private GameObject now_dest_rate = null;
     // ゲームスタート時のカウントダウン
-    private float time_count_down_start = 3f;
+    private float time_count_down_start = 2f;
     // スタート
     private bool game_start_state = true;
     // ゲーム終了時までの時間（ゲーム時間）
@@ -51,6 +51,9 @@ public class Time_Manager : MonoBehaviour
     private bool bonus_time_state = true;
     // 破壊率を入れる変数
     private float destruction_rate = 0f;
+    // ボーナスボタンを表示させるための破壊率
+    private float show_button_min = 20f;
+    private float show_button_max = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +71,7 @@ public class Time_Manager : MonoBehaviour
             now_dest_rate.SetActive(true);
             CountDown();
             GameTime();
+            TargetDestRate();
         }
 
         // プラスした時間が徐々に上に行く演出
@@ -182,7 +186,7 @@ public class Time_Manager : MonoBehaviour
 
                 if (bonus_time_state)
                 {
-                    if (destruction_rate > 20f)
+                    if (destruction_rate > show_button_min && destruction_rate < show_button_max)
                     {
                         continue_botton.SetActive(true);
                         end_count_down_text.gameObject.SetActive(false);
@@ -262,10 +266,29 @@ public class Time_Manager : MonoBehaviour
     }
 
     /// <summary>
+    /// 破壊率100%達成時の処理
+    /// </summary>
+    private void TargetDestRate() 
+    {
+        if (destruction_rate < 100)
+            return;
+
+        bonus_time_state = false;
+        game_main_state = false;
+        game_play_state = false;
+
+        if (!game_end_state)
+            ChangeResult();
+
+        game_end_state = true;
+    }
+
+    /// <summary>
     /// リザルトシーンを表示させる
     /// </summary>
     public void ChangeResult() 
     {
+        Variable_Manager.Instance.GetSetDestructionRate = destruction_rate;
         SceneManager.LoadScene("new_Result", LoadSceneMode.Additive);
         game_ui.SetActive(false);
     }

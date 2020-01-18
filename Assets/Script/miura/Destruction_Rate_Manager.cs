@@ -14,9 +14,14 @@ public class Destruction_Rate_Manager : MonoBehaviour
     private float last_destruction_rate = 0f;
     // 現在の破壊率を表示するテキスト
     [SerializeField] private TextMeshProUGUI destruction_rate = null;
+    // ゲームレベルデータのスクリプト
+    [SerializeField] private GameLevelData game_level_script = null;
+    // ゲーム開始時に表示される目標破壊率
+    [SerializeField] private TextMeshProUGUI target_dest_rate = null;
     // 時間を管理しているスクリプトの取得
     private Time_Manager time_script = null;
-
+    // 目標破壊率を表示するかどうかのフラグ
+    private bool target_dest_rate_flag = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +30,31 @@ public class Destruction_Rate_Manager : MonoBehaviour
         Check();
 
         DestructionRateCalculation();
+
+        // 目標破壊率表示するかどうか
+        if (PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax") < game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage])
+        {
+            target_dest_rate_flag = true;
+        }
+        else
+        {
+            target_dest_rate_flag = false;
+        }
+
+        target_dest_rate.text = game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage] + " %";
     }
 
     // Update is called once per frame
     void Update()
     {
-        destruction_rate.text = last_destruction_rate.ToString("f2");
+        if (target_dest_rate_flag)
+        {
+            destruction_rate.text = last_destruction_rate.ToString("f2") + " / " + game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage] + " %";
+        }
+        else
+        {
+            destruction_rate.text = last_destruction_rate.ToString("f2") + " %";
+        }
     }
 
     /// <summary>
@@ -82,5 +106,10 @@ public class Destruction_Rate_Manager : MonoBehaviour
     public void SetDestructionRate() 
     {
         Variable_Manager.Instance.GetSetDestructionRate = last_destruction_rate;
+    }
+
+    public float GetDestRate 
+    {
+        get { return last_destruction_rate; }
     }
 }

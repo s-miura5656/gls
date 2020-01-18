@@ -47,7 +47,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int stage_serect = 0;
     // 生成するステージのレベル
     private int stage_level = 0;
-
+    
     private int vib = 0;
 
     int test = 0;
@@ -188,7 +188,6 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         get { return gold_up; }
         set { gold_up = value; }
     }
-
 
     public void Save()
     {

@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 5337519624631762965}
   - component: {fileID: 3983903837023205923}
   - component: {fileID: 7238729384928904922}
-  m_Layer: 0
+  - component: {fileID: 6518112805249463466}
+  - component: {fileID: 4058075426726853825}
+  m_Layer: 13
   m_Name: pyramid_2
-  m_TagString: Untagged
+  m_TagString: Bill_Level_5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8955957654976246278}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 136.34, y: 24.768, z: 38.842}
-  m_LocalScale: {x: 503.4851, y: 4937.9126, z: 503.4851}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 400, y: 5000, z: 400}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,3 +80,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6518112805249463466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955957654976246278}
+  m_Material: {fileID: 13400000, guid: 1a926dd95b57ff841a2ffca3e8fe7cbc, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22755803, y: 0.008925413, z: 0.22755833}
+  m_Center: {x: -0.00000011548399, y: -0.00053729396, z: 0.00000035390255}
+--- !u!114 &4058075426726853825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955957654976246278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
