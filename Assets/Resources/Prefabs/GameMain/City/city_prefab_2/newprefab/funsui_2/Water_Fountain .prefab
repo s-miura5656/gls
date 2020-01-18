@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3318852916445066131}
   - component: {fileID: 9076057938225873200}
   - component: {fileID: 596995631795875256}
-  m_Layer: 0
-  m_Name: polySurface42
-  m_TagString: Untagged
+  - component: {fileID: 5025903027973237437}
+  - component: {fileID: 8006012158954995615}
+  m_Layer: 13
+  m_Name: Water_Fountain_Parts_2
+  m_TagString: Bill_Level_5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,6 +80,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5025903027973237437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3040851473744064973}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.934426, y: 2.2890553, z: 15.934364}
+  m_Center: {x: 7.967214, y: -0.75985324, z: 7.9671993}
+--- !u!114 &8006012158954995615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3040851473744064973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5070466948601664256
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8072336244808622355}
   m_Layer: 0
-  m_Name: funsui_2
+  m_Name: 'Water_Fountain '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 5070466948601664256}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 6.0726, z: 0}
-  m_LocalScale: {x: 149.59825, y: 149.59825, z: 149.59825}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children:
   - {fileID: 8866750651907034508}
   - {fileID: 3318852916445066131}
@@ -124,9 +151,11 @@ GameObject:
   - component: {fileID: 8482203743738874190}
   - component: {fileID: 5978059605191083685}
   - component: {fileID: 6055741458619993703}
-  m_Layer: 0
-  m_Name: polySurface43
-  m_TagString: Untagged
+  - component: {fileID: 2881356027824093663}
+  - component: {fileID: 8802437866412971719}
+  m_Layer: 13
+  m_Name: Water_Fountain_Parts_3
+  m_TagString: Bill_Level_5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,6 +220,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &2881356027824093663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426466295536663769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.934426, y: 2.2890553, z: 15.934364}
+  m_Center: {x: 7.967214, y: -0.75985324, z: -7.967211}
+--- !u!114 &8802437866412971719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426466295536663769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7563911785526208190
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,9 +256,11 @@ GameObject:
   - component: {fileID: 6781329858120080766}
   - component: {fileID: 3129954450665961343}
   - component: {fileID: 2999676786974028494}
-  m_Layer: 0
-  m_Name: polySurface44
-  m_TagString: Untagged
+  - component: {fileID: 3757460831791208652}
+  - component: {fileID: 6964938198299968671}
+  m_Layer: 13
+  m_Name: Water_Fountain_Parts_4
+  m_TagString: Bill_Level_5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,6 +325,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3757460831791208652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563911785526208190}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.934428, y: 2.2890553, z: 15.934364}
+  m_Center: {x: -7.967213, y: -0.75985324, z: 7.9671993}
+--- !u!114 &6964938198299968671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563911785526208190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7716614158661168467
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,9 +361,11 @@ GameObject:
   - component: {fileID: 8866750651907034508}
   - component: {fileID: 4015970207997238671}
   - component: {fileID: 8999072172101039804}
-  m_Layer: 0
-  m_Name: polySurface36
-  m_TagString: Untagged
+  - component: {fileID: 7788794483736880001}
+  - component: {fileID: 5547902801049079334}
+  m_Layer: 13
+  m_Name: Water_Fountain_Parts_1
+  m_TagString: Bill_Level_5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -347,6 +430,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7788794483736880001
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7716614158661168467}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.51124, y: 12.932118, z: 8.511246}
+  m_Center: {x: -0.0000019073486, y: 6.453392, z: -0.0000166893}
+--- !u!114 &5547902801049079334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7716614158661168467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7728213651878888984
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,9 +466,11 @@ GameObject:
   - component: {fileID: 5408020603207116867}
   - component: {fileID: 4039401510513274332}
   - component: {fileID: 2599622221422709374}
-  m_Layer: 0
-  m_Name: polySurface45
-  m_TagString: Untagged
+  - component: {fileID: 4212511893811737583}
+  - component: {fileID: 6679516936593117878}
+  m_Layer: 13
+  m_Name: Water_Fountain_Parts_5
+  m_TagString: Bill_Level_5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,3 +535,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4212511893811737583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7728213651878888984}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.934428, y: 2.2890553, z: 15.934364}
+  m_Center: {x: -7.967213, y: -0.75985324, z: -7.967211}
+--- !u!114 &6679516936593117878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7728213651878888984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

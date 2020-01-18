@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 2532970255187318530}
   - component: {fileID: 1445343349596111831}
   - component: {fileID: 9008906663332764010}
-  m_Layer: 0
+  - component: {fileID: 5456740672099125418}
+  - component: {fileID: 7636237253487238571}
+  m_Layer: 12
   m_Name: big_tree1_pCube259
-  m_TagString: Untagged
+  m_TagString: Bill_Level_0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,6 +80,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5456740672099125418
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4164022578066677112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12283553, y: 0.21328121, z: 0.14596578}
+  m_Center: {x: -0.0033756252, y: 0.000000007450581, z: -0.000000014901161}
+--- !u!114 &7636237253487238571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4164022578066677112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff72d7cadede1a41a39b86c3865d2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5151026152781842126
 GameObject:
   m_ObjectHideFlags: 0
