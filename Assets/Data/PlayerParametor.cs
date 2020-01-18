@@ -11,14 +11,12 @@ public class PlayerParametor : ScriptableObject
     [Header("プレイヤーのレベル毎に力を加える力")] [SerializeField] private float[] player_powor;
     [Header("プレイヤーのレベル毎のカメラの離れていく距離")] [SerializeField] private Vector3[] player_level_up_camera;
     [Header("引っ張り距離の固定")] [SerializeField] private float dist_flat = 200f;
-    [Header("チャージ完了時に加える力")] [SerializeField] private float charge_powor = 0;
     [Header("プレイヤーについているスモークの大きさ")] [SerializeField] private Vector3 smoke_size = Vector3.one;
-    [Header("チャージ完了までの時間")] [SerializeField] private float charge_complete_time = 0f;
-    [Header("プレイヤーの初期位置変更_1")] [SerializeField] private Vector3[] player_first_pos;
-    [Header("プレイヤーの初期位置変更_2")] [SerializeField] private Vector3[] player_first_rotation;
+    [Header("プレイヤーの初期位置変更_1(Position)")] [SerializeField] private Vector3[] player_first_pos;
+    [Header("プレイヤーの初期位置変更_2(Rotation)")] [SerializeField] private Vector3[] player_first_rotation;
     [Header("スキン毎の速度のパラメーター")] [SerializeField] private float[] player_skin_speed;
     [Header("引き直しのアニメが流れるようになる速度")] [SerializeField] private float animation_start;
-
+    
     public int PlayerLevelMax 
     {
         get { return player_level_max; }
@@ -44,19 +42,9 @@ public class PlayerParametor : ScriptableObject
         get { return dist_flat; }
     }
 
-    public float ChargePowor 
-    {
-        get { return charge_powor; }
-    }
-
     public Vector3 SmokeSize 
     {
         get { return smoke_size; }
-    }
-
-    public float ChargeCompleteTime 
-    {
-        get { return charge_complete_time; }
     }
 
     public Vector3[] PlayerFirstPos 
