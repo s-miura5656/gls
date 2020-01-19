@@ -79,7 +79,7 @@ public class CoinGet_Rewod : MonoBehaviour
     {
         //上昇中にリワードを押させない処理
         block_reword.gameObject.SetActive(true);
-        after_coin = Variable_Manager.Instance.GetSetPossessionCoin + 250000;
+        after_coin = Variable_Manager.Instance.GetSetPossessionCoin + 25000;
 
         DOTween.To(
        () => Variable_Manager.Instance.GetSetPossessionCoin,          // 何を対象にするのか

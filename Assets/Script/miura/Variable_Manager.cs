@@ -17,10 +17,14 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private bool vibrate_state = true;
     // スキンデータ
     private SkinData skinData = null;
+    // SPスキンデータ
+    private SpSkinData sp_skinData = null;
     //play回数
     private int play_games = 0;
     //スキンのオープン数
     private int skin_open = 0;
+    //SPスキンのオープン数
+    private int sp_skin_open = 0;
     // 毎回ゲーム起動初回時に簡単なステージが選択されるステート
     private bool stage_state = false;
     //トータル破壊率
@@ -37,8 +41,14 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private bool[] Lock_image = new bool[SkinData.SkinNumber];
     // スキンの解放確認2
     private bool[] key_image = new bool[SkinData.SkinNumber];
+    // スキンの解放確認1
+    private bool[] sp_Lock_image = new bool[SpSkinData.SpSkinNumber];
+    // スキンの解放確認2
+    private bool[] sp_key_image = new bool[SpSkinData.SpSkinNumber];
     //スキンの全開放確認
     private int all_open = 0;
+    //SPスキンの全開放確認
+    private int sp_all_open = 0;
 
     public float play_time = 0;
 
@@ -120,6 +130,11 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         get { return skinData; }
     }
 
+    public SpSkinData GetSpSkinData
+    {
+        get { return sp_skinData; }
+    }
+
     public bool[] GetSetLockImage
     {
         get { return Lock_image; }
@@ -138,6 +153,24 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { skin_open = value; }
     }
 
+    public int Sp_GetSetOpenSkin
+    {
+        get { return sp_skin_open; }
+        set { sp_skin_open = value; }
+    }
+
+    public bool[] GetSetSpLockImage
+    {
+        get { return sp_Lock_image; }
+        set { sp_Lock_image = value; }
+    }
+
+    public bool[] GetSetSpKey_image
+    {
+        get { return sp_key_image; }
+        set { key_image = value; }
+    }
+
     public int GetSetPlayGames
     {
         get { return play_games; }
@@ -148,6 +181,12 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return all_open; }
         set { all_open = value; }
+    }
+
+    public int Sp_Skin_All
+    {
+        get { return sp_all_open; }
+        set { sp_all_open = value; }
     }
 
     public int Skin_button_click
@@ -192,6 +231,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     public void Save()
     {
         skinData.SkinDataSave();
+        sp_skinData.SpSkinDataSave();
 
         PlayerPrefs.SetInt("avatar_number", GetSetAvatarNumber);
         PlayerPrefs.SetInt("possession_coin", GetSetPossessionCoin);
@@ -220,6 +260,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         skinData = new SkinData();
         skinData.SkinDataLoad();
+        sp_skinData = new SpSkinData();
+        sp_skinData.SpSkinDataLoad();
 
         GetSetAvatarNumber = PlayerPrefs.GetInt("avatar_number");
         GetSetPossessionCoin = PlayerPrefs.GetInt("possession_coin");
