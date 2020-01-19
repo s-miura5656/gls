@@ -16,22 +16,25 @@ public class Bill_Obsever : MonoBehaviour
     [SerializeField] private Time_Manager time_script = null;
     // ビルについている破壊に関するスクリプトを取得
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
+
     // ビルの破片パーティクル
     [SerializeField] private GameObject[] crash;
     // ヒットエフェクト貫通のオブジェクト
     [SerializeField] private GameObject hit_effect = null;
     // ヒットエフェクト反射のオブジェクト
     [SerializeField] private GameObject hit_ref_effect = null;
-    // コインエフェクトのパーティクル
-    [SerializeField] private GameObject coin_effect = null;
+    // コインエフェクトのオブジェクト
+    [SerializeField] private GameObject[] hit_coin_obj = null;
+
     // 壊れるパーティクル
-    private ParticleSystem[] crash_particle;
+    private ParticleSystem[] crash_particle = { null };
     // ヒットエフェクト貫通
-    private ParticleSystem[] hit_particle;
+    private ParticleSystem[] hit_particle = { null };
     // ヒットエフェクト反射
     private ParticleSystem hit_ref_particle = null;
     // コインのパーティクル
-    private ParticleSystem coin_particle;
+    private ParticleSystem coin_particle = null;
+
     // ビルが壊れるエフェクトの大きさの基準
     private float default_crash_particle_scale = 0.0f;
     // ヒットエフェクト貫通の大きさの基準
@@ -40,9 +43,10 @@ public class Bill_Obsever : MonoBehaviour
     private float default_hit_ref_particle_scale = 0.0f;
     // コインエフェクトの大きさの基準
     private float default_coin_particle_scale = 0.0f;
-
     // コインの出る基準値
     private int coin_number = 1;
+    // ビルのレベルの上限
+    private int max_bill_level = 6;
 
     public Player_Level_Manager Player_Level_Manager
     {
@@ -79,20 +83,10 @@ public class Bill_Obsever : MonoBehaviour
     public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
     {
         var crash_obj = Instantiate(crash[billLevel], bill_pos, transform.rotation);
-        crash_obj.transform.localScale *= 1;
         Destroy(crash_obj, 2f);
 
-        // コインエフェクトの処理
-        coin_particle.transform.position = bill_pos;
-        var coin_scale = Vector3.one * default_coin_particle_scale * playerLevel;
-        coin_particle.transform.localScale = coin_scale;
-        // 出るコインの数
-        var burst = coin_particle.emission.GetBurst(0);
-        burst.count = coin_number * billLevel;
-        coin_particle.emission.SetBurst(0, burst);
-        coin_particle.gravityModifier = 10 * playerLevel;
-
-        coin_particle.Play();
+        var coin_obj = Instantiate(hit_coin_obj[billLevel], bill_pos, transform.rotation);
+        Destroy(coin_obj, 2f);
     }
 
     /// <summary>
@@ -142,11 +136,6 @@ public class Bill_Obsever : MonoBehaviour
         hit_ref_particle = hit_ref_effect_obj.GetComponent<ParticleSystem>();
         default_hit_ref_particle_scale = hit_ref_particle.transform.localScale.x;
 
-        // コインエフェクトの初期化
-        var hit_coin_obj = Instantiate(coin_effect, gameObject.transform);
-        coin_particle = hit_coin_obj.GetComponent<ParticleSystem>();
-        default_coin_particle_scale = coin_particle.transform.localScale.x;
-
         // ビルの破壊のスクリプトの初期化
         for (int i = 0; i < bill_Destroise.Length; i++)
         {
@@ -156,12 +145,17 @@ public class Bill_Obsever : MonoBehaviour
 
     private void Reset()
     {
-        game_manager = GameObject.Find("GameManager");
         bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
-        player_level_script = game_manager.GetComponent<Player_Level_Manager>();
-        destruction_rate_script = game_manager.GetComponent<Destruction_Rate_Manager>();
-        player_exp_script = game_manager.GetComponent<Player_Exp_Get>();
-        time_script = game_manager.GetComponent<Time_Manager>();
+       
+        crash = new GameObject[max_bill_level];
+        hit_coin_obj = new GameObject[max_bill_level];
+
+        for (int i = 0; i < crash.Length; i++)
+        {
+            crash[i] = Resources.Load($"Prefabs/effects/BillScrap/Scrap/Bill_Scrap_{ i }a") as GameObject;
+            hit_coin_obj[i] = Resources.Load($"Prefabs/effects/coin/Coin_{ i }") as GameObject;
+        }
+
     }
 
     public void SetCoinNumber(int coin) 

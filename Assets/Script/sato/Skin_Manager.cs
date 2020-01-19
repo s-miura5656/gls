@@ -7,28 +7,20 @@ using UnityEngine.UI;
 
 public class Skin_Manager : MonoBehaviour
 {
-    //[SerializeField]
-    //private GameObject title;
-    //[SerializeField]
-    //private GameObject skin;
+
     [SerializeField]
     private float _animtime = 1.0f;
-    //[SerializeField]
-    //private GameObject back_bottom;
-    //[SerializeField]
-    //private float botton_animtime = 1.0f;
 
 
     [SerializeField] private Button closeButton = null;
     [SerializeField] private Transform closeTransform = null;
+    [SerializeField] private Button sp_closeButton = null;
+    [SerializeField] private Transform sp_closeTransform = null;
     [SerializeField] private Button openButton = null;
     [SerializeField] private Transform openTransform = null;
-    [SerializeField] private Image Exclamation_Mark;
-    [SerializeField]
-    private ExclamationMark_Move ex_scrpt;
-    // [SerializeField] private Image button_stop;
+    [SerializeField] private GameObject rogo = null;
 
-    private bool count;
+
 
     public int skin_click = 0;
 
@@ -36,14 +28,15 @@ public class Skin_Manager : MonoBehaviour
     {
         closeButton.onClick.AddListener(CloseSkin);
         openButton.onClick.AddListener(OpenSkin);
+        sp_closeButton.onClick.AddListener(CloseSpSkin);
     }
 
 
     private void CloseSkin()
     {
-        ex_scrpt.Mark_On();
+        rogo.gameObject.SetActive(true);
 
-    Sequence seq = DOTween.Sequence();
+        Sequence seq = DOTween.Sequence();
         // アニメーション追加
         seq.Append(closeTransform.DOScaleY(0.0f, _animtime));
 
@@ -64,13 +57,42 @@ public class Skin_Manager : MonoBehaviour
         });
 
 
-        count = false;
+
+
+    }
+
+    private void CloseSpSkin()
+    {
+
+        rogo.gameObject.SetActive(true);
+
+        Sequence seq = DOTween.Sequence();
+        // アニメーション追加
+        seq.Append(sp_closeTransform.DOScaleY(0.0f, _animtime));
+
+        seq.OnStart(() => {
+            // アニメーション開始時によばれる
+            Debug.Log("Animation Start");
+        });
+
+        seq.OnUpdate(() => {
+            // 対象の値が変更される度によばれる
+            Debug.Log("Animation Update");
+        });
+
+        seq.OnComplete(() => {
+            Debug.Log("Animation End");
+            seq.Complete();
+            // アニメーションが終了時によばれる
+        });
+
+
 
     }
 
     private void OpenSkin()
     {
-        ex_scrpt.Mark_Off();
+       
 
         if (Variable_Manager.Instance.GetSetPossessionCoin >= 5000)
         {
@@ -98,7 +120,7 @@ public class Skin_Manager : MonoBehaviour
             // アニメーションが終了時によばれる
         });
 
-        count = false;
+        rogo.gameObject.SetActive(false);
 
     }
 

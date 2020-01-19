@@ -19,7 +19,7 @@ public class Bill_Destroy : MonoBehaviour
     private int bill_attack_count = 0;
     // ビルオブザーバーの取得
     private Bill_Obsever bill_Obsever = null;
-    // ビルにレンダラー取得
+    // ビルのレンダラー取得
     private Renderer renderer = null;
     // ダメージ表現用
     private float damege = 0.5f;
