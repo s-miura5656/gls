@@ -9,7 +9,7 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private GameObject crash_score;
     private GameObject coincount;
-    public float coin_score;
+    public int coin_score;
     private Text coin_score_text;
     public int score = 0;
     private Variable_Manager coin_script;
@@ -56,11 +56,21 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private GameObject stage_open;
     [SerializeField]
+    private Transform open_image;
+    [SerializeField]
     private Image silver_up;
+    [SerializeField]
+    private Button close = null;
   
     private float pos_y;
     [SerializeField]
     private ParticleSystem paper = null;
+
+    public int reword_coin = 0;
+
+    [SerializeField] private GameObject[] stage_button = { null };
+    [SerializeField] private GameLevelData game_level_script = null;
+    private bool[] achievement_flag = { false };
 
     void Start()
     {
@@ -68,24 +78,36 @@ public class Coin_Manager : MonoBehaviour
 
         //獲得したコイン枚数 
         coin_score = Variable_Manager.Instance.GetSetCoin;
+        //coin_score = 1000;
 
 
         //破壊率
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
- 
+        //crash_score_rate = 30f;
+
+
         Variable_Manager.Instance.GetSetTotal_CrashRate += crash_score_rate;
         coin_score_text = crash_score.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
         CrashRate_Get();
 
-        reword_total.text = "×" + (int)bonus_score * 2;
+        reword_total.text = "×" + (int)coin_score * 2;
         paper.gameObject.SetActive(false);
+        
 
         if (Variable_Manager.Instance.GetSetDestructionRate == 100f)
         {
             paper.gameObject.SetActive(true);
         }
 
+        close.onClick.AddListener(Stage_close);
+
+
+            if (PlayerPrefs.GetFloat($"Stage_{Variable_Manager.Instance.Serect_Stage}_DestructionRateMax") >= game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage])
+            {
+                Silver_Rank_up();
+            }
+        
     }
 
     void Update()
@@ -94,14 +116,14 @@ public class Coin_Manager : MonoBehaviour
 
         if (score_up == true)
         {
-            Variable_Manager.Instance.GetSetPossessionCoin += (int)bonus_score;
+            Variable_Manager.Instance.GetSetPossessionCoin += coin_score;
             Coin_move();
             score_up = false;
         }
 
         total_text.text = " " + score;
-
     }
+
 
 
     public void CrashRate_Get()
@@ -165,7 +187,7 @@ public class Coin_Manager : MonoBehaviour
 
     private void Coin_move()
     {
-        int cs = (int)Mathf.Floor(bonus_score);
+        int cs = (int)Mathf.Floor(coin_score);
 
         DOTween.To(
             () => score,          // 何を対象にするのか
@@ -176,23 +198,25 @@ public class Coin_Manager : MonoBehaviour
 
         
 
-        Silver_Rank_up();
+       // Silver_Rank_up();
     }
 
 
     public void Calculation_Manager()
     {
-        after_score = (int)bonus_score * 2;
+        after_score = (int)score * 2;
         AftterGet_Manager();
     }
 
     public void AftterGet_Manager()
     {
+        reword_coin = (int)Mathf.Floor(coin_score) * 2;
+
         // 数値の変更
         DOTween.To(
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
-            after_score,          // 最終的な値
+            reword_coin,          // 最終的な値
             0.5f                  // アニメーション時間
         ).SetEase(Ease.OutCubic);
 
@@ -203,17 +227,27 @@ public class Coin_Manager : MonoBehaviour
 
     private void Silver_Rank_up()
     {
+
         stage_open.SetActive(true);
-        pos_y = silver_up.rectTransform.rotation.y;
+        
+
+        //Sequence seq = DOTween.Sequence();
+        //// アニメーション追加
+        //// seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f)).SetEase(Ease.InQuad);
+        //seq.Append(stage_open.transform.DORotate(new Vector3(0, 90, 0),1.0f));
+        //seq.OnComplete(() => 
+        //{
+        //    silver_up.gameObject.SetActive(false);
+        //    seq.Complete();
+        //});
+    }
+
+    private void Stage_close()
+    {
+        //pos_y = stage_open.rectTransform.rotation.y;
 
         Sequence seq = DOTween.Sequence();
         // アニメーション追加
-        // seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f)).SetEase(Ease.InQuad);
-        seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0),1.0f));
-        seq.OnComplete(() => 
-        {
-            silver_up.gameObject.SetActive(false);
-            seq.Complete();
-        });
+        seq.Append(open_image.DOScaleY(0.0f, 0.2f));
     }
 }
