@@ -100,13 +100,15 @@ public class ResultBotton_Manger : MonoBehaviour
 
     private void GetPossessionCoin()
     {
-        if (script.after_score != 0)
+        if (script.reword_coin != 0)
         {
-            Variable_Manager.Instance.GetSetPossessionCoin += (int)script.bonus_score;
+            Variable_Manager.Instance.GetSetPossessionCoin += script.coin_score;
+            Debug.Log("debug comment");
+
         }
         else
         {
-            
+           
         }
     }
 
