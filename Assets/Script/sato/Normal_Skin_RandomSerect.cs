@@ -65,7 +65,7 @@ public class Normal_Skin_RandomSerect : MonoBehaviour
             }
             else
             {
-                Lock_image[i].SetActive(true);
+                Lock_image[i].SetActive(false);
                 key_image[i].SetActive(true);
             }
         }

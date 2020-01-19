@@ -12,6 +12,7 @@ public class ExclamationMark_Move : MonoBehaviour
     private int coin = 0;
     //スキンを全て開いたかの確認
     private int all_open = 0;
+    private int move_coin = 5000;
 
 
     // Start is called before the first frame update
@@ -21,8 +22,7 @@ public class ExclamationMark_Move : MonoBehaviour
         Exclamation_Mark.gameObject.SetActive(false);
         coin = Variable_Manager.Instance.GetSetPossessionCoin;
 
-        if (coin >= 5000)
-        {
+        
             Exclamation_Mark.gameObject.SetActive(true);
 
             // DoTweenのシーケンス作成。
@@ -33,7 +33,7 @@ public class ExclamationMark_Move : MonoBehaviour
             seq.Append(Exclamation_Mark.DOScale(new Vector3(2, 2, 2), 1.0f));
             // シーケンスに拡縮処理を追加。
             seq.Append(Exclamation_Mark.DOScale(new Vector3(1, 1, 1), 1.0f));
-        }
+        
     }
 
     // Update is called once per frame
@@ -44,17 +44,16 @@ public class ExclamationMark_Move : MonoBehaviour
 
         all_open = Variable_Manager.Instance.Skin_All;
 
-            if (all_open == 1)
-            {
-                gameObject.SetActive(false);
-            }
+        if (all_open == 1)
+        {
+            Exclamation_Mark.gameObject.SetActive(false);
+        }
 
         if (all_open == 0)
         {
-            if (coin >= 5000)
+            if (coin >= move_coin)
             {
                 Exclamation_Mark.gameObject.SetActive(true);
-
             }
 
             else
@@ -62,6 +61,9 @@ public class ExclamationMark_Move : MonoBehaviour
 
             coin = Variable_Manager.Instance.GetSetPossessionCoin;
         }
+
+
+
     }
 
 
@@ -72,7 +74,7 @@ public class ExclamationMark_Move : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if(Variable_Manager.Instance.GetSetPossessionCoin >= 5000)
+        if(Variable_Manager.Instance.GetSetPossessionCoin >= move_coin)
         {
             gameObject.SetActive(true);
         }

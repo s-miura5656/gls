@@ -44,7 +44,7 @@ public class Stage_Select : MonoBehaviour
         coin = Variable_Manager.Instance.GetSetPossessionCoin;
         if (coin >= 5000)
         {
-            Exclamation_Mark.gameObject.SetActive(true);
+           // Exclamation_Mark.gameObject.SetActive(true);
         }
     }
 

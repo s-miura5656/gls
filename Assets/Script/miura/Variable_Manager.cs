@@ -238,6 +238,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.Save();
         PlayerPrefs.SetInt("skin_open", GetSetOpenSkin);
         PlayerPrefs.SetInt("skin_all", Skin_All);
+        PlayerPrefs.SetInt("sp_skin_open", Sp_GetSetOpenSkin);
+        PlayerPrefs.SetInt("sp_skin_all", Sp_Skin_All);
         PlayerPrefs.SetInt("silver_up", Silver_Up);
         PlayerPrefs.SetInt("gold_up", Gold_Up);
         PlayerPrefs.SetFloat("total_rate", GetSetTotal_CrashRate);
@@ -268,6 +270,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         //GetSetPossessionCoin = 100000;
         GetSetOpenSkin = PlayerPrefs.GetInt("skin_open");
         Skin_All = PlayerPrefs.GetInt("skin_all");
+        Sp_GetSetOpenSkin = PlayerPrefs.GetInt("sp_skin_open");
+        Sp_Skin_All = PlayerPrefs.GetInt("sp_skin_all");
         Silver_Up = PlayerPrefs.GetInt("silver_up");
         Gold_Up = PlayerPrefs.GetInt("gold_up");
         GetSetTotal_CrashRate = PlayerPrefs.GetFloat("total_rate");

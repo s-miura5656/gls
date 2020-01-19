@@ -35,6 +35,8 @@ public class Special_Skin_RandomSerect : MonoBehaviour
 
     private int sp_skin_all_open = 0;
 
+    private int skin_buy = 10000;
+
 
 
     void Start()
@@ -65,7 +67,7 @@ public class Special_Skin_RandomSerect : MonoBehaviour
             }
             else
             {
-                Lock_image[i].SetActive(true);
+                Lock_image[i].SetActive(false);
                 key_image[i].SetActive(true);
             }
         }
@@ -74,12 +76,12 @@ public class Special_Skin_RandomSerect : MonoBehaviour
     private void Update()
     {
         possession_coin = Variable_Manager.Instance.GetSetPossessionCoin;
-        if (possession_coin < 5000)
+        if (possession_coin < skin_buy)
         {
             block_buttton.SetActive(true);
         }
 
-        else if (possession_coin >= 5000)
+        else if (possession_coin >= skin_buy)
         {
             block_buttton.SetActive(false);
         }
@@ -88,7 +90,7 @@ public class Special_Skin_RandomSerect : MonoBehaviour
     public void Clik_Random()
     {
 
-        Variable_Manager.Instance.GetSetPossessionCoin -= 5000;
+        Variable_Manager.Instance.GetSetPossessionCoin -= skin_buy;
         open_numbers++;
         Variable_Manager.Instance.Sp_GetSetOpenSkin = open_numbers;
         randam_button.interactable = false;
