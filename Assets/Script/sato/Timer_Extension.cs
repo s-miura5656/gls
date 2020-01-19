@@ -132,9 +132,6 @@ public class Timer_Extension : MonoBehaviour
     /// </summary>
     private void TimeOut() 
     {
-        if (count_flag) 
-            return;
-
         ring.fillAmount -= Time.deltaTime / continue_time;
 
         if(ring.fillAmount <= 0.6)
