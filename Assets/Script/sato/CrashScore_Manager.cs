@@ -32,9 +32,8 @@ public class CrashScore_Manager : MonoBehaviour
     void Start()
     {
         crash_count = Variable_Manager.Instance.GetSetDestructionRate;
-        crash_count = 30;
         //Crash_Manager();
-        Crash_Bonusew();
+    
 
     }
 
@@ -45,77 +44,7 @@ public class CrashScore_Manager : MonoBehaviour
         crash_score_text.text = crash_count.ToString("f2") + " ％" ;
     }
 
-    //public void Crash_Manager()
-    //{
-    //    score = 0;
-    //    // 数値の変更
-    //    DOTween.To(
-    //        () => score,          // 何を対象にするのか
-    //        num => score = num,   // 値の更新
-    //        crash_count,           // 最終的な値
-    //        2.0f                  // アニメーション時間
-    //    ).SetEase(Ease.OutCubic);
-    //}
-
-
-    public void Crash_Bonusew()
-    {
-        //if(crash_count >= 0 && crash_count > 10)
-        //{
-        //    crash_rate = 0;
-        //}
-
-        //else if(crash_count >= 10 && crash_count > 20)
-        //{
-        //    crash_rate = 10;
-        //}
-
-        //else if (crash_count >= 20 && crash_count > 30)
-        //{
-        //    crash_rate = 20;
-        //}
-
-        //else if (crash_count >= 30 && crash_count > 40)
-        //{
-        //    crash_rate = 30;
-        //}
-
-        //else if (crash_count >= 40 && crash_count > 50)
-        //{
-        //    crash_rate = 40;
-        //}
-
-        //else if (crash_count >= 50 && crash_count > 60)
-        //{
-        //    crash_rate = 50;
-        //}
-
-        //else if (crash_count >= 60 && crash_count > 70)
-        //{
-        //    crash_rate = 60;
-        //}
-
-        //else if (crash_count >= 70 && crash_count > 80)
-        //{
-        //    crash_rate = 70;
-        //}
-
-        //else if (crash_count >= 80 && crash_count > 90)
-        //{
-        //    crash_rate = 80;
-        //}
-
-        //else if (crash_count >= 90 && crash_count <= 100)
-        //{
-        //    crash_rate = 90;
-        //}
-
-
-
-
-
-    }
-
+    
 
 }
 
