@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class Skin_RandomSerect : MonoBehaviour
+public class Normal_Skin_RandomSerect : MonoBehaviour
 {
 
     [SerializeField]
