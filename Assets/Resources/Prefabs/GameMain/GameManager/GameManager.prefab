@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destruction_rate: {fileID: 0}
   game_level_script: {fileID: 11400000, guid: 6fe3efb81f2908b42a9108fd0039d827, type: 2}
+  target_dest_rate: {fileID: 0}
 --- !u!114 &222127213754025413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,8 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27176931d6122ec46886dcc59a08f377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continue_button: {fileID: 0}
   timerButton: {fileID: 0}
   ring: {fileID: 0}
   time_manager_script: {fileID: 6469966206114064503}
   destruction_rate_script: {fileID: 1717271582861240550}
+  no_button: {fileID: 3065469888070919048, guid: 34b0e664c28824642a9122a25165b073,
+    type: 3}
