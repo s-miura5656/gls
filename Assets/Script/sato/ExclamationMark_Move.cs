@@ -6,14 +6,11 @@ using UnityEngine.UI;
 
 public class ExclamationMark_Move : MonoBehaviour
 {
-
-
-
     [SerializeField]
     RectTransform Exclamation_Mark;
-
+    ////所持コインの枚数
     private int coin = 0;
-    private bool skin_open;
+    //スキンを全て開いたかの確認
     private int all_open = 0;
 
 
@@ -22,6 +19,7 @@ public class ExclamationMark_Move : MonoBehaviour
     {
        
         Exclamation_Mark.gameObject.SetActive(false);
+        coin = Variable_Manager.Instance.GetSetPossessionCoin;
 
         if (coin >= 5000)
         {
@@ -57,21 +55,12 @@ public class ExclamationMark_Move : MonoBehaviour
             {
                 Exclamation_Mark.gameObject.SetActive(true);
 
-                // DoTweenのシーケンス作成。
-                Sequence seq = DOTween.Sequence();
-                // シーケンスの繰り返す回数をセット、-1で無限ループ
-                seq.SetLoops(-1);
-                // シーケンスに拡大処理を追加。
-                seq.Append(Exclamation_Mark.DOScale(new Vector3(2, 2, 2), 1.0f));
-                // シーケンスに拡縮処理を追加。
-                seq.Append(Exclamation_Mark.DOScale(new Vector3(1, 1, 1), 1.0f));
             }
 
             else
                 Exclamation_Mark.gameObject.SetActive(false);
 
             coin = Variable_Manager.Instance.GetSetPossessionCoin;
-
         }
     }
 

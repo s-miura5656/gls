@@ -7,14 +7,6 @@ using UnityEngine.UI;
 public class Skin_RandomSerect : MonoBehaviour
 {
 
-
-
-    //int state = 0;
-    //int lock_image_index = 0;
-    //int lock_image_count = 0;
-    //int lock_image_old_count = 0;
-
-
     [SerializeField]
     private GameObject[] Lock_image;
     [SerializeField]
@@ -27,17 +19,9 @@ public class Skin_RandomSerect : MonoBehaviour
     private int[] random_index;
     private int skin_rest;
 
-    float alpha_Sin;
-
 
     [SerializeField]
     private Button randam_button;
-
-    [SerializeField]
-    private Text use_coin_text;
-
-    [SerializeField]
-    private Variable_Manager coin_script;
     private int possession_coin;
     [SerializeField]
     private GameObject block_buttton;
@@ -56,9 +40,6 @@ public class Skin_RandomSerect : MonoBehaviour
     void Start()
     {
 
-        
-
-
         int number_Length = Variable_Manager.Instance.GetSkinData.SkinOpen.Length;
         open_numbers = Variable_Manager.Instance.GetSetOpenSkin;
         skin_all_open = Variable_Manager.Instance.Skin_All;
@@ -67,11 +48,10 @@ public class Skin_RandomSerect : MonoBehaviour
         {
             skin_open = Variable_Manager.Instance.GetSkinData.SkinOpen[i];
 
+            //画面のスキンを全て開放した際の処理
            if(skin_all_open == 1)
             {
                 randam_button.interactable = false;
-                use_coin_text.text = "SOLD OUT";
-                use_coin_text.fontSize = 70;
                 block_button.gameObject.SetActive(true);
                 sold_out.gameObject.SetActive(true);
                 randam_button.gameObject.SetActive(false);
@@ -103,9 +83,7 @@ public class Skin_RandomSerect : MonoBehaviour
         {
             block_buttton.SetActive(false);
         }
-        
-
-        }
+    }
 
     public void Clik_Random()
     {
@@ -154,13 +132,6 @@ public class Skin_RandomSerect : MonoBehaviour
         {
             // 指定した秒数待つ
             yield return new WaitForSecondsRealtime(curve[i % curve.length].value);
-            //yield return new WaitForSecondsRealtime(speed[i]);
-
-            // 同じ番号にならないようにする
-            //            while (preNumber == nextNumber)
-            //            {
-            //                nextNumber = Random.Range(0, Lock_image.Length);
-            //            }
 
             //　選ばれた番号を明るくする
             nextNumber = random_index[i % skin_rest];
@@ -170,13 +141,6 @@ public class Skin_RandomSerect : MonoBehaviour
                 Lock_image[random_index[j]].SetActive(enable);
             }
 
-            ////　選ばれた番号を明るくする
-            //for (int j = 0; j < Lock_image.Length; j++)
-            //{
-            //    var enable = j == nextNumber;
-            //    Lock_image[j].SetActive(enable);
-            //}
-
             preNumber = nextNumber;
         }
 
@@ -184,10 +148,6 @@ public class Skin_RandomSerect : MonoBehaviour
         key_image[nextNumber].SetActive(false);
 
         Variable_Manager.Instance.GetSkinData.SkinOpen[nextNumber] = true;
-
-        //Lock_image[nextNumber] = Variable_Manager.Instance.GetSetKey_image[];
-        //key_image[nextNumber] = Variable_Manager.Instance.GetSetKey_image[];
-
 
         if (skin_rest != 1)
         {
@@ -199,8 +159,6 @@ public class Skin_RandomSerect : MonoBehaviour
             block_button.gameObject.SetActive(true);
             sold_out.gameObject.SetActive(true);
             randam_button.gameObject.SetActive(false);
-            //use_coin_text.text = "SOLD OUT";
-            //use_coin_text.fontSize = 70;
             Variable_Manager.Instance.Skin_All = 1;
 
         }

@@ -15,7 +15,9 @@ public class CoinGet_Rewod : MonoBehaviour
     private RectTransform coin_get_reword_rect = null;
     //リワードのコールバックの設定
     private ShowAdCallbacks showAdRewardCallbacks = new ShowAdCallbacks();
+    //所持コインの枚数
     private int coin_now = 0;
+    //リワード押した後のコインの枚数
     private int after_coin = 0;
     //ボタンのブロックイメージ
     [SerializeField]
@@ -37,9 +39,9 @@ public class CoinGet_Rewod : MonoBehaviour
         // シーケンスの繰り返す回数をセット、-1で無限ループ
         seq.SetLoops(-1);
         // シーケンスに拡大処理を追加。
-        seq.Append(coin_get_reword_rect.DOScale(new Vector3(1.28f, 1.28f, 1.28f), 0.7f));
+        seq.Append(coin_get_reword_rect.DOScale(new Vector3(1.08f, 1.08f, 1.08f), 1.5f));
         // シーケンスに拡縮処理を追加。
-        seq.Append(coin_get_reword_rect.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 1.0f));
+        seq.Append(coin_get_reword_rect.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 1.3f));
     }
 
     void Update()
@@ -75,9 +77,9 @@ public class CoinGet_Rewod : MonoBehaviour
 
     private void Coin_Get()
     {
-        //上昇中にリワードを押されない処理
+        //上昇中にリワードを押させない処理
         block_reword.gameObject.SetActive(true);
-        after_coin = Variable_Manager.Instance.GetSetPossessionCoin + 2500;
+        after_coin = Variable_Manager.Instance.GetSetPossessionCoin + 250000;
 
         DOTween.To(
        () => Variable_Manager.Instance.GetSetPossessionCoin,          // 何を対象にするのか
@@ -87,8 +89,11 @@ public class CoinGet_Rewod : MonoBehaviour
        )
        .SetEase(Ease.Linear)
        .OnComplete(() => {
-        block_reword.gameObject.SetActive(false);;
+        Variable_Manager.Instance.GetSetPossessionCoin = after_coin;
+        block_reword.gameObject.SetActive(false);
        });
 
     }
+
+
 }
