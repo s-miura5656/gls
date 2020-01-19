@@ -57,6 +57,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int stage_serect = 0;
     // 生成するステージのレベル
     private int stage_level = 0;
+    //ステージの開放数確認
+    private int stage_last = 0;
     
     private int vib = 0;
 
@@ -228,6 +230,13 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         set { gold_up = value; }
     }
 
+    public int Stage_Now
+    {
+        get { return stage_last; }
+        set { stage_last = value; }
+    }
+    
+
     public void Save()
     {
         skinData.SkinDataSave();
@@ -244,6 +253,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.SetInt("gold_up", Gold_Up);
         PlayerPrefs.SetFloat("total_rate", GetSetTotal_CrashRate);
         PlayerPrefs.SetInt("rank", GetSetRank);
+        PlayerPrefs.SetInt("stage_last", Stage_Now);
 
 
         play_time = Time.time;
@@ -276,6 +286,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         Gold_Up = PlayerPrefs.GetInt("gold_up");
         GetSetTotal_CrashRate = PlayerPrefs.GetFloat("total_rate");
         GetSetRank = PlayerPrefs.GetInt("rank");
+        Stage_Now = PlayerPrefs.GetInt("stage_last");
 
 
 
