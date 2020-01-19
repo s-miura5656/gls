@@ -72,6 +72,9 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField] private GameLevelData game_level_script = null;
     private bool[] achievement_flag = { false };
 
+    public int play_game_number = 0;
+
+    private int open_stage = 0;
     void Start()
     {
         rank_now = Variable_Manager.Instance.GetSetRank;
@@ -103,10 +106,22 @@ public class Coin_Manager : MonoBehaviour
         close.onClick.AddListener(Stage_close);
 
 
+
+
+        Variable_Manager.Instance.Stage_Now = open_stage;
+
         if (PlayerPrefs.GetInt($"AchievementRateFlag_{ Variable_Manager.Instance.Serect_Stage }") != 1)
             if (PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax") >= game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage])
             {
                 Silver_Rank_up();
+
+
+                for (int i = 0; i < 24; i++)
+                {
+                    open_stage += PlayerPrefs.GetInt($"AchievementRateFlag_{ i }");
+                    UnityAnaltics.Instance.PLay_times_number(open_stage);
+
+                }
             }
     }
 

@@ -668,4 +668,169 @@ public class UnityAnaltics : SingletonMonoBehaviour<UnityAnaltics>
         }
     }
 
+    public void PLay_times_number(int play_time_number)
+    {
+        if (play_time_number == 1)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 1 }
+            });
+        }
+
+        if (play_time_number == 2)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 2 }
+            });
+        }
+        if (play_time_number == 3)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 3 }
+            });
+        }
+
+        if (play_time_number == 4)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 4 }
+            });
+        }
+
+        if (play_time_number == 5)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 5 }
+            });
+        }
+
+        if (play_time_number == 6)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 6 }
+            });
+        }
+
+        if (play_time_number == 7)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 7 }
+            });
+        }
+
+        if (play_time_number == 8)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 8 }
+            });
+        }
+
+        if (play_time_number == 9)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 9 }
+            });
+        }
+
+        if (play_time_number == 10)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 10 }
+            });
+        }
+
+        if (play_time_number == 10)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 10 }
+            });
+        }
+
+        if (play_time_number == 11)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 11 }
+            });
+        }
+
+        if (play_time_number == 12)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 12 }
+            });
+        }
+
+        if (play_time_number == 13)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 13 }
+            });
+        }
+
+        if (play_time_number == 14)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 14 }
+            });
+        }
+
+        if (play_time_number == 15)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 15 }
+            });
+        }
+
+        if (play_time_number == 16)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 16 }
+            });
+        }
+
+        if (play_time_number == 17)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 17 }
+            });
+        }
+
+        if (play_time_number == 18)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 18 }
+            });
+        }
+
+        if (play_time_number == 19)
+        {
+            SendAnalytics("stage_number_last", new Dictionary<string, object>
+            {
+                { "last_stage", 19 }
+            });
+        }
+
+    }
+
+
+
 }
