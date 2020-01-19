@@ -114,7 +114,6 @@ public class Timer_Extension : MonoBehaviour
             on_time = 1;
             UnityAnaltics.Instance.Timer_on(on_time);
             on_time = 0;
-
             no_button.gameObject.SetActive(false);
         }
         else
@@ -122,7 +121,6 @@ public class Timer_Extension : MonoBehaviour
             time_manager_script.ChangeResult();
             destruction_rate_script.SetDestructionRate();
             timerButton.transform.parent.gameObject.SetActive(false);
-
             no_button.gameObject.SetActive(false);
         }
     }
@@ -134,27 +132,27 @@ public class Timer_Extension : MonoBehaviour
     {
         ring.fillAmount -= Time.deltaTime / continue_time;
 
-        if(ring.fillAmount <= 0.6)
+        if(ring.fillAmount <= 0.6f)
         {
             no_button.gameObject.SetActive(true);
         }
 
-        if (ring.fillAmount <= 0)
+        if (ring.fillAmount <= 0 && load_result)
         {
-            ContinueInput(false);
             load_result = false;
             off_time = 1;
             UnityAnaltics.Instance.Timer_off(off_time);
             off_time = 0;
+            ContinueInput(false);
         }
     }
 
     private void No_Push()
     {
-        time_manager_script.ChangeResult();
+        load_result = false;
         destruction_rate_script.SetDestructionRate();
         timerButton.transform.parent.gameObject.SetActive(false);
-
         no_button.gameObject.SetActive(false);
+        time_manager_script.ChangeResult();
     }
 }

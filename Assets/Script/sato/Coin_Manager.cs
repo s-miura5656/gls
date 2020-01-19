@@ -103,11 +103,11 @@ public class Coin_Manager : MonoBehaviour
         close.onClick.AddListener(Stage_close);
 
 
-            if (PlayerPrefs.GetFloat($"Stage_{Variable_Manager.Instance.Serect_Stage}_DestructionRateMax") >= game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage])
+        if (PlayerPrefs.GetInt($"AchievementRateFlag_{ Variable_Manager.Instance.Serect_Stage }") != 1)
+            if (PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax") >= game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage])
             {
                 Silver_Rank_up();
             }
-        
     }
 
     void Update()
