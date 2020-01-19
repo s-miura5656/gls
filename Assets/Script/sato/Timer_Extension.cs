@@ -48,7 +48,6 @@ public class Timer_Extension : MonoBehaviour
         showAdTimerCallbacks.finishCallback += VideoRerwardTimer;
 
         timerButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdTimerCallbacks));
-        //timerButton.onClick.AddListener(CountFlag);
         no_button.onClick.AddListener(No_Push);
     }
 
@@ -92,16 +91,12 @@ public class Timer_Extension : MonoBehaviour
         else if (showResult == ShowResult.Failed)
         {
             // 広告読み込みエラー
-            //ContinueInput(false);
             
-            //load_result = false;
         }
         else if (showResult == ShowResult.Skipped)
         {
             // 広告をスキップした時
-            //ContinueInput(false);
-
-            //load_result = false;
+           
         }
     }
 
@@ -155,11 +150,6 @@ public class Timer_Extension : MonoBehaviour
             UnityAnaltics.Instance.Timer_off(off_time);
             off_time = 0;
         }
-    }
-
-    private void CountFlag() 
-    {
-        count_flag = true;
     }
 
     private void No_Push()
