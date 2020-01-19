@@ -7,7 +7,7 @@ using DG.Tweening;
 public class Coin_Manager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject crash_score;
+    private GameObject coin_total_text;
     private GameObject coincount;
     public int coin_score;
     private Text coin_score_text;
@@ -86,8 +86,8 @@ public class Coin_Manager : MonoBehaviour
         //crash_score_rate = 30f;
 
 
-        Variable_Manager.Instance.GetSetTotal_CrashRate += crash_score_rate;
-        coin_score_text = crash_score.GetComponent<Text>();
+        //Variable_Manager.Instance.GetSetTotal_CrashRate += crash_score_rate;
+        coin_score_text = coin_total_text.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
         CrashRate_Get();
 
