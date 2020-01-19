@@ -59,8 +59,8 @@ public class Coin_Manager : MonoBehaviour
     private Image silver_up;
   
     private float pos_y;
-
-
+    [SerializeField]
+    private ParticleSystem paper = null;
 
     void Start()
     {
@@ -68,19 +68,23 @@ public class Coin_Manager : MonoBehaviour
 
         //獲得したコイン枚数 
         coin_score = Variable_Manager.Instance.GetSetCoin;
-        coin_score = 1000;
+
 
         //破壊率
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
-        crash_score_rate = 30;
+ 
         Variable_Manager.Instance.GetSetTotal_CrashRate += crash_score_rate;
         coin_score_text = crash_score.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
         CrashRate_Get();
 
         reword_total.text = "×" + (int)bonus_score * 2;
+        paper.gameObject.SetActive(false);
 
-        
+        if (Variable_Manager.Instance.GetSetDestructionRate == 100f)
+        {
+            paper.gameObject.SetActive(true);
+        }
 
     }
 
@@ -170,7 +174,9 @@ public class Coin_Manager : MonoBehaviour
             0.5f                  // アニメーション時間
         ).SetEase(Ease.Linear);
 
-       Silver_Rank_up();
+        
+
+        Silver_Rank_up();
     }
 
 

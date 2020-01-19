@@ -19,7 +19,7 @@ public class Timer_Extension : MonoBehaviour
     private ShowAdCallbacks showAdTimerCallbacks = new ShowAdCallbacks();
 
     // ボタンが出ている時間
-    private float continue_time = 4f;
+    private float continue_time = 8f;
     // ボタン表示のカウントダウンのフラグ
     private bool count_flag = false;
     // リザルトへ遷移するまでの時間のカウント
@@ -34,12 +34,21 @@ public class Timer_Extension : MonoBehaviour
     private int off_time = 0;
     // 破壊率100%
     private float dest_rate_max = 100f;
+
+    // Noボタンを出す時間
+    private float no_time = 8f;
+    // Noボタンが出ている時間
+    [SerializeField]
+    private Button no_button = null;
+
     void Start()
     {
+        no_button.gameObject.SetActive(false);
+
         showAdTimerCallbacks.finishCallback += VideoRerwardTimer;
 
         timerButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdTimerCallbacks));
-        timerButton.onClick.AddListener(CountFlag);
+        no_button.onClick.AddListener(No_Push);
     }
 
     // Update is called once per frame
@@ -82,16 +91,12 @@ public class Timer_Extension : MonoBehaviour
         else if (showResult == ShowResult.Failed)
         {
             // 広告読み込みエラー
-            ContinueInput(false);
             
-            load_result = true;
         }
         else if (showResult == ShowResult.Skipped)
         {
             // 広告をスキップした時
-            ContinueInput(false);
-
-            load_result = true;
+           
         }
     }
 
@@ -109,12 +114,16 @@ public class Timer_Extension : MonoBehaviour
             on_time = 1;
             UnityAnaltics.Instance.Timer_on(on_time);
             on_time = 0;
+
+            no_button.gameObject.SetActive(false);
         }
         else
         {
             time_manager_script.ChangeResult();
             destruction_rate_script.SetDestructionRate();
             timerButton.transform.parent.gameObject.SetActive(false);
+
+            no_button.gameObject.SetActive(false);
         }
     }
 
@@ -128,6 +137,11 @@ public class Timer_Extension : MonoBehaviour
 
         ring.fillAmount -= Time.deltaTime / continue_time;
 
+        if(ring.fillAmount <= 0.6)
+        {
+            no_button.gameObject.SetActive(true);
+        }
+
         if (ring.fillAmount <= 0)
         {
             ContinueInput(false);
@@ -138,8 +152,12 @@ public class Timer_Extension : MonoBehaviour
         }
     }
 
-    private void CountFlag() 
+    private void No_Push()
     {
-        count_flag = true;
+        time_manager_script.ChangeResult();
+        destruction_rate_script.SetDestructionRate();
+        timerButton.transform.parent.gameObject.SetActive(false);
+
+        no_button.gameObject.SetActive(false);
     }
 }
