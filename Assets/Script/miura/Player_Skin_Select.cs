@@ -19,7 +19,8 @@ public class Player_Skin_Select : MonoBehaviour
         childObject.transform.localScale *= gameObject.transform.localScale.y;
         childObject.transform.parent = this.transform;
 
-        if (Variable_Manager.Instance.GetSetAvatarNumber == 9)
+        if (Variable_Manager.Instance.GetSetAvatarNumber == 12 || 
+            Variable_Manager.Instance.GetSetAvatarNumber == 14)
         {
             capsule_collider.enabled = true;
             sphere_collider.enabled = false;
