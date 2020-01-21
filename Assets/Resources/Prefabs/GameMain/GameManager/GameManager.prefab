@@ -51,7 +51,7 @@ MonoBehaviour:
   main_camera: {fileID: 0}
   player: {fileID: 0}
   city: {fileID: 0}
-  gameLevelData: {fileID: 0}
+  gameLevelData: {fileID: 11400000, guid: 6fe3efb81f2908b42a9108fd0039d827, type: 2}
   player_parametor_script: {fileID: 11400000, guid: 979ff0ccf58148e458676db8ad1ea1a6,
     type: 2}
 --- !u!114 &6469966206114064502
@@ -67,16 +67,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  player_get_exp_script: {fileID: 0}
+  player_get_exp_script: {fileID: 8535278035699483302}
   gage_canvas: {fileID: 0}
   exp_slider: {fileID: 0}
   level_up_text: {fileID: 0}
-  time_script: {fileID: 0}
-  game_level_script: {fileID: 0}
+  time_script: {fileID: 6469966206114064503}
+  game_level_script: {fileID: 6469966206114064498}
   bill_level_script: {fileID: 0}
-  level_up_effect_obj: {fileID: 0}
+  level_up_effect_obj: {fileID: 6402442665260626554, guid: 3784107c5dab5df4d8aea173b122ece7,
+    type: 3}
   camera_scipt: {fileID: 0}
-  player_parametor: {fileID: 0}
+  player_parametor: {fileID: 11400000, guid: 979ff0ccf58148e458676db8ad1ea1a6, type: 2}
 --- !u!114 &6469966206114064503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232b5beac200e2b46ac80252f1ffd2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level_data_script: {fileID: 0}
+  level_data_script: {fileID: 11400000, guid: 6fe3efb81f2908b42a9108fd0039d827, type: 2}
 --- !u!114 &1717271582861240550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9eadd88bae985f4785d01e1914e6b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dest_text_size: {fileID: 0}
   destruction_rate: {fileID: 0}
   game_level_script: {fileID: 11400000, guid: 6fe3efb81f2908b42a9108fd0039d827, type: 2}
   target_dest_rate: {fileID: 0}
