@@ -58,7 +58,7 @@ public class ResultBotton_Manger : MonoBehaviour
         showAdInterstitialCallbacks.finishCallback += InterstitialResult;
 
 
-        rewardButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdRewardCallbacks));
+        rewardButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoRewardResult(showAdRewardCallbacks));
         interstitialButton.onClick.AddListener(() => ShowInterstitial());
 
         interstitialButton.gameObject.SetActive(false);

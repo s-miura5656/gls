@@ -31,7 +31,7 @@ public class CoinGet_Rewod : MonoBehaviour
         // ShowAdCallbacksにコールバックを設定
         showAdRewardCallbacks.finishCallback += VideoRerwardResult;
         // リザルトボタンを押したらコールバックを呼び出す
-        coin_get_reword.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdRewardCallbacks));
+        coin_get_reword.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoRewardSkin(showAdRewardCallbacks));
 
         
         // DoTweenのシーケンス作成。
