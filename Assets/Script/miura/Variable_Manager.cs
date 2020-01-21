@@ -253,7 +253,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.SetInt("gold_up", Gold_Up);
         PlayerPrefs.SetFloat("total_rate", GetSetTotal_CrashRate);
         PlayerPrefs.SetInt("rank", GetSetRank);
-        PlayerPrefs.SetInt("stage_last", Stage_Now);
+        //PlayerPrefs.SetInt("stage_last", Stage_Now);
 
 
         play_time = Time.time;
@@ -286,7 +286,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         Gold_Up = PlayerPrefs.GetInt("gold_up");
         GetSetTotal_CrashRate = PlayerPrefs.GetFloat("total_rate");
         GetSetRank = PlayerPrefs.GetInt("rank");
-        Stage_Now = PlayerPrefs.GetInt("stage_last");
+        //Stage_Now = PlayerPrefs.GetInt("stage_last");
 
 
 

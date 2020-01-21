@@ -63,8 +63,7 @@ public class Coin_Manager : MonoBehaviour
     private Button close = null;
   
     private float pos_y;
-    [SerializeField]
-    private ParticleSystem paper = null;
+    
 
     public int reword_coin = 0;
 
@@ -95,13 +94,9 @@ public class Coin_Manager : MonoBehaviour
         CrashRate_Get();
 
         reword_total.text = "×" + (int)coin_score * 2;
-        paper.gameObject.SetActive(false);
+       
         
 
-        if (Variable_Manager.Instance.GetSetDestructionRate == 100f)
-        {
-            paper.gameObject.SetActive(true);
-        }
 
         close.onClick.AddListener(Stage_close);
 
@@ -118,10 +113,10 @@ public class Coin_Manager : MonoBehaviour
 
                 for (int i = 0; i < 24; i++)
                 {
-                    open_stage += PlayerPrefs.GetInt($"AchievementRateFlag_{ i }");
-                    UnityAnaltics.Instance.PLay_times_number(open_stage);
-
+                    open_stage += PlayerPrefs.GetInt($"AchievementRateFlag_{ i }");                   
                 }
+
+                UnityAnaltics.Instance.PLay_times_number(open_stage);
             }
     }
 
@@ -245,16 +240,6 @@ public class Coin_Manager : MonoBehaviour
 
         stage_open.SetActive(true);
         
-
-        //Sequence seq = DOTween.Sequence();
-        //// アニメーション追加
-        //// seq.Append(silver_up.transform.DORotate(new Vector3(0, 90, 0), 1.0f)).SetEase(Ease.InQuad);
-        //seq.Append(stage_open.transform.DORotate(new Vector3(0, 90, 0),1.0f));
-        //seq.OnComplete(() => 
-        //{
-        //    silver_up.gameObject.SetActive(false);
-        //    seq.Complete();
-        //});
     }
 
     private void Stage_close()
