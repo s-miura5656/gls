@@ -11,23 +11,22 @@ public class UnityAdsUtility : SingletonMonoBehaviour<UnityAdsUtility>
     private static string googlePlayStoreGameId = "3356877";
     private static string bannerPplacementId = "banner_test";
     private static string rewardVideoPplacementId = "rewardedVideo";
+    private static string rewardVideoPplacementId2 = "coin_reword";
+    private static string rewardVideoPplacementId3 = "timer_reword";
     private static string interstitialPplacementId = "InterstitialVideo";
 
     [SerializeField] private bool testMode = true;
     private string _gameId = "";
-    private UnityAdsBanner unityAdsBanner = null;
-    private UnityAdsVideoReward unityAdsVideoReward = null;
-    private UnityAdsInterstitial unityAdsInterstitial = null;
+    [SerializeField] private UnityAdsBanner unityAdsBanner = null;
+    [SerializeField] private UnityAdsVideoReward unityAdsVideoRewardResult = null;
+    [SerializeField] private UnityAdsVideoReward unityAdsVideoRewardSkin = null;
+    [SerializeField] private UnityAdsVideoReward unityAdsVideoRewardTimer = null;
+    [SerializeField] private UnityAdsInterstitial unityAdsInterstitial = null;
     
     protected override void Awake()
     {
         //singletonクラスのAwakeを呼び出す。
         base.Awake();
-
-        // バナーとリワードのクラスを取得
-        unityAdsBanner = GetComponent<UnityAdsBanner>();
-        unityAdsVideoReward = GetComponent<UnityAdsVideoReward>();
-        unityAdsInterstitial = GetComponent<UnityAdsInterstitial>();
 
         // 初期化処理
         InitializeAds();
@@ -52,16 +51,37 @@ public class UnityAdsUtility : SingletonMonoBehaviour<UnityAdsUtility>
         unityAdsBanner.InitializeBanner(bannerPplacementId);
 
         // 動画リワードの初期化処理
-        unityAdsVideoReward.InitializeVideoReward(rewardVideoPplacementId);
+        unityAdsVideoRewardResult.InitializeVideoReward(rewardVideoPplacementId);
+
+        // 動画リワードの初期化処理
+        unityAdsVideoRewardSkin.InitializeVideoReward(rewardVideoPplacementId2);
+
+        // 動画リワードの初期化処理
+        unityAdsVideoRewardTimer.InitializeVideoReward(rewardVideoPplacementId3);
 
         // インタースティシャルの初期化
         unityAdsInterstitial.InitializeVideoReward(interstitialPplacementId);
     }
 
-    public void ShowVideoReward(ShowAdCallbacks showAdCallbacks)
+    public void ShowVideoRewardResult(ShowAdCallbacks showAdCallbacks)
     {
         // 動画リワードの再生
-        unityAdsVideoReward.ShowAd(showAdCallbacks);
+        unityAdsVideoRewardResult.ShowAd(showAdCallbacks);
+        Debug.Log("result");
+    }
+
+    public void ShowVideoRewardSkin(ShowAdCallbacks showAdCallbacks)
+    {
+        // 動画リワードの再生
+        unityAdsVideoRewardSkin.ShowAd(showAdCallbacks);
+        Debug.Log("skin");
+    }
+
+    public void ShowVideoRewardTimer(ShowAdCallbacks showAdCallbacks)
+    {
+        // 動画リワードの再生
+        unityAdsVideoRewardTimer.ShowAd(showAdCallbacks);
+        Debug.Log("timer");
     }
 
     public void ShowInterstitialVideo(ShowAdCallbacks showAdCallbacks)

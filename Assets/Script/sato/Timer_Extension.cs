@@ -47,7 +47,7 @@ public class Timer_Extension : MonoBehaviour
 
         showAdTimerCallbacks.finishCallback += VideoRerwardTimer;
 
-        timerButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoReward(showAdTimerCallbacks));
+        timerButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoRewardTimer(showAdTimerCallbacks));
         no_button.onClick.AddListener(No_Push);
     }
 
