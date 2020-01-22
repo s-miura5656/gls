@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4690560538056614335}
   m_Layer: 0
-  m_Name: Game_18
+  m_Name: Game_21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1266,6 +1266,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1504714972022092492, guid: e44d4d0395885be4c88a36b9720f09f0,
+        type: 3}
+      propertyPath: player_controller_move_script
+      value: 
+      objectReference: {fileID: 2555214422214759553}
     - target: {fileID: 2706118229610686234, guid: e44d4d0395885be4c88a36b9720f09f0,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1834,6 +1839,18 @@ Rigidbody:
     type: 3}
   m_PrefabInstance: {fileID: 8271364181566023727}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2555214422214759553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5889644109147225262, guid: 7f7d349b936e27643abad6a849743e70,
+    type: 3}
+  m_PrefabInstance: {fileID: 8271364181566023727}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555214422214759565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69772163a58f874cb25db015fdae746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8779947216379764249
 PrefabInstance:
   m_ObjectHideFlags: 0
