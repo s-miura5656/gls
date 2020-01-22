@@ -10,6 +10,8 @@ public class ResultBotton_Manger : MonoBehaviour
 {
     [SerializeField]
     private Text next_game;
+    [SerializeField]
+    private Button next = null;
 
 
     [SerializeField]
@@ -51,6 +53,7 @@ public class ResultBotton_Manger : MonoBehaviour
     void Start()
     {
         interstitialButton.gameObject.SetActive(false);
+        next.gameObject.SetActive(false);
 
 
         // ShowAdCallbacksにコールバックを設定
@@ -60,6 +63,7 @@ public class ResultBotton_Manger : MonoBehaviour
 
         rewardButton.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoRewardResult(showAdRewardCallbacks));
         interstitialButton.onClick.AddListener(() => ShowInterstitial());
+        next.onClick.AddListener(() => ShowInterstitial());
 
         interstitialButton.gameObject.SetActive(false);
 
@@ -121,7 +125,8 @@ public class ResultBotton_Manger : MonoBehaviour
             var coin_script = coin_object.GetComponent<Coin_Manager>();
             coin_text.gameObject.SetActive(false);
             Advertisement_Bottoun.SetActive(false);
-            next_game.text = "NEXT";
+            next_game.gameObject.SetActive(false);
+            next.gameObject.SetActive(true);
 
             coin_script.Calculation_Manager();
             int push_rate = 0;
@@ -147,21 +152,4 @@ public class ResultBotton_Manger : MonoBehaviour
         Loading.SetActive(true);
     }
 
-    public void PushBotton()
-    {
-        //var recttransform_2 = back.GetComponent<RectTransform>();
-        //recttransform_2.DOScale(
-        //      push_scale,　　//終了時点のScale
-        //  push_animtime 　　　　　　//時間
-        //       ).SetEase(Ease.Linear);
-    }
-
-    public void LeaveBotton()
-    {
-        //var recttransform_2 = back.GetComponent<RectTransform>();
-        //recttransform_2.DOScale(
-        //     leave_scale,　　//終了時点のScale
-        //leave_animtime  //時間
-        //       ).SetEase(Ease.InCirc);
-    }
 }
