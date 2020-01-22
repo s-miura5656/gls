@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3162,7 +3162,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116763611954944076}
-  - component: {fileID: 116763611954944114}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -3239,20 +3238,6 @@ MonoBehaviour:
   new_record: {fileID: 116763611954944029}
   new_record_image: {fileID: 116763611954944061}
   scale: 1
---- !u!114 &116763611954944114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116763611954944109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b175b67c0f3124291d0c79d601b23f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coin_double_reword_rect: {fileID: 116763611954944079}
-  coin_double_text_rect: {fileID: 116763611954944077}
 --- !u!1 &116763611954944115
 GameObject:
   m_ObjectHideFlags: 0
