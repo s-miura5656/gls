@@ -28,14 +28,6 @@ public class Finger_Move : MonoBehaviour
         // シーケンスに拡縮処理を追加。
         seq.Append(play_button.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 1.0f));
 
-        //DOTween.ToAlpha(
-        //       () => finger_mark.color,
-        //       color => finger_mark.color = color,
-        //       0.0f, // 目標値
-        //       scale // 所要時間
-        //             //Random.Range(0.0f, 0.2f), // 目標値
-        //             //Random.Range(0.5f, 0.5f) // 所要時間
-        //   ).SetLoops(-1, LoopType.Yoyo);
     }
 
     // Update is called once per frame

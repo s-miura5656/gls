@@ -34,7 +34,7 @@ public class Coin_Manager : MonoBehaviour
     private float crash_score_rate;
     private int crash_rate;
     public float bonus_score;
-
+   
 
     [SerializeField]
     private Text bouns_text;
@@ -63,7 +63,7 @@ public class Coin_Manager : MonoBehaviour
     private Button close = null;
   
     private float pos_y;
-    
+    private bool clear = false;
 
     public int reword_coin = 0;
 
@@ -91,7 +91,6 @@ public class Coin_Manager : MonoBehaviour
         //Variable_Manager.Instance.GetSetTotal_CrashRate += crash_score_rate;
         coin_score_text = coin_total_text.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
-        CrashRate_Get();
 
         reword_total.text = "×" + (int)coin_score * 2;
        
@@ -100,7 +99,7 @@ public class Coin_Manager : MonoBehaviour
 
         close.onClick.AddListener(Stage_close);
 
-
+        stage_open.gameObject.SetActive(false);
 
 
         Variable_Manager.Instance.Stage_Now = open_stage;
@@ -108,8 +107,7 @@ public class Coin_Manager : MonoBehaviour
         if (PlayerPrefs.GetInt($"AchievementRateFlag_{ Variable_Manager.Instance.Serect_Stage }") != 1)
             if (PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax") >= game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage])
             {
-                Silver_Rank_up();
-
+                clear = true;
 
                 for (int i = 0; i < 24; i++)
                 {
@@ -135,66 +133,6 @@ public class Coin_Manager : MonoBehaviour
     }
 
 
-
-    public void CrashRate_Get()
-    {
-        if (crash_score_rate >= 100)
-        {
-            bonus_score = coin_score * 2.0f;
-            bouns = 2.0f;       
-        }
-        else if (crash_score_rate >= 90)
-        {
-            bonus_score = coin_score * 1.9f;
-            bouns = 1.9f;
-        }
-        else if (crash_score_rate >= 80)
-        {
-            bonus_score = coin_score * 1.8f;
-            bouns = 1.8f;
-        }
-        else if (crash_score_rate >= 70)
-        {
-            bonus_score = coin_score * 1.7f;
-            bouns = 1.7f;
-        }
-        else if (crash_score_rate >= 60)
-        {
-            bonus_score = coin_score * 1.6f;
-            bouns = 1.6f;
-        }
-        else if (crash_score_rate >= 50)
-        {
-            bonus_score = coin_score * 1.5f;
-            bouns = 1.5f;
-        }
-        else if (crash_score_rate >= 40)
-        {
-            bonus_score = coin_score * 1.4f;
-            bouns = 1.4f;
-        }
-        else if (crash_score_rate >= 30)
-        {
-            bonus_score = coin_score * 1.3f;
-            bouns = 1.3f;
-        }
-        else if (crash_score_rate >= 20)
-        {
-            bonus_score = coin_score * 1.2f;
-            bouns = 1.2f;
-        }
-        else if (crash_score_rate >= 10)
-        {
-            bonus_score = coin_score * 1.1f;
-            bouns = 1.1f;
-        }
-        else
-        {
-            bonus_score = coin_score * 1.0f;
-            bouns = 1.0f;
-        }
-    }
-
     private void Coin_move()
     {
         int cs = (int)Mathf.Floor(coin_score);
@@ -203,12 +141,15 @@ public class Coin_Manager : MonoBehaviour
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
             cs,                  // 最終的な値
-            0.5f                  // アニメーション時間
-        ).SetEase(Ease.Linear);
+            1.0f                  // アニメーション時間
+        ).SetEase(Ease.OutCubic)
+        .OnComplete(() => {
+            if(clear)
+            Silver_Rank_up(); 
+        });
+
 
         
-
-       // Silver_Rank_up();
     }
 
 
@@ -236,16 +177,12 @@ public class Coin_Manager : MonoBehaviour
     }
 
     private void Silver_Rank_up()
-    {
-
-        stage_open.SetActive(true);
-        
+    {       
+       stage_open.SetActive(true); 
     }
 
     private void Stage_close()
     {
-        //pos_y = stage_open.rectTransform.rotation.y;
-
         Sequence seq = DOTween.Sequence();
         // アニメーション追加
         seq.Append(open_image.DOScaleY(0.0f, 0.2f));
