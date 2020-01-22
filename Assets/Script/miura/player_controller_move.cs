@@ -177,6 +177,8 @@ public class player_controller_move : MonoBehaviour
         if (transform.position.y <= -100f)
         {
             transform.position = player_default_pos + new Vector3(0, transform.localScale.y / 2f, 0);
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
 
