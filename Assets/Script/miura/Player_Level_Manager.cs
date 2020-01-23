@@ -64,6 +64,14 @@ public class Player_Level_Manager : MonoBehaviour
             player_scale[i] = Vector3.one * player_parametor.PlayerScale[i];
         }
 
+        if (Variable_Manager.Instance.GetSetAvatarNumber == 13)
+        {
+            player_level = 5;
+            gage_canvas.transform.localScale = default_gage_size * player_level;
+            player.transform.DOScale(player_scale[player_level - 1], 2f);
+            camera_scipt.ZoomCamera(player_level);
+        }
+
         player = game_level_script.GetPlayer();
 
         player.transform.localScale = player_scale[0];
