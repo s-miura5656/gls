@@ -31,6 +31,8 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private float total_rate = 0;
     //ランク確認
     private int rank = 1;
+    //ランク確認
+    private int vibrate_now = 0;
 
     //シルバーランクupの表示の確認
     private int silver_up = 0;
@@ -107,6 +109,14 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     {
         get { return vibrate_state; }
         set { vibrate_state = value; }
+
+    }
+
+    public int GetSetVibrate_int
+    {
+        get { return vibrate_now; }
+        set { vibrate_now = value; }
+
     }
 
     /// <summary>
@@ -259,6 +269,18 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         play_time = Time.time;
         Debug.Log(play_time);
 
+        if (vibrate_state)
+        {
+            vibrate_now = 0;
+            PlayerPrefs.SetInt("vibrate_now", GetSetVibrate_int);
+        }
+
+        else
+        {
+            vibrate_now = 1;
+            PlayerPrefs.SetInt("vibrate_now", GetSetVibrate_int);
+        }
+
 
 
         UnityAnaltics.Instance.open_number();
@@ -287,6 +309,17 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         GetSetTotal_CrashRate = PlayerPrefs.GetFloat("total_rate");
         GetSetRank = PlayerPrefs.GetInt("rank");
         //Stage_Now = PlayerPrefs.GetInt("stage_last");
+        GetSetVibrate_int = PlayerPrefs.GetInt("vibrate_now");
+
+        if (vibrate_now == 0)
+        {
+            Variable_Manager.Instance.GetSetVibrate = true;
+        }
+
+        else
+        {
+            Variable_Manager.Instance.GetSetVibrate = false;
+        }
 
 
 
