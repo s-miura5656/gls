@@ -167,6 +167,11 @@ public class Stage_Select_Manager : MonoBehaviour
                 stage_button[i].GetComponent<Image>().color = new Color(231f / base_rgb, 125f / base_rgb, 211f / base_rgb);
                 button_image.GetComponent<Image>().color = new Color(241f / base_rgb, 162f / base_rgb, 227f / base_rgb);
             }
+            else if (i >= stage_number * 4 && i < stage_number * 5 - 3)
+            {
+                stage_button[i].GetComponent<Image>().color = new Color(230f / base_rgb, 230f / base_rgb, 125f / base_rgb);
+                button_image.GetComponent<Image>().color = new Color(255f / base_rgb, 255f / base_rgb, 185f / base_rgb);
+            }
         }
     }
 
