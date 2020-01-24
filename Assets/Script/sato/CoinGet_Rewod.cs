@@ -22,6 +22,8 @@ public class CoinGet_Rewod : MonoBehaviour
     //ボタンのブロックイメージ
     [SerializeField]
     private Image block_reword;
+    //リワードで見たときのコインの枚数
+    private int reword_coin_get = 5000;
 
 
 
@@ -79,7 +81,7 @@ public class CoinGet_Rewod : MonoBehaviour
     {
         //上昇中にリワードを押させない処理
         block_reword.gameObject.SetActive(true);
-        after_coin = Variable_Manager.Instance.GetSetPossessionCoin + 2500;
+        after_coin = Variable_Manager.Instance.GetSetPossessionCoin + reword_coin_get;
 
         DOTween.To(
        () => Variable_Manager.Instance.GetSetPossessionCoin,          // 何を対象にするのか
