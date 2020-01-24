@@ -13,6 +13,8 @@ public class Coin_Manager : MonoBehaviour
     private Text coin_score_text;
     public int score = 0;
     private Variable_Manager coin_script;
+    //ステージ開放を出すまでの時間
+    private float stage_open_display = 0.5f;
 
 
     private int time = 0;
@@ -58,10 +60,15 @@ public class Coin_Manager : MonoBehaviour
     [SerializeField]
     private Transform open_image;
     [SerializeField]
+    private Transform special_image;
+    [SerializeField]
     private Image silver_up;
     [SerializeField]
     private Button close = null;
-  
+    [SerializeField]
+    private Button special_close = null;
+    private int special_coin = 10000;
+
     private float pos_y;
     private bool clear = false;
 
@@ -80,15 +87,12 @@ public class Coin_Manager : MonoBehaviour
 
         //獲得したコイン枚数 
         coin_score = Variable_Manager.Instance.GetSetCoin;
-        //coin_score = 1000;
 
 
         //破壊率
         crash_score_rate = Variable_Manager.Instance.GetSetDestructionRate;
-        //crash_score_rate = 30f;
 
 
-        //Variable_Manager.Instance.GetSetTotal_CrashRate += crash_score_rate;
         coin_score_text = coin_total_text.GetComponent<Text>();
         coin_score_text.text = coin_score.ToString();
 
@@ -98,6 +102,7 @@ public class Coin_Manager : MonoBehaviour
 
 
         close.onClick.AddListener(Stage_close);
+        special_close.onClick.AddListener(Special_close);
 
         stage_open.gameObject.SetActive(false);
 
@@ -128,7 +133,6 @@ public class Coin_Manager : MonoBehaviour
             Coin_move();
             score_up = false;
         }
-
         total_text.text = " " + score;
     }
 
@@ -141,11 +145,21 @@ public class Coin_Manager : MonoBehaviour
             () => score,          // 何を対象にするのか
             num => score = num,   // 値の更新
             cs,                  // 最終的な値
-            1.0f                  // アニメーション時間
+            0.5f                  // アニメーション時間
         ).SetEase(Ease.OutCubic)
         .OnComplete(() => {
             if(clear)
-            Silver_Rank_up(); 
+            Invoke("Stage_open", stage_open_display);
+            else
+            {
+                if(Variable_Manager.Instance.Special_Skin_Get == 0)
+                {
+                    if (Variable_Manager.Instance.GetSetPossessionCoin >= special_coin)
+                    {
+                        Special_open();
+                    }
+                }
+            }
         });
 
 
@@ -176,15 +190,37 @@ public class Coin_Manager : MonoBehaviour
         
     }
 
-    private void Silver_Rank_up()
-    {       
-       stage_open.SetActive(true); 
+    private void Stage_open()
+    {
+      stage_open.SetActive(true); 
     }
 
     private void Stage_close()
     {
-        Sequence seq = DOTween.Sequence();
+        Sequence seq_colse = DOTween.Sequence();
+        seq_colse.Append(open_image.DOScaleY(0.0f, 0.2f))
+        .OnComplete(() => {
+          if (Variable_Manager.Instance.Special_Skin_Get == 0)
+          {
+            if(Variable_Manager.Instance.GetSetPossessionCoin >= special_coin)
+            {
+              Special_open();
+            }
+          }
+        });       
+    }
+
+    private void Special_open()
+    {
+        Sequence seq_special_open = DOTween.Sequence();
         // アニメーション追加
-        seq.Append(open_image.DOScaleY(0.0f, 0.2f));
+        seq_special_open.Append(special_image.DOScaleY(1.0f, 0.1f));
+        Variable_Manager.Instance.Special_Skin_Get = 1;
+    }
+
+    private void Special_close()
+    {
+        Sequence seq_special_close = DOTween.Sequence();
+        seq_special_close.Append(special_image.DOScaleY(0.0f, 0.1f));
     }
 }

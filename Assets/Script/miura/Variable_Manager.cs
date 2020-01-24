@@ -61,7 +61,10 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
     private int stage_level = 0;
     //ステージの開放数確認
     private int stage_last = 0;
-    
+    //specialスキンGETの表示
+    private int special_skin_display = 0;
+
+
     private int vib = 0;
 
     int test = 0;
@@ -245,7 +248,13 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         get { return stage_last; }
         set { stage_last = value; }
     }
-    
+
+    public int Special_Skin_Get
+    {
+        get { return special_skin_display; }
+        set { special_skin_display = value; }
+    }
+
 
     public void Save()
     {
@@ -263,6 +272,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         PlayerPrefs.SetInt("gold_up", Gold_Up);
         PlayerPrefs.SetFloat("total_rate", GetSetTotal_CrashRate);
         PlayerPrefs.SetInt("rank", GetSetRank);
+        PlayerPrefs.SetInt("special_skin_display", Special_Skin_Get);
         //PlayerPrefs.SetInt("stage_last", Stage_Now);
 
 
@@ -309,6 +319,7 @@ public class Variable_Manager : SingletonMonoBehaviour<Variable_Manager>
         GetSetTotal_CrashRate = PlayerPrefs.GetFloat("total_rate");
         GetSetRank = PlayerPrefs.GetInt("rank");
         //Stage_Now = PlayerPrefs.GetInt("stage_last");
+        Special_Skin_Get = PlayerPrefs.GetInt("special_skin_display");
         GetSetVibrate_int = PlayerPrefs.GetInt("vibrate_now");
 
         if (vibrate_now == 0)
