@@ -1598,6 +1598,11 @@ PrefabInstance:
       propertyPath: player_controller_move_script
       value: 
       objectReference: {fileID: 7032356426538193093}
+    - target: {fileID: 1504714972022092492, guid: e44d4d0395885be4c88a36b9720f09f0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2706118229610686234, guid: e44d4d0395885be4c88a36b9720f09f0,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1686,7 +1691,7 @@ PrefabInstance:
     - target: {fileID: 8288721988599281820, guid: e44d4d0395885be4c88a36b9720f09f0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e44d4d0395885be4c88a36b9720f09f0, type: 3}
