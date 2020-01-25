@@ -43,7 +43,7 @@ public class Sp_ExclamationMark_Move : MonoBehaviour
 
         all_open = Variable_Manager.Instance.Sp_Skin_All;
 
-        if (all_open == 1)
+        if (all_open == 2)
         {
             Sp_Exclamation_Mark.gameObject.SetActive(false);
         }
@@ -65,7 +65,7 @@ public class Sp_ExclamationMark_Move : MonoBehaviour
 
     public void Mark_On()
     {
-        if (Variable_Manager.Instance.Sp_Skin_All == 1)
+        if (Variable_Manager.Instance.Sp_Skin_All == 2)
         {
             gameObject.SetActive(false);
         }

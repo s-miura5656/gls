@@ -51,7 +51,7 @@ public class Special_Skin_RandomSerect : MonoBehaviour
             skin_open = Variable_Manager.Instance.GetSpSkinData.SpSkinOpen[i];
 
             //画面のスキンを全て開放した際の処理
-            if (sp_skin_all_open == 1)
+            if (sp_skin_all_open == 2)
             {
                 randam_button.interactable = false;
                 block_button.gameObject.SetActive(true);
@@ -161,7 +161,7 @@ public class Special_Skin_RandomSerect : MonoBehaviour
             block_button.gameObject.SetActive(true);
             sold_out.gameObject.SetActive(true);
             randam_button.gameObject.SetActive(false);
-            Variable_Manager.Instance.Sp_Skin_All = 1;
+            Variable_Manager.Instance.Sp_Skin_All = 2;
 
         }
     }
