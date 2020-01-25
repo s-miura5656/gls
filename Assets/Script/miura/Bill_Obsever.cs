@@ -80,12 +80,12 @@ public class Bill_Obsever : MonoBehaviour
     /// <param name="playerLevel">プレイヤーレベル</param>
     /// <param name="coin">取得したコインの数</param>
     [System.Obsolete]
-    public void PlayCrashEffect(int billLevel, Vector3 bill_pos, int playerLevel, int coin)
+    public void PlayCrashEffect(int billLevel, Vector3 bill_pos)
     {
-        var crash_obj = Instantiate(crash[billLevel], bill_pos, transform.rotation);
+        var crash_obj = Instantiate(crash[billLevel], bill_pos, Quaternion.identity);
         Destroy(crash_obj, 2f);
 
-        var coin_obj = Instantiate(hit_coin_obj[billLevel], bill_pos, transform.rotation);
+        var coin_obj = Instantiate(hit_coin_obj[billLevel], bill_pos, Quaternion.identity);
         Destroy(coin_obj, 2f);
     }
 
