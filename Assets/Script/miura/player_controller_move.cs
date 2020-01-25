@@ -35,7 +35,9 @@ public class player_controller_move : MonoBehaviour
     [SerializeField] private GameObject operation_anime = null;
     // プレイヤーパラメーターの取得
     [SerializeField] private PlayerParametor player_parametor_script = null;
-    
+    // 落ちたときのリセットがかかる位置
+    private float reset_pos = -200f;
+
     void Start()
     {
         player_powor = new float[player_level_manager_script.PlayerLevelMax];
@@ -174,7 +176,7 @@ public class player_controller_move : MonoBehaviour
     /// </summary>
     private void ReStart() 
     {
-        if (transform.position.y <= -100f)
+        if (transform.position.y < reset_pos)
         {
             transform.position = player_default_pos + new Vector3(0, transform.localScale.y / 2f, 0);
             rb.velocity = Vector3.zero;

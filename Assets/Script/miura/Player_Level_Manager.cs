@@ -79,7 +79,7 @@ public class Player_Level_Manager : MonoBehaviour
         bill_level_script.BillPossible(player_level);
 
         // サイズ変更に合わせて高さを変更
-        player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + (player.transform.localScale.y / half), player.transform.position.z);
 
         default_gage_size = gage_canvas.transform.localScale;
     }
@@ -95,7 +95,7 @@ public class Player_Level_Manager : MonoBehaviour
         // サイズ変更に合わせて高さを変更
         //player.transform.position = new Vector3(player.transform.position.x, player.transform.localScale.y / half, player.transform.position.z);
 
-        gage_canvas.transform.position = new Vector3(player.transform.position.x, 0.3f, player.transform.position.z);
+        gage_canvas.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - ((player.transform.localScale.y / 2) + 0.3f), player.transform.position.z);
 
         ExpGage();
     }
