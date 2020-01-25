@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpSkinData
 {
-    public static readonly int SpSkinNumber = 6;
+    public static readonly int SpSkinNumber = 9;
     private static readonly string SaveSpSkinBuyKey = "buy_sp_skin_";
 
     private bool[] sp_skine_open = new bool[SpSkinNumber];
