@@ -459,9 +459,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 222127213754025413, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: continue_button
+      propertyPath: timerButton
       value: 
-      objectReference: {fileID: 4824333780624538682}
+      objectReference: {fileID: 3457371669736760217}
     - target: {fileID: 222127213754025413, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: ring
@@ -469,19 +469,14 @@ PrefabInstance:
       objectReference: {fileID: 3457371670243230629}
     - target: {fileID: 222127213754025413, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: timerButton
-      value: 
-      objectReference: {fileID: 3457371669736760217}
-    - target: {fileID: 222127213754025413, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
       propertyPath: no_button
       value: 
       objectReference: {fileID: 6794651287933899725}
     - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: destruction_rate_text
+      propertyPath: dest_image_size
       value: 
-      objectReference: {fileID: 2002861006974664284}
+      objectReference: {fileID: 1497790746261518253}
     - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: destruction_rate
@@ -489,40 +484,14 @@ PrefabInstance:
       objectReference: {fileID: 2002861006974664284}
     - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: hi_score
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
       propertyPath: target_dest_rate
       value: 
       objectReference: {fileID: 4466260364913477560}
-    - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: dest_text_size
-      value: 
-      objectReference: {fileID: 1497790746261518253}
-    - target: {fileID: 5717232161546214196, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: destroy_sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 3a5cea25dd843c2459ff0ecd7b905521, type: 3}
-    - target: {fileID: 5717232161546214196, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: impact_sound
-      value: 
-      objectReference: {fileID: 8300000, guid: a3958017d5f0cd749a81b0d5e5c39120, type: 3}
     - target: {fileID: 6469966206114064498, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: gameLevelData
+      propertyPath: main_camera
       value: 
-      objectReference: {fileID: 11400000, guid: 6fe3efb81f2908b42a9108fd0039d827,
-        type: 2}
-    - target: {fileID: 6469966206114064498, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: city
-      value: 
-      objectReference: {fileID: 762131612953820059}
+      objectReference: {fileID: 1638749948732852413}
     - target: {fileID: 6469966206114064498, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: player
@@ -530,9 +499,9 @@ PrefabInstance:
       objectReference: {fileID: 2555214422214759565}
     - target: {fileID: 6469966206114064498, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: main_camera
+      propertyPath: city
       value: 
-      objectReference: {fileID: 1638749948732852413}
+      objectReference: {fileID: 762131612953820059}
     - target: {fileID: 6469966206114064500, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -595,24 +564,14 @@ PrefabInstance:
       objectReference: {fileID: 2555214422214759565}
     - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: player_get_exp_script
+      propertyPath: gage_canvas
       value: 
-      objectReference: {fileID: 6245584763521714734}
+      objectReference: {fileID: 5090923870627587181}
     - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: exp_slider
       value: 
       objectReference: {fileID: 5090923871665524709}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: time_script
-      value: 
-      objectReference: {fileID: 8725248853562351871}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: game_level_script
-      value: 
-      objectReference: {fileID: 8725248853562351866}
     - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: level_up_text
@@ -625,66 +584,9 @@ PrefabInstance:
       objectReference: {fileID: 762131612953820057}
     - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: level_up_effect
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
       propertyPath: camera_scipt
       value: 
       objectReference: {fileID: 1638749948732852409}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: variable_manager_script
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: level_up_effect_
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: level_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: level_up_effect_parent
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: level_up_effect_1
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: level_up_effect_2
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: level_up_effect_obj
-      value: 
-      objectReference: {fileID: 6402442665260626554, guid: 3784107c5dab5df4d8aea173b122ece7,
-        type: 3}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: gage_canvas
-      value: 
-      objectReference: {fileID: 5090923870627587181}
-    - target: {fileID: 6469966206114064502, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: player_parametor
-      value: 
-      objectReference: {fileID: 11400000, guid: 979ff0ccf58148e458676db8ad1ea1a6,
-        type: 2}
     - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: start_count_down
@@ -695,11 +597,6 @@ PrefabInstance:
       propertyPath: start_count
       value: 
       objectReference: {fileID: 5874915435997424516}
-    - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: game_time
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: end_count_down_text
@@ -722,29 +619,19 @@ PrefabInstance:
       objectReference: {fileID: 3634433050288851907}
     - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: game_time_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
       propertyPath: game_timer_text
       value: 
       objectReference: {fileID: 500548707516519447}
     - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: game_ui
-      value: 
-      objectReference: {fileID: 1180080703688850369}
-    - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
       propertyPath: continue_botton
       value: 
       objectReference: {fileID: 4824333780624538682}
+    - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
+        type: 3}
+      propertyPath: game_ui
+      value: 
+      objectReference: {fileID: 1180080703688850369}
     - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: now_dest_rate
@@ -755,12 +642,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8535278035699483302, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
-      propertyPath: level_data_script
-      value: 
-      objectReference: {fileID: 11400000, guid: 6fe3efb81f2908b42a9108fd0039d827,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b5bff468ad150408e1755731b86e9f, type: 3}
 --- !u!1 &8725248853562351858 stripped

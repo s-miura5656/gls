@@ -419,6 +419,11 @@ PrefabInstance:
       propertyPath: target_dest_rate
       value: 
       objectReference: {fileID: 1806549283005605791}
+    - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
+        type: 3}
+      propertyPath: dest_image_size
+      value: 
+      objectReference: {fileID: 3467850451185227658}
     - target: {fileID: 6469966206114064498, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: main_camera
@@ -929,6 +934,12 @@ GameObject:
 --- !u!1 &3294198402533307551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3970960551317720574, guid: e44d4d0395885be4c88a36b9720f09f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1922184281384941921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3467850451185227658 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3066036517431095019, guid: e44d4d0395885be4c88a36b9720f09f0,
     type: 3}
   m_PrefabInstance: {fileID: 1922184281384941921}
   m_PrefabAsset: {fileID: 0}

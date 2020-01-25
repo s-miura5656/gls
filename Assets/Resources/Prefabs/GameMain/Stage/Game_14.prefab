@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8688928790316415972}
   m_Layer: 0
-  m_Name: Game_24
+  m_Name: Game_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,9 +391,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 222127213754025413, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: no_button
+      propertyPath: timerButton
       value: 
-      objectReference: {fileID: 1024884593535636561}
+      objectReference: {fileID: 9189983667209741317}
     - target: {fileID: 222127213754025413, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: ring
@@ -401,14 +401,14 @@ PrefabInstance:
       objectReference: {fileID: 9189983665568728121}
     - target: {fileID: 222127213754025413, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: timerButton
+      propertyPath: no_button
       value: 
-      objectReference: {fileID: 9189983667209741317}
+      objectReference: {fileID: 1024884593535636561}
     - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: dest_text_size
+      propertyPath: dest_image_size
       value: 
-      objectReference: {fileID: 4963252000279997088}
+      objectReference: {fileID: 3467850451185227658}
     - target: {fileID: 1717271582861240550, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: destruction_rate
@@ -546,14 +546,14 @@ PrefabInstance:
       objectReference: {fileID: 1201806923418414188}
     - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
-      propertyPath: game_timer_text
-      value: 
-      objectReference: {fileID: 2457612202263688240}
-    - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
-        type: 3}
       propertyPath: game_timer
       value: 
       objectReference: {fileID: 1628445686329650148}
+    - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
+        type: 3}
+      propertyPath: game_timer_text
+      value: 
+      objectReference: {fileID: 2457612202263688240}
     - target: {fileID: 6469966206114064503, guid: 57b5bff468ad150408e1755731b86e9f,
         type: 3}
       propertyPath: continue_botton
@@ -932,9 +932,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1922184281384941921}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &4963252000279997088 stripped
+--- !u!224 &3467850451185227658 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6795363453065647041, guid: e44d4d0395885be4c88a36b9720f09f0,
+  m_CorrespondingSourceObject: {fileID: 3066036517431095019, guid: e44d4d0395885be4c88a36b9720f09f0,
     type: 3}
   m_PrefabInstance: {fileID: 1922184281384941921}
   m_PrefabAsset: {fileID: 0}

@@ -13,7 +13,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     // 最終的に表示させる破壊率
     private float last_destruction_rate = 0f;
     // 現在の破壊率を表示するオブジェクトのRectTransform
-    [SerializeField] private RectTransform dest_text_size = null;
+    [SerializeField] private RectTransform dest_image_size = null;
     // 現在の破壊率を表示するテキスト
     [SerializeField] private TextMeshProUGUI destruction_rate = null;
     // ゲームレベルデータのスクリプト
@@ -41,12 +41,12 @@ public class Destruction_Rate_Manager : MonoBehaviour
         if (PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax") < game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage])
         {
             target_dest_rate_flag = true;
-            dest_text_size.sizeDelta = image_size_max;
+            dest_image_size.sizeDelta = image_size_max;
         }
         else
         {
             target_dest_rate_flag = false;
-            dest_text_size.sizeDelta = image_size_min;
+            dest_image_size.sizeDelta = image_size_min;
         }
 
         target_dest_rate.text = game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage] + " %";
