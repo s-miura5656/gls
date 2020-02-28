@@ -24,7 +24,7 @@ public class CoinGet_Rewod : MonoBehaviour
     private Image block_reword;
     //リワードで見たときのコインの枚数
     private int reword_coin_get = 5000;
-
+    private Vector3 baseSize = Vector3.zero;
 
 
     void Start()
@@ -35,15 +35,16 @@ public class CoinGet_Rewod : MonoBehaviour
         // リザルトボタンを押したらコールバックを呼び出す
         coin_get_reword.onClick.AddListener(() => UnityAdsUtility.Instance.ShowVideoRewardSkin(showAdRewardCallbacks));
 
-        
+        baseSize = coin_get_reword_rect.transform.localScale;
+
         // DoTweenのシーケンス作成。
         Sequence seq = DOTween.Sequence();
         // シーケンスの繰り返す回数をセット、-1で無限ループ
         seq.SetLoops(-1);
         // シーケンスに拡大処理を追加。
-        seq.Append(coin_get_reword_rect.DOScale(new Vector3(1.08f, 1.08f, 1.08f), 1.5f));
+        seq.Append(coin_get_reword_rect.DOScale(new Vector3(0.9f, 0.9f, 0.9f), 1.1f));
         // シーケンスに拡縮処理を追加。
-        seq.Append(coin_get_reword_rect.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 1.3f));
+        seq.Append(coin_get_reword_rect.DOScale(baseSize, 1.1f));
     }
 
     void Update()

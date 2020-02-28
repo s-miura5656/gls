@@ -23,7 +23,7 @@ public class Title_mark_move : MonoBehaviour
         // シーケンスの繰り返す回数をセット、-1で無限ループ
         seq.SetLoops(-1);
         // シーケンスに拡大処理を追加。
-        seq.Append(Title_Exclamation_Mark.DOScale(new Vector3(2, 2, 2), 1.0f));
+        seq.Append(Title_Exclamation_Mark.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 1.0f));
         // シーケンスに拡縮処理を追加。
         seq.Append(Title_Exclamation_Mark.DOScale(new Vector3(1, 1, 1), 1.0f));
     }

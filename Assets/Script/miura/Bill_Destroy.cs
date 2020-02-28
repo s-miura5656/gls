@@ -24,6 +24,11 @@ public class Bill_Destroy : MonoBehaviour
     // ダメージ表現用
     private float damege = 0.5f;
 
+#if UNITY_IOS && !UNITY_EDITOR
+        [DllImport ("__Internal")]
+        static extern void playSystemSound(int n);
+#endif
+
     public void Initialized(Bill_Obsever obsever)
     {
         bill_Obsever = obsever;
@@ -104,8 +109,14 @@ public class Bill_Destroy : MonoBehaviour
 
         if (Variable_Manager.Instance.GetSetVibrate)
         {
+#if UNITY_ANDROID && !UNITY_EDITOR
             // 当たった時のバイブレーション
             Vibration.Vibrate(vibrate);
+#endif
+
+#if UNITY_IOS && !UNITY_EDITOR
+            playSystemSound(1519);
+#endif
         }
     }
 

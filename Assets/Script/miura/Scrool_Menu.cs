@@ -6,6 +6,8 @@ public class Scrool_Menu : MonoBehaviour
 {
 	// 制限を掛けたいオブジェクトのrecttransform
 	[SerializeField] private RectTransform select_rect = null;
+	// マスクのy座標
+	[SerializeField] private RectTransform mask_obj = null;
 	// タッチの始点
 	private float first_touch_y = 0f;
 	// タッチの終点
@@ -22,11 +24,11 @@ public class Scrool_Menu : MonoBehaviour
 	private float swing_dist_max = 3f;
 	// スワイプ受付最小移動距離
 	private float swing_dist_min = -3f;
-
+	
 	// Start is called before the first frame update
 	void Start()
     {
-		max_limit = select_rect.sizeDelta.y;
+		max_limit = select_rect.sizeDelta.y - mask_obj.transform.localPosition.y;
 		min_limit = select_rect.localPosition.y;
 
 		Debug.Log(select_rect.localPosition.y);
@@ -76,9 +78,9 @@ public class Scrool_Menu : MonoBehaviour
 		}
 
 		// 永遠に画面がスライドできてしまうので範囲内ならスクロールさせる。
-		if (select_rect.localPosition.y <= max_limit && select_rect.localPosition.y >= min_limit)
+		if (select_rect.anchoredPosition.y <= max_limit && select_rect.anchoredPosition.y >= min_limit)
 		{
-			select_rect.localPosition += new Vector3(0, swing_dist_y, 0);
+			select_rect.anchoredPosition += new Vector2(0, swing_dist_y);
 		}
 
 		// スワイプをして指を動かしている間、スライドを止めるためにfirst_touch_yをnow_touch_yに近づけてdifferecYを小さくする。
@@ -92,16 +94,16 @@ public class Scrool_Menu : MonoBehaviour
 		}
 
 		// 画面がスライドして行き過ぎた分を自動で戻す。
-		if (select_rect.localPosition.y >= max_limit)
+		if (select_rect.anchoredPosition.y >= max_limit)
 		{
 			swing_dist_y = 0;
-			select_rect.localPosition = new Vector3(select_rect.localPosition.x, max_limit, select_rect.localPosition.z);
+			select_rect.anchoredPosition = new Vector2(select_rect.anchoredPosition.x, max_limit);
 		}
 
-		if (select_rect.localPosition.y <= min_limit)
+		if (select_rect.anchoredPosition.y <= min_limit)
 		{
 			swing_dist_y = 0;
-			select_rect.localPosition = new Vector3(select_rect.localPosition.x, min_limit, select_rect.localPosition.z);
+			select_rect.anchoredPosition = new Vector2(select_rect.anchoredPosition.x, min_limit);
 		}
 	}
 }

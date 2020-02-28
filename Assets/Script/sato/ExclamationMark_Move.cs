@@ -30,7 +30,7 @@ public class ExclamationMark_Move : MonoBehaviour
             // シーケンスの繰り返す回数をセット、-1で無限ループ
             seq.SetLoops(-1);
             // シーケンスに拡大処理を追加。
-            seq.Append(Exclamation_Mark.DOScale(new Vector3(2, 2, 2), 1.0f));
+            seq.Append(Exclamation_Mark.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 1.0f));
             // シーケンスに拡縮処理を追加。
             seq.Append(Exclamation_Mark.DOScale(new Vector3(1, 1, 1), 1.0f));
         
