@@ -29,6 +29,7 @@ public class Player_Move_Smoke : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // プレイヤーの土煙
         gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - player.transform.localScale.y / 2, player.transform.position.z);
 
         // 速度が0.1以上なら

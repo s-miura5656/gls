@@ -52,7 +52,7 @@ public class Arrow_Extend : MonoBehaviour
 
             // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる
             transform.position = player.transform.position
-                               + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized
+                               + (new Vector3(transform.right.x, 0, transform.right.z).normalized
                                * ((player.transform.localScale.y / 2)));
 
             // 矢印の表示
@@ -71,14 +71,15 @@ public class Arrow_Extend : MonoBehaviour
             // 左クリックを押した場所と現在動かしている場所の距離の計算
             dist = (base_mouse_pos - Input.mousePosition).magnitude;
 
-            if (dist >= 1f)
+            // 引っ張り上限
+            if (dist >= 3f)
             {
                 dist = 3f;
             }
             
             // 矢印をプレイヤーを中心にして飛ばしたい方向へ移動させる
             transform.position = player.transform.position
-                               + (new Vector3(transform.right.x, 0.0f, transform.right.z).normalized
+                               + (new Vector3(transform.right.x, 0, transform.right.z).normalized
                                * ((player.transform.localScale.y / 2)));
 
             //// 引っ張りに対して矢印を引き延ばす

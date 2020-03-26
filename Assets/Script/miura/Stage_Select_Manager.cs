@@ -45,6 +45,9 @@ public class Stage_Select_Manager : MonoBehaviour
         SetNewMark();
     }
 
+    /// <summary>
+    /// リセット押したらボタンとか自動で並ぶようにする
+    /// </summary>
     [System.Obsolete]
     private void Reset()
     {
@@ -141,6 +144,9 @@ public class Stage_Select_Manager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ボタンの色を 9 個毎に変える
+    /// </summary>
     [System.Obsolete]
     private void SetButtonColor() 
     {
@@ -234,7 +240,9 @@ public class Stage_Select_Manager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// ステージボタンのロック表示
+    /// </summary>
     private void SetLockDisplay() 
     {
         if (button_lock[0].activeSelf)
@@ -250,6 +258,9 @@ public class Stage_Select_Manager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ステージが解放されたときに New のマークが出る
+    /// </summary>
     private void SetNewMark() 
     {
         for (int i = 1; i < new_mark.Length; i++)

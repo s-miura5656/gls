@@ -34,9 +34,6 @@ public class camera_controller : MonoBehaviour
         camera_base_pos = transform.position;
 
         MoveCamera();
-
-        // プレイヤーを中心に捉える
-        //transform.LookAt(game_level_script.GetPlayer().transform.position);
     }   
 
     /// <summary>

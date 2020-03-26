@@ -64,6 +64,7 @@ public class Player_Level_Manager : MonoBehaviour
             player_scale[i] = Vector3.one * player_parametor.PlayerScale[i];
         }
 
+        // トゲトゲスキン用の処理 ( サイズの変更など )
         if (Variable_Manager.Instance.GetSetAvatarNumber == 13)
         {
             player_level = 5;

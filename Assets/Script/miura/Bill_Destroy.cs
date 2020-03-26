@@ -25,11 +25,16 @@ public class Bill_Destroy : MonoBehaviour
     // ダメージ表現用
     private float damege = 0.5f;
 
+// iOS用振動機能用
 #if UNITY_IOS && !UNITY_EDITOR
         [DllImport ("__Internal")]
         static extern void playSystemSound(int n);
 #endif
 
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    /// <param name="obsever">ビル破壊を統括しているスクリプト</param>
     public void Initialized(Bill_Obsever obsever)
     {
         bill_Obsever = obsever;
@@ -46,7 +51,7 @@ public class Bill_Destroy : MonoBehaviour
         if (bill_level <= bill_Obsever.Player_Level_Manager.GetLevel())
         {
             Vector3 hitPos = other.ClosestPointOnBounds(this.transform.position);
-            BillDestroy(10, hitPos);
+            BillDestroy(10, 1519, hitPos);
         }
     }
 
@@ -55,6 +60,7 @@ public class Bill_Destroy : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player") return;
 
+        // ダメージによる色の変化
         renderer.material.SetColor("_BaseColor", new Color(1, damege, damege, 1));
 
         // 現在の攻撃回数
@@ -73,6 +79,7 @@ public class Bill_Destroy : MonoBehaviour
             hitPos = point.point;
         }
 
+        // 反射時のヒットエフェクトの再生
         bill_Obsever.PlayHitRefEffect(bill_Obsever.Player_Level_Manager.GetLevel() ,hitPos);
 
         // ビルのレベルがプレイヤーと同じか高いときに
@@ -83,13 +90,19 @@ public class Bill_Destroy : MonoBehaviour
 
             if (bill_attack_count > bill_crash_number)
             {
-                BillDestroy(40, hitPos);
+                BillDestroy(40, 1519, hitPos);
             }
         }
     }
 
+    /// <summary>
+    /// ビルが壊れる処理
+    /// </summary>
+    /// <param name="and_vib">android用振動の秒数</param>
+    /// <param name="ios_vib">ios用振動のパターン</param>
+    /// <param name="hit_pos">ビルとぶつかった場所の座標</param>
     [System.Obsolete]
-    private void BillDestroy(int vibrate, Vector3 hit_pos)
+    private void BillDestroy(int and_vib, int ios_vib, Vector3 hit_pos)
     {
         // エフェクト再生
         var player_level = bill_Obsever.Player_Level_Manager.GetLevel();
@@ -112,11 +125,12 @@ public class Bill_Destroy : MonoBehaviour
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
             // 当たった時のバイブレーション
-            Vibration.Vibrate(vibrate);
+            Vibration.Vibrate(and_vib);
 #endif
 
 #if UNITY_IOS && !UNITY_EDITOR
-            playSystemSound(1519);
+            // 当たった時のバイブレーション
+            playSystemSound(ios_vib);
 #endif
         }
     }

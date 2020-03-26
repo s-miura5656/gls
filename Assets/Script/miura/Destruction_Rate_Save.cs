@@ -18,6 +18,7 @@ public class Destruction_Rate_Save : MonoBehaviour
 
         paper.gameObject.SetActive(false);
 
+        // 最高破壊率の更新
         if (Variable_Manager.Instance.GetSetDestructionRate > PlayerPrefs.GetFloat($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax"))
         {
             PlayerPrefs.SetFloat(($"Stage_{ Variable_Manager.Instance.Serect_Stage }_DestructionRateMax"), Variable_Manager.Instance.GetSetDestructionRate);
@@ -25,7 +26,9 @@ public class Destruction_Rate_Save : MonoBehaviour
             paper.gameObject.SetActive(true);
         }
 
+#if UNITY_EDITOR
         Debug.Log("ステージ番号" + Variable_Manager.Instance.Serect_Stage);
         Debug.Log("今回の破壊率" + Variable_Manager.Instance.GetSetDestructionRate);
+#endif
     }
 }

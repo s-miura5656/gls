@@ -22,6 +22,7 @@ public class Finger_Anime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // チュートリアル用引っ張りアニメーション
         if (finger.transform.localPosition.y >= -500f)
         {
             finger.transform.position += new Vector3(0f, -200f, 0f) * Time.deltaTime;

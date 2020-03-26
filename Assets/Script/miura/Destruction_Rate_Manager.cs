@@ -55,6 +55,7 @@ public class Destruction_Rate_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 破壊率の表示
         if (target_dest_rate_flag)
         {
             destruction_rate.text = last_destruction_rate.ToString("f2") + " / " + game_level_script.DestructionTarget[Variable_Manager.Instance.Serect_Stage] + " %";

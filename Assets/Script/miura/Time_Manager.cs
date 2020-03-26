@@ -178,12 +178,14 @@ public class Time_Manager : MonoBehaviour
                 end_count_down_text.text = "" + (int)(time_count_down_main + 1f);
             }
 
+            // タイムアップ時の処理
             if (time_count_down_main <= 0f)
             {
                 game_main_state = false;
                 game_play_state = false;
                 game_end_state = true;
 
+                // ボーナスタイムするかしないか
                 if (bonus_time_state)
                 {
                     if (destruction_rate > show_button_min && destruction_rate < show_button_max)

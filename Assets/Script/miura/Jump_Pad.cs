@@ -8,6 +8,7 @@ public class Jump_Pad : MonoBehaviour
     [SerializeField] private float jump_powor = 0f;
     private void OnCollisionEnter(Collision collision)
     {
+        // プレイヤーを上に打ち上げる
         if (collision.gameObject.tag == "Player")
         {
             player_rb.AddForce(new Vector3(0, jump_powor, 0), ForceMode.Impulse);

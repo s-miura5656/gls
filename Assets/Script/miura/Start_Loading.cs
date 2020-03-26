@@ -26,6 +26,7 @@ public class Start_Loading : MonoBehaviour
 
         count += Time.deltaTime;
 
+        // 目標破壊率表示するかしないか
         if (count > load_end)
         {
             if (Variable_Manager.Instance.Serect_Stage != 0 && PlayerPrefs.GetInt($"AchievementRateFlag_{ Variable_Manager.Instance.Serect_Stage }") != 1)

@@ -9,12 +9,6 @@ public class Level_Up_Text_False : MonoBehaviour
     // 消えるまでの時間
     private float time_invisible = 1.5f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

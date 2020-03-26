@@ -19,6 +19,7 @@ public class Player_Skin_Select : MonoBehaviour
         childObject.transform.localScale *= gameObject.transform.localScale.y;
         childObject.transform.parent = this.transform;
 
+        // スキンの形状に合わせてコライダーを変更
         if (Variable_Manager.Instance.GetSetAvatarNumber == 12 || 
             Variable_Manager.Instance.GetSetAvatarNumber == 14)
         {

@@ -7,7 +7,6 @@ using UnityEngine.Monetization;
 
 public class Timer_Extension : MonoBehaviour
 {
-    //[SerializeField] private GameObject continue_button = null;
     // ボーナスボタン
     [SerializeField] private Button timerButton = null;
     // ボーナスボタンの表示時間に合わせて減っていくゲージ

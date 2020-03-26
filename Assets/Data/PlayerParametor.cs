@@ -12,8 +12,6 @@ public class PlayerParametor : ScriptableObject
     [Header("プレイヤーのレベル毎のカメラの離れていく距離")] [SerializeField] private Vector3[] player_level_up_camera;
     [Header("引っ張り距離の固定")] [SerializeField] private float dist_flat = 200f;
     [Header("プレイヤーについているスモークの大きさ")] [SerializeField] private Vector3 smoke_size = Vector3.one;
-    //[Header("プレイヤーの初期位置変更_1(Position)")] [SerializeField] private Vector3[] player_first_pos;
-    //[Header("プレイヤーの初期位置変更_2(Rotation)")] [SerializeField] private Vector3[] player_first_rotation;
     [Header("スキン毎の速度のパラメーター")] [SerializeField] private float[] player_skin_speed;
     [Header("引き直しのアニメが流れるようになる速度")] [SerializeField] private float animation_start;
     
@@ -46,16 +44,6 @@ public class PlayerParametor : ScriptableObject
     {
         get { return smoke_size; }
     }
-
-    //public Vector3[] PlayerFirstPos 
-    //{
-    //    get { return player_first_pos; }
-    //}
-
-    //public Vector3[] PlayerFirstRotation
-    //{
-    //    get { return player_first_rotation; }
-    //}
 
     public Vector3[] PlayerLevelUpCamera 
     {

@@ -143,6 +143,9 @@ public class Bill_Obsever : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// リセット時に初期化
+    /// </summary>
     private void Reset()
     {
         bill_Destroise = GetComponentsInChildren<Bill_Destroy>();
