@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: Arrow2
   m_EditorClassIdentifier: 
+  m_Active: 1
   settings:
     passTag: Arrow2
     Event: 300
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
+  m_Active: 1
   settings:
     passTag: Player
     Event: 300
@@ -88,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: Player2
   m_EditorClassIdentifier: 
+  m_Active: 1
   settings:
     passTag: Player2
     Event: 300
@@ -126,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: ExpGage
   m_EditorClassIdentifier: 
+  m_Active: 1
   settings:
     passTag: ExpGage
     Event: 300
@@ -164,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: Expgage2
   m_EditorClassIdentifier: 
+  m_Active: 1
   settings:
     passTag: Expgage2
     Event: 250
@@ -209,12 +214,15 @@ MonoBehaviour:
   - {fileID: -8756592904259848299}
   - {fileID: -808061868850286456}
   - {fileID: -5426349341936591692}
+  m_RendererFeatureMap: 
+  postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
     copyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
     screenSpaceShadowPS: {fileID: 4800000, guid: 0f854b35a0cf61a429bd5dcfea30eddd,
       type: 3}
     samplingPS: {fileID: 4800000, guid: 04c410c9937594faa893a11dceb85f7e, type: 3}
+    fallbackErrorPS: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
   m_OpaqueLayerMask:
     serializedVersion: 2
     m_Bits: 1015607
@@ -228,6 +236,7 @@ MonoBehaviour:
     passOperation: 0
     failOperation: 0
     zFailOperation: 0
+  m_ShadowTransparentReceive: 1
 --- !u!114 &149027877990360650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: Arrow
   m_EditorClassIdentifier: 
+  m_Active: 1
   settings:
     passTag: Arrow
     Event: 300

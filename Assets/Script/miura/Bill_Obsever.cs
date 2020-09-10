@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Bill_Obsever : MonoBehaviour
 {
-    // プレイヤーのレベルを取得するためのオブジェクト取得
+    [Header("Object GameManager を入れる")]
     [SerializeField] private GameObject game_manager = null;
-    // プレイヤーのレベルのスクリプトの取得
+    
+    [Header("Script Player_Level_Manager を入れる")]
     [SerializeField] private Player_Level_Manager player_level_script = null;
-    // 破壊率を管理しているスクリプトを取得
+    
+    [Header("Script Destruction_Rate_Manager を入れる")]
     [SerializeField] private Destruction_Rate_Manager destruction_rate_script = null;
-    // 経験値を管理しているスクリプトを取得
+    
+    [Header("Script Player_Exp_Get を入れる")]
     [SerializeField] private Player_Exp_Get player_exp_script = null;
-    // ゲームの時間を管理しているスクリプト
+    
+    [Header("Script Time_Manager を入れる")]
     [SerializeField] private Time_Manager time_script = null;
-    // ビルについている破壊に関するスクリプトを取得
+    
+    [Header("Script Bill_Destroy を入れる (Reset確認用)")]
     [SerializeField] private Bill_Destroy[] bill_Destroise = null;
 
     // ビルの破片パーティクル
@@ -26,8 +31,6 @@ public class Bill_Obsever : MonoBehaviour
     // コインエフェクトのオブジェクト
     [SerializeField] private GameObject[] hit_coin_obj = null;
 
-    // 壊れるパーティクル
-    private ParticleSystem[] crash_particle = { null };
     // ヒットエフェクト貫通
     private ParticleSystem[] hit_particle = { null };
     // ヒットエフェクト反射
@@ -35,14 +38,11 @@ public class Bill_Obsever : MonoBehaviour
     // コインのパーティクル
     private ParticleSystem coin_particle = null;
 
-    // ビルが壊れるエフェクトの大きさの基準
-    private float default_crash_particle_scale = 0.0f;
     // ヒットエフェクト貫通の大きさの基準
     private float default_hit_particle_scale = 0.0f;
     // ヒットエフェクト反射の大きさの基準
     private float default_hit_ref_particle_scale = 0.0f;
-    // コインエフェクトの大きさの基準
-    private float default_coin_particle_scale = 0.0f;
+   
     // コインの出る基準値
     private int coin_number = 1;
     // ビルのレベルの上限

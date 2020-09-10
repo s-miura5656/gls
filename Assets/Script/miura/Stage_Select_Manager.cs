@@ -7,30 +7,35 @@ using System;
 
 public class Stage_Select_Manager : MonoBehaviour
 {
-    // ステージセレクトのボタン
-    [Header("ステージセレクトボタン")] [SerializeField] private GameObject[] stage_button = { null };
-    // ☆マークのオブジェクト取得
-    [Header("☆マークのイメージ")] [SerializeField] private Image[] star_image = { null };
-    // 破壊率ゲージ　親
-    [Header("最大破壊率を表示するゲージ(親)")] [SerializeField] private RectTransform[] gage_parent = { null };
-    // 破壊率ゲージ　子
-    [Header("最大破壊率を表示するゲージ(子)")] [SerializeField] private Image[] gage_child = { null };
-    // ゲームレベルのスクリプト取得
-    [Header("ゲームレベルデータ")] [SerializeField] private GameLevelData game_level_script = null;
-    // ボタンのロック画面
-    [Header("ボタンのロック画面")] [SerializeField] private GameObject[] button_lock = { null };
-    // Newマークのオブジェクト
-    [Header("Newマーク")] [SerializeField] private GameObject[] new_mark = { null };
-    // PlayボタンのNewマーク
-    [Header("PlayButtonのNewマーク")] [SerializeField] private GameObject play_new_mark = null;
+    [Header("ステージセレクトボタン")]
+    [SerializeField] private GameObject[] stage_button = { null };
+    [Header("☆マークのイメージ")]
+    [SerializeField] private Image[] star_image = { null };
+    [Header("最大破壊率を表示するゲージ(親)")]
+    [SerializeField] private RectTransform[] gage_parent = { null };
+    [Header("最大破壊率を表示するゲージ(子)")]
+    [SerializeField] private Image[] gage_child = { null };
+    [Header("ゲームレベルデータ")]
+    [SerializeField] private GameLevelData game_level_script = null;
+    [Header("ボタンのロック画面")]
+    [SerializeField] private GameObject[] button_lock = { null };
+    [Header("Newマーク")]
+    [SerializeField] private GameObject[] new_mark = { null };
+    [Header("PlayButtonのNewマーク")]
+    [SerializeField] private GameObject play_new_mark = null;
+    
     // ステージセレクトのボタンの基準位置
     [SerializeField]private Vector3 base_button_pos = new Vector3(-430f, -100f, 0f);
+    
     // ボタンのX軸移動量
     [SerializeField] private float dist_x = 430f;
+    
     // ボタンのY軸移動量
     [SerializeField] private float dist_y = -450f;
+    
     // ボタンの行
     private int button_line = 2;
+    
     // 目標を達成してるかどうかのフラグ
     private bool[] achievement_flag = { false };
 
@@ -132,11 +137,11 @@ public class Stage_Select_Manager : MonoBehaviour
         {
             GameObject button_target = stage_button[i].transform.FindChild("Gage").gameObject;
             
-            // 数値の表示 
+            //! 数値の表示 
             TextMeshProUGUI text = button_target.GetComponentInChildren<TextMeshProUGUI>();
             text.text = $"{ (int)PlayerPrefs.GetFloat($"Stage_{ i }_DestructionRateMax") } / { game_level_script.DestructionTarget[i] } %";
 
-            // 目標メモリの設定
+            //! 目標メモリの設定
             RectTransform target_gage = button_target.transform.FindChild("Inside").gameObject.GetComponent<RectTransform>();
             RectTransform target_bar = target_gage.transform.FindChild("Goal_Bar").gameObject.GetComponent<RectTransform>();
 
