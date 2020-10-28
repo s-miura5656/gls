@@ -12,11 +12,10 @@ namespace Human.BuildingCrash
         [SerializeField] private Vector3 cameraMoveOffset     = Vector3.zero;
 
         private CameraBase cameraBase = new CameraBase();
-        Vector3 oldPos = Vector3.zero;
 
         public void Initialize()
         {
-            oldPos = cameraTransform.position;
+
         }
 
         public void FixedManagedUpdate()
