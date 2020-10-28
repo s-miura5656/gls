@@ -132,7 +132,7 @@ public class player_controller_move : MonoBehaviour
     /// </summary>
     private void MoveStop()
     {
-        if (rb.velocity.magnitude <= lower_limit_speed)
+        if (rb.velocity.magnitude <= lower_limit_speed) 
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
