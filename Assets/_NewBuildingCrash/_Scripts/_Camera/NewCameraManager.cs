@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Human.BuildingCrash
         [SerializeField] private Transform cameraTransform    = null;
         [SerializeField] private float cameraSpeed            = 1.0f;
         [SerializeField] private Vector3 cameraMoveOffset     = Vector3.zero;
+        [SerializeField] private float cameraDistance         = 100.0f;
 
         private CameraBase cameraBase = new CameraBase();
 
@@ -20,10 +22,15 @@ namespace Human.BuildingCrash
 
         public void FixedManagedUpdate()
         {
-            Camera.main.transform.LookAt(playerTransform);
+            cameraTransform.rotation = 
+                cameraBase.LookTarget(playerTransform.position, cameraTransform.position);
 
             cameraTransform.position = 
                 cameraBase.MoveCamera(playerTransform.position, cameraMoveOffset, cameraSpeed);
+
+            cameraTransform.position =
+                cameraBase.SetDistancePosition(playerTransform.position, cameraTransform.position, 
+                                               cameraDistance);
         }
     }
 }

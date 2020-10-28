@@ -28,7 +28,7 @@ namespace Human.BuildingCrash
 
         public void ManagedUpdate()
         {
-            playerBase.PullMove(rigidBody, true, 10f);
+            playerBase.PullMove(rigidBody, true, powor);
             effectBase.EffectMove(smokeEffect.transform, player.transform);
             playerBase.FowardRotation(rigidBody, this.transform, sphereCollider);
             playerBase.MoveStop(rigidBody, stopSpeed);
