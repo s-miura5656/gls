@@ -8,11 +8,18 @@ namespace Human.BuildingCrash
 {
     public class NewPlayerManager : MonoBehaviour
     {
+        [Header("プレイヤーのScriptableObject")]
         [SerializeField] private NewPlayerParametor playerParametor = null;
+        [Header("プレイヤーのGameObject")]
         [SerializeField] private GameObject player                  = null;
+        [Header("移動した時の土煙のエフェクトのGameobject")]
         [SerializeField] private GameObject smokeEffect             = null;
+        [Header("移動停止させる速度")]
         [SerializeField] private float stopSpeed                    = 10f;
+        [Header("引っ張って離したときにどのくらいの力をかけるか")]
         [SerializeField] private float powor                        = 10f;
+        [Header("レベルアップ時のスケールアップのアニメーションの補完時間")]
+        [SerializeField] private float scaleUpTime                  = 2f;
 
         private Rigidbody rigidBody           = null;
         private SphereCollider sphereCollider = null;
@@ -22,7 +29,9 @@ namespace Human.BuildingCrash
 
         public void Initialize()
         {
-            PlayerData.Instance.Initialize(playerParametor);
+            var data = PlayerData.Instance;
+            data.Initialize(playerParametor);
+            player.transform.localScale = Vector3.one * playerParametor.SizeTable[data.GetLevel];
             rigidBody = player.GetComponent<Rigidbody>();
             sphereCollider = player.GetComponent<SphereCollider>();
             effectBase.Initilize(smokeEffect);
@@ -34,9 +43,7 @@ namespace Human.BuildingCrash
             effectBase.EffectMove(smokeEffect.transform, player.transform);
             playerBase.FowardRotation(rigidBody, this.transform, sphereCollider);
             playerBase.MoveStop(rigidBody, stopSpeed);
-            playerBase.LevelUp(playerParametor.MaxLevel, 
-                               playerParametor.ExperienceTable, 
-                               playerParametor.AttackPoworTable);
+            playerBase.LevelUp(playerParametor, player.transform, scaleUpTime);
         }
     }
 

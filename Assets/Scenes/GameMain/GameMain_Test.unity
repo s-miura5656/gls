@@ -433,6 +433,7 @@ MonoBehaviour:
   smokeEffect: {fileID: 1840632294311462784}
   stopSpeed: 10
   powor: 20
+  scaleUpTime: 2
 --- !u!1 &1774331708
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,10 +478,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a8690cf22720b419af4fb995c51d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 9064562453710742630}
+  playerParametor: {fileID: 11400000, guid: 94b2d0f1ee4723049b526d867badfbec, type: 2}
+  targetTransform: {fileID: 9064562453710742630}
   cameraTransform: {fileID: 4017500745273121039}
-  cameraSpeed: 0.7
+  cameraMoveTime: 1
   cameraMoveOffset: {x: 0, y: 150, z: -100}
+  changeDistanceTime: 2
   cameraDistance: 100
 --- !u!1 &1797815233
 GameObject:
@@ -538,7 +541,7 @@ Transform:
   m_GameObject: {fileID: 3915189463939076263}
   m_LocalRotation: {x: -0.0068950197, y: 0.9050698, z: 0.42348734, w: -0.03820393}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 9064562453710742630}
   m_RootOrder: 0
@@ -7342,7 +7345,7 @@ Transform:
   m_GameObject: {fileID: 9064562453710742608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4175713333027508}
   - {fileID: 2022107406688737568}

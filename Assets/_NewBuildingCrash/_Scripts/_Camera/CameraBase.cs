@@ -14,15 +14,15 @@ namespace Human.BuildingCrash
         /// </summary>
         /// <param name="targetPos"></param>
         /// <param name="offSet"></param>
-        /// <param name="cameraSpeed"></param>
+        /// <param name="cameraMoveTime"></param>
         /// <returns></returns>
-        public Vector3 MoveCamera(Vector3 targetPos, Vector3 offSet, float cameraSpeed)
+        public Vector3 MoveCamera(Vector3 targetPos, Vector3 offSet, float cameraMoveTime)
         {
             // カメラの transform.yの位置をプレイヤーのものと等しく設定します。ただし、計算されたオフセット距離によるずれも加えます。
             Vector3 movePos = targetPos + offSet;
 
             // Lerp補完で滑らか移動
-            movePos = Vector3.Lerp(oldPos, movePos, cameraSpeed);
+            movePos = Vector3.Lerp(oldPos, movePos, cameraMoveTime);
 
             oldPos = movePos;
 
@@ -63,6 +63,26 @@ namespace Human.BuildingCrash
             float z = (float)Math.Cos(rad) * distance;
 
             return targetPos + new Vector3(0, y, z);
+        }
+
+        /// <summary>
+        /// 距離の線形補完
+        /// </summary>
+        /// <param name="distance"></param>
+        /// <param name="playerParametor"></param>
+        /// <param name="time">完了までの時間</param>
+        /// <returns></returns>
+        public float ChangeDistance(float distance , NewPlayerParametor playerParametor, float time) 
+        {
+            var data = PlayerData.Instance;
+
+            if (distance == playerParametor.CameraDistance[data.GetLevel])
+                return distance;
+
+            distance = Mathf.Lerp(distance, playerParametor.CameraDistance[data.GetLevel], 
+                                  Time.deltaTime * time);
+
+            return distance;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Human.BuildingCrash
 {
@@ -80,24 +81,26 @@ namespace Human.BuildingCrash
         /// <summary>
         /// レベルアップの処理
         /// </summary>
-        /// <param name="maxLevel">最大レベル</param>
-        /// <param name="experienceTable">経験値テーブル</param>
-        /// <param name="attackPoworTable">攻撃力テーブル</param>
-        public void LevelUp(int maxLevel, int[] experienceTable, int[] attackPoworTable) 
+        /// <param name="playerParametor"></param>
+        /// <param name="transform"></param>
+        /// <param name="sizeUpTime">レベルアップ時のスケールアップアニメーションの速度</param>
+        public void LevelUp(NewPlayerParametor playerParametor, Transform transform, float sizeUpTime) 
         {
             var data = PlayerData.Instance;
 
-            if (data.GetLevel == maxLevel)
+            if (data.GetLevel == playerParametor.MaxLevel)
                 return;
 
-            if (data.GetExperience < experienceTable[data.GetLevel])
+            if (data.GetExperience < playerParametor.ExperienceTable[data.GetLevel])
                 return;
 
             data.SetLevel(data.GetLevel + 1);
-            data.SetAttackPowor(attackPoworTable[data.GetLevel]);
+            data.SetAttackPowor(playerParametor.AttackPoworTable[data.GetLevel]);
+            transform.DOScale(Vector3.one * playerParametor.SizeTable[data.GetLevel], sizeUpTime);
+
 #if UNITY_EDITOR
             Debug.Log("現在のレベル " + data.GetLevel);
-            Debug.Log("現在の攻撃力 " + attackPoworTable[data.GetLevel]);
+            Debug.Log("現在の攻撃力 " + playerParametor.AttackPoworTable[data.GetLevel]);
 #endif
         }
     }
