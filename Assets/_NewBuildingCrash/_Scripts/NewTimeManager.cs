@@ -6,24 +6,22 @@ namespace Human.BuildingCrash
 {
     public class NewTimeManager : MonoBehaviour
     {
-        private IGetData getData = null;
-        private ISetData setData = null;
+        private IGameData iGameData = null;
 
         private float gameTimeCount = 0f;
 
         public void Initialize() 
         {
-            getData = NewGameManager.Instance;
-            setData = NewGameManager.Instance;
+            iGameData = NewGameManager.Instance;
 
-            setData.SetGameTime(0f);
+            iGameData.SetGameTime(0f);
         }
 
         public void ManagedUpdate() 
         {
             gameTimeCount += Time.deltaTime;
 
-            setData.SetGameTime(gameTimeCount);
+            iGameData.SetGameTime(gameTimeCount);
         }
     }
 }

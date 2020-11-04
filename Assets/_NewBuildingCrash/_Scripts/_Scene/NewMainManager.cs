@@ -12,20 +12,20 @@ public class NewMainManager : MonoBehaviour
     [SerializeField] private NewTimeManager timeManager     = null;
     [SerializeField] private NewCameraManager cameraManager = null;
 
-    IGetData getData = null;
+    IGameData iGameData = null;
 
     void Awake()
     {
-        getData = NewGameManager.Instance;
+        iGameData = NewGameManager.Instance;
     }
-
+    
     void Start()
     {
         timeManager.Initialize();
         //uiManager.Initialize();
         playerManager.Initialize();
         cameraManager.Initialize();
-        //stageManager.Initialize();
+        stageManager.Initialize();
     }
 
     void Update()
@@ -33,7 +33,7 @@ public class NewMainManager : MonoBehaviour
         timeManager.ManagedUpdate();
         //uiManager.ManagedUpdate();
         playerManager.ManagedUpdate();
-        //stageManager.ManagedUpdate();
+        stageManager.ManagedUpdate();
     }
 
     void FixedUpdate()

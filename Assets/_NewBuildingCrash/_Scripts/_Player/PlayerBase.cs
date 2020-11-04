@@ -55,6 +55,9 @@ namespace Human.BuildingCrash
         /// <summary>
         /// 進行方向へ回転させる
         /// </summary>
+        /// <param name="rb"></param>
+        /// <param name="transform"></param>
+        /// <param name="sphereCollider"></param>
         public void FowardRotation(Rigidbody rb, Transform transform, SphereCollider sphereCollider)
         {
             var translation = rb.velocity * Time.deltaTime;
@@ -72,6 +75,30 @@ namespace Human.BuildingCrash
             var deltaRotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, axis);
 
             rb.MoveRotation(deltaRotation * rb.rotation);
+        }
+
+        /// <summary>
+        /// レベルアップの処理
+        /// </summary>
+        /// <param name="maxLevel">最大レベル</param>
+        /// <param name="experienceTable">経験値テーブル</param>
+        /// <param name="attackPoworTable">攻撃力テーブル</param>
+        public void LevelUp(int maxLevel, int[] experienceTable, int[] attackPoworTable) 
+        {
+            var data = PlayerData.Instance;
+
+            if (data.GetLevel == maxLevel)
+                return;
+
+            if (data.GetExperience < experienceTable[data.GetLevel])
+                return;
+
+            data.SetLevel(data.GetLevel + 1);
+            data.SetAttackPowor(attackPoworTable[data.GetLevel]);
+#if UNITY_EDITOR
+            Debug.Log("現在のレベル " + data.GetLevel);
+            Debug.Log("現在の攻撃力 " + attackPoworTable[data.GetLevel]);
+#endif
         }
     }
 }

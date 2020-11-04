@@ -8,8 +8,7 @@ namespace Human.BuildingCrash
 {
     public class NewSceneManager : MonoBehaviour
     {
-        private IGetData getData = NewGameManager.Instance;
-        private ISetData setData = NewGameManager.Instance;
+        private IGameData getGameData = NewGameManager.Instance;
 
         public void Initialize()
         {
@@ -18,7 +17,7 @@ namespace Human.BuildingCrash
 
         public void ManagedUpdate()
         {
-            switch (getData.GetSceneState)
+            switch (getGameData.GetSceneState)
             {
                 case NewGameManager.SceneState.TITLE:
                     break;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Human.BuildingCrash
 {
-    public class NewGameManager : SingletonMonoBehaviour<NewGameManager>, IGetData, ISetData
+    public class NewGameManager : SingletonMonoBehaviour<NewGameManager>, IGameData
     {
         public enum SceneState
         {
@@ -17,22 +17,20 @@ namespace Human.BuildingCrash
         private SceneState sceneState = SceneState.TITLE;
         private float gameTime = 0f;
 
+        //! 時間
         public float GetGameTime => gameTime;
         public void SetGameTime(float gametime) { this.gameTime = gametime; }
 
+        //! シーン
         public SceneState GetSceneState => sceneState;
         public void SetSceneState(SceneState sceneState) { this.sceneState = sceneState; }
     }
 
-    public interface IGetData
+    public interface IGameData
     {
         NewGameManager.SceneState GetSceneState { get; }
         float GetGameTime { get; }
-        
-    }
 
-    public interface ISetData
-    {
         void SetSceneState(NewGameManager.SceneState sceneState);
         void SetGameTime(float gametime);
     }

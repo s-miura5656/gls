@@ -62,8 +62,6 @@ namespace Human.BuildingCrash
             float y = (float)Math.Sin(rad) * distance;
             float z = (float)Math.Cos(rad) * distance;
 
-            var answer = rad * Mathf.Rad2Deg;
-
             return targetPos + new Vector3(0, y, z);
         }
     }
