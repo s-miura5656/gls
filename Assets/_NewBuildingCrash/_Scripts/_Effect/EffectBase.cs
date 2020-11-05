@@ -2,21 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectBase
+namespace Human.BuildingCrash
 {
-    private ParticleSystem particleSystem = null;
-
-    public void Initilize(GameObject effectObject) 
+    public class EffectBase
     {
-        particleSystem = effectObject.GetComponent<ParticleSystem>();
-    }
+        private ParticleSystem particleSystem = null;
+        
 
-    public void EffectMove(Transform effectTransform, Transform targetTransform) 
-    {
-        Vector3 movePos = targetTransform.position;
+        public void Initilize(GameObject effectObject)
+        {
+            particleSystem = effectObject.GetComponent<ParticleSystem>();
+        }
 
-        movePos.y = targetTransform.localScale.y / 2f;
+        public void EffectMove(Transform effectTransform, Transform targetTransform)
+        {
+            Vector3 movePos = targetTransform.position;
 
-        effectTransform.position = movePos;
+            movePos.y = targetTransform.localScale.y / 2f;
+
+            effectTransform.position = movePos;
+        }
+
+       
     }
 }
+
+
+

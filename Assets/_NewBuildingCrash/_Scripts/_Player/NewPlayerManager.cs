@@ -14,6 +14,8 @@ namespace Human.BuildingCrash
         [SerializeField] private GameObject player                  = null;
         [Header("移動した時の土煙のエフェクトのGameobject")]
         [SerializeField] private GameObject smokeEffect             = null;
+        [Header("引っ張ってる時の矢印のGameObject")]
+        [SerializeField] private GameObject arrowSprite             = null;
         [Header("移動停止させる速度")]
         [SerializeField] private float stopSpeed                    = 10f;
         [Header("引っ張って離したときにどのくらいの力をかけるか")]
@@ -23,23 +25,29 @@ namespace Human.BuildingCrash
 
         private Rigidbody rigidBody           = null;
         private SphereCollider sphereCollider = null;
+        private float skinScale               = 5f;
 
         private PlayerBase playerBase = new PlayerBase();
         private EffectBase effectBase = new EffectBase();
+        private UiBase uiBase         = new UiBase();
 
         public void Initialize()
         {
             var data = PlayerData.Instance;
+
             data.Initialize(playerParametor);
+            uiBase.Initilize(arrowSprite, skinScale);
+            effectBase.Initilize(smokeEffect);
+
             player.transform.localScale = Vector3.one * playerParametor.SizeTable[data.GetLevel];
             rigidBody = player.GetComponent<Rigidbody>();
             sphereCollider = player.GetComponent<SphereCollider>();
-            effectBase.Initilize(smokeEffect);
         }
 
         public void ManagedUpdate()
         {
             playerBase.PullMove(rigidBody, true, powor);
+            uiBase.PullArrowController(player);
             effectBase.EffectMove(smokeEffect.transform, player.transform);
             playerBase.FowardRotation(rigidBody, this.transform, sphereCollider);
             playerBase.MoveStop(rigidBody, stopSpeed);

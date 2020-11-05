@@ -8,6 +8,7 @@ namespace Human.BuildingCrash
     public class CameraBase
     {
         private Vector3 oldPos = Vector3.zero;
+        private float animationTime = 0f;
 
         /// <summary>
         /// カメラの追従
@@ -79,8 +80,15 @@ namespace Human.BuildingCrash
             if (distance == playerParametor.CameraDistance[data.GetLevel])
                 return distance;
 
-            distance = Mathf.Lerp(distance, playerParametor.CameraDistance[data.GetLevel], 
-                                  Time.deltaTime * time);
+            animationTime += Time.deltaTime;
+
+            distance = Mathf.Lerp(distance, playerParametor.CameraDistance[data.GetLevel],
+                               animationTime);
+
+            Debug.Log(distance);
+
+            if (animationTime >= time)
+                animationTime = 0;
 
             return distance;
         }

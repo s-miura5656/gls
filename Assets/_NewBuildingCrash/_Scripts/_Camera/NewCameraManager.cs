@@ -20,7 +20,7 @@ namespace Human.BuildingCrash
         [Header("対象とカメラの距離の補完時間")]
         [SerializeField] private float changeDistanceTime           = 2f;
 
-        public float cameraDistance  = 100.0f;
+        private float cameraDistance  = 100f;
         private CameraBase cameraBase = new CameraBase();
 
         public void Initialize()
