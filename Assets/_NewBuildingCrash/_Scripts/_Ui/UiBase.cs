@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Human.BuildingCrash
 {
@@ -24,11 +25,12 @@ namespace Human.BuildingCrash
             skinObjectScale = skinScale;
         }
 
+        #region 矢印関係
         /// <summary>
         /// 引っ張り時の矢印動き
         /// </summary>
         /// <param name="player"></param>
-        public void PullArrowController(GameObject player)
+        public void PullArrowController(Transform player)
         {
             var arrowObject = spriteRenderer.gameObject;
 
@@ -76,5 +78,31 @@ namespace Human.BuildingCrash
                 spriteRenderer.enabled = false;
             }
         }
+        #endregion
+
+        #region 経験値ゲージ
+        /// <summary>
+        /// 経験値ゲージの移動
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="gage"></param>
+        public void ExperienceGageMove(Transform target, Transform gage)
+        {
+            var pos = target.position;
+
+            gage.position = pos;
+        }
+
+        /// <summary>
+        /// 経験値ゲージのサイズ調整
+        /// </summary>
+        /// <param name="gage"></param>
+        /// <param name="scale"></param>
+        /// <param name="time"></param>
+        public void ExperienceGageScaleControl(Transform gage ,float scale, float time) 
+        {
+            gage.DOScale(Vector3.one * scale, time);
+        }
+        #endregion
     }
 }

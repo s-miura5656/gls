@@ -10,6 +10,7 @@ namespace Human.BuildingCrash
         private Vector3 mStartPos = Vector3.zero;
         private Vector3 mEndPos = Vector3.zero;
 
+        #region 操作関係
         /// <summary>
         /// 引っ張り操作
         /// </summary>
@@ -77,7 +78,9 @@ namespace Human.BuildingCrash
 
             rb.MoveRotation(deltaRotation * rb.rotation);
         }
+        #endregion
 
+        #region パラメータ操作関係
         /// <summary>
         /// レベルアップの処理
         /// </summary>
@@ -103,6 +106,7 @@ namespace Human.BuildingCrash
             Debug.Log("現在の攻撃力 " + playerParametor.AttackPoworTable[data.GetLevel]);
 #endif
         }
+        #endregion
     }
 }
 

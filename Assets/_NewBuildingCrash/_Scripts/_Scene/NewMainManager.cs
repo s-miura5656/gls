@@ -22,8 +22,8 @@ public class NewMainManager : MonoBehaviour
     void Start()
     {
         timeManager.Initialize();
-        //uiManager.Initialize();
         playerManager.Initialize();
+        uiManager.Initialize();
         cameraManager.Initialize();
         stageManager.Initialize();
     }
@@ -31,7 +31,7 @@ public class NewMainManager : MonoBehaviour
     void Update()
     {
         timeManager.ManagedUpdate();
-        //uiManager.ManagedUpdate();
+        uiManager.ManagedUpdate();
         playerManager.ManagedUpdate();
         stageManager.ManagedUpdate();
     }
@@ -43,6 +43,6 @@ public class NewMainManager : MonoBehaviour
 
     void LateUpdate()
     {
-        
+        uiManager.ManagedLateUpdate();
     }
 }
