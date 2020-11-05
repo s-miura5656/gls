@@ -69,6 +69,7 @@ namespace Human.BuildingCrash
 
                 //! スケールの設定
                 Vector3 arrowScale = Vector3.one * distance;
+                arrowScale *= player.localScale.x;
                 arrowScale.z = arrowObject.transform.localScale.z;
                 arrowObject.transform.localScale = arrowScale;
             }

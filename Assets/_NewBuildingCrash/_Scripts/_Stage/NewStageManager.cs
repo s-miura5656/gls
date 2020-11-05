@@ -11,10 +11,7 @@ namespace Human.BuildingCrash
 
         public void Initialize()
         {
-            foreach (var billObjScript in newDestroyObjs)
-            {
-                billObjScript.Initilize();
-            }
+            
         }
 
         public void ManagedUpdate()
@@ -30,6 +27,11 @@ namespace Human.BuildingCrash
         private void Reset()
         {
             newDestroyObjs = GetComponentsInChildren<NewDestroyObj>();
+
+            foreach (var billObjScript in newDestroyObjs)
+            {
+                billObjScript.Initilize();
+            }
         }
     }
 }

@@ -85,7 +85,7 @@ namespace Human.BuildingCrash
             distance = Mathf.Lerp(distance, playerParametor.CameraDistance[data.GetLevel],
                                animationTime);
 
-            Debug.Log(distance);
+            Debug.Log(animationTime);
 
             if (animationTime >= time)
                 animationTime = 0;
