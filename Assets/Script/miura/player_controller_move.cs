@@ -117,7 +117,7 @@ public class player_controller_move : MonoBehaviour
 
             powor *= player_parametor_script.PlayerSkinPramSpeed[Variable_Manager.Instance.GetSetAvatarNumber];
 
-            start_direction = -1 * (end_pos - start_pos).normalized;
+            start_direction = (start_pos - end_pos).normalized;
 
             //! カウントダウン後動けるようになる
             if (time_script.GetGamePlayState)
@@ -132,7 +132,7 @@ public class player_controller_move : MonoBehaviour
     /// </summary>
     private void MoveStop()
     {
-        if (rb.velocity.magnitude <= lower_limit_speed)
+        if (rb.velocity.magnitude <= lower_limit_speed) 
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
