@@ -9,6 +9,20 @@ namespace Human.BuildingCrash
     {
         private Vector3 mStartPos = Vector3.zero;
         private Vector3 mEndPos = Vector3.zero;
+        private float powor = 0f;
+        private int[] mExperienceTable = { 0 };
+
+        public void Initialize(NewPlayerParametor playerParametor) 
+        {
+            powor = playerParametor.ReleasedPowor[PlayerData.Instance.GetLevel];
+
+            mExperienceTable = playerParametor.ExperienceTable;
+
+            for (int i = 1; i < mExperienceTable.Length; i++)
+            {
+                mExperienceTable[i] += playerParametor.ExperienceTable[i - 1];
+            }
+        }
 
         #region 操作関係
         /// <summary>
@@ -17,7 +31,7 @@ namespace Human.BuildingCrash
         /// <param name="rb">動かしたいオブジェクトのリジッドボディ</param>
         /// <param name="gameStartFlag">動かせるようにするためのフラグ</param>
         /// <param name="powor">移動させるための力</param>
-        public void PullMove(Rigidbody rb, bool gameStartFlag, float powor)
+        public void PullMove(Rigidbody rb, bool gameStartFlag)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -94,11 +108,12 @@ namespace Human.BuildingCrash
             if (data.GetLevel == playerParametor.MaxLevel)
                 return;
 
-            if (data.GetExperience < playerParametor.ExperienceTable[data.GetLevel])
+            if (data.GetExperience < mExperienceTable[data.GetLevel])
                 return;
 
             data.SetLevel(data.GetLevel + 1);
             data.SetAttackPowor(playerParametor.AttackPoworTable[data.GetLevel]);
+            powor = playerParametor.ReleasedPowor[data.GetLevel];
             transform.DOScale(Vector3.one * playerParametor.SizeTable[data.GetLevel], sizeUpTime);
 
 #if UNITY_EDITOR

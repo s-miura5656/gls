@@ -42,5 +42,11 @@ namespace Human.BuildingCrash
         [SerializeField] private float[] experienceGageScale = { 0 };
         public float[] ExperienceGageScale { get { return experienceGageScale; } }
         #endregion
+
+        #region レベル毎の指を離したときにかける力
+        [Header("レベル毎の指を離したときにかける力")]
+        [SerializeField] private float[] releasedPowor = { 0 };
+        public float[] ReleasedPowor { get { return releasedPowor; } }
+        #endregion
     }
 }

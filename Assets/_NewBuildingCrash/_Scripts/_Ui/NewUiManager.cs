@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Human.BuildingCrash;
+using UnityEngine.UIElements;
 
 namespace Human.BuildingCrash
 {
@@ -11,6 +12,8 @@ namespace Human.BuildingCrash
         [SerializeField] private NewPlayerParametor playerParametor = null;
         [Header("プレイヤーのUI用Canvas")]
         [SerializeField] private Canvas playerCanvas                = null;
+        [Header("経験値ゲージのImageコンポーネント")]
+        [SerializeField] private Image experienceGageImage          = null;
         [Header("引っ張ってる時の矢印のGameObject")]
         [SerializeField] private GameObject arrowSprite             = null;
         [Header("経験値ゲージのスケールアップのアニメーションの補完時間")]

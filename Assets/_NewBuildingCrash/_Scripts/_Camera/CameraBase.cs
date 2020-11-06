@@ -9,6 +9,12 @@ namespace Human.BuildingCrash
     {
         private Vector3 oldPos = Vector3.zero;
         private float animationTime = 0f;
+        private float distance = 0;
+
+        public void Initialize(float cameraDistance) 
+        {
+            distance = cameraDistance;
+        }
 
         /// <summary>
         /// カメラの追従
@@ -54,7 +60,7 @@ namespace Human.BuildingCrash
         /// <param name="cameraPos"></param>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public Vector3 SetDistancePosition(Vector3 targetPos, Vector3 cameraPos, float distance) 
+        public Vector3 SetDistancePosition(Vector3 targetPos, Vector3 cameraPos) 
         {
             var dif = cameraPos - targetPos;
 
@@ -69,28 +75,27 @@ namespace Human.BuildingCrash
         /// <summary>
         /// 距離の線形補完
         /// </summary>
-        /// <param name="distance"></param>
         /// <param name="playerParametor"></param>
         /// <param name="time">完了までの時間</param>
         /// <returns></returns>
-        public float ChangeDistance(float distance , NewPlayerParametor playerParametor, float time) 
+        public void ChangeDistance(NewPlayerParametor playerParametor, float time) 
         {
             var data = PlayerData.Instance;
 
             if (distance == playerParametor.CameraDistance[data.GetLevel])
-                return distance;
-
-            animationTime += Time.deltaTime;
+                return;
 
             distance = Mathf.Lerp(distance, playerParametor.CameraDistance[data.GetLevel],
-                               animationTime);
+                               Time.deltaTime * time);
 
-            Debug.Log(animationTime);
+            distance = Mathf.CeilToInt(distance);
 
-            if (animationTime >= time)
+            Debug.Log(distance);
+
+            if (distance == playerParametor.CameraDistance[data.GetLevel])
+            { 
                 animationTime = 0;
-
-            return distance;
+            }
         }
     }
 }

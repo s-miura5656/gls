@@ -10,6 +10,7 @@ namespace Human.BuildingCrash
         private SpriteRenderer spriteRenderer = null;
         private Vector3 baseMousePos = Vector3.zero;
         private float skinObjectScale = 0;
+        private int oldLevel = 0;
 
         private const float pullDistanceMin = 1f;
         private const float pullDistanceMax = 3f;
@@ -104,6 +105,22 @@ namespace Human.BuildingCrash
         {
             gage.DOScale(Vector3.one * scale, time);
         }
+
+        //public float ExperienceGageFillAmountControl(NewPlayerParametor playerParametor) 
+        //{
+        //    var data = PlayerData.Instance;
+
+        //    int needExperiencePoints = 0;
+
+        //    if (oldLevel != data.GetLevel)
+        //    {
+        //        needExperiencePoints = playerParametor.ExperienceTable[data.GetLevel] - playerParametor.ExperienceTable[oldLevel];
+        //    }
+
+
+
+        //    return 
+        //}
         #endregion
     }
 }

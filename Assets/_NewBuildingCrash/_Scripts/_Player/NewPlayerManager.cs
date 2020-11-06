@@ -16,8 +16,6 @@ namespace Human.BuildingCrash
         [SerializeField] private GameObject smokeEffect             = null;
         [Header("移動停止させる速度")]
         [SerializeField] private float stopSpeed                    = 10f;
-        [Header("引っ張って離したときにどのくらいの力をかけるか")]
-        [SerializeField] private float powor                        = 10f;
         [Header("レベルアップ時のスケールアップのアニメーションの補完時間")]
         [SerializeField] private float scaleUpTime                  = 2f;
 
@@ -30,9 +28,9 @@ namespace Human.BuildingCrash
         public void Initialize()
         {
             var data = PlayerData.Instance;
-
             data.Initialize(playerParametor, player.transform);
-            effectBase.Initilize(smokeEffect);
+            effectBase.Initialize(smokeEffect);
+            playerBase.Initialize(playerParametor);
 
             player.transform.localScale = Vector3.one * playerParametor.SizeTable[data.GetLevel];
             rigidBody = player.GetComponent<Rigidbody>();
@@ -41,7 +39,7 @@ namespace Human.BuildingCrash
 
         public void ManagedUpdate()
         {
-            playerBase.PullMove(rigidBody, true, powor);
+            playerBase.PullMove(rigidBody, true);
 
             playerBase.FowardRotation(rigidBody, this.transform, sphereCollider);
 

@@ -8,7 +8,7 @@ namespace Human.BuildingCrash
     {
         private ParticleSystem particleSystem = null;
         
-        public void Initilize(GameObject effectObject)
+        public void Initialize(GameObject effectObject)
         {
             particleSystem = effectObject.GetComponent<ParticleSystem>();
         }
