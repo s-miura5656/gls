@@ -25,16 +25,16 @@ public class Stage_Select_Manager : MonoBehaviour
     [SerializeField] private GameObject play_new_mark = null;
     
     // ステージセレクトのボタンの基準位置
-    [SerializeField]private Vector3 base_button_pos = new Vector3(-430f, -100f, 0f);
+    [SerializeField]private Vector3 base_button_pos = new Vector3(-360f, -240f, 0f);
     
     // ボタンのX軸移動量
-    [SerializeField] private float dist_x = 430f;
+    [SerializeField] private float dist_x = 360f;
     
     // ボタンのY軸移動量
-    [SerializeField] private float dist_y = -450f;
+    [SerializeField] private float dist_y = -360f;
     
     // ボタンの行
-    private int button_line = 2;
+    private const int button_line = 2;
     
     // 目標を達成してるかどうかのフラグ
     private bool[] achievement_flag = { false };
@@ -76,12 +76,9 @@ public class Stage_Select_Manager : MonoBehaviour
 
         SetButtonName();
         SetButtonColor();
-    }
-
-    private void OnValidate()
-    {
         SetButtonPos();
     }
+
 
     /// <summary>
     /// ボタンの位置を整列させる
