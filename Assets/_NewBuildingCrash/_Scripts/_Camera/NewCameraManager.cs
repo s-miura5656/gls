@@ -20,12 +20,11 @@ namespace Human.BuildingCrash
         [Header("対象とカメラの距離の補完時間")]
         [SerializeField] private float changeDistanceTime           = 2f;
 
-        private float cameraDistance  = 100f;
         private CameraBase cameraBase = new CameraBase();
 
         public void Initialize()
         {
-            cameraDistance = playerParametor.CameraDistance[PlayerData.Instance.GetLevel];
+            cameraBase.Initialize(playerParametor.CameraDistance[PlayerData.Instance.GetLevel]);
         }
 
         public void FixedManagedUpdate()
@@ -36,11 +35,10 @@ namespace Human.BuildingCrash
             cameraTransform.position = 
                 cameraBase.MoveCamera(targetTransform.position, cameraMoveOffset, cameraMoveTime);
 
-            cameraDistance = cameraBase.ChangeDistance(cameraDistance, playerParametor, changeDistanceTime);
+            cameraBase.ChangeDistance(playerParametor, changeDistanceTime);
 
             cameraTransform.position =
-                cameraBase.SetDistancePosition(targetTransform.position, cameraTransform.position, 
-                                               cameraDistance);
+                cameraBase.SetDistancePosition(targetTransform.position, cameraTransform.position);
         }
     }
 }
